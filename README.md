@@ -1,14 +1,13 @@
 # MTSS: Multi-Task Strategy Selection for LLM-based APR
 
-![Conference](https://img.shields.io/badge/ICSE-2025-00B4CC) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![arXiv](https://img.shields.io/badge/arXiv-2404.08877-b31b1b.svg)](https://arxiv.org/abs/2404.08877)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-> This repository extends the D4C work (ICSE 2025) with **MTSS (Multi-Task Strategy Selection)** — a routing framework that dynamically selects between Edit and REW repair strategies for each bug instance, validated on both **Defects4J** (Java) and **SWE-bench Verified** (Python).
->
-> See the original D4C talk on [BiliBili](https://www.bilibili.com/video/BV19aBjYzECg/?share_source=copy_web&vd_source=458ae8ad245dcde451e270ec77861f13&t=5389) (in Chinese).
+> **MTSS (Multi-Task Strategy Selection)** is a routing framework for LLM-based automated program repair (APR).
+> It dynamically selects between two repair strategies — **Edit** (targeted local patch) and **REW** (full file rewrite) — for each bug instance, validated on **Defects4J** (Java) and **SWE-bench Verified** (Python).
 
 ## Overview
 
-This repository builds upon **D4C** (ICSE 2025) and extends it with **MTSS (Multi-Task Strategy Selection)** — a routing framework that dynamically selects the optimal repair strategy for each bug.
+**MTSS** is a routing framework that dynamically selects the optimal repair strategy for each bug instance.
 
 ### Two Repair Strategies
 
@@ -185,15 +184,4 @@ See design document in `../mtss_swebench/design.md` for full experimental plan.
 ## License
 
 MIT License
-
-## Citation
-
-```bibtex
-@article{xu2024aligning,
-  title={Aligning the Objective of LLM-based Program Repair},
-  author={Xu, Junjielong and Fu, Ying and Tan, Shin Hwei and He, Pinjia},
-  journal={arXiv preprint arXiv:2404.08877},
-  year={2024}
-}
-```
 
