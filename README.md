@@ -27,6 +27,47 @@ The optimal strategy is **benchmark-dependent**. MTSS learns to route each bug i
 
 ---
 
+## Routing Mechanism
+
+MTSS uses a **Hybrid Metric** to decide which repair strategy to use for each bug:
+
+### Routing Signals
+
+| Signal | Description | Weight |
+|--------|-------------|--------|
+| **PPL Gap** | Perplexity difference between Edit and REW outputs | 0.4 |
+| **Vote Consistency** | Majority vote across cluster representatives | 0.4 |
+| **Cluster Size** | Reliability factor based on cluster population | 0.2 |
+
+### Routing Formula
+
+```python
+# Step 1: Compute individual signals
+ppl_ratio = sigmoid(-(mean_edit_ppl - mean_rew_ppl) / temperature)
+vote_ratio = edit_votes / total_votes
+size_factor = min(cluster_size / normalization, 1.0)
+
+# Step 2: Compute confidence
+confidence = (
+    ppl_confidence * 0.4 +
+    vote_confidence * 0.4 +
+    size_factor * 0.2
+)
+
+# Step 3: Weighted routing decision
+edit_ratio = 0.5 + (weighted_ratio - 0.5) * confidence
+```
+
+**Key intuition**: Strong signals (large PPL gap, unanimous vote, large cluster) → high confidence → aggressive routing. Weak signals (small gap, split vote, tiny cluster) → low confidence → conservative fallback to 50:50.
+
+**Example scenarios**:
+- Large cluster (N=50) + strong Edit preference (PPL gap = -5.0, 9/10 vote) → **84.9% Edit**
+- Tiny cluster (N=2) + weak signal (PPL gap = -0.5, 3/5 vote) → **51.5% Edit** (nearly neutral)
+
+See [`docs/BTMS_ARCHITECTURE.md`](docs/BTMS_ARCHITECTURE.md) and [`../btms-budget-allocation/HYBRID_METRIC_DESIGN.md`](../btms-budget-allocation/HYBRID_METRIC_DESIGN.md) for full details.
+
+---
+
 ## Repository Structure
 
 ```
