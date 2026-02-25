@@ -21,7 +21,7 @@
 | Setting | Edit | REW | Routing (MTSS) |
 |---------|------|-----|----------------|
 | Defects4J (Java) | **78.9%** | 72.2% | 74.64% |
-| SWE-bench Verified (Python) | 18.0% | **20.4%** | TBD |
+| SWE-bench Verified (Python) | TBD | TBD | TBD |
 
 The optimal strategy is **benchmark-dependent**. MTSS learns to route each bug instance to the better-suited repair mode based on structural features (change scope, repo history, cluster assignment).
 
