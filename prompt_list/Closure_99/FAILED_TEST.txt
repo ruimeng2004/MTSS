@@ -1,0 +1,11 @@
+public void testPropertyOfMethod() {
+    testFailure("a.protoype.b = {}; " +
+        "a.prototype.b.c = function() { this.foo = 3; };");
+  }
+public void testMethod4() {
+    testSame("a.prototype['x' + 'y'] =  function() { this.foo = 3; };");
+  }
+public void testInterface1() {
+    testSame(
+        "/** @interface */function A() { /** @type {string} */ this.m2; }");
+  }

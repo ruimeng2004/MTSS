@@ -1,0 +1,6 @@
+   This function has no comment.
+   /**
+     * Emit goog.provide and add suffix to all global vars to avoid conflicts
+     * with other modules.
+     */
+private void visitScript(NodeTraversal t,Node script)

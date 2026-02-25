@@ -1,0 +1,13 @@
+   /**
+     * Defines a typed variable. The defining node will be annotated with the
+     * variable's type of {@link JSTypeNative#UNKNOWN_TYPE} if its type is
+     * inferred.
+     *
+     * Slots may be any variable or any qualified name in the global scope.
+     *
+     * @param n the defining NAME or GETPROP node.
+     * @param parent the {@code n}'s parent.
+     * @param type the variable's type. It may be {@code null} if
+     *     {@code inferred} is {@code true}.
+     */
+void defineSlot(Node n,Node parent,JSType type,boolean inferred)

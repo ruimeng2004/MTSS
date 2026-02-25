@@ -1,0 +1,48 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+@Test
+    public void shouldFailWhenCallingRealMethodOnIterface() throws Throwable {
+        //given
+        Invocation inovcationOnIterface = new InvocationBuilder().method("simpleMethod").toInvocation();
+        try {
+            //when
+            validator.validate(new CallsRealMethods(), inovcationOnIterface);
+            //then
+            fail();
+        } catch (MockitoException e) {}
+    }
+@Test
+    public void shouldFailFastWhenCallingRealMethodOnInterface() throws Exception {
+        List list = mock(List.class);
+        try {
+            //when
+            when(list.get(0)).thenCallRealMethod();
+            //then
+            fail();
+        } catch (MockitoException e) {}
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public void validate(Answer<?> answer, Invocation invocation) {
+        if (answer instanceof ThrowsException) {
+            validateException((ThrowsException) answer, invocation);
+        }
+        
+        if (answer instanceof Returns) {
+            validateReturnValue((Returns) answer, invocation);
+        }
+        
+        if (answer instanceof DoesNothing) {
+            validateDoNothing((DoesNothing) answer, invocation);
+        }
+        
+    }
+```

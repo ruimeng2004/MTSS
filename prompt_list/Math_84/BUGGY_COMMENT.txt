@@ -1,0 +1,3 @@
+   /** {@inheritDoc} */
+@Override
+    protected void iterateSimplex(final Comparator<RealPointValuePair> comparator)

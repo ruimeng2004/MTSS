@@ -1,0 +1,25 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:<{"[bar]":"result"}> but was:<{"[stuff]":"result"}>
+
+### Failed JUnit tests:
+public void testMixinWithBundles() throws Exception
+    {
+        ObjectMapper mapper = new ObjectMapper().addMixIn(Foo.class, FooMixin.class);
+        String result = mapper.writeValueAsString(new Foo("result"));
+        assertEquals("{\"bar\":\"result\"}", result);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+protected final boolean _add(Annotation ann) {
+        if (_annotations == null) {
+            _annotations = new HashMap<Class<? extends Annotation>,Annotation>();
+        }
+        Annotation previous = _annotations.put(ann.annotationType(), ann);
+        return (previous != null) && previous.equals(ann);
+    }
+```

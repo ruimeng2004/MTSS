@@ -1,0 +1,1 @@
+java.lang.IllegalArgumentException: Unknown mode. Full: 1a4 Masked: 0

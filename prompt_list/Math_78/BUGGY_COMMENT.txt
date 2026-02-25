@@ -1,0 +1,12 @@
+   /** Evaluate the impact of the proposed step on the event handler.
+     * @param interpolator step interpolator for the proposed step
+     * @return true if the event handler triggers an event before
+     * the end of the proposed step (this implies the step should be
+     * rejected)
+     * @exception DerivativeException if the interpolator fails to
+     * compute the switching function somewhere within the step
+     * @exception EventException if the switching function
+     * cannot be evaluated
+     * @exception ConvergenceException if an event cannot be located
+     */
+public boolean evaluateStep(final StepInterpolator interpolator)

@@ -1,0 +1,5 @@
+junit.framework.ComparisonFailure: tr:  expected:<[A]111111111> but was:<[1]111111111>
+junit.framework.ComparisonFailure: tr:  expected:<[I]> but was:<[?]>
+junit.framework.ComparisonFailure: tr:  expected:<[I]> but was:<[?]>
+junit.framework.AssertionFailedError: tr: 239
+junit.framework.AssertionFailedError: tr: The character is not mapped: ?

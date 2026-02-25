@@ -1,0 +1,8 @@
+   /**
+     * Combines an existing Hashtable with this Hashtable.
+     * <p>
+     * Warning: It will overwrite previous entries without warning.
+     *
+     * @param props  the properties to combine
+     */
+public void combine(ExtendedProperties props)

@@ -1,0 +1,9 @@
+   /**
+     * Method called to parse a number, when the primary parse
+     * method has failed to parse it, due to it being split on
+     * buffer boundary. As a result code is very similar, except
+     * that it has to explicitly copy contents to the text buffer
+     * instead of just sharing the main input buffer.
+     */
+private final JsonToken _parseNumber2(boolean neg,int startPtr)
+   This function has no comment.

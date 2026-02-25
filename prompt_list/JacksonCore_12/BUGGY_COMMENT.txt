@@ -1,0 +1,18 @@
+   This function has no comment.
+   This function has no comment.
+   /**
+     * @return Next token from the stream, if any found, or null
+     *   to indicate end-of-input
+     */
+@Override
+    public final JsonToken nextToken()
+   This function has no comment.
+   // As per [core#108], must ensure we call the right method
+@Override
+    public JsonLocation getTokenLocation()
+   // Implemented since 2.7
+@Override
+    public boolean nextFieldName(SerializableString sstr)
+   // Implemented since 2.7
+@Override
+    public boolean nextFieldName(SerializableString sstr)

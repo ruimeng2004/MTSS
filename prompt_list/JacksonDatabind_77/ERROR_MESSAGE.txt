@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: Expected an exception with one of substrings ([Illegal type]): got one with message "N/A

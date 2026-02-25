@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: The contains(char) method is looking beyond the end of the string

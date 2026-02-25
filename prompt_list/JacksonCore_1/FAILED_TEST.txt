@@ -1,0 +1,4 @@
+public void testAllowNaN() throws Exception {
+        _testAllowNaN(false);
+        _testAllowNaN(true);
+    }

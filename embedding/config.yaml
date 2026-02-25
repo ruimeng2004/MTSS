@@ -1,0 +1,46 @@
+embedding_config:
+  # API configuration for bailian RemoteChat
+  api_key: sk-4d88933783f844ed99cc603b0ac4a70d
+  proxy: bailian  # Options: bailian, OpenAI, DeepSeek, etc.
+  model: text-embedding-v4 # Model name for embedding/chat
+  
+  # Source and output configuration
+  prompt_list_dir: /home/base/APR/D4C/prompt_list  # Directory containing prompt files
+  output_dir: /home/base/APR/D4C/embedding/vectors  # Directory to store embeddings
+  
+  # Processing configuration
+  max_retries: 3  # Maximum retry attempts for failed requests
+  retry_delay: 2  # Delay in seconds between retries
+  
+  # File types to vectorize
+  file_extensions:
+    - .txt
+    - .java
+    - .py
+    - .json
+  
+  # Specific files to vectorize (leave empty to use file_extensions filter)
+  # If specified, only these files will be processed (ignores file_extensions)
+  target_files: [query.txt]  # Example: ['query.txt', 'BUGGY_CODE.txt']
+  
+  # Target class folders (leave empty to process all folders)
+  target_folders: ['Chart_1', 'Chart_2']  # Example: ['Chart_1', 'Chart_2', 'Cli_11']
+  
+  # cuVS vector storage configuration (GPU-accelerated)
+  use_vector_store: true  # Enable cuVS vector storage (requires CUDA GPU)
+  vector_store:
+    index_path: /home/base/APR/D4C/embedding/vector_index  # Path to store cuVS index
+    index_type: ivf_flat  # Options: ivf_flat, ivf_pq, cagra
+    metric: l2  # Options: l2 (Euclidean), inner_product
+    
+    # IVF index parameters
+    nlist: 100  # Number of clusters (auto: vectors/10, min 100)
+    nprobe: 10  # Number of clusters to search (higher = more accurate, slower)
+    
+    # IVF-PQ specific parameters
+    pq_dim: 64  # Dimension for product quantization (compression)
+    
+    # CAGRA specific parameters
+    graph_degree: 64  # Degree of the graph index
+    intermediate_graph_degree: 128  # Intermediate graph degree during build
+

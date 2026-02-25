@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: extra warning: Bad type annotation. type not recognized due to syntax error
+junit.framework.AssertionFailedError: extra warning: Bad type annotation. type not recognized due to syntax error

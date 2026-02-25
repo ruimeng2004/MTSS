@@ -1,0 +1,14 @@
+   /**
+     * Evaluates the predicate returning true if the input equals the stored value.
+     * 
+     * @param object  the input object
+     * @return true if input object equals stored value
+     */
+public boolean evaluate(T object)
+   /**
+     * Constructor that performs no validation.
+     * Use <code>getInstance</code> if you want that.
+     * 
+     * @param object  the object to compare to
+     */
+public EqualPredicate(T object)

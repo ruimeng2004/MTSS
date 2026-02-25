@@ -1,0 +1,10 @@
+   /**
+     * Look for a type declaration on a property assignment
+     * (in an ASSIGN or an object literal key).
+     *
+     * @param info The doc info for this property.
+     * @param lValue The l-value node.
+     * @param rValue The node that {@code n} is being initialized to,
+     *     or {@code null} if this is a stub declaration.
+     */
+private JSType getDeclaredType(String sourceName,JSDocInfo info,Node lValue,@Nullable Node rValue)

@@ -1,0 +1,4 @@
+   /**
+     * Declares all of a function's arguments.
+     */
+private void declareArguments(Node functionNode)

@@ -1,0 +1,23 @@
+public void testAxisFollowing() {
+        assertXPathValueIterator(
+            context,
+            "vendor/contact/following::location//street",
+            list("Orchard Road", "Tangerine Drive"));
+
+        // following:: with a namespace
+        assertXPathValue(
+            context,
+            "//location/following::price:sale/saleEnds",
+            "never");
+        assertXPathPointer(context, "//location[2]/following::node()[2]", "/vendor[1]/product[1]");
+    }
+    public void testAxisPreceding() {
+        // preceding::
+        assertXPathPointer(
+                context,
+                "//location[2]/preceding-sibling::location//street",
+        "/vendor[1]/location[1]/address[1]/street[1]");
+        assertXPathPointer(context, "//location[2]/preceding::*[1]", "/vendor[1]/location[1]/employeeCount[1]");
+        assertXPathPointer(context, "//location[2]/preceding::node()[3]", "/vendor[1]/location[1]/employeeCount[1]/text()[1]");
+        assertXPathPointer(context, "//location[2]/preceding::node()[4]", "/vendor[1]/location[1]/employeeCount[1]");
+    }

@@ -1,0 +1,170 @@
+### Buggy function comment:
+   This function has no comment.
+   /**
+   * Extracts the text found on the current line and all subsequent
+   * until either an annotation, end of comment or end of file is reached.
+   * Note that if this method detects an end of line as the first token, it
+   * will quit immediately (indicating that there is no text where it was
+   * expected).  Note that token = info.token; should be called after this
+   * method is used to update the token properly in the parser.
+   *
+   * @param token The start token.
+   * @param option How to handle whitespace.
+   *
+   * @return The extraction information.
+   */
+@SuppressWarnings("fallthrough")
+  private ExtractionInfo extractMultilineTextualBlock(JsDocToken token,WhitespaceOption option)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError:
+junit.framework.ComparisonFailure: expected:< Foo
+
+### Failed JUnit tests:
+public void testParameter4() {
+    // Make sure that we do not merge two-arg functions because of the
+    // IE sort bug (see comments in computeEscaped)
+    test("function FUNC(x, y) {var a,b; y; a=0; a; x; b=0; b}",
+         "function FUNC(x, y) {var a; y; a=0; a; x; a=0; a}");
+  }
+public void testParseLicenseWithAnnotation() throws Exception {
+    Node node = new Node(1);
+    this.fileLevelJsDocBuilder = node.getJsDocBuilderForNode();
+    String comment = "@license Foo \n * @author Charlie Brown */";
+    parse(comment);
+    assertEquals(" Foo \n @author Charlie Brown ",
+        node.getJSDocInfo().getLicense());
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+  public void enterScope(NodeTraversal t) {
+    // TODO(user): We CAN do this in the global scope, just need to be
+    // careful when something is exported. Liveness uses bit-vector for live
+    // sets so I don't see compilation time will be a problem for running this
+    // pass in the global scope.
+    Scope scope = t.getScope();
+    if (scope.isGlobal()) {
+      return;
+    }
+    ControlFlowGraph<Node> cfg = t.getControlFlowGraph();
+
+    LiveVariablesAnalysis liveness =
+        new LiveVariablesAnalysis(cfg, scope, compiler);
+    // If the function has exactly 2 params, mark them as escaped. This is
+    // a work-around for an IE bug where it throws an exception if you
+    // write to the parameters of the callback in a sort(). See:
+    // http://code.google.com/p/closure-compiler/issues/detail?id=58
+    liveness.analyze();
+
+    UndiGraph<Var, Void> interferenceGraph =
+        computeVariableNamesInterferenceGraph(
+            t, cfg, liveness.getEscapedLocals());
+
+    GraphColoring<Var, Void> coloring =
+        new GreedyGraphColoring<Var, Void>(interferenceGraph,
+            coloringTieBreaker);
+
+    coloring.color();
+    colorings.push(coloring);
+  }
+```
+```java
+@SuppressWarnings("fallthrough")
+  private ExtractionInfo extractMultilineTextualBlock(JsDocToken token,
+                                                      WhitespaceOption option) {
+
+    if (token == JsDocToken.EOC || token == JsDocToken.EOL ||
+        token == JsDocToken.EOF) {
+      return new ExtractionInfo("", token);
+    }
+
+    stream.update();
+    int startLineno = stream.getLineno();
+    int startCharno = stream.getCharno() + 1;
+
+    // Read the content from the first line.
+    String line = stream.getRemainingJSDocLine();
+
+    if (option != WhitespaceOption.PRESERVE) {
+      line = line.trim();
+    }
+
+    StringBuilder builder = new StringBuilder();
+    builder.append(line);
+
+    state = State.SEARCHING_ANNOTATION;
+    token = next();
+
+    boolean ignoreStar = false;
+
+    do {
+      switch (token) {
+        case STAR:
+          if (!ignoreStar) {
+            if (builder.length() > 0) {
+              builder.append(' ');
+            }
+
+            builder.append('*');
+          }
+
+          token = next();
+          continue;
+
+        case EOL:
+          if (option != WhitespaceOption.SINGLE_LINE) {
+            builder.append("\n");
+          }
+
+          ignoreStar = true;
+          token = next();
+          continue;
+
+        case ANNOTATION:
+        case EOC:
+        case EOF:
+          // When we're capturing a license block, annotations
+          // in the block are ok.
+            String multilineText = builder.toString();
+
+            if (option != WhitespaceOption.PRESERVE) {
+              multilineText = multilineText.trim();
+            }
+
+            int endLineno = stream.getLineno();
+            int endCharno = stream.getCharno();
+
+            if (multilineText.length() > 0) {
+              jsdocBuilder.markText(multilineText, startLineno, startCharno,
+                  endLineno, endCharno);
+            }
+
+            return new ExtractionInfo(multilineText, token);
+
+          // FALL THROUGH
+
+        default:
+          ignoreStar = false;
+          state = State.SEARCHING_ANNOTATION;
+
+          if (builder.length() > 0) {
+            builder.append(' ');
+          }
+
+          builder.append(toString(token));
+
+          line = stream.getRemainingJSDocLine();
+
+          if (option != WhitespaceOption.PRESERVE) {
+            line = trimEnd(line);
+          }
+
+          builder.append(line);
+          token = next();
+      }
+    } while (true);
+  }
+```

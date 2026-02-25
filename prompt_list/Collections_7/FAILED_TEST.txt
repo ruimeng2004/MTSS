@@ -1,0 +1,40 @@
+public void testKeySet2() {
+        ExtendedProperties p = new ExtendedProperties();
+        p.put("a", "foo");
+        p.put("b", "bar");
+        p.put("c", "bar");
+
+        Iterator it = p.getKeys();
+        assertEquals("a", (String) it.next());
+        assertEquals("b", (String) it.next());
+        assertEquals("c", (String) it.next());
+        assertFalse(it.hasNext());
+    }
+public void testKeySet3() {
+        ExtendedProperties q = new ExtendedProperties();
+        q.addProperty("a", "foo");
+        q.addProperty("b", "bar");
+        q.addProperty("c", "bar");
+
+        ExtendedProperties p = new ExtendedProperties();
+        p.putAll(q);
+
+        Iterator it = p.getKeys();
+        assertEquals("a", (String) it.next());
+        assertEquals("b", (String) it.next());
+        assertEquals("c", (String) it.next());
+        assertFalse(it.hasNext());
+    }
+public void testKeySet4() {
+        ExtendedProperties q = new ExtendedProperties();
+        q.addProperty("a", "foo");
+        q.addProperty("b", "bar");
+        q.addProperty("c", "bar");
+
+        q.remove("b");
+
+        Iterator it = q.getKeys();
+        assertEquals("a", (String) it.next());
+        assertEquals("c", (String) it.next());
+        assertFalse(it.hasNext());
+    }

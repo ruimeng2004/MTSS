@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: expected:<[foo bar baz]> but was:<[bar baz foo]>

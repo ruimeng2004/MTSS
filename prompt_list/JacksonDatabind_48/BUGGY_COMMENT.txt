@@ -1,0 +1,13 @@
+   /*
+    /**********************************************************
+    /* Factories for objects configured here
+    /**********************************************************
+     */
+@Override
+    public VisibilityChecker<?> getDefaultVisibilityChecker()
+   /**
+     * Bulk access method for getting the bit mask of all {@link DeserializationFeature}s
+     * that are enabled.
+     */
+@Override
+    public VisibilityChecker<?> getDefaultVisibilityChecker()

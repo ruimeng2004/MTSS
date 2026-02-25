@@ -1,0 +1,8 @@
+com.fasterxml.jackson.core.JsonParseException: Numeric value (9223372036854775817) out of range of long (-9223372036854775808 - 9223372036854775807)
+com.fasterxml.jackson.core.JsonParseException: Numeric value (2147483648) out of range of int
+com.fasterxml.jackson.core.JsonParseException: Numeric value (9223372036854775817) out of range of long (-9223372036854775808 - 9223372036854775807)
+com.fasterxml.jackson.core.JsonParseException: Numeric value (2147483648) out of range of int
+com.fasterxml.jackson.core.JsonParseException: Numeric value ([Integer with 199999 digits]) out of range of long
+com.fasterxml.jackson.core.JsonParseException: Numeric value (-9223372036854775809) out of range of long
+com.fasterxml.jackson.core.JsonParseException: Numeric value ([Integer with 199999 digits]) out of range of int
+com.fasterxml.jackson.core.JsonParseException: Numeric value (12345678907) out of range of int

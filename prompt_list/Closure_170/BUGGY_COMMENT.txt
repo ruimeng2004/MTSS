@@ -1,0 +1,6 @@
+   /**
+     * Computes the number of uses of the variable varName and store it in
+     * numUseWithinUseCfgNode.
+     */
+private void getNumUseInUseCfgNode(final Node cfgNode)
+   This function has no comment.

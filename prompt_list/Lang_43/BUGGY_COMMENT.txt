@@ -1,0 +1,11 @@
+   /**
+     * Consume a quoted string, adding it to <code>appendTo</code> if
+     * specified.
+     * 
+     * @param pattern pattern to parse
+     * @param pos current parse position
+     * @param appendTo optional StringBuffer to append
+     * @param escapingOn whether to process escaped quotes
+     * @return <code>appendTo</code>
+     */
+private StringBuffer appendQuotedString(String pattern,ParsePosition pos,StringBuffer appendTo,boolean escapingOn)

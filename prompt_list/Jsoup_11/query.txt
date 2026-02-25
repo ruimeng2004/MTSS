@@ -1,0 +1,131 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+org.jsoup.select.Selector$SelectorParseException: Could not parse query ':not(p)': unexpected token at ':not(p)'
+junit.framework.AssertionFailedError: expected:<3> but was:<0>
+org.jsoup.select.Selector$SelectorParseException: Could not parse query 'div:not(.left)': unexpected token at ':not(.left)'
+org.jsoup.select.Selector$SelectorParseException: Could not parse query 'p:not([id=1])': unexpected token at ':not([id=1])'
+
+### Failed JUnit tests:
+@Test public void notAll() {
+        Document doc = Jsoup.parse("<p>Two</p> <p><span>Three</span></p>");
+
+        Elements el1 = doc.body().select(":not(p)"); // should just be the span
+        assertEquals(2, el1.size());
+        assertEquals("body", el1.first().tagName());
+        assertEquals("span", el1.last().tagName());
+    }
+@Test public void testPseudoHas() {
+        Document doc = Jsoup.parse("<div id=0><p><span>Hello</span></p></div> <div id=1><span class=foo>There</span></div> <div id=2><p>Not</p></div>");
+
+        Elements divs1 = doc.select("div:has(span)");
+        assertEquals(2, divs1.size());
+        assertEquals("0", divs1.get(0).id());
+        assertEquals("1", divs1.get(1).id());
+
+        Elements divs2 = doc.select("div:has([class]");
+        assertEquals(1, divs2.size());
+        assertEquals("1", divs2.get(0).id());
+
+        Elements divs3 = doc.select("div:has(span, p)");
+        assertEquals(3, divs3.size());
+        assertEquals("0", divs3.get(0).id());
+        assertEquals("1", divs3.get(1).id());
+        assertEquals("2", divs3.get(2).id());
+
+        Elements els1 = doc.body().select(":has(p)");
+        assertEquals(3, els1.size()); // body, div, dib
+        assertEquals("body", els1.first().tagName());
+        assertEquals("0", els1.get(1).id());
+        assertEquals("2", els1.get(2).id());
+    }
+@Test public void notClass() {
+        Document doc = Jsoup.parse("<div class=left>One</div><div class=right id=1><p>Two</p></div>");
+
+        Elements el1 = doc.select("div:not(.left)");
+        assertEquals(1, el1.size());
+        assertEquals("1", el1.first().id());
+    }
+@Test public void notParas() {
+        Document doc = Jsoup.parse("<p id=1>One</p> <p>Two</p> <p><span>Three</span></p>");
+
+        Elements el1 = doc.select("p:not([id=1])");
+        assertEquals(2, el1.size());
+        assertEquals("Two", el1.first().text());
+        assertEquals("Three", el1.last().text());
+
+        Elements el2 = doc.select("p:not(:has(span))");
+        assertEquals(2, el2.size());
+        assertEquals("One", el2.first().text());
+        assertEquals("Two", el2.last().text());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private Elements select() {
+        tq.consumeWhitespace();
+        
+        if (tq.matchesAny(combinators)) { // if starts with a combinator, use root as elements
+            elements.add(root);
+            combinator(tq.consume().toString());
+        } else {
+            addElements(findElements()); // chomp first element matcher off queue 
+        }            
+               
+        while (!tq.isEmpty()) {
+            // hierarchy and extras
+            boolean seenWhite = tq.consumeWhitespace();
+            
+            if (tq.matchChomp(",")) { // group or
+                while (!tq.isEmpty()) {
+                    String subQuery = tq.chompTo(",");
+                    elements.addAll(select(subQuery, root));
+                }
+            } else if (tq.matchesAny(combinators)) {
+                combinator(tq.consume().toString());
+            } else if (seenWhite) {
+                combinator(" ");
+            } else { // E.class, E#id, E[attr] etc. AND
+                Elements candidates = findElements(); // take next el, #. etc off queue
+                intersectElements(filterForSelf(elements, candidates));
+            }
+        }
+        return new Elements(elements);
+    }
+```
+```java
+private Elements findElements() {
+        if (tq.matchChomp("#")) {
+            return byId();
+        } else if (tq.matchChomp(".")) {
+            return byClass();
+        } else if (tq.matchesWord()) {
+            return byTag();
+        } else if (tq.matches("[")) {
+            return byAttribute();
+        } else if (tq.matchChomp("*")) {
+            return allElements();
+        } else if (tq.matchChomp(":lt(")) {
+            return indexLessThan();
+        } else if (tq.matchChomp(":gt(")) {
+            return indexGreaterThan();
+        } else if (tq.matchChomp(":eq(")) {
+            return indexEquals();
+        } else if (tq.matches(":has(")) {
+            return has();
+        } else if (tq.matches(":contains(")) {
+            return contains(false);
+        } else if (tq.matches(":containsOwn(")) {
+            return contains(true);
+        } else if (tq.matches(":matches(")) {
+            return matches(false);
+        } else if (tq.matches(":matchesOwn(")) {
+            return matches(true);
+        } else { // unhandled
+            throw new SelectorParseException("Could not parse query '%s': unexpected token at '%s'", query, tq.remainder());
+        }
+    }
+```

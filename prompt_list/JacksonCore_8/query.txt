@@ -1,0 +1,33 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+public void testEmpty() {
+        TextBuffer tb = new TextBuffer(new BufferRecycler());
+        tb.resetWithEmpty();
+
+        assertTrue(tb.getTextBuffer().length == 0);
+        tb.contentsAsString();
+        assertTrue(tb.getTextBuffer().length == 0);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public char[] getTextBuffer()
+    {
+        // Are we just using shared input buffer?
+        if (_inputStart >= 0) return _inputBuffer;
+        if (_resultArray != null)  return _resultArray;
+        if (_resultString != null) {
+            return (_resultArray = _resultString.toCharArray());
+        }
+        // Nope; but does it fit in just one segment?
+        if (!_hasSegments)  return _currentSegment;
+        // Nope, need to have/create a non-segmented array and return it
+        return contentsAsArray();
+    }
+```

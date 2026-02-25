@@ -1,0 +1,35 @@
+# Test experiment - small scale to verify implementation
+name: "test_btms"
+
+# Data paths (relative to workspace root)
+embeddings_path: "bug_task_model_selection/data/embeddings/embeddings.jsonl"
+ppl_paths:
+  edit: "bug_task_model_selection/data/ppl/qwen3_coder_edit.jsonl"
+  gen: "bug_task_model_selection/data/ppl/qwen3_coder_gen.jsonl"
+
+# Small parameter grid for testing
+views:
+  - buggy_code
+
+clustering_algorithms:
+  - kmeans
+  - hac_average
+
+k_values:
+  - 20
+
+sampling_methods:
+  - farthest_first
+
+reps_per_cluster_values:
+  - 1
+  - 3
+
+# Output settings
+output_dir: "bug_task_model_selection/data/test_experiments"
+
+# Execution settings
+seed: 42
+parallel: false
+n_workers: 1
+skip_existing: false

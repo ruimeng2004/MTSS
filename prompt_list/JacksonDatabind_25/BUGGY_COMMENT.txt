@@ -1,0 +1,37 @@
+   This function has no comment.
+   /**
+     * Method called to see if given method has annotations that indicate
+     * a more specific type than what the argument specifies.
+     * If annotations are present, they must specify compatible Class;
+     * instance of which can be assigned using the method. This means
+     * that the Class has to be raw class of type, or its sub-class
+     * (or, implementing class if original Class instance is an interface).
+     *
+     * @param a Method or field that the type is associated with
+     * @param type Type derived from the setter argument
+     *
+     * @return Original type if no annotations are present; or a more
+     *   specific type derived from it if type annotation(s) was found
+     *
+     * @throws JsonMappingException if invalid annotation is found
+     */
+private JavaType modifyTypeByAnnotation(DeserializationContext ctxt,Annotated a,JavaType type)
+   /**
+     * Method called to see if given method has annotations that indicate
+     * a more specific type than what the argument specifies.
+     * If annotations are present, they must specify compatible Class;
+     * instance of which can be assigned using the method. This means
+     * that the Class has to be raw class of type, or its sub-class
+     * (or, implementing class if original Class instance is an interface).
+     *
+     * @param a Method or field that the type is associated with
+     * @param type Type of field, or the setter argument
+     *
+     * @return Original type if no annotations are present; or a more
+     *   specific type derived from it if type annotation(s) was found
+     *
+     * @throws JsonMappingException if invalid annotation is found
+     */
+@SuppressWarnings({ "unchecked" })
+    protected T modifyTypeByAnnotation(DeserializationContext ctxt,Annotated a,T type)
+   This function has no comment.

@@ -1,0 +1,7 @@
+   /**
+     * Computes the square-root of the weight matrix.
+     *
+     * @param m Symmetric, positive-definite (weight) matrix.
+     * @return the square-root of the weight matrix.
+     */
+private RealMatrix squareRoot(RealMatrix m)

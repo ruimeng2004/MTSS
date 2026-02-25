@@ -1,0 +1,26 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Should not pass
+
+### Failed JUnit tests:
+public void testInvalidSubClass() throws Exception
+    {
+        DefaultPrettyPrinter pp = new MyPrettyPrinter();
+        try {
+            pp.createInstance();
+            fail("Should not pass");
+        } catch (IllegalStateException e) {
+            verifyException(e, "does not override");
+        }
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+    public DefaultPrettyPrinter createInstance() {
+        return new DefaultPrettyPrinter(this);
+    }
+```

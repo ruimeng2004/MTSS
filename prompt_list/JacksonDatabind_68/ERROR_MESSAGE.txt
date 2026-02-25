@@ -1,0 +1,2 @@
+com.fasterxml.jackson.databind.JsonMappingException: Can not construct instance of com.fasterxml.jackson.databind.struct.SingleValueAsArrayTest$Messages: no suitable constructor found, can not deserialize from Object value (missing default constructor or creator, or perhaps need to add/enable type information?)
+com.fasterxml.jackson.databind.JsonMappingException: Can not construct instance of com.fasterxml.jackson.databind.struct.SingleValueAsArrayTest$Bean1421B: no String-argument constructor/factory method to deserialize from String value ('test2')

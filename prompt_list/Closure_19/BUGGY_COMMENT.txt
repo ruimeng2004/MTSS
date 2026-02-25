@@ -1,0 +1,6 @@
+   /**
+   * Declares a refined type in {@code scope} for the name represented by
+   * {@code node}. It must be possible to refine the type of the given node in
+   * the given scope, as determined by {@link #getTypeIfRefinable}.
+   */
+protected void declareNameInScope(FlowScope scope,Node node,JSType type)

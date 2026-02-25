@@ -1,0 +1,69 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+java.lang.Exception: Unexpected exception, expected<org.mockito.exceptions.verification.VerificationInOrderFailure> but was<java.lang.ClassCastException>
+java.lang.Exception: Unexpected exception, expected<org.mockito.exceptions.base.MockitoException> but was<java.lang.NullPointerException>
+java.lang.Exception: Unexpected exception, expected<org.mockito.exceptions.verification.NoInteractionsWanted> but was<java.lang.ClassCastException>
+java.lang.Exception: Unexpected exception, expected<org.mockito.exceptions.verification.NoInteractionsWanted> but was<java.lang.ClassCastException>
+
+### Failed JUnit tests:
+@Test(expected = VerificationInOrderFailure.class)
+    public void can_use_print_mock_name_even_when_mock_bogus_default_answer_and_when_reporting_no_more_interaction_wanted_in_order() throws Exception {
+        Invocation invocation_with_bogus_default_answer = new InvocationBuilder().mock(mock(IMethods.class, new Returns(false))).toInvocation();
+        new Reporter().noMoreInteractionsWantedInOrder(invocation_with_bogus_default_answer);
+    }
+@Test(expected = MockitoException.class)
+    public void can_use_print_mock_name_even_when_mock_bogus_default_answer_and_when_reporting_injection_failure() throws Exception {
+        IMethods mock_with_bogus_default_answer = mock(IMethods.class, new Returns(false));
+        new Reporter().cannotInjectDependency(someField(), mock_with_bogus_default_answer, new Exception());
+    }
+@Test(expected = NoInteractionsWanted.class)
+    public void can_use_mock_name_even_when_mock_bogus_default_answer_and_when_reporting_no_more_interaction_wanted() throws Exception {
+        Invocation invocation_with_bogus_default_answer = new InvocationBuilder().mock(mock(IMethods.class, new Returns(false))).toInvocation();
+        new Reporter().noMoreInteractionsWanted(invocation_with_bogus_default_answer, Collections.<VerificationAwareInvocation>emptyList());
+    }
+@Test(expected = NoInteractionsWanted.class)
+    public void should_not_throw_a_ClassCastException() {
+        TestMock test = mock(TestMock.class, new Answer() {
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                return false;
+            }
+        });
+        test.m1();
+        verifyZeroInteractions(test);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public void noMoreInteractionsWantedInOrder(Invocation undesired) {
+        throw new VerificationInOrderFailure(join(
+                "No interactions wanted here:",
+                new LocationImpl(),
+                "But found this interaction on mock '" + undesired.getMock() + "':",
+                undesired.getLocation()
+        ));
+    }
+```
+```java
+public void noMoreInteractionsWanted(Invocation undesired, List<VerificationAwareInvocation> invocations) {
+        ScenarioPrinter scenarioPrinter = new ScenarioPrinter();
+        String scenario = scenarioPrinter.print(invocations);
+
+        throw new NoInteractionsWanted(join(
+                "No interactions wanted here:",
+                new LocationImpl(),
+                "But found this interaction on mock '" + undesired.getMock() + "':",
+                undesired.getLocation(),
+                scenario
+        ));
+    }
+```
+```java
+private String exceptionCauseMessageIfAvailable(Exception details) {
+        return details.getCause().getMessage();
+    }
+```

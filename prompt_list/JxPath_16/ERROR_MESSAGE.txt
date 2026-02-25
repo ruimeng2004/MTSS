@@ -1,0 +1,2 @@
+junit.framework.ComparisonFailure: Evaluating pointer <//location[2]/following::node()[2]> expected:<...vendor[1]/product[1][]> but was:<...vendor[1]/product[1][/product:name[1]]>
+junit.framework.ComparisonFailure: Evaluating pointer <//location[2]/preceding::node()[3]> expected:<...ndor[1]/location[1]/[employeeCount[1]/text()][1]> but was:<...ndor[1]/location[1]/[address][1]>

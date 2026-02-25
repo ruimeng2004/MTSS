@@ -1,0 +1,3 @@
+junit.framework.AssertionFailedError: expected:<a> but was:<null>
+junit.framework.AssertionFailedError: expected:<true> but was:<false>
+junit.framework.AssertionFailedError: expected:<a> but was:<null>

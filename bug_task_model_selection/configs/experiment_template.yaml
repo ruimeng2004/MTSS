@@ -1,0 +1,55 @@
+# BTMS Experiment Configuration Template
+# Copy this file and modify for your experiments
+
+name: "btms_experiment"
+
+# Data paths
+embeddings_path: "data/artifacts/embeddings.jsonl"
+ppl_paths:
+  edit: "data/ppl/qwen3_coder_edit.jsonl"
+  gen: "data/ppl/qwen3_coder_gen.jsonl"
+
+# Parameter grids - all combinations will be tested
+views:
+  - buggy_code
+  # - report
+  # - test
+  # - error
+  # - buggy_code_obfuscated
+  # - buggy_code_mixed
+
+clustering_algorithms:
+  - kmeans
+  - hac_average
+  - hac_ward
+  # - hac_complete
+  # - hac_single
+  # - bisecting_kmeans
+
+k_values:
+  - 50
+  - 100
+  - 150
+  # - 10
+  # - 20
+  # - 200
+  # - 300
+
+sampling_methods:
+  - farthest_first
+  - kdpp
+
+reps_per_cluster_values:
+  - 1
+  - 3
+  - 5
+  # - 7
+
+# Output settings
+output_dir: "data/experiments"
+
+# Execution settings
+seed: 42
+parallel: false
+n_workers: 4
+skip_existing: true

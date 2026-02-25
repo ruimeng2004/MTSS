@@ -1,0 +1,29 @@
+   /**
+   * Attempts to minimize the number of explicit exit points in a control
+   * structure to take advantage of the implied exit at the end of the
+   * structure.  This is accomplished by removing redundant statements, and
+   * moving statements following a qualifying IF node into that node.
+   * For example:
+   *
+   * function () {
+   *   if (x) return;
+   *   else blah();
+   *   foo();
+   * }
+   *
+   * becomes:
+   *
+   * function () {
+   *  if (x) ;
+   *  else {
+   *    blah();
+   *    foo();
+   *  }
+   *
+   * @param n The execution node of a parent to inspect.
+   * @param exitType The type of exit to look for.
+   * @param labelName If parent is a label the name of the label to look for,
+   *   null otherwise.
+   * @nullable labelName non-null only for breaks within labels.
+   */
+void tryMinimizeExits(Node n,int exitType,String labelName)

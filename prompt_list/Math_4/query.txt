@@ -1,0 +1,85 @@
+### Buggy function comment:
+   This function has no comment.
+   /** Get the intersection of the instance and another sub-line.
+     * <p>
+     * This method is related to the {@link Line#intersection(Line)
+     * intersection} method in the {@link Line Line} class, but in addition
+     * to compute the point along infinite lines, it also checks the point
+     * lies on both sub-line ranges.
+     * </p>
+     * @param subLine other sub-line which may intersect instance
+     * @param includeEndPoints if true, endpoints are considered to belong to
+     * instance (i.e. they are closed sets) and may be returned, otherwise endpoints
+     * are considered to not belong to instance (i.e. they are open sets) and intersection
+     * occurring on endpoints lead to null being returned
+     * @return the intersection point if there is one, null if the sub-lines don't intersect
+     */
+public Vector2D intersection(final SubLine subLine,final boolean includeEndPoints)
+public Vector3D intersection(final SubLine subLine,final boolean includeEndPoints)
+
+
+### Error message from JUnit test:
+java.lang.NullPointerException
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+@Test
+    public void testIntersectionNotIntersecting() throws MathIllegalArgumentException {
+        SubLine sub1 = new SubLine(new Vector3D(1, 1, 1), new Vector3D(1.5, 1, 1));
+        SubLine sub2 = new SubLine(new Vector3D(2, 3, 0), new Vector3D(2, 3, 0.5));
+        Assert.assertNull(sub1.intersection(sub2, true));
+        Assert.assertNull(sub1.intersection(sub2, false));
+    }
+@Test
+    public void testIntersectionParallel() {
+        final SubLine sub1 = new SubLine(new Vector2D(0, 1), new Vector2D(0, 2));
+        final SubLine sub2 = new SubLine(new Vector2D(66, 3), new Vector2D(66, 4));
+        Assert.assertNull(sub1.intersection(sub2, true));
+        Assert.assertNull(sub1.intersection(sub2, false));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public Vector2D intersection(final SubLine subLine, final boolean includeEndPoints) {
+
+        // retrieve the underlying lines
+        Line line1 = (Line) getHyperplane();
+        Line line2 = (Line) subLine.getHyperplane();
+
+        // compute the intersection on infinite line
+        Vector2D v2D = line1.intersection(line2);
+
+        // check location of point with respect to first sub-line
+        Location loc1 = getRemainingRegion().checkPoint(line1.toSubSpace(v2D));
+
+        // check location of point with respect to second sub-line
+        Location loc2 = subLine.getRemainingRegion().checkPoint(line2.toSubSpace(v2D));
+
+        if (includeEndPoints) {
+            return ((loc1 != Location.OUTSIDE) && (loc2 != Location.OUTSIDE)) ? v2D : null;
+        } else {
+            return ((loc1 == Location.INSIDE) && (loc2 == Location.INSIDE)) ? v2D : null;
+        }
+
+    }
+```
+```java
+public Vector3D intersection(final SubLine subLine, final boolean includeEndPoints) {
+
+        // compute the intersection on infinite line
+        Vector3D v1D = line.intersection(subLine.line);
+
+        // check location of point with respect to first sub-line
+        Location loc1 = remainingRegion.checkPoint(line.toSubSpace(v1D));
+
+        // check location of point with respect to second sub-line
+        Location loc2 = subLine.remainingRegion.checkPoint(subLine.line.toSubSpace(v1D));
+
+        if (includeEndPoints) {
+            return ((loc1 != Location.OUTSIDE) && (loc2 != Location.OUTSIDE)) ? v1D : null;
+        } else {
+            return ((loc1 == Location.INSIDE) && (loc2 == Location.INSIDE)) ? v1D : null;
+        }
+
+    }
+```

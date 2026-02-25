@@ -1,0 +1,4 @@
+junit.framework.ComparisonFailure: expected:<[({a:alert,b:alert}).a("a")]> but was:<[]>
+java.lang.RuntimeException: INTERNAL COMPILER ERROR.
+junit.framework.AssertionFailedError: Unexpected error(s): JSC_WRONG_ARGUMENT_COUNT. Function oneOrTwoArg2: called with 3 argument(s). All definitions of this function require at least 1 argument(s) and no more than 2 argument(s). at testcode line 1 expected:<0> but was:<1>
+junit.framework.AssertionFailedError:

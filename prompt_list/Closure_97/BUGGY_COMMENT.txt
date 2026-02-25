@@ -1,0 +1,4 @@
+   /**
+   * Try to fold shift operations
+   */
+private Node tryFoldShift(Node n,Node left,Node right)

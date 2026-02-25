@@ -1,0 +1,272 @@
+{
+  "Chart_1": {
+    "slug": "Chart_1",
+    "cluster_id": 0,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.7920492845423617,
+      "gen": 0.20795071545763832
+    },
+    "confidence": 0.5940000000000002
+  },
+  "Chart_2": {
+    "slug": "Chart_2",
+    "cluster_id": 0,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.7920492845423617,
+      "gen": 0.20795071545763832
+    },
+    "confidence": 0.5940000000000002
+  },
+  "Chart_3": {
+    "slug": "Chart_3",
+    "cluster_id": 1,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.3044343552015649,
+      "gen": 0.6955656447984351
+    },
+    "confidence": 0.4720000000000001
+  },
+  "Chart_4": {
+    "slug": "Chart_4",
+    "cluster_id": 2,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.8,
+      "gen": 0.19999999999999996
+    },
+    "confidence": 0.8253333333333334
+  },
+  "Chart_5": {
+    "slug": "Chart_5",
+    "cluster_id": 2,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.8,
+      "gen": 0.19999999999999996
+    },
+    "confidence": 0.8253333333333334
+  },
+  "Chart_6": {
+    "slug": "Chart_6",
+    "cluster_id": 2,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.8,
+      "gen": 0.19999999999999996
+    },
+    "confidence": 0.8253333333333334
+  },
+  "Chart_15": {
+    "slug": "Chart_15",
+    "cluster_id": 2,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.8,
+      "gen": 0.19999999999999996
+    },
+    "confidence": 0.8253333333333334
+  },
+  "Chart_16": {
+    "slug": "Chart_16",
+    "cluster_id": 2,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.8,
+      "gen": 0.19999999999999996
+    },
+    "confidence": 0.8253333333333334
+  },
+  "Chart_17": {
+    "slug": "Chart_17",
+    "cluster_id": 2,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.8,
+      "gen": 0.19999999999999996
+    },
+    "confidence": 0.8253333333333334
+  },
+  "Chart_18": {
+    "slug": "Chart_18",
+    "cluster_id": 2,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.8,
+      "gen": 0.19999999999999996
+    },
+    "confidence": 0.8253333333333334
+  },
+  "Chart_19": {
+    "slug": "Chart_19",
+    "cluster_id": 2,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.8,
+      "gen": 0.19999999999999996
+    },
+    "confidence": 0.8253333333333334
+  },
+  "Chart_20": {
+    "slug": "Chart_20",
+    "cluster_id": 2,
+    "decision": "edit",
+    "ratio": {
+      "edit": 0.8,
+      "gen": 0.19999999999999996
+    },
+    "confidence": 0.8253333333333334
+  },
+  "Chart_7": {
+    "slug": "Chart_7",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_8": {
+    "slug": "Chart_8",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_9": {
+    "slug": "Chart_9",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_10": {
+    "slug": "Chart_10",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_11": {
+    "slug": "Chart_11",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_12": {
+    "slug": "Chart_12",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_13": {
+    "slug": "Chart_13",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_14": {
+    "slug": "Chart_14",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_21": {
+    "slug": "Chart_21",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_22": {
+    "slug": "Chart_22",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_23": {
+    "slug": "Chart_23",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_24": {
+    "slug": "Chart_24",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_25": {
+    "slug": "Chart_25",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_26": {
+    "slug": "Chart_26",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  },
+  "Chart_27": {
+    "slug": "Chart_27",
+    "cluster_id": 3,
+    "decision": "gen",
+    "ratio": {
+      "edit": 0.2,
+      "gen": 0.8
+    },
+    "confidence": 0.7096
+  }
+}

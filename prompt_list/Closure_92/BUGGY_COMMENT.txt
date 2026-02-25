@@ -1,0 +1,8 @@
+   /**
+     * Replace the provide statement.
+     *
+     * If we're providing a name with no definition, then create one.
+     * If we're providing a name with a duplicate definition, then make sure
+     * that definition becomes a declaration.
+     */
+void replace()

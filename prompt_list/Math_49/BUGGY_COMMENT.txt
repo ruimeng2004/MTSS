@@ -1,0 +1,10 @@
+   /** {@inheritDoc} */
+@Override
+    public OpenMapRealVector ebeDivide(double[] v)
+   /** {@inheritDoc} */
+@Override
+    public OpenMapRealVector ebeDivide(double[] v)
+   /** {@inheritDoc} */
+public OpenMapRealVector ebeMultiply(RealVector v)
+   /** {@inheritDoc} */
+public OpenMapRealVector ebeMultiply(RealVector v)

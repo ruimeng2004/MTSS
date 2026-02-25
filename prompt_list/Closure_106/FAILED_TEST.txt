@@ -1,0 +1,16 @@
+public void testJSDocComments() {
+    test("function A() { /** This is a jsdoc comment */ this.foo; }", ok);
+    test("function A() { /* This is a normal comment */ this.foo; }", e);
+  }
+public void testTwinReferenceCancelsChildCollapsing() {
+    test("var a = {}; if (a.b = function() {}) { a.b.c = 3; a.b(a.b.c); }",
+         "var a$b; if (a$b = function() {}) { a$b.c = 3; a$b(a$b.c); }");
+  }
+public void testCrashInNestedAssign() {
+    test("var a = {}; if (a.b = function() {}) a.b();",
+         "var a$b; if (a$b=function() {}) { a$b(); }");
+  }
+public void testCrashInCommaOperator() {
+    test("var a = {}; a.b = function() {},a.b();",
+         "var a$b; a$b=function() {},a$b();");
+  }

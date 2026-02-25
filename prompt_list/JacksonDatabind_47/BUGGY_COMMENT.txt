@@ -1,0 +1,7 @@
+   /**
+     * Method called to find out possible type refinements to use
+     * for deserialization.
+     *
+     * @since 2.7
+     */
+public JavaType refineSerializationType(final MapperConfig<?> config,final Annotated a,final JavaType baseType)

@@ -1,0 +1,5 @@
+   This function has no comment.
+   /**
+   * Determines if the subtree might throw an exception.
+   */
+private static boolean mayThrowException(Node n)

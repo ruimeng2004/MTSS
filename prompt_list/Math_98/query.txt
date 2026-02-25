@@ -1,0 +1,83 @@
+### Buggy function comment:
+   /**
+     * Returns the result of multiplying this by the vector <code>v</code>.
+     *
+     * @param v the vector to operate on
+     * @return this*v
+     * @throws IllegalArgumentException if columnDimension != v.size()
+     */
+public BigDecimal[] operate(BigDecimal[] v)
+   /**
+     * @param v vector to operate on
+     * @throws IllegalArgumentException if columnDimension != v.length
+     * @return resulting vector
+     */
+public double[] operate(double[] v)
+
+
+### Error message from JUnit test:
+java.lang.ArrayIndexOutOfBoundsException: 2
+java.lang.ArrayIndexOutOfBoundsException: 2
+
+### Failed JUnit tests:
+public void testMath209() {
+        BigMatrix a = new BigMatrixImpl(new BigDecimal[][] {
+                { new BigDecimal(1), new BigDecimal(2) },
+                { new BigDecimal(3), new BigDecimal(4) },
+                { new BigDecimal(5), new BigDecimal(6) }
+        }, false);
+        BigDecimal[] b = a.operate(new BigDecimal[] { new BigDecimal(1), new BigDecimal(1) });
+        assertEquals(a.getRowDimension(), b.length);
+        assertEquals( 3.0, b[0].doubleValue(), 1.0e-12);
+        assertEquals( 7.0, b[1].doubleValue(), 1.0e-12);
+        assertEquals(11.0, b[2].doubleValue(), 1.0e-12);
+    }
+public void testMath209() {
+        RealMatrix a = new RealMatrixImpl(new double[][] {
+                { 1, 2 }, { 3, 4 }, { 5, 6 }
+        }, false);
+        double[] b = a.operate(new double[] { 1, 1 });
+        assertEquals(a.getRowDimension(), b.length);
+        assertEquals( 3.0, b[0], 1.0e-12);
+        assertEquals( 7.0, b[1], 1.0e-12);
+        assertEquals(11.0, b[2], 1.0e-12);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public BigDecimal[] operate(BigDecimal[] v) throws IllegalArgumentException {
+        if (v.length != this.getColumnDimension()) {
+            throw new IllegalArgumentException("vector has wrong length");
+        }
+        final int nRows = this.getRowDimension();
+        final int nCols = this.getColumnDimension();
+        final BigDecimal[] out = new BigDecimal[v.length];
+        for (int row = 0; row < nRows; row++) {
+            BigDecimal sum = ZERO;
+            for (int i = 0; i < nCols; i++) {
+                sum = sum.add(data[row][i].multiply(v[i]));
+            }
+            out[row] = sum;
+        }
+        return out;
+    }
+```
+```java
+public double[] operate(double[] v) throws IllegalArgumentException {
+        final int nRows = this.getRowDimension();
+        final int nCols = this.getColumnDimension();
+        if (v.length != nCols) {
+            throw new IllegalArgumentException("vector has wrong length");
+        }
+        final double[] out = new double[v.length];
+        for (int row = 0; row < nRows; row++) {
+            final double[] dataRow = data[row];
+            double sum = 0;
+            for (int i = 0; i < nCols; i++) {
+                sum += dataRow[i] * v[i];
+            }
+            out[row] = sum;
+        }
+        return out;
+    }
+```

@@ -1,0 +1,92 @@
+### Buggy function comment:
+   /**
+     * Method that {@link DeserializerCache}s call to create a new
+     * deserializer for types other than Collections, Maps, arrays and
+     * enums.
+     */
+@Override
+    public JsonDeserializer<Object> createBeanDeserializer(DeserializationContext ctxt,JavaType type,BeanDescription beanDesc)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Expected an exception with one of substrings ([Illegal type]): got one with message "N/A
+
+### Failed JUnit tests:
+public void testIssue1599() throws Exception
+    {
+        final String JSON = aposToQuotes(
+ "{'id': 124,\n"
++" 'obj':[ 'com.sun.org.apache.xalan.internal.xsltc.trax.TemplatesImpl',\n"
++"  {\n"
++"    'transletBytecodes' : [ 'AAIAZQ==' ],\n"
++"    'transletName' : 'a.b',\n"
++"    'outputProperties' : { }\n"
++"  }\n"
++" ]\n"
++"}"
+        );
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enableDefaultTyping();
+        try {
+            mapper.readValue(JSON, Bean1599.class);
+            fail("Should not pass");
+        } catch (JsonMappingException e) {
+            verifyException(e, "Illegal type");
+            verifyException(e, "to deserialize");
+            verifyException(e, "prevented for security reasons");
+        }
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+    public JsonDeserializer<Object> createBeanDeserializer(DeserializationContext ctxt,
+            JavaType type, BeanDescription beanDesc)
+        throws JsonMappingException
+    {
+        final DeserializationConfig config = ctxt.getConfig();
+        // We may also have custom overrides:
+        JsonDeserializer<Object> custom = _findCustomBeanDeserializer(type, config, beanDesc);
+        if (custom != null) {
+            return custom;
+        }
+        /* One more thing to check: do we have an exception type
+         * (Throwable or its sub-classes)? If so, need slightly
+         * different handling.
+         */
+        if (type.isThrowable()) {
+            return buildThrowableDeserializer(ctxt, type, beanDesc);
+        }
+        /* Or, for abstract types, may have alternate means for resolution
+         * (defaulting, materialization)
+         */
+        // 29-Nov-2015, tatu: Also, filter out calls to primitive types, they are
+        //    not something we could materialize anything for
+        if (type.isAbstract() && !type.isPrimitive()) {
+            // Let's make it possible to materialize abstract types.
+            JavaType concreteType = materializeAbstractType(ctxt, type, beanDesc);
+            if (concreteType != null) {
+                /* important: introspect actual implementation (abstract class or
+                 * interface doesn't have constructors, for one)
+                 */
+                beanDesc = config.introspect(concreteType);
+                return buildBeanDeserializer(ctxt, concreteType, beanDesc);
+            }
+        }
+
+        // Otherwise, may want to check handlers for standard types, from superclass:
+        @SuppressWarnings("unchecked")
+        JsonDeserializer<Object> deser = (JsonDeserializer<Object>) findStdDeserializer(ctxt, type, beanDesc);
+        if (deser != null) {
+            return deser;
+        }
+
+        // Otherwise: could the class be a Bean class? If not, bail out
+        if (!isPotentialBeanType(type.getRawClass())) {
+            return null;
+        }
+        // For checks like [databind#1599]
+        // Use generic bean introspection to build deserializer
+        return buildBeanDeserializer(ctxt, type, beanDesc);
+    }
+```

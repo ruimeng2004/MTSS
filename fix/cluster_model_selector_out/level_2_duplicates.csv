@@ -1,0 +1,6 @@
+level,point_id,slug,kept_cluster,dropped_cluster,dropped_cluster_file
+2,Math_82_query,Math_82,root_c2_c2_c2,root_c3_c4_c1,/home/base/APR/D4C/dpp/result_cluster/level_2/root_c3_c4_c1.json
+2,Math_28_query,Math_28,root_c2_c2_c2,root_c3_c4_c2,/home/base/APR/D4C/dpp/result_cluster/level_2/root_c3_c4_c2.json
+2,Chart_8_query,Chart_8,root_c5_c3_c1,root_c6_c0_c2,/home/base/APR/D4C/dpp/result_cluster/level_2/root_c6_c0_c2.json
+2,Lang_50_query,Lang_50,root_c5_c1_c0,root_c6_c0_c2,/home/base/APR/D4C/dpp/result_cluster/level_2/root_c6_c0_c2.json
+2,Lang_24_query,Lang_24,root_c6_c2_c2,root_c6_c3_c2,/home/base/APR/D4C/dpp/result_cluster/level_2/root_c6_c3_c2.json

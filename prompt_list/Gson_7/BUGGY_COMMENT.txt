@@ -1,0 +1,22 @@
+   /**
+   * Returns the {@link com.google.gson.stream.JsonToken#NUMBER long} value of the next token,
+   * consuming it. If the next token is a string, this method will attempt to
+   * parse it as a long. If the next token's numeric value cannot be exactly
+   * represented by a Java {@code long}, this method throws.
+   *
+   * @throws IllegalStateException if the next token is not a literal value.
+   * @throws NumberFormatException if the next literal value cannot be parsed
+   *     as a number, or exactly represented as a long.
+   */
+public long nextLong()
+   /**
+   * Returns the {@link com.google.gson.stream.JsonToken#NUMBER int} value of the next token,
+   * consuming it. If the next token is a string, this method will attempt to
+   * parse it as an int. If the next token's numeric value cannot be exactly
+   * represented by a Java {@code int}, this method throws.
+   *
+   * @throws IllegalStateException if the next token is not a literal value.
+   * @throws NumberFormatException if the next literal value cannot be parsed
+   *     as a number, or exactly represented as an int.
+   */
+public int nextInt()

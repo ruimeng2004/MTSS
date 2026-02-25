@@ -1,0 +1,3 @@
+   // from tagname <xxx
+void read(Tokeniser t,CharacterReader r)
+   This function has no comment.

@@ -1,0 +1,7 @@
+   /**
+     * Method called to finalize setup of this deserializer,
+     * after deserializer itself has been registered.
+     * This is needed to handle recursive and transitive dependencies.
+     */
+@Override
+    public void resolve(DeserializationContext ctxt)

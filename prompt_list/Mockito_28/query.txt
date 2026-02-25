@@ -1,0 +1,22 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected same:<java.lang.Object@1a6aecec> was not:<mockedBean>
+
+### Failed JUnit tests:
+@Test
+    public void mock_should_be_injected_once_and_in_the_best_matching_type() {
+        assertSame(REFERENCE, illegalInjectionExample.mockShouldNotGoInHere);
+        assertSame(mockedBean, illegalInjectionExample.mockShouldGoInHere);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private void injectMockCandidate(Class<?> awaitingInjectionClazz, Set<Object> mocks, Object fieldInstance) {
+        for(Field field : orderedInstanceFieldsFrom(awaitingInjectionClazz)) {
+            mockCandidateFilter.filterCandidate(mocks, field, fieldInstance).thenInject();
+        }
+    }
+```

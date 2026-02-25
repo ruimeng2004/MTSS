@@ -1,0 +1,8 @@
+public void testRecursiveTypeVariablesResolve12() throws Exception {
+    TypeAdapter<TestType2> adapter = new Gson().getAdapter(TestType2.class);
+    assertNotNull(adapter);
+  }
+public void testRecursiveTypeVariablesResolve1() throws Exception {
+    TypeAdapter<TestType> adapter = new Gson().getAdapter(TestType.class);
+    assertNotNull(adapter);
+  }

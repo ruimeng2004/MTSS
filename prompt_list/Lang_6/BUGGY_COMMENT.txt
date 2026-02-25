@@ -1,0 +1,9 @@
+   /**
+     * Translate an input onto a Writer. This is intentionally final as its algorithm is 
+     * tightly coupled with the abstract method of this class. 
+     *
+     * @param input CharSequence that is being translated
+     * @param out Writer to translate the text to
+     * @throws IOException if and only if the Writer produces an IOException
+     */
+public final void translate(CharSequence input,Writer out)

@@ -1,0 +1,22 @@
+   /**
+     * Helper method that handles configuration details when constructing serializers for
+     * {@link java.util.List} types that support efficient by-index access
+     * 
+     * @since 2.1
+     */
+protected JsonSerializer<?> buildCollectionSerializer(SerializationConfig config,CollectionType type,BeanDescription beanDesc,boolean staticTyping,TypeSerializer elementTypeSerializer,JsonSerializer<Object> elementValueSerializer)
+   /**
+     * Helper method that handles configuration details when constructing serializers for
+     * <code>Object[]</code> (and subtypes, except for String).
+     */
+protected JsonSerializer<?> buildArraySerializer(SerializationConfig config,ArrayType type,BeanDescription beanDesc,boolean staticTyping,TypeSerializer elementTypeSerializer,JsonSerializer<Object> elementValueSerializer)
+   /**
+     * Helper method that handles configuration details when constructing serializers for
+     * {@link java.util.Map} types.
+     */
+protected JsonSerializer<?> buildMapSerializer(SerializationConfig config,MapType type,BeanDescription beanDesc,boolean staticTyping,JsonSerializer<Object> keySerializer,TypeSerializer elementTypeSerializer,JsonSerializer<Object> elementValueSerializer)
+   /**
+     * @since 2.1
+     */
+protected JsonSerializer<?> buildContainerSerializer(SerializerProvider prov,JavaType type,BeanDescription beanDesc,boolean staticTyping)
+   This function has no comment.

@@ -1,0 +1,4 @@
+   /**
+     * Handles 'G' cases
+     */
+private int handleG(String value,DoubleMetaphoneResult result,int index,boolean slavoGermanic)

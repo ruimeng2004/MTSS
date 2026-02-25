@@ -1,0 +1,41 @@
+### Buggy function comment:
+   /**
+   * Returns the generic form of {@code supertype}. For example, if this is {@code
+   * ArrayList<String>}, this returns {@code Iterable<String>} given the input {@code
+   * Iterable.class}.
+   *
+   * @param supertype a superclass of, or interface implemented by, this.
+   */
+static Type getSupertype(Type context,Class<?> contextRawType,Class<?> supertype)
+
+
+### Error message from JUnit test:
+java.lang.ClassCastException: com.google.gson.internal.LinkedTreeMap cannot be cast to com.google.gson.functional.CollectionTest$SmallClass
+
+### Failed JUnit tests:
+public void testIssue1107() {
+    String json = "{\n" +
+            "  \"inBig\": {\n" +
+            "    \"key\": [\n" +
+            "      { \"inSmall\": \"hello\" }\n" +
+            "    ]\n" +
+            "  }\n" +
+            "}";
+    BigClass bigClass = new Gson().fromJson(json, BigClass.class);
+    SmallClass small = bigClass.inBig.get("key").get(0);
+    assertNotNull(small);
+    assertEquals("hello", small.inSmall);
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+static Type getSupertype(Type context, Class<?> contextRawType, Class<?> supertype) {
+    // Check if the superclass or interface is assignable from the context raw type
+    if (!supertype.isAssignableFrom(contextRawType)) {
+        throw new IllegalArgumentException(supertype.getName() + " is not a supertype of " + contextRawType.getName());
+    }
+    // Resolve and return the generic supertype
+    return resolve(context, contextRawType,
+        $Gson$Types.getGenericSupertype(context, contextRawType, supertype));
+}
+```

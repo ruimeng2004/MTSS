@@ -1,0 +1,4 @@
+   /** {@inheritDoc} */
+public UnivariateRealPointValuePair optimize(final FUNC f,final GoalType goal,final double min,final double max,final double startValue)
+   /** {@inheritDoc} */
+public UnivariateRealPointValuePair optimize(final FUNC f,final GoalType goal,final double min,final double max,final double startValue)

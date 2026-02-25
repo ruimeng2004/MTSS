@@ -1,0 +1,29 @@
+name: exp1-hybrid-default
+selector_type: budget_allocator
+budget_allocator:
+  metric: hybrid
+  min_ratio: 0.2
+  max_ratio: 0.8
+  metric_params:
+    ppl_weight: 0.4
+    vote_weight: 0.4
+    size_weight: 0.2
+    temperature: 1.0
+    confidence_threshold: 0.5
+    size_normalization_factor: 10
+adaptive_reps:
+  enabled: true
+  min_reps: 3
+  max_reps: 10
+  size_threshold: 5
+outlier_detection:
+  enabled: true
+  min_cluster_size: 2
+  merge_strategy: nearest
+data_paths:
+  ppl_edit: /home/base/mengrui/MTSS/btms_budget_experiments/data/qwen3_30b_k100_r3/edit_ppl.jsonl
+  ppl_gen: /home/base/mengrui/MTSS/btms_budget_experiments/data/qwen3_30b_k100_r3/gen_ppl.jsonl
+  assignments: /home/base/mengrui/MTSS/btms_budget_experiments/data/qwen3_30b_k100_r3/assignments.jsonl
+  representatives: /home/base/mengrui/MTSS/btms_budget_experiments/data/qwen3_30b_k100_r3/representatives.jsonl
+output:
+  base_dir: /home/base/mengrui/MTSS/btms_budget_experiments/qwen30b_experiments/results/exp1-hybrid-default

@@ -1,0 +1,6 @@
+public void testFailOnWritingStringNotFieldNameBytes() throws Exception {
+        _testFailOnWritingStringNotFieldName(F, false);
+    }
+public void testFailOnWritingStringNotFieldNameChars() throws Exception {
+        _testFailOnWritingStringNotFieldName(F, true);        
+    }

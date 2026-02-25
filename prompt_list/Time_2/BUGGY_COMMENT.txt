@@ -1,0 +1,33 @@
+   /**
+     * Gets a copy of this date with the specified field set to a new value.
+     * <p>
+     * If this partial did not previously support the field, the new one will.
+     * Contrast this behaviour with {@link #withField(DateTimeFieldType, int)}.
+     * <p>
+     * For example, if the field type is <code>dayOfMonth</code> then the day
+     * would be changed/added in the returned instance.
+     *
+     * @param fieldType  the field type to set, not null
+     * @param value  the value to set
+     * @return a copy of this instance with the field set
+     * @throws IllegalArgumentException if the value is null or invalid
+     */
+public Partial with(DateTimeFieldType fieldType,int value)
+   /**
+     * Constructs a Partial with the specified fields and values.
+     * The fields must be specified in the order largest to smallest.
+     * <p>
+     * The constructor uses the specified chronology.
+     * 
+     * @param types  the types to create the partial from, not null
+     * @param values  the values to store, not null
+     * @param chronology  the chronology, null means ISO
+     * @throws IllegalArgumentException if the types or values are invalid
+     */
+public Partial(DateTimeFieldType[] types,int[] values,Chronology chronology)
+   /**
+     * Always returns zero, indicating that sort order is not relevent.
+     *
+     * @return zero always
+     */
+public int compareTo(DurationField durationField)

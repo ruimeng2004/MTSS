@@ -1,0 +1,5 @@
+   /**
+     * Method called to find the location within hash table to add a new symbol in.
+     */
+private int _findOffsetForAdd(int hash)
+   This function has no comment.

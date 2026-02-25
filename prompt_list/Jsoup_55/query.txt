@@ -1,0 +1,43 @@
+### Buggy function comment:
+   // in data state, gather characters until a character reference or tag is found
+void read(Tokeniser t,CharacterReader r)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: SelfClosingStartTag ignores last character
+
+### Failed JUnit tests:
+@Test public void dropsSlashFromAttributeName() {
+        String html = "<img /onerror='doMyJob'/>";
+        Document doc = Jsoup.parse(html);
+        assertTrue("SelfClosingStartTag ignores last character", doc.select("img[onerror]").size() != 0);
+        assertEquals("<img onerror=\"doMyJob\">", doc.body().html());
+
+        doc = Jsoup.parse(html, "", Parser.xmlParser());
+        assertEquals("<img onerror=\"doMyJob\" />", doc.html());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+void read(Tokeniser t, CharacterReader r) {
+            switch (r.current()) {
+                case '&':
+                    t.advanceTransition(CharacterReferenceInData);
+                    break;
+                case '<':
+                    t.advanceTransition(TagOpen);
+                    break;
+                case nullChar:
+                    t.error(this); // NOT replacement character (oddly?)
+                    t.emit(r.consume());
+                    break;
+                case eof:
+                    t.emit(new Token.EOF());
+                    break;
+                default:
+                    String data = r.consumeData();
+                    t.emit(data);
+                    break;
+            }
+        }
+```

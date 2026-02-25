@@ -1,0 +1,7 @@
+   /**
+   * Try turning IF nodes into smaller HOOKs
+   *
+   * Returns the replacement for n or the original if no replacement was
+   * necessary.
+   */
+private Node tryMinimizeIf(Node n)

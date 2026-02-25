@@ -1,0 +1,1 @@
+junit.framework.ComparisonFailure: expected:<...ipt>alert(\'aaa\');<[\]/script>\';> but was:<...ipt>alert(\'aaa\');<[]/script>\';>

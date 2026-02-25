@@ -1,0 +1,4 @@
+   /**
+   * Returns the remainder of the line.
+   */
+private String getRemainingJSDocLine()

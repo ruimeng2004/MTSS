@@ -1,0 +1,35 @@
+# 实验1：聚类算法对比 (qwen3_coder)
+name: "exp1_clustering_coder"
+
+embeddings_path: "bug_task_model_selection/data/embeddings/embeddings.jsonl"
+ppl_paths:
+  edit: "bug_task_model_selection/data/ppl/qwen3_coder_edit.jsonl"
+  gen: "bug_task_model_selection/data/ppl/qwen3_coder_gen.jsonl"
+
+views:
+  - buggy_code
+  - buggy_code_obfuscated
+  - report
+
+clustering_algorithms:
+  - kmeans
+  - hac_average
+  - hac_ward
+  - bisecting_kmeans
+
+k_values:
+  - 50
+  - 100
+  - 150
+  - 200
+
+sampling_methods:
+  - farthest_first
+
+reps_per_cluster_values:
+  - 1
+
+output_dir: "bug_task_model_selection/data/exp1_clustering_coder"
+seed: 42
+parallel: false
+skip_existing: true

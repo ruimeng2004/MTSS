@@ -1,0 +1,2 @@
+java.util.regex.PatternSyntaxException: Unclosed character class near index 3
+junit.framework.AssertionFailedError: expected:<2> but was:<3>

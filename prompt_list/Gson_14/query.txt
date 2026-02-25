@@ -1,0 +1,70 @@
+### Buggy function comment:
+   /**
+   * Returns a type that represents an unknown supertype of {@code bound}. For
+   * example, if {@code bound} is {@code String.class}, this returns {@code ?
+   * super String}.
+   */
+public static WildcardType supertypeOf(Type bound)
+   /**
+   * Returns a type that represents an unknown type that extends {@code bound}.
+   * For example, if {@code bound} is {@code CharSequence.class}, this returns
+   * {@code ? extends CharSequence}. If {@code bound} is {@code Object.class},
+   * this returns {@code ?}, which is shorthand for {@code ? extends Object}.
+   */
+public static WildcardType subtypeOf(Type bound)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<? super java.lang.Number> but was:<? super ? super java.lang.Number>
+java.lang.StackOverflowError
+junit.framework.AssertionFailedError: expected:<?> but was:<? extends ? super java.lang.Number>
+junit.framework.AssertionFailedError: expected:<? extends java.lang.Number> but was:<? extends ? extends java.lang.Number>
+java.lang.StackOverflowError
+junit.framework.AssertionFailedError: expected:<?> but was:<? super ? extends java.lang.Number>
+java.lang.StackOverflowError
+
+### Failed JUnit tests:
+public void testDoubleSupertype() {
+    assertEquals($Gson$Types.supertypeOf(Number.class),
+            $Gson$Types.supertypeOf($Gson$Types.supertypeOf(Number.class)));
+  }
+public void testIssue440WeakReference() throws Exception {
+    TypeAdapter<WeakReference> adapter = new Gson().getAdapter(WeakReference.class);
+    assertNotNull(adapter);
+  }
+public void testSubSupertype() {
+    assertEquals($Gson$Types.subtypeOf(Object.class),
+            $Gson$Types.subtypeOf($Gson$Types.supertypeOf(Number.class)));
+  }
+public void testDoubleSubtype() {
+    assertEquals($Gson$Types.subtypeOf(Number.class),
+            $Gson$Types.subtypeOf($Gson$Types.subtypeOf(Number.class)));
+  }
+public void testIssue603PrintStream() {
+    TypeAdapter<PrintStream> adapter = new Gson().getAdapter(PrintStream.class);
+    assertNotNull(adapter);
+  }
+public void testSuperSubtype() {
+    assertEquals($Gson$Types.subtypeOf(Object.class),
+            $Gson$Types.supertypeOf($Gson$Types.subtypeOf(Number.class)));
+  }
+public void testRecursiveResolveSimple() {
+    TypeAdapter<Foo1> adapter = new Gson().getAdapter(Foo1.class);
+    assertNotNull(adapter);
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static WildcardType supertypeOf(Type bound) {
+    Type[] lowerBounds;
+      lowerBounds = new Type[] { bound };
+    return new WildcardTypeImpl(new Type[] { Object.class }, lowerBounds);
+  }
+```
+```java
+public static WildcardType subtypeOf(Type bound) {
+    Type[] upperBounds;
+      upperBounds = new Type[] { bound };
+    return new WildcardTypeImpl(upperBounds, EMPTY_TYPE_ARRAY);
+  }
+```

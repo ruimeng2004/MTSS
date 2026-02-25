@@ -1,0 +1,34 @@
+# 实验2：采样方法对比 (qwen3_coder)
+name: "exp2_sampling_coder"
+
+embeddings_path: "bug_task_model_selection/data/embeddings/embeddings.jsonl"
+ppl_paths:
+  edit: "bug_task_model_selection/data/ppl/qwen3_coder_edit.jsonl"
+  gen: "bug_task_model_selection/data/ppl/qwen3_coder_gen.jsonl"
+
+views:
+  - buggy_code
+  - buggy_code_obfuscated
+
+clustering_algorithms:
+  - kmeans
+  - hac_average
+
+k_values:
+  - 50
+  - 100
+  - 150
+
+sampling_methods:
+  - farthest_first
+  - kdpp
+
+reps_per_cluster_values:
+  - 1
+  - 3
+  - 5
+
+output_dir: "bug_task_model_selection/data/exp2_sampling_coder"
+seed: 42
+parallel: false
+skip_existing: true

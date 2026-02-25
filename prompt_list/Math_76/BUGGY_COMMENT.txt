@@ -1,0 +1,4 @@
+   /** {@inheritDoc} */
+public RealMatrix getV()
+   /** {@inheritDoc} */
+public RealMatrix getU()

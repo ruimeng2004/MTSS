@@ -1,0 +1,33 @@
+   /**
+     * Creates a customized CSV format.
+     *
+     * @param delimiter
+     *            the char used for value separation, must not be a line break character
+     * @param quoteChar
+     *            the Character used as value encapsulation marker, may be {@code null} to disable
+     * @param quotePolicy
+     *            the quote policy
+     * @param commentStart
+     *            the Character used for comment identification, may be {@code null} to disable
+     * @param escape
+     *            the Character used to escape special characters in values, may be {@code null} to disable
+     * @param ignoreSurroundingSpaces
+     *            <tt>true</tt> when whitespaces enclosing values should be ignored
+     * @param ignoreEmptyLines
+     *            <tt>true</tt> when the parser should skip empty lines
+     * @param recordSeparator
+     *            the line separator to use for output
+     * @param nullString
+     *            the line separator to use for output
+     * @param header
+     *            the header
+     * @param skipHeaderRecord TODO
+     * @throws IllegalArgumentException if the delimiter is a line break character
+     */
+private CSVFormat(final char delimiter,final Character quoteChar,final Quote quotePolicy,final Character commentStart,final Character escape,final boolean ignoreSurroundingSpaces,final boolean ignoreEmptyLines,final String recordSeparator,final String nullString,final String[] header,final boolean skipHeaderRecord)
+   /**
+     * Verifies the consistency of the parameters and throws an IllegalStateException if necessary.
+     *
+     * @throws IllegalStateException
+     */
+void validate()

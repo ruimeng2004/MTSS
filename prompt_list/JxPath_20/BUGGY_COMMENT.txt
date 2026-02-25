@@ -1,0 +1,7 @@
+   /**
+     * Compare left to right.
+     * @param left left operand
+     * @param right right operand
+     * @return operation success/failure
+     */
+private boolean compute(Object left,Object right)

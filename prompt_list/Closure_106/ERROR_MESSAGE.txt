@@ -1,0 +1,4 @@
+junit.framework.AssertionFailedError: Unexpected error(s): JSC_USELESS_CODE. Suspicious code. This code lacks side-effects. Is there a bug? at testcode line 1 expected:<0> but was:<1>
+junit.framework.AssertionFailedError:
+junit.framework.AssertionFailedError:
+java.lang.IllegalArgumentException

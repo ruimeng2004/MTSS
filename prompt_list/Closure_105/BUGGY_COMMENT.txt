@@ -1,0 +1,4 @@
+   /**
+   * Try to fold an array join: ['a', 'b', 'c'].join('') -> 'abc';
+   */
+void tryFoldStringJoin(NodeTraversal t,Node n,Node left,Node right,Node parent)

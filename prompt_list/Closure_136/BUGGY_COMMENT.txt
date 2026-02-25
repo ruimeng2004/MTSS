@@ -1,0 +1,6 @@
+   /**
+   * Adds a node that may represent a function signature (if it's a function
+   * itself or the name of a function).
+   */
+private void addPossibleSignature(String name,Node node,NodeTraversal t)
+   This function has no comment.

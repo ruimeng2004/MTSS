@@ -1,0 +1,22 @@
+   /**
+   * Give an expression and a variable. It returns READ, if the first
+   * reference of that variable is a read. It returns KILL, if the first
+   * reference of that variable is an assignment. It returns MAY_LIVE otherwise.
+   */
+private VariableLiveness isVariableReadBeforeKill(Node n,String variable)
+   /**
+   * Given a variable, node n in the tree and a sub-tree denoted by exprRoot as
+   * the root, this function returns true if there exists a read of that
+   * variable before a write to that variable that is on the right side of n.
+   *
+   * For example, suppose the node is x = 1:
+   *
+   * y = 1, x = 1; // false, there is no reads at all.
+   * y = 1, x = 1, print(x) // true, there is a read right of n.
+   * y = 1, x = 1, x = 2, print(x) // false, there is a read right of n but
+   *                               // it is after a write.
+   *
+   * @param n The current node we should look at.
+   * @param exprRoot The node
+   */
+private boolean isVariableStillLiveWithinExpression(Node n,Node exprRoot,String variable)

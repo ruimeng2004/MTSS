@@ -1,0 +1,96 @@
+### Buggy function comment:
+   /**
+     * Returns the index of the specified axis, or <code>-1</code> if the axis
+     * is not assigned to the plot.
+     * 
+     * @param axis  the axis (<code>null</code> not permitted).
+     * 
+     * @return The axis index.
+     * 
+     * @see #getDomainAxis(int)
+     * @see #getRangeAxisIndex(ValueAxis)
+     * 
+     * @since 1.0.3
+     */
+public int getDomainAxisIndex(CategoryAxis axis)
+   /**
+     * Returns the index of the specified axis, or <code>-1</code> if the axis
+     * is not assigned to the plot.
+     *
+     * @param axis  the axis (<code>null</code> not permitted).
+     *
+     * @return The axis index.
+     * 
+     * @see #getRangeAxis(int)
+     * @see #getDomainAxisIndex(CategoryAxis)
+     * 
+     * @since 1.0.7
+     */
+public int getRangeAxisIndex(ValueAxis axis)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+public void testGetRangeAxisIndex() {
+        CategoryAxis domainAxis1 = new CategoryAxis("X1");
+        NumberAxis rangeAxis1 = new NumberAxis("Y1");
+        NumberAxis rangeAxis2 = new NumberAxis("Y2");
+        CategoryPlot plot = new CategoryPlot(null, domainAxis1, rangeAxis1, 
+                null);
+        assertEquals(0, plot.getRangeAxisIndex(rangeAxis1));
+        assertEquals(-1, plot.getRangeAxisIndex(rangeAxis2));
+        plot.setRangeAxis(1, rangeAxis2);
+        assertEquals(1, plot.getRangeAxisIndex(rangeAxis2));
+        assertEquals(-1, plot.getRangeAxisIndex(new NumberAxis("Y2")));
+        boolean pass = false;
+        try {
+            plot.getRangeAxisIndex(null);
+        }
+        catch (IllegalArgumentException e) {
+            pass = true;
+        }
+        assertTrue(pass);
+    }
+public void testGetDomainAxisIndex() {
+        CategoryAxis domainAxis1 = new CategoryAxis("X1");
+        CategoryAxis domainAxis2 = new CategoryAxis("X2");
+        NumberAxis rangeAxis1 = new NumberAxis("Y1");
+        CategoryPlot plot = new CategoryPlot(null, domainAxis1, rangeAxis1, 
+                null);
+        assertEquals(0, plot.getDomainAxisIndex(domainAxis1));
+        assertEquals(-1, plot.getDomainAxisIndex(domainAxis2));
+        plot.setDomainAxis(1, domainAxis2);
+        assertEquals(1, plot.getDomainAxisIndex(domainAxis2));
+        assertEquals(-1, plot.getDomainAxisIndex(new CategoryAxis("X2")));
+        boolean pass = false;
+        try {
+            plot.getDomainAxisIndex(null);
+        }
+        catch (IllegalArgumentException e) {
+            pass = true;
+        }
+        assertTrue(pass);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public int getDomainAxisIndex(CategoryAxis axis) {
+        return this.domainAxes.indexOf(axis);
+    }
+```
+```java
+public int getRangeAxisIndex(ValueAxis axis) {
+        int result = this.rangeAxes.indexOf(axis);
+        if (result < 0) { // try the parent plot
+            Plot parent = getParent();
+            if (parent instanceof CategoryPlot) {
+                CategoryPlot p = (CategoryPlot) parent;
+                result = p.getRangeAxisIndex(axis);
+            }
+        }
+        return result;
+    }
+```

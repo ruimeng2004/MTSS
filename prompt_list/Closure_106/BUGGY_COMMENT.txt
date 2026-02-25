@@ -1,0 +1,7 @@
+   /**
+   * Records a block-level description.
+   *
+   * @return {@code true} if the description was recorded.
+   */
+public boolean recordBlockDescription(String description)
+   This function has no comment.

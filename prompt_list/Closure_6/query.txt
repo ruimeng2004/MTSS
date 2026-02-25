@@ -1,0 +1,112 @@
+### Buggy function comment:
+   /**
+   * Expect that the first type can be assigned to a symbol of the second
+   * type.
+   *
+   * @param t The node traversal.
+   * @param n The node to issue warnings on.
+   * @param rightType The type on the RHS of the assign.
+   * @param leftType The type of the symbol on the LHS of the assign.
+   * @param owner The owner of the property being assigned to.
+   * @param propName The name of the property being assigned to.
+   * @return True if the types matched, false otherwise.
+   */
+boolean expectCanAssignToPropertyOf(NodeTraversal t,Node n,JSType rightType,JSType leftType,Node owner,String propName)
+   /**
+   * Expect that the first type can be assigned to a symbol of the second
+   * type.
+   *
+   * @param t The node traversal.
+   * @param n The node to issue warnings on.
+   * @param rightType The type on the RHS of the assign.
+   * @param leftType The type of the symbol on the LHS of the assign.
+   * @param msg An extra message for the mismatch warning, if necessary.
+   * @return True if the types matched, false otherwise.
+   */
+boolean expectCanAssignTo(NodeTraversal t,Node n,JSType rightType,JSType leftType,String msg)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<2> but was:<1>
+junit.framework.AssertionFailedError: expected a warning
+junit.framework.AssertionFailedError: unexpected warning(s) : JSC_DUP_VAR_DECLARATION. variable a.A redefined with type function (new:a.A): undefined, original definition at [testcode]:1 with type enum{a.A} at [testcode] line 1 : 61 expected:<2> but was:<1>
+
+### Failed JUnit tests:
+public void testTypeRedefinition() throws Exception {
+    testClosureTypesMultipleWarnings(
+        "a={};/**@enum {string}*/ a.A = {ZOR:'b'};"
+        + "/** @constructor */ a.A = function() {}",
+        Lists.newArrayList(
+            "variable a.A redefined with type function (new:a.A): undefined, " +
+            "original definition at [testcode]:1 with type enum{a.A}",
+            "assignment to property A of a\n" +
+            "found   : function (new:a.A): undefined\n" +
+            "required: enum{a.A}"));
+  }
+public void testIssue635b() throws Exception {
+    testTypes(
+        "/** @constructor */" +
+        "function F() {}" +
+        "/** @constructor */" +
+        "function G() {}" +
+        "/** @type {function(new:G)} */ var x = F;",
+        "initializing variable\n" +
+        "found   : function (new:F): undefined\n" +
+        "required: function (new:G): ?");
+  }
+public void testTypeRedefinition() throws Exception {
+    testClosureTypesMultipleWarnings("a={};/**@enum {string}*/ a.A = {ZOR:'b'};"
+        + "/** @constructor */ a.A = function() {}",
+        Lists.newArrayList(
+            "variable a.A redefined with type function (new:a.A): undefined, " +
+            "original definition at [testcode]:1 with type enum{a.A}",
+            "assignment to property A of a\n" +
+            "found   : function (new:a.A): undefined\n" +
+            "required: enum{a.A}"));
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+boolean expectCanAssignToPropertyOf(NodeTraversal t, Node n, JSType rightType,
+      JSType leftType, Node owner, String propName) {
+    // The NoType check is a hack to make typedefs work OK.
+    if (!leftType.isNoType() && !rightType.canAssignTo(leftType)) {
+      if ((leftType.isConstructor() || leftType.isEnumType()) && (rightType.isConstructor() || rightType.isEnumType())) {
+        registerMismatch(rightType, leftType, null);
+      } else {
+      // Do not type-check interface methods, because we expect that
+      // they will have dummy implementations that do not match the type
+      // annotations.
+      JSType ownerType = getJSType(owner);
+      if (ownerType.isFunctionPrototypeType()) {
+        FunctionType ownerFn = ownerType.toObjectType().getOwnerFunction();
+        if (ownerFn.isInterface() &&
+            rightType.isFunctionType() && leftType.isFunctionType()) {
+          return true;
+        }
+      }
+
+      mismatch(t, n,
+          "assignment to property " + propName + " of " +
+          getReadableJSTypeName(owner, true),
+          rightType, leftType);
+      }
+      return false;
+    }
+    return true;
+  }
+```
+```java
+boolean expectCanAssignTo(NodeTraversal t, Node n, JSType rightType,
+      JSType leftType, String msg) {
+    if (!rightType.canAssignTo(leftType)) {
+      if ((leftType.isConstructor() || leftType.isEnumType()) && (rightType.isConstructor() || rightType.isEnumType())) {
+        registerMismatch(rightType, leftType, null);
+      } else {
+      mismatch(t, n, msg, rightType, leftType);
+      }
+      return false;
+    }
+    return true;
+  }
+```

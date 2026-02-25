@@ -1,0 +1,11 @@
+   /** Accept a step, triggering events and step handlers.
+     * @param interpolator step interpolator
+     * @param y state vector at step end time, must be reset if an event
+     * asks for resetting or if an events stops integration during the step
+     * @param yDot placeholder array where to put the time derivative of the state vector
+     * @param tEnd final integration time
+     * @return time at end of step
+     * @exception MathIllegalStateException if the value of one event state cannot be evaluated
+     * @since 2.2
+     */
+protected double acceptStep(final AbstractStepInterpolator interpolator,final double[] y,final double[] yDot,final double tEnd)

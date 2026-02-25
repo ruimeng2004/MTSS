@@ -1,0 +1,18 @@
+```java
+private IllegalArgumentException wrongBuf() {
+        // sanity check failed; trying to return different, smaller buffer.
+return new IllegalArgumentException("Trying to release buffer not owned by the context"); 
+    }
+```
+```java
+protected final void _verifyRelease(char[] toRelease, char[] src) {
+        // 07-Mar-2016, tatu: As per [core#255], only prevent shrinking of buffer
+        if ((toRelease != src) && (toRelease.length <= src.length)) { throw wrongBuf(); }
+    }
+```
+```java
+protected final void _verifyRelease(byte[] toRelease, byte[] src) {
+        // 07-Mar-2016, tatu: As per [core#255], only prevent shrinking of buffer
+        if ((toRelease != src) && (toRelease.length <= src.length)) { throw wrongBuf(); }
+    }
+```

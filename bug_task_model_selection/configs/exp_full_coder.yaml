@@ -1,0 +1,54 @@
+# 完整参数实验 (qwen3_coder)#换了一个模型去做的
+name: "exp_full_coder"
+
+embeddings_path: "bug_task_model_selection/data/embeddings/embeddings.jsonl"
+ppl_paths:
+  edit: "bug_task_model_selection/data/ppl/qwen3_coder_edit.jsonl"
+  gen: "bug_task_model_selection/data/ppl/qwen3_coder_gen.jsonl"
+
+views:
+  - buggy_code
+  - buggy_code_obfuscated
+  - buggy_code_mixed
+  - report
+  - test
+  - error
+  - error_plus_test
+
+clustering_algorithms:
+  - kmeans
+  - hac_average
+  - hac_ward
+  - hac_complete
+  - hac_single
+  - bisecting_kmeans
+
+k_values:
+  - 50
+  - 100
+  - 150
+  - 200
+  - 300
+  - 500
+
+sampling_methods:
+  - farthest_first
+  - kdpp
+
+reps_per_cluster_values:
+  - 1
+  - 3
+  - 5
+  - 7
+
+voting_strategies:
+  - majority
+  - mean_ppl
+
+seeds:
+  - 42
+  - 123
+  - 456
+
+output_dir: "bug_task_model_selection/data/exp_full_coder"
+skip_existing: true

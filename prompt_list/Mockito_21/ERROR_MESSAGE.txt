@@ -1,0 +1,1 @@
+org.mockito.internal.creation.instance.InstantationException: Unable to create mock instance of 'SomeInnerClass'.

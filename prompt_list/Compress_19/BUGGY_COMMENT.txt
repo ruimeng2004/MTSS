@@ -1,0 +1,10 @@
+   /**
+     * Parses the raw bytes read from the central directory extra
+     * field with knowledge which fields are expected to be there.
+     *
+     * <p>All four fields inside the zip64 extended information extra
+     * field are optional and must only be present if their corresponding
+     * entry inside the central directory contains the correct magic
+     * value.</p>
+     */
+public void reparseCentralDirectoryData(boolean hasUncompressedSize,boolean hasCompressedSize,boolean hasRelativeHeaderOffset,boolean hasDiskStart)

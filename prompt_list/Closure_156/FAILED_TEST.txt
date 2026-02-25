@@ -1,0 +1,44 @@
+public void testAliasedTopLevelEnum() {
+    test(
+        "function alias() {}" +
+        "var dojo = {};" +
+        "dojo.gfx = {};" +
+        "dojo.declare = function() {};" +
+        "/** @enum {number} */" +
+        "dojo.gfx.Shape = {SQUARE: 2};" +
+        "dojo.gfx.Shape = dojo.declare('dojo.gfx.Shape');" +
+        "alias(dojo);" +
+        "alias(dojo.gfx.Shape.SQUARE);",
+        "function alias() {}" +
+        "var dojo = {};" +
+        "dojo.gfx = {};" +
+        "dojo.declare = function() {};" +
+        "/** @constructor */" +
+        "var dojo$gfx$Shape = {SQUARE: 2};" +
+        "dojo$gfx$Shape = dojo.declare('dojo.gfx.Shape');" +
+        "alias(dojo);" +
+        "alias(dojo$gfx$Shape.SQUARE);",
+        null,
+        CollapseProperties.UNSAFE_NAMESPACE_WARNING);
+  }
+public void testIssue389() {
+    test(
+        "function alias() {}" +
+        "var dojo = {};" +
+        "dojo.gfx = {};" +
+        "dojo.declare = function() {};" +
+        "/** @constructor */" +
+        "dojo.gfx.Shape = function() {};" +
+        "dojo.gfx.Shape = dojo.declare('dojo.gfx.Shape');" +
+        "alias(dojo);",
+        "function alias() {}" +
+        "var dojo = {};" +
+        "dojo.gfx = {};" +
+        "dojo.declare = function() {};" +
+        "/** @constructor */" +
+        "var dojo$gfx$Shape = function() {};" +
+        "dojo$gfx$Shape = dojo.declare('dojo.gfx.Shape');" +
+        "alias(dojo);",
+        null,
+        CollapseProperties.UNSAFE_NAMESPACE_WARNING);
+  }

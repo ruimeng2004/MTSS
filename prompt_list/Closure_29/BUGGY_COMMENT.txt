@@ -1,0 +1,9 @@
+   /**
+     * Counts the number of direct (full) references to an object.
+     * Specifically we check for references of the following type:
+     * <pre>
+     *   x;
+     *   x.fn();
+     * </pre>
+     */
+private boolean isInlinableObject(List<Reference> refs)

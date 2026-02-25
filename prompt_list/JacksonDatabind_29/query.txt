@@ -1,0 +1,67 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+com.fasterxml.jackson.databind.JsonMappingException: Can not deserialize instance of com.fasterxml.jackson.databind.jsontype.TestExternalId$ValueBean out of VALUE_STRING token
+
+### Failed JUnit tests:
+public void testExternalTypeIdWithNull() throws Exception
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerSubtypes(ValueBean.class);
+        ExternalBean b;
+        b = mapper.readValue(aposToQuotes("{'bean':null,'extType':'vbean'}"),
+                ExternalBean.class);
+        assertNotNull(b);
+        b = mapper.readValue(aposToQuotes("{'extType':'vbean','bean':null}"),
+                ExternalBean.class);
+        assertNotNull(b);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@SuppressWarnings("resource")
+    protected final void _deserializeAndSet(JsonParser p, DeserializationContext ctxt,
+            Object bean, int index, String typeId) throws IOException
+    {
+        /* Ok: time to mix type id, value; and we will actually use "wrapper-array"
+         * style to ensure we can handle all kinds of JSON constructs.
+         */
+        JsonParser p2 = _tokens[index].asParser(p);
+        JsonToken t = p2.nextToken();
+        // 29-Sep-2015, tatu: As per [databind#942], nulls need special support
+        TokenBuffer merged = new TokenBuffer(p);
+        merged.writeStartArray();
+        merged.writeString(typeId);
+        
+        merged.copyCurrentStructure(p2);
+        merged.writeEndArray();
+        // needs to point to START_OBJECT (or whatever first token is)
+        JsonParser mp = merged.asParser(p);
+        mp.nextToken();
+        _properties[index].getProperty().deserializeAndSet(mp, ctxt, bean);
+    }
+```
+```java
+@SuppressWarnings("resource")
+    protected final Object _deserialize(JsonParser p, DeserializationContext ctxt,
+            int index, String typeId) throws IOException
+    {
+        JsonParser p2 = _tokens[index].asParser(p);
+        JsonToken t = p2.nextToken();
+        // 29-Sep-2015, tatu: As per [databind#942], nulls need special support
+
+        TokenBuffer merged = new TokenBuffer(p);
+        merged.writeStartArray();
+        merged.writeString(typeId);
+        merged.copyCurrentStructure(p2);
+        merged.writeEndArray();
+
+        // needs to point to START_OBJECT (or whatever first token is)
+        JsonParser mp = merged.asParser(p);
+        mp.nextToken();
+        return _properties[index].getProperty().deserialize(mp, ctxt);
+    }
+```

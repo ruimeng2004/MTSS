@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: Expected exception: org.jsoup.select.Selector$SelectorParseException
+java.lang.Exception: Unexpected exception, expected<org.jsoup.select.Selector$SelectorParseException> but was<java.lang.IllegalArgumentException>

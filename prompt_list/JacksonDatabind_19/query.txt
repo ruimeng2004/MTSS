@@ -1,0 +1,61 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:<129> but was:<null>
+junit.framework.ComparisonFailure: expected:<123> but was:<null>
+junit.framework.AssertionFailedError: expected same:<class java.lang.String> was not:<class java.lang.Object>
+
+### Failed JUnit tests:
+public void testMapToProperties() throws Exception
+    {
+        Bean bean = new Bean();
+        bean.A = 129;
+        bean.B = "13";
+        Properties props = MAPPER.convertValue(bean, Properties.class);
+
+        assertEquals(2, props.size());
+
+        assertEquals("13", props.getProperty("B"));
+        // should coercce non-Strings to Strings
+        assertEquals("129", props.getProperty("A"));
+    }
+public void testReadProperties() throws Exception
+    {
+        Properties props = MAPPER.readValue(aposToQuotes("{'a':'foo', 'b':123, 'c':true}"),
+                Properties.class);
+        assertEquals(3, props.size());
+        assertEquals("foo", props.getProperty("a"));
+        assertEquals("123", props.getProperty("b"));
+        assertEquals("true", props.getProperty("c"));
+    }
+public void testProperties()
+    {
+        TypeFactory tf = TypeFactory.defaultInstance();
+        JavaType t = tf.constructType(Properties.class);
+        assertEquals(MapType.class, t.getClass());
+        assertSame(Properties.class, t.getRawClass());
+
+        // so far so good. But how about parameterization?
+        assertSame(String.class, ((MapType) t).getKeyType().getRawClass());
+        assertSame(String.class, ((MapType) t).getContentType().getRawClass());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private JavaType _mapType(Class<?> rawClass)
+    {
+        // 28-May-2015, tatu: Properties are special, as per [databind#810]
+        JavaType[] typeParams = findTypeParameters(rawClass, Map.class);
+        // ok to have no types ("raw")
+        if (typeParams == null) {
+            return MapType.construct(rawClass, _unknownType(), _unknownType());
+        }
+        // but exactly 2 types if any found
+        if (typeParams.length != 2) {
+            throw new IllegalArgumentException("Strange Map type "+rawClass.getName()+": can not determine type parameters");
+        }
+        return MapType.construct(rawClass, typeParams[0], typeParams[1]);
+    }
+```

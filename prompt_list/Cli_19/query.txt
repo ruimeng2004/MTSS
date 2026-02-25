@@ -1,0 +1,52 @@
+### Buggy function comment:
+   /**
+     * <p>If an {@link Option} exists for <code>token</code> then
+     * set the current option and add the token to the processed 
+     * list.</p>
+     *
+     * <p>If an {@link Option} does not exist and <code>stopAtNonOption</code>
+     * is set then ignore the current token and add the remaining tokens
+     * to the processed tokens list directly.</p>
+     *
+     * @param token The current option token
+     * @param stopAtNonOption Specifies whether flattening should halt
+     * at the first non option.
+     */
+private void processOptionToken(String token,boolean stopAtNonOption)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: UnrecognizedOptionException wasn't thrown
+
+### Failed JUnit tests:
+public void testUnrecognizedOption2() throws Exception
+    {
+        String[] args = new String[] { "-z", "-abtoast", "foo", "bar" };
+
+        try
+        {
+            parser.parse(options, args);
+            fail("UnrecognizedOptionException wasn't thrown");
+        }
+        catch (UnrecognizedOptionException e)
+        {
+            assertEquals("-z", e.getOption());
+        }
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private void processOptionToken(String token, boolean stopAtNonOption)
+    {
+        if (options.hasOption(token))
+        {
+            currentOption = options.getOption(token);
+            tokens.add(token);
+        }
+        else if (stopAtNonOption)
+        {
+            eatTheRest = true;
+            tokens.add(token);
+        }
+    }
+```

@@ -1,0 +1,32 @@
+### Buggy function comment:
+   /**
+   * ContextTypeExpression := BasicTypeExpression | '?'
+   * For expressions on the right hand side of a this: or new:
+   */
+private Node parseContextTypeExpression(JsDocToken token)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: extra warning: Bad type annotation. type not recognized due to syntax error
+junit.framework.AssertionFailedError: extra warning: Bad type annotation. type not recognized due to syntax error
+
+### Failed JUnit tests:
+public void testStructuralConstructor2() throws Exception {
+    JSType type = testParseType(
+        "function (new:?)",
+        // toString skips unknowns, but isConstructor reveals the truth.
+        "function (): ?");
+    assertTrue(type.isConstructor());
+    assertFalse(type.isNominalConstructor());
+  }
+public void testStructuralConstructor3() throws Exception {
+    resolve(parse("@type {function (new:*)} */").getType(),
+        "constructed type must be an object type");
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private Node parseContextTypeExpression(JsDocToken token) {
+          return parseTypeName(token);
+  }
+```

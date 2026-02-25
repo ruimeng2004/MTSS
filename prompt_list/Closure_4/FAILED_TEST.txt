@@ -1,0 +1,32 @@
+public void testImplementsExtendsLoop() throws Exception {
+    testClosureTypesMultipleWarnings(
+        suppressMissingProperty("foo") +
+            "/** @constructor \n * @implements {F} */var G = function() {};" +
+            "/** @constructor \n * @extends {G} */var F = function() {};" +
+        "alert((new F).foo);",
+        Lists.newArrayList(
+            "Parse error. Cycle detected in inheritance chain of type F"));
+  }
+public void testImplementsLoop() throws Exception {
+    testClosureTypesMultipleWarnings(
+        suppressMissingProperty("foo") +
+        "/** @constructor \n * @implements {T} */var T = function() {};" +
+        "alert((new T).foo);",
+        Lists.newArrayList(
+            "Parse error. Cycle detected in inheritance chain of type T"));
+  }
+public void testConversionFromInterfaceToRecursiveConstructor()
+      throws Exception {
+    testClosureTypesMultipleWarnings(
+        suppressMissingProperty("foo") +
+            "/** @interface */ var OtherType = function() {}\n" +
+            "/** @implements {MyType} \n * @constructor */\n" +
+            "var MyType = function() {}\n" +
+            "/** @type {MyType} */\n" +
+            "var x = /** @type {!OtherType} */ (new Object());",
+        Lists.newArrayList(
+            "Parse error. Cycle detected in inheritance chain of type MyType",
+            "initializing variable\n" +
+            "found   : OtherType\n" +
+            "required: (MyType|null)"));
+  }

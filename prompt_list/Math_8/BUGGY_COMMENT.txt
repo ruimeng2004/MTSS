@@ -1,0 +1,9 @@
+   /**
+     * Generate a random sample from the distribution.
+     *
+     * @param sampleSize the number of random values to generate.
+     * @return an array representing the random sample.
+     * @throws NotStrictlyPositiveException if {@code sampleSize} is not
+     * positive.
+     */
+public T[] sample(int sampleSize)

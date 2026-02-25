@@ -1,0 +1,8 @@
+   /**
+   * Returns true if calls to this function have side effects.
+   *
+   * @param callNode The call node to inspected.
+   * @param compiler A compiler object to provide program state changing
+   *     context information. Can be null.
+   */
+static boolean functionCallHasSideEffects(Node callNode,@Nullable AbstractCompiler compiler)

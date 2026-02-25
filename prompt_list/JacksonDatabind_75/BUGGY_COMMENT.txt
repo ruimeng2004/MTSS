@@ -1,0 +1,20 @@
+   /**
+     * Factory method used by {@link com.fasterxml.jackson.databind.ser.BasicSerializerFactory}
+     * for constructing serializer instance of Enum types.
+     * 
+     * @since 2.1
+     */
+@SuppressWarnings("unchecked")
+    public static EnumSerializer construct(Class<?> enumClass,SerializationConfig config,BeanDescription beanDesc,JsonFormat.Value format)
+   /**
+     * Helper method called to check whether serialization should be done using
+     * index (number) or not.
+     */
+protected static Boolean _isShapeWrittenUsingIndex(Class<?> enumClass,JsonFormat.Value format,boolean fromClass)
+   /**
+     * To support some level of per-property configuration, we will need
+     * to make things contextual. We are limited to "textual vs index"
+     * choice here, however.
+     */
+@Override
+    public JsonSerializer<?> createContextual(SerializerProvider serializers,BeanProperty property)

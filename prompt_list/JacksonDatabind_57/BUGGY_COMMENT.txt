@@ -1,0 +1,4 @@
+   /**
+     * Overloaded version of {@link #readValue(InputStream)}.
+     */
+public MappingIterator<T> readValues(byte[] src,int offset,int length)

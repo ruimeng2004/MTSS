@@ -1,0 +1,74 @@
+   /**
+     * Add a number of minutes to the date.
+     *
+     * @param minutes  the minutes to add
+     * @throws IllegalArgumentException if the value is invalid
+     */
+public void addMinutes(final int minutes)
+   /**
+     * Add a number of weekyears to the date.
+     *
+     * @param weekyears  the weekyears to add
+     * @throws IllegalArgumentException if the value is invalid
+     */
+public void addWeekyears(final int weekyears)
+   /**
+     * Add a number of months to the date.
+     *
+     * @param months  the months to add
+     * @throws IllegalArgumentException if the value is invalid
+     */
+public void addMonths(final int months)
+   /**
+     * Adds to the instant specifying the duration and multiple to add.
+     *
+     * @param type  a field type, usually obtained from DateTimeFieldType, not null
+     * @param amount  the amount to add of this duration
+     * @throws IllegalArgumentException if the value is null or invalid
+     * @throws ArithmeticException if the result exceeds the capacity of the instant
+     */
+public void add(DurationFieldType type,int amount)
+   /**
+     * Add a number of years to the date.
+     *
+     * @param years  the years to add
+     * @throws IllegalArgumentException if the value is invalid
+     */
+public void addYears(final int years)
+   /**
+     * Add a number of seconds to the date.
+     *
+     * @param seconds  the seconds to add
+     * @throws IllegalArgumentException if the value is invalid
+     */
+public void addSeconds(final int seconds)
+   /**
+     * Add a number of hours to the date.
+     *
+     * @param hours  the hours to add
+     * @throws IllegalArgumentException if the value is invalid
+     */
+public void addHours(final int hours)
+   /**
+     * Add a number of milliseconds to the date. The implementation of this
+     * method differs from the {@link #add(long)} method in that a
+     * DateTimeField performs the addition.
+     *
+     * @param millis  the milliseconds to add
+     * @throws IllegalArgumentException if the value is invalid
+     */
+public void addMillis(final int millis)
+   /**
+     * Add a number of weeks to the date.
+     *
+     * @param weeks  the weeks to add
+     * @throws IllegalArgumentException if the value is invalid
+     */
+public void addWeeks(final int weeks)
+   /**
+     * Add a number of days to the date.
+     *
+     * @param days  the days to add
+     * @throws IllegalArgumentException if the value is invalid
+     */
+public void addDays(final int days)

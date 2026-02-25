@@ -1,0 +1,7 @@
+   /**
+     * Outputs the record separator.
+     *
+     * @throws IOException
+     *             If an I/O error occurs
+     */
+public void println()

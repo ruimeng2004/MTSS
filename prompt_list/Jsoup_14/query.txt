@@ -1,0 +1,51 @@
+### Buggy function comment:
+   // in data state, gather characters until a character reference or tag is found
+void read(Tokeniser t,CharacterReader r)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<one[]> but was:<one[<p>two]>
+junit.framework.AssertionFailedError: expected:<One[]> but was:<One[<b>Two <p>Test</p]>
+
+### Failed JUnit tests:
+@Test public void parsesUnterminatedTextarea() {
+        // don't parse right to end, but break on <p>
+        Document doc = Jsoup.parse("<body><p><textarea>one<p>two");
+        Element t = doc.select("textarea").first();
+        assertEquals("one", t.text());
+        assertEquals("two", doc.select("p").get(1).text());
+    }
+@Test public void handlesUnclosedTitle() {
+        Document one = Jsoup.parse("<title>One <b>Two <b>Three</TITLE><p>Test</p>"); // has title, so <b> is plain text
+        assertEquals("One <b>Two <b>Three", one.title());
+        assertEquals("Test", one.select("p").first().text());
+
+        Document two = Jsoup.parse("<title>One<b>Two <p>Test</p>"); // no title, so <b> causes </title> breakout
+        assertEquals("One", two.title());
+        assertEquals("<b>Two <p>Test</p></b>", two.body().html());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+void read(Tokeniser t, CharacterReader r) {
+            switch (r.current()) {
+                case '&':
+                    t.advanceTransition(CharacterReferenceInData);
+                    break;
+                case '<':
+                    t.advanceTransition(TagOpen);
+                    break;
+                case nullChar:
+                    t.error(this); // NOT replacement character (oddly?)
+                    t.emit(r.consume());
+                    break;
+                case eof:
+                    t.emit(new Token.EOF());
+                    break;
+                default:
+                    String data = r.consumeToAny('&', '<', nullChar);
+                    t.emit(data);
+                    break;
+            }
+        }
+```

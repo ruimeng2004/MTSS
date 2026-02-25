@@ -1,0 +1,7 @@
+   /**
+     * Helper method used to prevent both caching and cache lookups for structured
+     * types that have custom value handlers
+     *
+     * @since 2.8.11
+     */
+private boolean _hasCustomHandlers(JavaType t)

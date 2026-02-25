@@ -1,0 +1,7 @@
+   /**
+     * Encodes the given String into a Caverphone value.
+     *
+     * @param txt String the source string
+     * @return A caverphone code for the given String
+     */
+public String caverphone(String txt)

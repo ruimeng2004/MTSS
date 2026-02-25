@@ -1,0 +1,9 @@
+   /**
+     * Convert to multidimensional counter.
+     *
+     * @param index Index in unidimensional counter.
+     * @return the multidimensional counts.
+     * @throws OutOfRangeException if {@code index} is not between
+     * {@code 0} and the value returned by {@link #getSize()} (excluded).
+     */
+public int[] getCounts(int index)

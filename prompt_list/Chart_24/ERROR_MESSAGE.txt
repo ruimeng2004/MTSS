@@ -1,0 +1,1 @@
+java.lang.IllegalArgumentException: Color parameter outside of expected range: Red Green Blue

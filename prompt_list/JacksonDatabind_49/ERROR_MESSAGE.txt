@@ -1,0 +1,1 @@
+com.fasterxml.jackson.databind.deser.UnresolvedForwardReference: Unresolved forward references for: Object id [1] (for com.fasterxml.jackson.databind.objectid.AlwaysAsReferenceFirstTest$Bar) at [Source: {"bar1":1,"bar2":{"@id":2,"value":3}}; line: 1, column: 10].

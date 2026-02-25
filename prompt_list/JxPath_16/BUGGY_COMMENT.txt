@@ -1,0 +1,5 @@
+   This function has no comment.
+   /* (non-Javadoc)
+     * @see org.apache.commons.jxpath.ri.model.NodePointer#getNamespaceResolver()
+     */
+public static boolean testNode(Node node,NodeTest test)

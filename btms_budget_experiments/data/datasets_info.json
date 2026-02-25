@@ -1,0 +1,14 @@
+{
+  "qwen3_coder_k100_r3": {
+    "description": "Qwen3-Coder, K=100, KDpp\u91c7\u6837r=3",
+    "bugs": 698,
+    "clusters": 100,
+    "representatives": 291
+  },
+  "qwen3_30b_k100_r3": {
+    "description": "Qwen3-30B, K=100, KDpp\u91c7\u6837r=3",
+    "bugs": 698,
+    "clusters": 100,
+    "representatives": 291
+  }
+}

@@ -1,0 +1,3 @@
+junit.framework.AssertionFailedError: expected:<2> but was:<1>
+junit.framework.AssertionFailedError: expected a warning
+junit.framework.AssertionFailedError: unexpected warning(s) : JSC_DUP_VAR_DECLARATION. variable a.A redefined with type function (new:a.A): undefined, original definition at [testcode]:1 with type enum{a.A} at [testcode] line 1 : 61 expected:<2> but was:<1>

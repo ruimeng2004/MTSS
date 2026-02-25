@@ -1,0 +1,45 @@
+### Buggy function comment:
+   /**
+     * @param encoding the encoding to use for file names, use null
+     * for the platform's default encoding
+     * @param useUnicodeExtraFields whether to use InfoZIP Unicode
+     * Extra Fields (if present) to set the file names.
+     * @param allowStoredEntriesWithDataDescriptor whether the stream
+     * will try to read STORED entries that use a data descriptor
+     * @since 1.1
+     */
+public ZipArchiveInputStream(InputStream inputStream,String encoding,boolean useUnicodeExtraFields,boolean allowStoredEntriesWithDataDescriptor)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: arrays first differed at element [0]; expected:<100> but was:<0>
+
+### Failed JUnit tests:
+@Test
+    public void testReadingOfFirstStoredEntry() throws Exception {
+        ZipArchiveInputStream in = new ZipArchiveInputStream(new FileInputStream(getFile("COMPRESS-264.zip")));
+        
+        try {
+            ZipArchiveEntry ze = in.getNextZipEntry();
+            assertEquals(5, ze.getSize());
+            assertArrayEquals(new byte[] {'d', 'a', 't', 'a', '\n'},
+                              IOUtils.toByteArray(in));
+        } finally {
+            in.close();
+        }
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public ZipArchiveInputStream(InputStream inputStream,
+                                 String encoding,
+                                 boolean useUnicodeExtraFields,
+                                 boolean allowStoredEntriesWithDataDescriptor) {
+        zipEncoding = ZipEncodingHelper.getZipEncoding(encoding);
+        this.useUnicodeExtraFields = useUnicodeExtraFields;
+        in = new PushbackInputStream(inputStream, buf.capacity());
+        this.allowStoredEntriesWithDataDescriptor =
+            allowStoredEntriesWithDataDescriptor;
+        // haven't read anything so far
+    }
+```

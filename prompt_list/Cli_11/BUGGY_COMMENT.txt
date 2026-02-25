@@ -1,0 +1,8 @@
+   /**
+     * Appends the usage clause for an Option to a StringBuffer.  
+     *
+     * @param buff the StringBuffer to append to
+     * @param option the Option to append
+     * @param required whether the Option is required or not
+     */
+private static void appendOption(final StringBuffer buff,final Option option,final boolean required)

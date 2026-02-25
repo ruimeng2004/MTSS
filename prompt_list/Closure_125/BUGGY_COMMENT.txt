@@ -1,0 +1,4 @@
+   /**
+   * Visits a NEW node.
+   */
+private void visitNew(NodeTraversal t,Node n)

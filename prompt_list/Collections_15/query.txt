@@ -1,0 +1,65 @@
+### Buggy function comment:
+   /**
+     * Sets the value at the specified index avoiding duplicates.
+     * <p>
+     * The object is set into the specified index.
+     * Afterwards, any previous duplicate is removed
+     * If the object is not already in the list then a normal set occurs.
+     * If it is present, then the old version is removed.
+     * 
+     * @param index  the index to insert at
+     * @param object  the object to set
+     * @return the previous object
+     */
+public Object set(int index,Object object)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<3> but was:<4>
+
+### Failed JUnit tests:
+public void testCollections304() {
+        List list = new LinkedList();
+        SetUniqueList decoratedList = SetUniqueList.decorate(list);
+        String s1 = "Apple";
+        String s2 = "Lemon";
+        String s3 = "Orange";
+        String s4 = "Strawberry";
+
+        decoratedList.add(s1);
+        decoratedList.add(s2);
+        decoratedList.add(s3);
+
+        assertEquals(3, decoratedList.size());
+
+        decoratedList.set(1, s4);
+
+        assertEquals(3, decoratedList.size());
+
+        decoratedList.add(1, s4);
+
+        assertEquals(3, decoratedList.size());
+
+        decoratedList.add(1, s2);
+
+        assertEquals(4, decoratedList.size());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public Object set(int index, Object object) {
+        int pos = indexOf(object);
+        Object removed = super.set(index, object);
+
+        if (pos == -1 || pos == index) {
+            // the object is already in the uniq list
+            // (and it hasn't been swapped with itself)
+            return removed;
+        }
+
+        super.remove(pos);
+        set.remove(removed);  // remove the item deleted by the set
+
+        return removed;  // return the item deleted by the set
+    }
+```

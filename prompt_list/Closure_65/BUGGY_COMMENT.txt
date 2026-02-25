@@ -1,0 +1,2 @@
+   /** Helper to escape javascript string as well as regular expression */
+static String strEscape(String s,char quote,String doublequoteEscape,String singlequoteEscape,String backslashEscape,CharsetEncoder outputCharsetEncoder)

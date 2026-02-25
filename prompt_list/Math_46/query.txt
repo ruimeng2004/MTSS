@@ -1,0 +1,88 @@
+### Buggy function comment:
+   /**
+     * Returns a {@code Complex} whose value is {@code (this / divisor)},
+     * with {@code divisor} interpreted as a real number.
+     *
+     * @param  divisor Value by which this {@code Complex} is to be divided.
+     * @return {@code this / divisor}.
+     * @see #divide(Complex)
+     */
+public Complex divide(double divisor)
+   /**
+     * Returns a {@code Complex} whose value is {@code (this / divisor)},
+     * with {@code divisor} interpreted as a real number.
+     *
+     * @param  divisor Value by which this {@code Complex} is to be divided.
+     * @return {@code this / divisor}.
+     * @see #divide(Complex)
+     */
+public Complex divide(double divisor)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError: expected:<(Infinity, Infinity)> but was:<(NaN, NaN)>
+
+### Failed JUnit tests:
+@Test
+    public void testAtanI() {
+        Assert.assertTrue(Complex.I.atan().isNaN());
+    }
+@Test
+    public void testDivideZero() {
+        Complex x = new Complex(3.0, 4.0);
+        Complex z = x.divide(Complex.ZERO);
+        // Assert.assertEquals(z, Complex.INF); // See MATH-657
+        Assert.assertEquals(z, Complex.NaN);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public Complex divide(Complex divisor)
+        throws NullArgumentException {
+        MathUtils.checkNotNull(divisor);
+        if (isNaN || divisor.isNaN) {
+            return NaN;
+        }
+
+        if (divisor.isZero) {
+            // return isZero ? NaN : INF; // See MATH-657
+            return isZero ? NaN : INF;
+        }
+
+        if (divisor.isInfinite() && !isInfinite()) {
+            return ZERO;
+        }
+
+        final double c = divisor.getReal();
+        final double d = divisor.getImaginary();
+
+        if (FastMath.abs(c) < FastMath.abs(d)) {
+            double q = c / d;
+            double denominator = c * q + d;
+            return createComplex((real * q + imaginary) / denominator,
+                (imaginary * q - real) / denominator);
+        } else {
+            double q = d / c;
+            double denominator = d * q + c;
+            return createComplex((imaginary * q + real) / denominator,
+                (imaginary - real * q) / denominator);
+        }
+    }
+```
+```java
+public Complex divide(double divisor) {
+        if (isNaN || Double.isNaN(divisor)) {
+            return NaN;
+        }
+        if (divisor == 0d) {
+            // return isZero ? NaN : INF; // See MATH-657
+            return isZero ? NaN : INF;
+        }
+        if (Double.isInfinite(divisor)) {
+            return !isInfinite() ? ZERO : NaN;
+        }
+        return createComplex(real / divisor,
+                             imaginary  / divisor);
+    }
+```

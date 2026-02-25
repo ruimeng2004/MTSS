@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: compiler.reportCodeChange() was called even though nothing changed

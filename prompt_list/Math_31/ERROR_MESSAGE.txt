@@ -1,0 +1,2 @@
+org.apache.commons.math3.exception.ConvergenceException: illegal state: Continued fraction diverged to NaN for value 0.5
+junit.framework.AssertionFailedError: Failing to calculate inverse cumulative probability

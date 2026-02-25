@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: compare values   expected:<6.0> but was:<128.0>
+junit.framework.AssertionFailedError: compare values   expected:<6.0> but was:<-3.0>

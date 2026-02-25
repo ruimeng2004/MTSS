@@ -1,0 +1,20 @@
+   /**
+     * Tries to remove n if it is an unconditional branch node (break, continue,
+     * or return) and the target of n is the same as the the follow of n.
+     * That is, if removing n preserves the control flow. Also if n targets
+     * another unconditional branch, this function will recursively try to
+     * remove the target branch as well. The reason why we want to cascade this
+     * removal is because we only run this pass once. If we have code such as
+     *
+     * break -> break -> break
+     *
+     * where all 3 breaks are useless, then the order of removal matters. When
+     * we first look at the first break, we see that it branches to the 2nd
+     * break. However, if we remove the last break, the 2nd break becomes
+     * useless and finally the first break becomes useless as well.
+     *
+     * @returns The target of this jump. If the target is also useless jump,
+     *     the target of that useless jump recursively.
+     */
+@SuppressWarnings("fallthrough")
+    private void tryRemoveUnconditionalBranching(Node n)

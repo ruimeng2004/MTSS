@@ -1,0 +1,42 @@
+### Buggy function comment:
+   /**
+     * Generate a random sample from the distribution.
+     *
+     * @param sampleSize the number of random values to generate.
+     * @return an array representing the random sample.
+     * @throws NotStrictlyPositiveException if {@code sampleSize} is not
+     * positive.
+     */
+public T[] sample(int sampleSize)
+
+
+### Error message from JUnit test:
+java.lang.ArrayStoreException: org.apache.commons.math3.distribution.DiscreteRealDistributionTest$2
+
+### Failed JUnit tests:
+@Test
+    public void testIssue942() {
+        List<Pair<Object,Double>> list = new ArrayList<Pair<Object, Double>>();
+        list.add(new Pair<Object, Double>(new Object() {}, new Double(0)));
+        list.add(new Pair<Object, Double>(new Object() {}, new Double(1)));
+        Assert.assertEquals(1, new DiscreteDistribution<Object>(list).sample(1).length);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public T[] sample(int sampleSize) throws NotStrictlyPositiveException {
+        if (sampleSize <= 0) {
+            throw new NotStrictlyPositiveException(LocalizedFormats.NUMBER_OF_SAMPLES,
+                    sampleSize);
+        }
+
+        final T[]out = (T[]) java.lang.reflect.Array.newInstance(singletons.get(0).getClass(), sampleSize);
+
+        for (int i = 0; i < sampleSize; i++) {
+            out[i] = sample();
+        }
+
+        return out;
+
+    }
+```

@@ -1,0 +1,9 @@
+   /**
+     * <p>Remove the hyphens from the begining of <code>str</code> and
+     * return the new String.</p>
+     *
+     * @param str The string from which the hyphens should be removed.
+     *
+     * @return the new String.
+     */
+static String stripLeadingHyphens(String str)

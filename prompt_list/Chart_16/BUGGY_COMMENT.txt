@@ -1,0 +1,23 @@
+   /**
+     * Constructs a DefaultIntervalCategoryDataset, populates it with data
+     * from the arrays, and uses the supplied names for the series and the
+     * supplied objects for the categories.
+     *
+     * @param seriesKeys  the series keys (if <code>null</code>, series keys
+     *         will be generated automatically).
+     * @param categoryKeys  the category keys (if <code>null</code>, category 
+     *         keys will be generated automatically).
+     * @param starts  the start values data, indexed as data[series][category].
+     * @param ends  the end values data, indexed as data[series][category].
+     */
+public DefaultIntervalCategoryDataset(Comparable[] seriesKeys,Comparable[] categoryKeys,Number[][] starts,Number[][] ends)
+   /**
+     * Sets the categories for the dataset.
+     *
+     * @param categoryKeys  an array of objects representing the categories in 
+     *                      the dataset.
+     *                      
+     * @see #getRowKeys()
+     * @see #setSeriesKeys(Comparable[])
+     */
+public void setCategoryKeys(Comparable[] categoryKeys)

@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expecting ArithmeticException
+junit.framework.AssertionFailedError: Expecting ArithmeticException

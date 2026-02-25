@@ -1,0 +1,81 @@
+public void testIssue1101a() {
+    helperCanInlineReferenceToFunction(CanInlineResult.NO,
+        "function foo(a){return modifiyX() + a;} foo(x);", "foo",
+        INLINE_DIRECT);
+  }
+public void testIssue1101b() {
+    helperCanInlineReferenceToFunction(CanInlineResult.NO,
+        "function foo(a){return (x.prop = 2),a;} foo(x.prop);", "foo",
+        INLINE_DIRECT);
+  }
+public void testBug4944818() {
+    test(
+        "var getDomServices_ = function(self) {\n" +
+        "  if (!self.domServices_) {\n" +
+        "    self.domServices_ = goog$component$DomServices.get(" +
+        "        self.appContext_);\n" +
+        "  }\n" +
+        "\n" +
+        "  return self.domServices_;\n" +
+        "};\n" +
+        "\n" +
+        "var getOwnerWin_ = function(self) {\n" +
+        "  return getDomServices_(self).getDomHelper().getWindow();\n" +
+        "};\n" +
+        "\n" +
+        "HangoutStarter.prototype.launchHangout = function() {\n" +
+        "  var self = a.b;\n" +
+        "  var myUrl = new goog.Uri(getOwnerWin_(self).location.href);\n" +
+        "};",
+        "HangoutStarter.prototype.launchHangout=function(){" +
+        "  var self$$2=a.b;" +
+        "  var JSCompiler_temp_const$$0=goog.Uri;" +
+        "  var JSCompiler_inline_result$$1;" +
+        "  {" +
+        "    var JSCompiler_inline_result$$0;" +
+        "    {" +
+        "      var self$$inline_1=self$$2;" +
+        "      if(!self$$inline_1.domServices_) {" +
+        "        self$$inline_1.domServices_=goog$component$DomServices.get(self$$inline_1.appContext_);" +
+        "      }" +
+        "      JSCompiler_inline_result$$0=self$$inline_1.domServices_;" +
+        "    }" +
+        "    JSCompiler_inline_result$$1=JSCompiler_inline_result$$0.getDomHelper().getWindow();" +
+        "  }" +
+        "  var myUrl=new JSCompiler_temp_const$$0(JSCompiler_inline_result$$1.location.href)" +
+        "}");
+  }
+public void testDoubleInlining2() {
+    test("var foo = function(a) { return getWindow(a); };" +
+         "var bar = function(b) { return b; };" +
+         "foo(bar(x));",
+         "{getWindow(x)}");
+  }
+public void testIssue1101() {
+    test(
+        "var x = (function (saved) {" +
+        "    return foo(obj) + saved;" +
+        "  })(obj[\"prop\"]);",
+        "var x;" +
+        "{" +
+        "  var saved$$inline_0=obj[\"prop\"];x=foo(obj)+saved$$inline_0" +
+        "}");
+  }
+public void testInlineIfParametersModified8() {
+    // OK, object parameter modified.
+    test("function f(a){return a.x=2}f(o)", "{o.x=2}");
+  }
+public void testInlineIfParametersModified9() {
+    // OK, array parameter modified.
+    test("function f(a){return a[2]=2}f(o)", "{o[2]=2}");
+  }
+public void testInlineFunctions6() {
+    // more complex inlines
+    test("function BAR_FN(x, y, z) { return z(nochg(x + y)) }" +
+         "alert(BAR_FN(1, 2, baz))",
+
+         "var JSCompiler_temp_const$$0=alert;" +
+         "var JSCompiler_inline_result$$1;" +
+         "{JSCompiler_inline_result$$1=baz(nochg(1+2));}" +
+         "JSCompiler_temp_const$$0(JSCompiler_inline_result$$1)");
+  }

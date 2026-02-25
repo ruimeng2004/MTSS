@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: SelfClosingStartTag ignores last character

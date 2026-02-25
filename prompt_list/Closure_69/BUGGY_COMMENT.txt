@@ -1,0 +1,8 @@
+   /**
+   * Visits a CALL node.
+   *
+   * @param t The node traversal object that supplies context, such as the
+   * scope chain to use in name lookups as well as error reporting.
+   * @param n The node being visited.
+   */
+private void visitCall(NodeTraversal t,Node n)

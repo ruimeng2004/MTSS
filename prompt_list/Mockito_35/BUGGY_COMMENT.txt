@@ -1,0 +1,34 @@
+   /**
+     * Object argument that is equal to the given value.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @param value
+     *            the given value.
+     * @return <code>null</code>.
+     */
+public static T eq(T value)
+   /**
+     * Object argument that implements the given class. 
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @param <T>
+     *            the accepted type.
+     * @param clazz
+     *            the class of the accepted type.
+     * @return <code>null</code>.
+     */
+public static T isA(Class<T> clazz)
+   /**
+     * Object argument that is the same as the given value.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @param <T>
+     *            the type of the object, it is passed through to prevent casts.
+     * @param value
+     *            the given value.
+     * @return <code>null</code>.
+     */
+public static T same(T value)

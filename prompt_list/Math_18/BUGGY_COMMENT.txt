@@ -1,0 +1,15 @@
+   /**
+         * @param x Normalized objective variables.
+         * @return the original objective variables.
+         */
+public double[] decode(final double[] x)
+   /**
+         * @param x Normalized objective variables.
+         * @return {@code true} if in bounds.
+         */
+public boolean isFeasible(final double[] x)
+   /**
+         * @param x Original objective variables.
+         * @return the normalized objective variables.
+         */
+public double[] encode(final double[] x)

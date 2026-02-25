@@ -1,0 +1,4 @@
+   /**
+     * Checks dimensions and values of boundaries and inputSigma if defined.
+     */
+private void checkParameters()

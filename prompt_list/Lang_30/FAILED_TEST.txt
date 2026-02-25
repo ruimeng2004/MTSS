@@ -1,0 +1,87 @@
+public void testContainsNone_CharArrayWithSupplementaryChars() {
+        assertEquals(false, StringUtils.containsNone(CharU20000 + CharU20001, CharU20000.toCharArray()));
+        assertEquals(false, StringUtils.containsNone(CharU20000 + CharU20001, CharU20001.toCharArray()));
+        assertEquals(false, StringUtils.containsNone(CharU20000, CharU20000.toCharArray()));
+        // Sanity check:
+        assertEquals(-1, CharU20000.indexOf(CharU20001));
+        assertEquals(0, CharU20000.indexOf(CharU20001.charAt(0)));
+        assertEquals(-1, CharU20000.indexOf(CharU20001.charAt(1)));
+        // Test:
+        assertEquals(true, StringUtils.containsNone(CharU20000, CharU20001.toCharArray()));
+        assertEquals(true, StringUtils.containsNone(CharU20001, CharU20000.toCharArray()));
+    }
+public void testContainsNone_StringWithSupplementaryChars() {
+        assertEquals(false, StringUtils.containsNone(CharU20000 + CharU20001, CharU20000));
+        assertEquals(false, StringUtils.containsNone(CharU20000 + CharU20001, CharU20001));
+        assertEquals(false, StringUtils.containsNone(CharU20000, CharU20000));
+        // Sanity check:
+        assertEquals(-1, CharU20000.indexOf(CharU20001));
+        assertEquals(0, CharU20000.indexOf(CharU20001.charAt(0)));
+        assertEquals(-1, CharU20000.indexOf(CharU20001.charAt(1)));
+        // Test:
+        assertEquals(true, StringUtils.containsNone(CharU20000, CharU20001));
+        assertEquals(true, StringUtils.containsNone(CharU20001, CharU20000));
+    }
+public void testContainsAny_StringCharArrayWithBadSupplementaryChars() {
+        // Test edge case: 1/2 of a (broken) supplementary char
+        assertEquals(false, StringUtils.containsAny(CharUSuppCharHigh, CharU20001.toCharArray()));
+        assertEquals(false, StringUtils.containsAny("abc" + CharUSuppCharHigh + "xyz", CharU20001.toCharArray()));
+        assertEquals(-1, CharUSuppCharLow.indexOf(CharU20001));
+        assertEquals(false, StringUtils.containsAny(CharUSuppCharLow, CharU20001.toCharArray()));
+        assertEquals(false, StringUtils.containsAny(CharU20001, CharUSuppCharHigh.toCharArray()));
+        assertEquals(0, CharU20001.indexOf(CharUSuppCharLow));
+        assertEquals(true, StringUtils.containsAny(CharU20001, CharUSuppCharLow.toCharArray()));
+    }
+public void testIndexOfAnyBut_StringStringWithSupplementaryChars() {
+        assertEquals(2, StringUtils.indexOfAnyBut(CharU20000 + CharU20001, CharU20000));
+        assertEquals(0, StringUtils.indexOfAnyBut(CharU20000 + CharU20001, CharU20001));
+        assertEquals(-1, StringUtils.indexOfAnyBut(CharU20000, CharU20000));
+        assertEquals(0, StringUtils.indexOfAnyBut(CharU20000, CharU20001));        
+    }
+public void testContainsAny_StringWithBadSupplementaryChars() {
+        // Test edge case: 1/2 of a (broken) supplementary char
+        assertEquals(false, StringUtils.containsAny(CharUSuppCharHigh, CharU20001));
+        assertEquals(-1, CharUSuppCharLow.indexOf(CharU20001));
+        assertEquals(false, StringUtils.containsAny(CharUSuppCharLow, CharU20001));
+        assertEquals(false, StringUtils.containsAny(CharU20001, CharUSuppCharHigh));
+        assertEquals(0, CharU20001.indexOf(CharUSuppCharLow));
+        assertEquals(true, StringUtils.containsAny(CharU20001, CharUSuppCharLow));
+    }
+public void testIndexOfAny_StringCharArrayWithSupplementaryChars() {
+        assertEquals(0, StringUtils.indexOfAny(CharU20000 + CharU20001, CharU20000.toCharArray()));
+        assertEquals(2, StringUtils.indexOfAny(CharU20000 + CharU20001, CharU20001.toCharArray()));
+        assertEquals(0, StringUtils.indexOfAny(CharU20000, CharU20000.toCharArray()));
+        assertEquals(-1, StringUtils.indexOfAny(CharU20000, CharU20001.toCharArray()));    
+    }
+public void testIndexOfAnyBut_StringCharArrayWithSupplementaryChars() {
+        assertEquals(2, StringUtils.indexOfAnyBut(CharU20000 + CharU20001, CharU20000.toCharArray()));
+        assertEquals(0, StringUtils.indexOfAnyBut(CharU20000 + CharU20001, CharU20001.toCharArray()));
+        assertEquals(-1, StringUtils.indexOfAnyBut(CharU20000, CharU20000.toCharArray()));
+        assertEquals(0, StringUtils.indexOfAnyBut(CharU20000, CharU20001.toCharArray()));        
+    }
+public void testContainsNone_StringWithBadSupplementaryChars() {
+        // Test edge case: 1/2 of a (broken) supplementary char
+        assertEquals(true, StringUtils.containsNone(CharUSuppCharHigh, CharU20001));
+        assertEquals(-1, CharUSuppCharLow.indexOf(CharU20001));
+        assertEquals(true, StringUtils.containsNone(CharUSuppCharLow, CharU20001));
+        assertEquals(-1, CharU20001.indexOf(CharUSuppCharHigh));
+        assertEquals(true, StringUtils.containsNone(CharU20001, CharUSuppCharHigh));
+        assertEquals(0, CharU20001.indexOf(CharUSuppCharLow));
+        assertEquals(false, StringUtils.containsNone(CharU20001, CharUSuppCharLow));        
+    }
+public void testIndexOfAny_StringStringWithSupplementaryChars() {
+        assertEquals(0, StringUtils.indexOfAny(CharU20000 + CharU20001, CharU20000));
+        assertEquals(2, StringUtils.indexOfAny(CharU20000 + CharU20001, CharU20001));
+        assertEquals(0, StringUtils.indexOfAny(CharU20000, CharU20000));
+        assertEquals(-1, StringUtils.indexOfAny(CharU20000, CharU20001));    
+    }
+public void testContainsNone_CharArrayWithBadSupplementaryChars() {
+        // Test edge case: 1/2 of a (broken) supplementary char
+        assertEquals(true, StringUtils.containsNone(CharUSuppCharHigh, CharU20001.toCharArray()));
+        assertEquals(-1, CharUSuppCharLow.indexOf(CharU20001));
+        assertEquals(true, StringUtils.containsNone(CharUSuppCharLow, CharU20001.toCharArray()));
+        assertEquals(-1, CharU20001.indexOf(CharUSuppCharHigh));
+        assertEquals(true, StringUtils.containsNone(CharU20001, CharUSuppCharHigh.toCharArray()));
+        assertEquals(0, CharU20001.indexOf(CharUSuppCharLow));
+        assertEquals(false, StringUtils.containsNone(CharU20001, CharUSuppCharLow.toCharArray()));
+    }

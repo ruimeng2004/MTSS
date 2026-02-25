@@ -1,0 +1,24 @@
+   /**
+     * Compute the shift increment as an estimate of the smallest eigenvalue.
+     * <p>This implementation is a translation of the LAPACK routine DLAZQ4.</p>
+     * @param start start index
+     * @param end end index
+     * @param deflated number of realEigenvalues just deflated
+     */
+private void computeShiftIncrement(final int start,final int end,final int deflated)
+   /**
+     * Compute the Gershgorin circles for all rows.
+     */
+private void computeGershgorinCircles()
+   /**
+     * Find realEigenvalues using dqd/dqds algorithms.
+     * <p>This implementation is based on Beresford N. Parlett
+     * and Osni A. Marques paper <a
+     * href="http://www.netlib.org/lapack/lawnspdf/lawn155.pdf">An
+     * Implementation of the dqds Algorithm (Positive Case)</a> and on the
+     * corresponding LAPACK routine DLASQ2.</p>
+     * @param n number of rows of the block
+     * @exception InvalidMatrixException if block cannot be diagonalized
+     * after 30 * n iterations
+     */
+private void processGeneralBlock(final int n)

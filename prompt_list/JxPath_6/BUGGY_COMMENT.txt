@@ -1,0 +1,4 @@
+   /**
+     * Compares two values
+     */
+protected boolean equal(EvalContext context,Expression left,Expression right)

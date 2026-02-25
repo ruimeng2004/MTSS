@@ -1,0 +1,3 @@
+junit.framework.AssertionFailedError: entry #0, left = 0.0, right = 0.0 expected:<NaN> but was:<0.0>
+junit.framework.AssertionFailedError: entry #5, left = 0.0, right = Infinity expected:<NaN> but was:<0.0>
+junit.framework.AssertionFailedError: entry #5, left = 0.0, right = Infinity expected:<NaN> but was:<0.0>

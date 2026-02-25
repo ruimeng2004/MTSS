@@ -1,0 +1,39 @@
+### Buggy function comment:
+   /**
+     * Creates a new value marker.
+     * 
+     * @param value  the value.
+     * @param paint  the paint (<code>null</code> not permitted).
+     * @param stroke  the stroke (<code>null</code> not permitted).
+     * @param outlinePaint  the outline paint (<code>null</code> permitted).
+     * @param outlineStroke  the outline stroke (<code>null</code> permitted).
+     * @param alpha  the alpha transparency (in the range 0.0f to 1.0f).
+     */
+public ValueMarker(double value,Paint paint,Stroke stroke,Paint outlinePaint,Stroke outlineStroke,float alpha)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<java.awt.Color[r=0,g=0,b=255]> but was:<java.awt.Color[r=255,g=0,b=0]>
+
+### Failed JUnit tests:
+public void test1808376() {
+        Stroke stroke = new BasicStroke(1.0f);
+        Stroke outlineStroke = new BasicStroke(2.0f);
+        ValueMarker m = new ValueMarker(1.0, Color.red, stroke, Color.blue, 
+                outlineStroke, 0.5f);
+        assertEquals(1.0, m.getValue(), EPSILON);
+        assertEquals(Color.red, m.getPaint());
+        assertEquals(stroke, m.getStroke());
+        assertEquals(Color.blue, m.getOutlinePaint());
+        assertEquals(outlineStroke, m.getOutlineStroke());
+        assertEquals(0.5f, m.getAlpha(), EPSILON);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public ValueMarker(double value, Paint paint, Stroke stroke, 
+                       Paint outlinePaint, Stroke outlineStroke, float alpha) {
+        super(paint, stroke, paint, stroke, alpha);
+        this.value = value;
+    }
+```

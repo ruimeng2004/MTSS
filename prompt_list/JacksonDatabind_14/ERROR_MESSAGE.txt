@@ -1,0 +1,1 @@
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "i" (class com.fasterxml.jackson.databind.convert.TestUpdateValue$DataB), not marked as ignorable (2 known properties: "da", "k"])

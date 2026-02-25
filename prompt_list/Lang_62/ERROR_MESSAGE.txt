@@ -1,0 +1,1 @@
+junit.framework.ComparisonFailure: expected:<[&#12345678;]> but was:<[慎]>

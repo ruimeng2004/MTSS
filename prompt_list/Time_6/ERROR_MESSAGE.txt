@@ -1,0 +1,5 @@
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError: expected:<-0002-06-30> but was:<-0001-06-28>
+org.joda.time.IllegalFieldValueException: Value 0 for year is not supported
+junit.framework.AssertionFailedError: expected:<-0002-06-30> but was:<-0001-06-30>
+org.joda.time.IllegalFieldValueException: Value 0 for year is not supported

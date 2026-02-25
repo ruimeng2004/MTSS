@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: expected:<[&sup1;&sup2;&sup3;&frac14;&frac12;&]frac34;> but was:<[�?;�?;�?;&amp;frac14;&amp;frac12;&amp;]frac34;>

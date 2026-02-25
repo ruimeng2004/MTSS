@@ -1,0 +1,8 @@
+   /**
+   * Returns the generic form of {@code supertype}. For example, if this is {@code
+   * ArrayList<String>}, this returns {@code Iterable<String>} given the input {@code
+   * Iterable.class}.
+   *
+   * @param supertype a superclass of, or interface implemented by, this.
+   */
+static Type getSupertype(Type context,Class<?> contextRawType,Class<?> supertype)

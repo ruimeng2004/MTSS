@@ -1,0 +1,4 @@
+junit.framework.AssertionFailedError: expected:<10> but was:<NewValue>
+junit.framework.AssertionFailedError: expected:<10> but was:<NewValue>
+junit.framework.AssertionFailedError: expected:<10> but was:<NewValue>
+junit.framework.AssertionFailedError: expected:<10> but was:<NewValue>

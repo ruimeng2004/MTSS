@@ -1,0 +1,47 @@
+### Buggy function comment:
+   /**
+     * Creates a new zip entry with the specified name.
+     * @param name the name of the entry
+     */
+public ZipArchiveEntry(String name)
+   /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+public boolean equals(Object obj)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+public void testNotEquals() {
+        ZipArchiveEntry entry1 = new ZipArchiveEntry("foo");
+        ZipArchiveEntry entry2 = new ZipArchiveEntry("bar");
+        assertFalse(entry1.equals(entry2));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public ZipArchiveEntry(String name) {
+        super(name);
+    }
+```
+```java
+public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        ZipArchiveEntry other = (ZipArchiveEntry) obj;
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        return true;
+    }
+```

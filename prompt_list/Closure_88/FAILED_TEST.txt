@@ -1,0 +1,61 @@
+public void testIssue297() {
+    args.add("--compilation_level=SIMPLE_OPTIMIZATIONS");
+    test("function f(p) {" +
+         " var x;" +
+         " return ((x=p.id) && (x=parseInt(x.substr(1))) && x>0);" +
+         "}",
+         "function f(b) {" +
+         " var a;" +
+         " return ((a=b.id) && (a=parseInt(a.substr(1))) && a>0);" +
+         "}");
+  }
+public void testIssue297a() {
+    testSame("function f(p) {" +
+         " var x;" +
+         " return ((x=p.id) && (x=parseInt(x.substr(1))) && x>0);" +
+         "}; f('');");
+  }
+public void testIssue297b() {
+    test("function f() {" +
+         " var x;" +
+         " return (x='') && (x = x.substr(1));" +
+         "};",
+         "function f() {" +
+         " var x;" +
+         " return (x='') && (x.substr(1));" +
+         "};");
+  }
+public void testIssue297c() {
+    test("function f() {" +
+         " var x;" +
+         " return (x=1) && (x = f(x));" +
+         "};",
+         "function f() {" +
+         " var x;" +
+         " return (x=1) && f(x);" +
+         "};");
+  }
+public void testIssue297d() {
+    test("function f(a) {" +
+         " return (a=1) && (a = f(a));" +
+         "};",
+         "function f(a) {" +
+         " return (a=1) && (f(a));" +
+         "};");
+  }
+public void testIssue297e() {
+    test("function f(a) {" +
+         " return (a=1) - (a = g(a));" +
+         "};",
+         "function f(a) {" +
+         " return (a=1) - (g(a));" +
+         "};");
+  }
+public void testIssue297f() {
+    test("function f(a) {" +
+         " h((a=1) - (a = g(a)));" +
+         "};",
+         "function f(a) {" +
+         " h((a=1) - (g(a)));" +
+         "};");
+  }

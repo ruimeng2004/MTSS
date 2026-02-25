@@ -1,0 +1,29 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+com.google.gson.JsonSyntaxException: Expecting number, got: STRING
+
+### Failed JUnit tests:
+public void testNumberAsStringDeserialization() {
+    Number value = gson.fromJson("\"18\"", Number.class);
+    assertEquals(18, value.intValue());
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+    public Number read(JsonReader in) throws IOException {
+      if (in.peek() == JsonToken.NULL) {
+        in.nextNull();
+        return null;
+      }
+      try {
+        int intValue = in.nextInt();
+        return (byte) intValue;
+      } catch (NumberFormatException e) {
+        throw new JsonSyntaxException(e);
+      }
+    }
+```

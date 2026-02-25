@@ -1,0 +1,6 @@
+@Test(expected = Selector.SelectorParseException.class)  public void testParsesSingleQuoteInContains() {
+        Evaluator parse = QueryParser.parse("p:contains(One \" One)");
+    }
+@Test(expected = Selector.SelectorParseException.class) public void exceptionOnUncloseAttribute() {
+        Evaluator parse = QueryParser.parse("section > a[href=\"]");
+    }

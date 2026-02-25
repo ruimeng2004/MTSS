@@ -1,0 +1,18 @@
+   /**
+     * Get the covariance matrix of unbound estimated parameters.
+     * @param problem estimation problem
+     * @return covariance matrix
+     * @exception EstimationException if the covariance matrix
+     * cannot be computed (singular problem)
+     */
+public double[][] getCovariances(EstimationProblem problem)
+   /**
+     * Guess the errors in unbound estimated parameters.
+     * <p>Guessing is covariance-based, it only gives rough order of magnitude.</p>
+     * @param problem estimation problem
+     * @return errors in estimated parameters
+     * @exception EstimationException if the covariances matrix cannot be computed
+     * or the number of degrees of freedom is not positive (number of measurements
+     * lesser or equal to number of parameters)
+     */
+public double[] guessParametersErrors(EstimationProblem problem)

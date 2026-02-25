@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: Expected no warnings or errors

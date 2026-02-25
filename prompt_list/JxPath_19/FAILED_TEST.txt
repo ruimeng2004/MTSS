@@ -1,0 +1,6 @@
+public void testIterateJDOM() {
+        doTestIterate(DocumentContainer.MODEL_JDOM);
+    }
+public void testIterateDOM() {
+        doTestIterate(DocumentContainer.MODEL_DOM);
+    }

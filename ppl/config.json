@@ -1,0 +1,21 @@
+{
+  "base_url": "http://localhost:8000/v1/chat/completions",
+  "model": "/home/d1zzy/.cache/modelscope/hub/models/Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8",
+
+  "api_key": "EMPTY",
+  "api_key_env": "D4C_API_KEY",
+
+  "data_path": "data/defects4j_code.csv",
+  "msg_path": "data/defects4j_artifact.csv",
+  "cache_path_edit": "",
+  "cache_path_gen": "/home/d1zzy/work/MTSS-main/ppl/result/20260107_025618",
+  "n_samples": 10,
+  "qps": 0,
+  "max_tokens": 5120,
+  "temperature": 1.0, 
+  "top_logprobs": null,
+  "prompt_logprobs": 1,
+
+  "slug": "",
+  "limit": 0
+}

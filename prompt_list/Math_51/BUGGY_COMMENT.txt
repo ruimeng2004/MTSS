@@ -1,0 +1,2 @@
+   /** {@inheritDoc} */
+protected final double doSolve()

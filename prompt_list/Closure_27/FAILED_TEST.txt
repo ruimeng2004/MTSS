@@ -1,0 +1,38 @@
+public void testIssue727_1() {
+    testIR(
+        IR.tryFinally(
+            IR.block(),
+            IR.block()),
+        "TRY\n" +
+        "    BLOCK\n" +
+        "    BLOCK\n" +
+        "    BLOCK\n");
+  }
+public void testIssue727_2() {
+    testIR(
+        IR.tryCatch(
+            IR.block(),
+            IR.catchNode(
+                IR.name("e"),
+                IR.block())),
+        "TRY\n" +
+        "    BLOCK\n" +
+        "    BLOCK\n" +
+        "        CATCH\n" +
+        "            NAME e\n" +
+        "            BLOCK\n");
+  }
+public void testIssue727_3() {
+    testIR(
+        IR.tryCatchFinally(
+            IR.block(),
+            IR.catchNode(IR.name("e"), IR.block()),
+            IR.block()),
+        "TRY\n" +
+        "    BLOCK\n" +
+        "    BLOCK\n" +
+        "        CATCH\n" +
+        "            NAME e\n" +
+        "            BLOCK\n" +
+        "    BLOCK\n");
+  }

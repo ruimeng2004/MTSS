@@ -1,0 +1,3 @@
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError: Unexpected error(s): JSC_INVALID_DEFINE_INIT_ERROR. illegal initialization of @define variable DEF_OVERRIDE_STRING at testcode line 1 : 54 expected:<0> but was:<1>
+junit.framework.AssertionFailedError: Unexpected error(s): JSC_INVALID_DEFINE_INIT_ERROR. illegal initialization of @define variable DEF_OVERRIDE_STRING at testcode line 1 : 54 expected:<0> but was:<1>

@@ -1,0 +1,13 @@
+   /**
+     * Sets the value at the specified index avoiding duplicates.
+     * <p>
+     * The object is set into the specified index.
+     * Afterwards, any previous duplicate is removed
+     * If the object is not already in the list then a normal set occurs.
+     * If it is present, then the old version is removed.
+     * 
+     * @param index  the index to insert at
+     * @param object  the object to set
+     * @return the previous object
+     */
+public Object set(int index,Object object)

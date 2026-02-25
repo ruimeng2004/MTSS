@@ -1,0 +1,54 @@
+public void testIssue1023() throws Exception {
+    testTypes(
+        "/** @constructor */" +
+        "function F() {}" +
+        "(function () {" +
+        "  F.prototype = {" +
+        "    /** @param {string} x */" +
+        "    bar: function (x) {  }" +
+        "  };" +
+        "})();" +
+        "(new F()).bar(true)",
+        "actual parameter 1 of F.prototype.bar does not match formal parameter\n" +
+        "found   : boolean\n" +
+        "required: string");
+  }
+public void testMethodBeforeFunction2() throws Exception {
+    testSame(
+        "var y = Window.prototype;" +
+        "Window.prototype = {alert: function(message) {}};" +
+        "/** @constructor */ function Window() {}\n" +
+        "var window = new Window(); \n" +
+        "var x = window;");
+    ObjectType x = (ObjectType) findNameType("x", globalScope);
+    assertEquals("Window", x.toString());
+    assertTrue(x.getImplicitPrototype().hasOwnProperty("alert"));
+    assertEquals("function (this:Window, ?): undefined",
+        x.getPropertyType("alert").toString());
+    assertFalse(x.isPropertyTypeDeclared("alert"));
+
+    ObjectType y = (ObjectType) findNameType("y", globalScope);
+    assertEquals("function (this:Window, ?): undefined",
+        y.getPropertyType("alert").toString());
+  }
+public void testPropertiesOnInterface2() throws Exception {
+    testSame("/** @interface */ var I = function() {};" +
+        "I.prototype = {baz: function(){}};" +
+        "/** @type {number} */ I.prototype.bar;");
+
+    Var i = globalScope.getVar("I");
+    assertEquals("function (this:I): ?", i.getType().toString());
+    assertTrue(i.getType().isInterface());
+
+    ObjectType iPrototype = (ObjectType)
+        ((ObjectType) i.getType()).getPropertyType("prototype");
+    assertEquals("I.prototype", iPrototype.toString());
+    assertTrue(iPrototype.isFunctionPrototypeType());
+
+    assertEquals("number", iPrototype.getPropertyType("bar").toString());
+
+    assertEquals("function (this:I): undefined",
+        iPrototype.getPropertyType("baz").toString());
+
+    assertEquals(iPrototype, globalScope.getVar("I.prototype").getType());
+  }

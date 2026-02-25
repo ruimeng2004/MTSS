@@ -1,0 +1,1 @@
+com.fasterxml.jackson.databind.JsonMappingException: Can not deserialize Class [B (of type array) as a Bean

@@ -1,0 +1,4 @@
+   /** {@inheritDoc} */
+@Override
+    public double getLInfNorm()
+   This function has no comment.

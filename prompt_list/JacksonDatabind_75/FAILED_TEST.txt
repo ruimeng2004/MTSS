@@ -1,0 +1,4 @@
+public void testEnumPropertyAsNumber() throws Exception {
+        assertEquals(String.format(aposToQuotes("{'color':%s}"), Color.GREEN.ordinal()),
+                MAPPER.writeValueAsString(new ColorWrapper(Color.GREEN)));
+    }

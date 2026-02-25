@@ -1,0 +1,6 @@
+   /**
+   * Determines whether the given property is visible in the current context.
+   * @param t The current traversal.
+   * @param getprop The getprop node.
+   */
+private void checkPropertyVisibility(NodeTraversal t,Node getprop,Node parent)

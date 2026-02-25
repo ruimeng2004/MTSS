@@ -1,0 +1,11 @@
+   /** Compute two arguments arc tangent of a derivative structure.
+     * @param y array holding the first operand
+     * @param yOffset offset of the first operand in its array
+     * @param x array holding the second operand
+     * @param xOffset offset of the second operand in its array
+     * @param result array where result must be stored (for
+     * two arguments arc tangent the result array <em>cannot</em>
+     * be the input array)
+     * @param resultOffset offset of the result in its array
+     */
+public void atan2(final double[] y,final int yOffset,final double[] x,final int xOffset,final double[] result,final int resultOffset)

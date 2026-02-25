@@ -1,0 +1,41 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+public void testVersionFlag2() {
+    lastArg = "--version";
+    testSame("");
+    assertEquals(
+        0,
+        new String(errReader.toByteArray()).indexOf(
+            "Closure Compiler (http://code.google.com/closure/compiler)\n" +
+            "Version: "));
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+      public int parseArguments(Parameters params) throws CmdLineException {
+        String param = params.getParameter(0);
+
+        if (param == null) {
+          setter.addValue(true);
+          return 0;
+        } else {
+          String lowerParam = param.toLowerCase();
+          if (TRUES.contains(lowerParam)) {
+            setter.addValue(true);
+          } else if (FALSES.contains(lowerParam)) {
+            setter.addValue(false);
+          } else {
+            setter.addValue(true);
+            return 0;
+          }
+          return 1;
+        }
+      }
+```

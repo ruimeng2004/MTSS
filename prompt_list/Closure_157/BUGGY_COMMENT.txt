@@ -1,0 +1,9 @@
+   /**
+     * Processes the parent of a GETPROP prototype, which can either be
+     * another GETPROP (in the case of Foo.prototype.bar), or can be
+     * an assignment (in the case of Foo.prototype = ...).
+     */
+private void processPrototypeParent(Node n,CompilerInput input)
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.

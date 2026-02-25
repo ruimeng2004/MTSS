@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expected:<ä[/]> but was:<ä[\]>
+junit.framework.AssertionFailedError: Expected: <null> but was: ä\ü.txt

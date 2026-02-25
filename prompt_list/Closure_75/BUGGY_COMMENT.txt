@@ -1,0 +1,5 @@
+   /**
+   * Copied from Rhino's ScriptRuntime
+   */
+static TernaryValue isStrWhiteSpaceChar(int c)
+   This function has no comment.

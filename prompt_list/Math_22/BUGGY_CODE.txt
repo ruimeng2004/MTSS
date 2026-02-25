@@ -1,0 +1,10 @@
+```java
+public boolean isSupportLowerBoundInclusive() {
+        return true;
+    }
+```
+```java
+public boolean isSupportUpperBoundInclusive() {
+        return false;
+    }
+```

@@ -1,0 +1,2 @@
+   /** {@inheritDoc} */
+public Complex reciprocal()

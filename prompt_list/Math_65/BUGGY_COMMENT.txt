@@ -1,0 +1,18 @@
+   /**
+     * Get a Chi-Square-like value assuming the N residuals follow N
+     * distinct normal distributions centered on 0 and whose variances are
+     * the reciprocal of the weights.
+     * @return chi-square value
+     */
+public double getChiSquare()
+   /**
+     * Get the Root Mean Square value.
+     * Get the Root Mean Square value, i.e. the root of the arithmetic
+     * mean of the square of all weighted residuals. This is related to the
+     * criterion that is minimized by the optimizer as follows: if
+     * <em>c</em> if the criterion, and <em>n</em> is the number of
+     * measurements, then the RMS is <em>sqrt (c/n)</em>.
+     *
+     * @return RMS value
+     */
+public double getRMS()

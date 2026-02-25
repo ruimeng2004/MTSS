@@ -1,0 +1,12 @@
+   /**
+     * Checks whether the given column is basic.
+     * @param col index of the column to check
+     * @return the row that the variable is basic in.  null if the column is not basic
+     */
+private Integer getBasicRow(final int col,boolean ignoreObjectiveRows)
+   /**
+     * Get the current solution.
+     * 
+     * @return current solution
+     */
+protected RealPointValuePair getSolution()

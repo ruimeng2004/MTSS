@@ -1,0 +1,8 @@
+   /**
+     * Method that will construct a regular bean property setter using
+     * the given setter method.
+     *
+     * @return Property constructed, if any; or null to indicate that
+     *   there should be no property based on given definitions.
+     */
+protected SettableBeanProperty constructSettableProperty(DeserializationContext ctxt,BeanDescription beanDesc,BeanPropertyDefinition propDef,JavaType propType0)

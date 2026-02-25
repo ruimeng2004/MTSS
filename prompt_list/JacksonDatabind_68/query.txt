@@ -1,0 +1,224 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+   /**
+     * Method called to deserialize POJO value from a JSON floating-point
+     * number.
+     */
+public Object deserializeFromDouble(JsonParser p,DeserializationContext ctxt)
+   /**
+     * Method called to deserialize POJO value from a JSON boolean value (true, false)
+     */
+public Object deserializeFromBoolean(JsonParser p,DeserializationContext ctxt)
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+com.fasterxml.jackson.databind.JsonMappingException: Can not construct instance of com.fasterxml.jackson.databind.struct.SingleValueAsArrayTest$Messages: no suitable constructor found, can not deserialize from Object value (missing default constructor or creator, or perhaps need to add/enable type information?)
+com.fasterxml.jackson.databind.JsonMappingException: Can not construct instance of com.fasterxml.jackson.databind.struct.SingleValueAsArrayTest$Bean1421B: no String-argument constructor/factory method to deserialize from String value ('test2')
+
+### Failed JUnit tests:
+public void testSuccessfulDeserializationOfObjectWithChainedArrayCreators() throws IOException
+    {
+        MAPPER.readValue(JSON, Bean1421A.class);
+    }
+public void testWithSingleString() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+        Bean1421B<List<String>> a = objectMapper.readValue(quote("test2"),
+                new TypeReference<Bean1421B<List<String>>>() {});
+        List<String> expected = new ArrayList<>();
+        expected.add("test2");
+        assertEquals(expected, a.value);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+protected Object deserializeFromObjectUsingNonDefault(JsonParser p,
+            DeserializationContext ctxt) throws IOException
+    {
+        if (_delegateDeserializer != null) {
+            return _valueInstantiator.createUsingDelegate(ctxt,
+                    _delegateDeserializer.deserialize(p, ctxt));
+        }
+        if (_propertyBasedCreator != null) {
+            return _deserializeUsingPropertyBased(p, ctxt);
+        }
+        // should only occur for abstract types...
+        if (_beanType.isAbstract()) {
+            return ctxt.handleMissingInstantiator(handledType(), p,
+                    "abstract type (need to add/enable type information?)");
+        }
+        return ctxt.handleMissingInstantiator(_beanType.getRawClass(), p,
+                "no suitable constructor found, can not deserialize from Object value (missing default constructor or creator, or perhaps need to add/enable type information?)");
+    }
+```
+```java
+public Object deserializeFromString(JsonParser p, DeserializationContext ctxt) throws IOException
+    {
+        // First things first: id Object Id is used, most likely that's it
+        if (_objectIdReader != null) {
+            return deserializeFromObjectId(p, ctxt);
+        }
+        /* Bit complicated if we have delegating creator; may need to use it,
+         * or might not...
+         */
+        if (_delegateDeserializer != null) {
+            if (!_valueInstantiator.canCreateFromString()) {
+                Object bean = _valueInstantiator.createUsingDelegate(ctxt,
+                        _delegateDeserializer.deserialize(p, ctxt));
+                if (_injectables != null) {
+                    injectValues(ctxt, bean);
+                }
+                return bean;
+            }
+        }
+        return _valueInstantiator.createFromString(ctxt, p.getText());
+    }
+```
+```java
+public Object deserializeFromDouble(JsonParser p, DeserializationContext ctxt) throws IOException
+    {
+        NumberType t = p.getNumberType();
+        // no separate methods for taking float...
+        if ((t == NumberType.DOUBLE) || (t == NumberType.FLOAT)) {
+            if (_delegateDeserializer != null) {
+                if (!_valueInstantiator.canCreateFromDouble()) {
+                    Object bean = _valueInstantiator.createUsingDelegate(ctxt,
+                            _delegateDeserializer.deserialize(p, ctxt));
+                    if (_injectables != null) {
+                        injectValues(ctxt, bean);
+                    }
+                    return bean;
+                }
+            }
+            return _valueInstantiator.createFromDouble(ctxt, p.getDoubleValue());
+        }
+        // actually, could also be BigDecimal, so:
+        if (_delegateDeserializer != null) {
+            return _valueInstantiator.createUsingDelegate(ctxt,
+                    _delegateDeserializer.deserialize(p, ctxt));
+        }
+        return ctxt.handleMissingInstantiator(handledType(), p,
+                "no suitable creator method found to deserialize from Number value (%s)",
+                p.getNumberValue());
+    }
+```
+```java
+public Object deserializeFromBoolean(JsonParser p, DeserializationContext ctxt) throws IOException
+    {
+        if (_delegateDeserializer != null) {
+            if (!_valueInstantiator.canCreateFromBoolean()) {
+                Object bean = _valueInstantiator.createUsingDelegate(ctxt,
+                        _delegateDeserializer.deserialize(p, ctxt));
+                if (_injectables != null) {
+                    injectValues(ctxt, bean);
+                }
+                return bean;
+            }
+        }
+        boolean value = (p.getCurrentToken() == JsonToken.VALUE_TRUE);
+        return _valueInstantiator.createFromBoolean(ctxt, value);
+    }
+```
+```java
+@SuppressWarnings("incomplete-switch")
+    public Object deserializeFromNumber(JsonParser p, DeserializationContext ctxt)
+        throws IOException
+    {
+        // First things first: id Object Id is used, most likely that's it
+        if (_objectIdReader != null) {
+            return deserializeFromObjectId(p, ctxt);
+        }
+        switch (p.getNumberType()) {
+        case INT:
+            if (_delegateDeserializer != null) {
+                if (!_valueInstantiator.canCreateFromInt()) {
+                    Object bean = _valueInstantiator.createUsingDelegate(ctxt,
+                            _delegateDeserializer.deserialize(p, ctxt));
+                    if (_injectables != null) {
+                        injectValues(ctxt, bean);
+                    }
+                    return bean;
+                }
+            }
+            return _valueInstantiator.createFromInt(ctxt, p.getIntValue());
+        case LONG:
+            if (_delegateDeserializer != null) {
+                if (!_valueInstantiator.canCreateFromInt()) {
+                    Object bean = _valueInstantiator.createUsingDelegate(ctxt,
+                            _delegateDeserializer.deserialize(p, ctxt));
+                    if (_injectables != null) {
+                        injectValues(ctxt, bean);
+                    }
+                    return bean;
+                }
+            }
+            return _valueInstantiator.createFromLong(ctxt, p.getLongValue());
+        }
+        // actually, could also be BigInteger, so:
+        if (_delegateDeserializer != null) {
+            Object bean = _valueInstantiator.createUsingDelegate(ctxt,
+                    _delegateDeserializer.deserialize(p, ctxt));
+            if (_injectables != null) {
+                injectValues(ctxt, bean);
+            }
+            return bean;
+        }
+        return ctxt.handleMissingInstantiator(handledType(), p,
+                "no suitable creator method found to deserialize from Number value (%s)",
+                p.getNumberValue());
+    }
+```
+```java
+public Object deserializeFromArray(JsonParser p, DeserializationContext ctxt) throws IOException
+    {
+        // note: can not call `_delegateDeserializer()` since order reversed here:
+        if (_arrayDelegateDeserializer != null) {
+            try {
+                Object bean = _valueInstantiator.createUsingArrayDelegate(ctxt, _arrayDelegateDeserializer.deserialize(p, ctxt));
+                if (_injectables != null) {
+                    injectValues(ctxt, bean);
+                }
+                return bean;
+            } catch (Exception e) {
+                return wrapInstantiationProblem(e, ctxt);
+            }
+        }
+        // fallback to non-array delegate
+        if (_delegateDeserializer != null) {
+            try {
+            Object bean = _valueInstantiator.createUsingArrayDelegate(ctxt,
+                    _delegateDeserializer.deserialize(p, ctxt));
+            if (_injectables != null) {
+                injectValues(ctxt, bean);
+            }
+            return bean;
+            } catch (Exception e) {
+                wrapInstantiationProblem(e, ctxt);
+                return null;
+            }
+        }
+        if (ctxt.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)) {
+            JsonToken t = p.nextToken();
+            if (t == JsonToken.END_ARRAY && ctxt.isEnabled(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT)) {
+                return null;
+            }
+            final Object value = deserialize(p, ctxt);
+            if (p.nextToken() != JsonToken.END_ARRAY) {
+                handleMissingEndArrayForSingle(p, ctxt);
+            }
+            return value;
+        }
+        if (ctxt.isEnabled(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT)) {
+            JsonToken t = p.nextToken();
+            if (t == JsonToken.END_ARRAY) {
+                return null;
+            }
+            return ctxt.handleUnexpectedToken(handledType(),
+                    JsonToken.START_ARRAY, p, null);
+        }
+        return ctxt.handleUnexpectedToken(handledType(), p);
+    }
+```

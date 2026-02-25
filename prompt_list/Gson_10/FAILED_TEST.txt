@@ -1,0 +1,7 @@
+public void testPrimitiveFieldAnnotationTakesPrecedenceOverDefault() {
+    Gson gson = new Gson();
+    String json = gson.toJson(new GadgetWithPrimitivePart(42));
+    assertEquals("{\"part\":\"42\"}", json);
+    GadgetWithPrimitivePart gadget = gson.fromJson(json, GadgetWithPrimitivePart.class);
+    assertEquals(42, gadget.part);
+  }

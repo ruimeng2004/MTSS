@@ -1,0 +1,13 @@
+   /**
+   * Determines whether a function can be inlined at a particular call site.
+   * There are several criteria that the function and reference must hold in
+   * order for the functions to be inlined:
+   * 1) If a call's arguments have side effects,
+   * the corresponding argument in the function must only be referenced once.
+   * For instance, this will not be inlined:
+   * <pre>
+   *     function foo(a) { return a + a }
+   *     x = foo(i++);
+   * </pre>
+   */
+private CanInlineResult canInlineReferenceDirectly(Node callNode,Node fnNode)

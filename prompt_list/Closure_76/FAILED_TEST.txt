@@ -1,0 +1,51 @@
+public void testInExpression2() {
+    // This can be improved.  "a = 1" is dead but "a" is read in the following
+    // expression.
+    inFunction(
+        "var a; a = 1; if ((a = 2) || (a = 3) || (a)) {}",
+        "var a; a = 1; if ((    2) || (a = 3) || (a)) {}");
+
+    inFunction(
+        "var a; (a = 1) || (a = 2)",
+        "var a; 1 || 2");
+
+    inFunction("var a; (a = 1) || (a = 2); return a");
+
+    inFunction(
+        "var a; a = 1; a ? a = 2 : a;",
+        "var a; a = 1; a ?     2 : a;");
+
+    inFunction("var a; a = 1; a ? a = 2 : a; return a");
+
+    inFunction(
+        "var a; a = 1; a ? a : a = 2;",
+        "var a; a = 1; a ? a : 2;");
+
+    inFunction("var a; a = 1; a ? a : a =2; return a");
+
+    inFunction(
+        "var a; (a = 1) ? a = 2 : a = 3;",
+        "var a;      1  ?     2 :     3;");
+
+    // This can be improved.  "a = 1" is dead but "a" is read in the following
+    // expression.
+    inFunction("var a; (a = 1) ? a = 2 : a = 3; return a");
+  }
+public void testIssue384b() {
+    inFunction(
+            " var a, b;\n" +
+            " (f(b = true) || f(b = false)) ? (a = b) : (a = null);\n" +
+            " return a;");
+  }
+public void testIssue384c() {
+    inFunction(
+            " var a, b;\n" +
+            " (a ? f(b = true) : f(b = false)) && (a = b);\n" +
+            " return a;");
+  }
+public void testIssue384d() {
+    inFunction(
+            " var a, b;\n" +
+            " (f(b = true) || f(b = false)) && (a = b);\n" +
+            " return a;");
+  }

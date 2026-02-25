@@ -1,0 +1,37 @@
+public void testMethodInference7() throws Exception {
+    testTypes(
+        "/** @constructor */ function F() {}" +
+        "F.prototype.foo = function() { };" +
+        "/** @constructor \n * @extends {F} */ " +
+        "function G() {}" +
+        "/** @override */ G.prototype.foo = function(x, y) { };",
+        "mismatch of the foo property type and the type of the property " +
+        "it overrides from superclass F\n" +
+        "original: function (this:F): undefined\n" +
+        "override: function (this:G, ?, ?): undefined");
+  }
+public void testMethodInference7() throws Exception {
+    testTypes(
+        "/** @constructor */ function F() {}" +
+        "F.prototype.foo = function() { };" +
+        "/** @constructor \n * @extends {F} */ " +
+        "function G() {}" +
+        "/** @override */ G.prototype.foo = function(x, y) { };",
+        "mismatch of the foo property type and the type of the property " +
+        "it overrides from superclass F\n" +
+        "original: function (this:F): undefined\n" +
+        "override: function (this:G, ?, ?): undefined");
+  }
+public void testSupAndInfOfReturnTypesWithNumOfParams() {
+    FunctionType twoNumbers = new FunctionBuilder(registry)
+        .withParamsNode(registry.createParameters(NUMBER_TYPE, NUMBER_TYPE))
+        .withReturnType(BOOLEAN_TYPE).build();
+    FunctionType oneNumber = new FunctionBuilder(registry)
+        .withParamsNode(registry.createParameters(NUMBER_TYPE))
+        .withReturnType(BOOLEAN_TYPE).build();
+
+    assertLeastSupertype(
+        "function (number, number): boolean", twoNumbers, oneNumber);
+    assertGreatestSubtype(
+        "function (number): boolean", twoNumbers, oneNumber);
+  }

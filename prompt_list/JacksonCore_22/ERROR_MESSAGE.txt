@@ -1,0 +1,12 @@
+junit.framework.AssertionFailedError: expected:<1> but was:<0>
+junit.framework.AssertionFailedError: expected:<3> but was:<0>
+junit.framework.AssertionFailedError: expected:<2> but was:<0>
+junit.framework.AssertionFailedError: expected:<2> but was:<0>
+junit.framework.AssertionFailedError: expected:<2> but was:<0>
+junit.framework.AssertionFailedError: expected:<2> but was:<0>
+junit.framework.AssertionFailedError: expected:<1> but was:<0>
+junit.framework.AssertionFailedError: expected:<1> but was:<0>
+junit.framework.ComparisonFailure: expected:<2[]> but was:<2[ 4]>
+junit.framework.AssertionFailedError: expected:<1> but was:<0>
+junit.framework.AssertionFailedError: expected:<2> but was:<0>
+junit.framework.AssertionFailedError: expected:<3> but was:<0>

@@ -1,0 +1,81 @@
+public void testObject10() {
+    testLocal("var x; var b = f(); x = {a:a, b:b}; if(x.a) g(x.b);",
+         "var JSCompiler_object_inline_a_0;" +
+         "var JSCompiler_object_inline_b_1;" +
+         "var b = f();" +
+         "JSCompiler_object_inline_a_0=a,JSCompiler_object_inline_b_1=b,true;" +
+         "if(JSCompiler_object_inline_a_0) g(JSCompiler_object_inline_b_1)");
+    testLocal("var x = {}; var b = f(); x = {a:a, b:b}; if(x.a) g(x.b) + x.c",
+         "var x = {}; var b = f(); x = {a:a, b:b}; if(x.a) g(x.b) + x.c");
+    testLocal("var x; var b = f(); x = {a:a, b:b}; x.c = c; if(x.a) g(x.b) + x.c",
+         "var JSCompiler_object_inline_a_0;" +
+         "var JSCompiler_object_inline_b_1;" +
+         "var JSCompiler_object_inline_c_2;" +
+         "var b = f();" +
+         "JSCompiler_object_inline_a_0 = a,JSCompiler_object_inline_b_1 = b, " +
+         "  JSCompiler_object_inline_c_2=void 0,true;" +
+         "JSCompiler_object_inline_c_2 = c;" +
+         "if (JSCompiler_object_inline_a_0)" +
+         "  g(JSCompiler_object_inline_b_1) + JSCompiler_object_inline_c_2;");
+    testLocal("var x = {a:a}; if (b) x={b:b}; f(x.a||x.b);",
+         "var JSCompiler_object_inline_a_0 = a;" +
+         "var JSCompiler_object_inline_b_1;" +
+         "if(b) JSCompiler_object_inline_b_1 = b," +
+         "      JSCompiler_object_inline_a_0 = void 0," +
+         "      true;" +
+         "f(JSCompiler_object_inline_a_0 || JSCompiler_object_inline_b_1)");
+    testLocal("var x; var y = 5; x = {a:a, b:b, c:c}; if (b) x={b:b}; f(x.a||x.b);",
+         "var JSCompiler_object_inline_a_0;" +
+         "var JSCompiler_object_inline_b_1;" +
+         "var JSCompiler_object_inline_c_2;" +
+         "var y=5;" +
+         "JSCompiler_object_inline_a_0=a," +
+         "JSCompiler_object_inline_b_1=b," +
+         "JSCompiler_object_inline_c_2=c," +
+         "true;" +
+         "if (b) JSCompiler_object_inline_b_1=b," +
+         "       JSCompiler_object_inline_a_0=void 0," +
+         "       JSCompiler_object_inline_c_2=void 0," +
+         "       true;" +
+         "f(JSCompiler_object_inline_a_0||JSCompiler_object_inline_b_1)");
+  }
+public void testObject12() {
+    testLocal("var a; a = {x:1, y:2}; f(a.x, a.y2);",
+        "var a; a = {x:1, y:2}; f(a.x, a.y2);");
+  }
+public void testObject22() {
+    testLocal("while(1) { var a = {y:1}; if (b) a.x = 2; f(a.y, a.x);}",
+      "for(;1;){" +
+      " var JSCompiler_object_inline_y_0=1;" +
+      " var JSCompiler_object_inline_x_1;" +
+      " if(b) JSCompiler_object_inline_x_1=2;" +
+      " f(JSCompiler_object_inline_y_0,JSCompiler_object_inline_x_1)" +
+      "}");
+
+    testLocal("var a; while (1) { f(a.x, a.y); a = {x:1, y:1};}",
+        "var a; while (1) { f(a.x, a.y); a = {x:1, y:1};}");
+  }
+public void testIssue724() {
+    testSameLocal(
+        "var getType; getType = {};" +
+        "return functionToCheck && " +
+        "   getType.toString.apply(functionToCheck) === " +
+        "   '[object Function]';");
+  }
+public void testIssue724() {
+    CompilerOptions options = createCompilerOptions();
+    CompilationLevel.ADVANCED_OPTIMIZATIONS
+        .setOptionsForCompilationLevel(options);
+    String code =
+        "isFunction = function(functionToCheck) {" +
+        "  var getType = {};" +
+        "  return functionToCheck && " +
+        "      getType.toString.apply(functionToCheck) === " +
+        "     '[object Function]';" +
+        "};";
+    String result =
+        "isFunction=function(a){var b={};" +
+        "return a&&\"[object Function]\"===b.b.a(a)}";
+
+    test(options, code, result);
+  }

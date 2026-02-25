@@ -1,0 +1,24 @@
+@Test public void hasClassCaseInsensitive() {
+        Elements els = Jsoup.parse("<p Class=One>One <p class=Two>Two <p CLASS=THREE>THREE").select("p");
+        Element one = els.get(0);
+        Element two = els.get(1);
+        Element thr = els.get(2);
+
+        assertTrue(one.hasClass("One"));
+        assertTrue(one.hasClass("ONE"));
+
+        assertTrue(two.hasClass("TWO"));
+        assertTrue(two.hasClass("Two"));
+
+        assertTrue(thr.hasClass("ThreE"));
+        assertTrue(thr.hasClass("three"));
+    }
+@Test public void testByClassCaseInsensitive() {
+        String html = "<p Class=foo>One <p Class=Foo>Two <p class=FOO>Three <p class=farp>Four";
+        Elements elsFromClass = Jsoup.parse(html).select("P.Foo");
+        Elements elsFromAttr = Jsoup.parse(html).select("p[class=foo]");
+
+        assertEquals(elsFromAttr.size(), elsFromClass.size());
+        assertEquals(3, elsFromClass.size());
+        assertEquals("Two", elsFromClass.get(1).text());
+    }

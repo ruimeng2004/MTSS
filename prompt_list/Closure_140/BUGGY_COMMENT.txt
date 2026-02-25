@@ -1,0 +1,5 @@
+   /**
+   * Initializes the instance state needed for a compile job.
+   */
+public void init(JSSourceFile[] externs,JSModule[] modules,CompilerOptions options)
+   This function has no comment.

@@ -1,0 +1,20 @@
+public void testRetainAllCollections426() {
+        int size = 100000;
+        ListOrderedSet<Integer> set = new ListOrderedSet<Integer>();
+        for (int i = 0; i < size; i++) {
+            set.add(i);
+        }
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = size; i < 2 * size; i++) {
+            list.add(i);
+        }
+
+        long start = System.currentTimeMillis();
+        set.retainAll(list);
+        long stop = System.currentTimeMillis();
+
+        // make sure retainAll completes under 5 seconds
+        // TODO if test is migrated to JUnit 4, add a Timeout rule.
+        // http://kentbeck.github.com/junit/javadoc/latest/org/junit/rules/Timeout.html
+        assertTrue((stop - start) < 5000);
+    }

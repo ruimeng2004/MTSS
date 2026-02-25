@@ -1,0 +1,14 @@
+```java
+@Override
+    public int getIntValue() throws IOException {
+        final NumericNode node = (NumericNode) currentNumericNode();
+        return node.intValue();
+    }
+```
+```java
+@Override
+    public long getLongValue() throws IOException {
+        final NumericNode node = (NumericNode) currentNumericNode();
+        return node.longValue();
+    }
+```

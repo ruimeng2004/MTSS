@@ -1,0 +1,2 @@
+   // performance sensitive
+public boolean hasClass(String className)

@@ -1,0 +1,13 @@
+   /**
+     * Parses a string to produce a {@link Fraction} object.  This method
+     * expects the string to be formatted as a proper fraction.
+     * <p>
+     * Minus signs are only allowed in the whole number part - i.e.,
+     * "-3 1/2" is legitimate and denotes -7/2, but "-3 -1/2" is invalid and
+     * will result in a <code>ParseException</code>.
+     * 
+     * @param source the string to parse
+     * @param pos input/ouput parsing parameter.
+     * @return the parsed {@link Fraction} object.
+     */
+public Fraction parse(String source,ParsePosition pos)

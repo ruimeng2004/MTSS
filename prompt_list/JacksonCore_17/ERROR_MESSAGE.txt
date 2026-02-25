@@ -1,0 +1,1 @@
+com.fasterxml.jackson.core.JsonGenerationException: Split surrogate on writeRaw() input (last character)

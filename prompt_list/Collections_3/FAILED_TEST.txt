@@ -1,0 +1,29 @@
+public void testRemoveAll() {
+        List base = new ArrayList();
+        base.add("A");
+        base.add("B");
+        base.add("C");
+        List sub = new ArrayList();
+        sub.add("A");
+        sub.add("C");
+        sub.add("X");
+        
+        Collection result = CollectionUtils.removeAll(base, sub);
+        assertEquals(1, result.size());
+        assertEquals(false, result.contains("A"));
+        assertEquals(true, result.contains("B"));
+        assertEquals(false, result.contains("C"));
+        assertEquals(3, base.size());
+        assertEquals(true, base.contains("A"));
+        assertEquals(true, base.contains("B"));
+        assertEquals(true, base.contains("C"));
+        assertEquals(3, sub.size());
+        assertEquals(true, sub.contains("A"));
+        assertEquals(true, sub.contains("C"));
+        assertEquals(true, sub.contains("X"));
+        
+        try {
+            CollectionUtils.removeAll(null, null);
+            fail("expecting NullPointerException");
+        } catch(NullPointerException npe){} // this is what we want
+    }

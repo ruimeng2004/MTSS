@@ -1,0 +1,3 @@
+junit.framework.AssertionFailedError: expected a warning
+junit.framework.AssertionFailedError: expected a warning
+junit.framework.ComparisonFailure: expected:<[function (number, number): boolea]n> but was:<[Functio]n>

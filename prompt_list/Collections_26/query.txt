@@ -1,0 +1,40 @@
+### Buggy function comment:
+   /**
+     * Recalculate the hash code after deserialization. The hash code of some
+     * keys might have change (hash codes based on the system hash code are
+     * only stable for the same process).
+     * @return the instance with recalculated hash code
+     */
+private Object readResolve()
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<3> but was:<0>
+
+### Failed JUnit tests:
+public void testEqualsAfterSerializationOfDerivedClass() throws IOException, ClassNotFoundException
+    {
+        final DerivedMultiKey<?> mk = new DerivedMultiKey<String>("A", "B");
+
+        // serialize
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        final ObjectOutputStream out = new ObjectOutputStream(baos);
+        out.writeObject(mk);
+        out.close();
+
+        // deserialize
+        final ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        final ObjectInputStream in = new ObjectInputStream(bais);
+        final DerivedMultiKey<?> mk2 = (DerivedMultiKey<?>)in.readObject();
+        in.close();
+
+        assertEquals(mk.hashCode(), mk2.hashCode());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private Object readResolve() {
+        calculateHashCode(keys);
+        return this;
+    }
+```

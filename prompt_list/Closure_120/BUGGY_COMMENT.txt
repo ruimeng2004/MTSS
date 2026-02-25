@@ -1,0 +1,5 @@
+   /**
+     * @return Whether the variable is only assigned a value once for its
+     *     lifetime.
+     */
+boolean isAssignedOnceInLifetime()

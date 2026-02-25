@@ -1,0 +1,39 @@
+public void testAddPropertyToChildOfUncollapsibleFunctionInLocalScope() {
+    testSame(
+        "function a() {} a.b = {x: 0}; var c = a;" +
+        "(function() {a.b.y = 0;})(); a.b.y;");
+  }
+public void testAliasCreatedForFunctionDepth1_1() {
+    testSame("var a = function(){}; a.b = 1; var c = a; c.b = 2; a.b != c.b;");
+  }
+public void testAliasCreatedForFunctionDepth1_2() {
+    testSame("var a = function(){}; a.b = 1; f(a); a.b;");
+  }
+public void testAliasCreatedForFunctionDepth1_3() {
+    testSame("var a = function(){}; a.b = 1; new f(a); a.b;");
+  }
+public void testAddPropertyToUncollapsibleNamedCtorInLocalScopeDepth1() {
+    // This technically should be collapsed, according to the rules.
+    // We don't collapse named constructors for legacy reasons
+    // (this pass has been around too long, and we don't know who's
+    // depending on this behavior).
+    testSame(
+          "/** @constructor */ function a() {} var c = a; " +
+          "(function() {a.b = 0;})(); a.b;");
+  }
+public void testAddPropertyToUncollapsibleFunctionInLocalScopeDepth1() {
+    testSame("function a() {} var c = a; (function() {a.b = 0;})(); a.b;");
+  }
+public void testAddPropertyToUncollapsibleFunctionInLocalScopeDepth2() {
+    test("var a = {}; a.b = function (){}; var d = a.b;" +
+         "(function() {a.b.c = 0;})(); a.b.c;",
+         "var a$b = function (){}; var d = a$b;" +
+         "(function() {a$b.c = 0;})(); a$b.c;");
+  }
+public void testAliasCreatedForFunctionDepth2() {
+    test(
+        "var a = {}; a.b = function() {}; a.b.c = 1; var d = a.b;" +
+        "a.b.c != d.c;",
+        "var a$b = function() {}; a$b.c = 1; var d = a$b;" +
+        "a$b.c != d.c;");
+  }

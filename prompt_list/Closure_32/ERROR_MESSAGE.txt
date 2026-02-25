@@ -1,0 +1,4 @@
+junit.framework.ComparisonFailure: expected:</*
+junit.framework.ComparisonFailure: expected:< Foo
+junit.framework.ComparisonFailure: expected:< Foo
+junit.framework.ComparisonFailure: expected:< Foo

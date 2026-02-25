@@ -1,0 +1,4 @@
+   /**
+   * Visits the parameters of a CALL or a NEW node.
+   */
+private void visitParameterList(NodeTraversal t,Node call,FunctionType functionType)

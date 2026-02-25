@@ -1,0 +1,6 @@
+public void testMangledNumbersBytes() throws Exception {
+        _testMangledNumbers(true);
+    }
+public void testMangledNumbersChars() throws Exception {
+        _testMangledNumbers(false);
+    }

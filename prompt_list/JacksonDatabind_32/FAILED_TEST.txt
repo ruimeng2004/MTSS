@@ -1,0 +1,15 @@
+public void testNestedUntyped989() throws IOException
+    {
+        Untyped989 pojo;
+        ObjectReader r = MAPPER.readerFor(Untyped989.class);
+
+        pojo = r.readValue("[]");
+        assertTrue(pojo.value instanceof List);
+        pojo = r.readValue("[{}]");
+        assertTrue(pojo.value instanceof List);
+        
+        pojo = r.readValue("{}");
+        assertTrue(pojo.value instanceof Map);
+        pojo = r.readValue("{\"a\":[]}");
+        assertTrue(pojo.value instanceof Map);
+    }

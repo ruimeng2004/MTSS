@@ -1,0 +1,32 @@
+public void testTypeRedefinition() throws Exception {
+    testClosureTypesMultipleWarnings(
+        "a={};/**@enum {string}*/ a.A = {ZOR:'b'};"
+        + "/** @constructor */ a.A = function() {}",
+        Lists.newArrayList(
+            "variable a.A redefined with type function (new:a.A): undefined, " +
+            "original definition at [testcode]:1 with type enum{a.A}",
+            "assignment to property A of a\n" +
+            "found   : function (new:a.A): undefined\n" +
+            "required: enum{a.A}"));
+  }
+public void testIssue635b() throws Exception {
+    testTypes(
+        "/** @constructor */" +
+        "function F() {}" +
+        "/** @constructor */" +
+        "function G() {}" +
+        "/** @type {function(new:G)} */ var x = F;",
+        "initializing variable\n" +
+        "found   : function (new:F): undefined\n" +
+        "required: function (new:G): ?");
+  }
+public void testTypeRedefinition() throws Exception {
+    testClosureTypesMultipleWarnings("a={};/**@enum {string}*/ a.A = {ZOR:'b'};"
+        + "/** @constructor */ a.A = function() {}",
+        Lists.newArrayList(
+            "variable a.A redefined with type function (new:a.A): undefined, " +
+            "original definition at [testcode]:1 with type enum{a.A}",
+            "assignment to property A of a\n" +
+            "found   : function (new:a.A): undefined\n" +
+            "required: enum{a.A}"));
+  }

@@ -1,0 +1,3 @@
+junit.framework.AssertionFailedError: expected:<one []> but was:<one [
+junit.framework.AssertionFailedError: expected:<one two thre[e]> but was:<one two thre[]>
+junit.framework.AssertionFailedError: expected:<<a href="one" []id="two"></a>> but was:<<a href="one" [="" ]id="two"></a>>

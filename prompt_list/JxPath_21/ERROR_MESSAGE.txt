@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: Evaluating <map/b != map/a> expected:<true> but was:<false>
+junit.framework.AssertionFailedError: Evaluating value iterator <$testnull/nothing[1]> expected:<[null]> but was:<[]>

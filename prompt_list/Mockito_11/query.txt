@@ -1,0 +1,38 @@
+### Buggy function comment:
+   This function has no comment.
+   /**
+     * @return True if the input object is a DelegatingMethod which has an internal Method which is equal to the internal Method of this DelegatingMethod,
+     * or if the input object is a Method which is equal to the internal Method of this DelegatingMethod.
+     */
+@Override
+    public boolean equals(Object o)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+@Test
+    public void equals_should_return_true_when_equal() throws Exception {
+        DelegatingMethod equal = new DelegatingMethod(someMethod);
+        assertTrue(delegatingMethod.equals(equal));
+    }
+@Test
+    public void equals_should_return_true_when_self() throws Exception {
+        assertTrue(delegatingMethod.equals(delegatingMethod));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+    public int hashCode() {
+        return 1;
+    }
+```
+```java
+@Override
+    public boolean equals(Object o) {
+            return method.equals(o);
+    }
+```

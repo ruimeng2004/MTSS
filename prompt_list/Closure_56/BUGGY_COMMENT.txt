@@ -1,0 +1,9 @@
+   /**
+   * Gets the source line for the indicated line number.
+   *
+   * @param lineNumber the line number, 1 being the first line of the file.
+   * @return The line indicated. Does not include the newline at the end
+   *     of the file. Returns {@code null} if it does not exist,
+   *     or if there was an IO exception.
+   */
+public String getLine(int lineNumber)

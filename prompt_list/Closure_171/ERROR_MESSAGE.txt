@@ -1,0 +1,3 @@
+junit.framework.AssertionFailedError: expected a warning
+junit.framework.ComparisonFailure: expected:<[function (this:Window, ?): undefined]> but was:<[?]>
+java.lang.NullPointerException

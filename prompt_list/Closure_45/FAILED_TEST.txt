@@ -1,0 +1,10 @@
+public void testIssue618_1() {
+    this.removeGlobal = false;
+    testSame(
+        "function f() {\n" +
+        "  var a = [], b;\n" +
+        "  a.push(b = []);\n" +
+        "  b[0] = 1;\n" +
+        "  return a;\n" +
+        "}");
+  }

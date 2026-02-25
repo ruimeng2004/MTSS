@@ -1,0 +1,2 @@
+   /** {@inheritDoc} */
+public double density(final double[] vals)

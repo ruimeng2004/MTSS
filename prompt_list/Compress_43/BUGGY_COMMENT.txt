@@ -1,0 +1,9 @@
+   This function has no comment.
+   /**
+     * Writes the data descriptor entry.
+     * @param ze the entry to write
+     * @throws IOException on error
+     */
+protected void writeDataDescriptor(final ZipArchiveEntry ze)
+   This function has no comment.
+   This function has no comment.

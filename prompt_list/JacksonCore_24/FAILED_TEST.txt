@@ -1,0 +1,303 @@
+public void testToLongFailing() throws Exception
+    {
+        AsyncReaderWrapper p;
+
+        // BigInteger -> error
+        BigInteger big = BigInteger.valueOf(Long.MAX_VALUE).add(BigInteger.TEN);
+        p = createParser(String.valueOf(big));
+        assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+        assertEquals(NumberType.BIG_INTEGER, p.getNumberType());
+        assertEquals(big, p.getBigIntegerValue());
+        assertEquals(big, p.getNumberValue());
+        try {
+            p.getLongValue();
+            fail("Should not pass");
+        } catch (InputCoercionException e) {
+            verifyException(e, "out of range of long");
+            assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+            assertEquals(Long.TYPE, e.getTargetType());
+        }
+        BigInteger small = BigInteger.valueOf(Long.MIN_VALUE).subtract(BigInteger.TEN);
+        p = createParser(String.valueOf(small));
+        assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+        assertEquals(small, p.getBigIntegerValue());
+        try {
+            p.getLongValue();
+            fail("Should not pass");
+        } catch (InputCoercionException e) {
+            verifyException(e, "out of range of long");
+            assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+            assertEquals(Long.TYPE, e.getTargetType());
+        }
+    }
+public void testToIntFailing() throws Exception
+    {
+        AsyncReaderWrapper p;
+
+        // long -> error
+        long big = 1L + Integer.MAX_VALUE;
+        p = createParser(String.valueOf(big));
+        assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+        assertEquals(big, p.getLongValue());
+        try {
+            p.getIntValue();
+            fail("Should not pass");
+        } catch (InputCoercionException e) {
+            verifyException(e, "out of range of int");
+            assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+            assertEquals(Integer.TYPE, e.getTargetType());
+        }
+        long small = -1L + Integer.MIN_VALUE;
+        p = createParser(String.valueOf(small));
+        assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+        assertEquals(Long.valueOf(small), p.getNumberValue());
+        assertEquals(small, p.getLongValue());
+        try {
+            p.getIntValue();
+            fail("Should not pass");
+        } catch (InputCoercionException e) {
+            verifyException(e, "out of range of int");
+            assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+            assertEquals(Integer.TYPE, e.getTargetType());
+        }
+
+        // double -> error
+        p = createParser(String.valueOf(big)+".0");
+        assertToken(JsonToken.VALUE_NUMBER_FLOAT, p.nextToken());
+        assertEquals((double) big, p.getDoubleValue());
+        try {
+            p.getIntValue();
+            fail("Should not pass");
+        } catch (InputCoercionException e) {
+            verifyException(e, "out of range of int");
+            assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+            assertEquals(Integer.TYPE, e.getTargetType());
+        }
+        p = createParser(String.valueOf(small)+".0");
+        assertToken(JsonToken.VALUE_NUMBER_FLOAT, p.nextToken());
+        assertEquals((double) small, p.getDoubleValue());
+        try {
+            p.getIntValue();
+            fail("Should not pass");
+        } catch (InputCoercionException e) {
+            verifyException(e, "out of range of int");
+            assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+            assertEquals(Integer.TYPE, e.getTargetType());
+        }
+
+        // BigInteger -> error
+        p = createParser(String.valueOf(big));
+        assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+        assertEquals(BigInteger.valueOf(big), p.getBigIntegerValue());
+        try {
+            p.getIntValue();
+            fail("Should not pass");
+        } catch (InputCoercionException e) {
+            verifyException(e, "out of range of int");
+            assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+            assertEquals(Integer.TYPE, e.getTargetType());
+        }
+        p = createParser(String.valueOf(small));
+        assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+        assertEquals(BigInteger.valueOf(small), p.getBigIntegerValue());
+        try {
+            p.getIntValue();
+            fail("Should not pass");
+        } catch (InputCoercionException e) {
+            verifyException(e, "out of range of int");
+            assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+            assertEquals(Integer.TYPE, e.getTargetType());
+        }
+    }
+@SuppressWarnings("resource")
+    public void testToLongFailing() throws Exception
+    {
+        for (int mode : ALL_STREAMING_MODES) {
+            JsonParser p;
+
+            // BigInteger -> error
+            BigInteger big = BigInteger.valueOf(Long.MAX_VALUE).add(BigInteger.TEN);
+            p = createParser(mode, String.valueOf(big));
+            assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+            assertEquals(NumberType.BIG_INTEGER, p.getNumberType());
+            assertEquals(big, p.getBigIntegerValue());
+            assertEquals(big, p.getNumberValue());
+            try {
+                p.getLongValue();
+                fail("Should not pass");
+            } catch (InputCoercionException e) {
+                verifyException(e, "out of range of long");
+                assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+                assertEquals(Long.TYPE, e.getTargetType());
+            }
+            BigInteger small = BigInteger.valueOf(Long.MIN_VALUE).subtract(BigInteger.TEN);
+            p = createParser(mode, String.valueOf(small));
+            assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+            assertEquals(small, p.getBigIntegerValue());
+            try {
+                p.getLongValue();
+                fail("Should not pass");
+            } catch (InputCoercionException e) {
+                verifyException(e, "out of range of long");
+                assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+                assertEquals(Long.TYPE, e.getTargetType());
+            }
+        }
+    }
+@SuppressWarnings("resource")
+    public void testToIntFailing() throws Exception
+    {
+        for (int mode : ALL_STREAMING_MODES) {
+            JsonParser p;
+
+            // long -> error
+            long big = 1L + Integer.MAX_VALUE;
+            p = createParser(mode, String.valueOf(big));
+            assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+            assertEquals(big, p.getLongValue());
+            try {
+                p.getIntValue();
+                fail("Should not pass");
+            } catch (InputCoercionException e) {
+                verifyException(e, "out of range of int");
+                assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+                assertEquals(Integer.TYPE, e.getTargetType());
+            }
+            long small = -1L + Integer.MIN_VALUE;
+            p = createParser(mode, String.valueOf(small));
+            assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+            assertEquals(Long.valueOf(small), p.getNumberValue());
+            assertEquals(small, p.getLongValue());
+            try {
+                p.getIntValue();
+                fail("Should not pass");
+            } catch (InputCoercionException e) {
+                verifyException(e, "out of range of int");
+                assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+                assertEquals(Integer.TYPE, e.getTargetType());
+            }
+
+            // double -> error
+            p = createParser(mode, String.valueOf(big)+".0");
+            assertToken(JsonToken.VALUE_NUMBER_FLOAT, p.nextToken());
+            assertEquals((double) big, p.getDoubleValue());
+            try {
+                p.getIntValue();
+                fail("Should not pass");
+            } catch (InputCoercionException e) {
+                verifyException(e, "out of range of int");
+                assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+                assertEquals(Integer.TYPE, e.getTargetType());
+            }
+            p = createParser(mode, String.valueOf(small)+".0");
+            assertToken(JsonToken.VALUE_NUMBER_FLOAT, p.nextToken());
+            assertEquals((double) small, p.getDoubleValue());
+            try {
+                p.getIntValue();
+                fail("Should not pass");
+            } catch (InputCoercionException e) {
+                verifyException(e, "out of range of int");
+                assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+                assertEquals(Integer.TYPE, e.getTargetType());
+            }
+
+            // BigInteger -> error
+            p = createParser(mode, String.valueOf(big));
+            assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+            assertEquals(BigInteger.valueOf(big), p.getBigIntegerValue());
+            try {
+                p.getIntValue();
+                fail("Should not pass");
+            } catch (InputCoercionException e) {
+                verifyException(e, "out of range of int");
+                assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+                assertEquals(Integer.TYPE, e.getTargetType());
+            }
+            p = createParser(mode, String.valueOf(small));
+            assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+            assertEquals(BigInteger.valueOf(small), p.getBigIntegerValue());
+            try {
+                p.getIntValue();
+                fail("Should not pass");
+            } catch (InputCoercionException e) {
+                verifyException(e, "out of range of int");
+                assertEquals(JsonToken.VALUE_NUMBER_INT, e.getInputType());
+                assertEquals(Integer.TYPE, e.getTargetType());
+            }
+        }
+    }
+public void testMaliciousLongOverflow() throws Exception
+    {
+        for (int mode : ALL_STREAMING_MODES) {
+            for (String doc : new String[] { BIG_POS_DOC, BIG_NEG_DOC }) {
+                JsonParser p = createParser(mode, doc);
+                assertToken(JsonToken.START_ARRAY, p.nextToken());
+                assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+                try {
+                    p.getLongValue();
+                    fail("Should not pass");
+                } catch (InputCoercionException e) {
+                    verifyException(e, "out of range of long");
+                    verifyException(e, "Integer with "+BIG_NUM_LEN+" digits");
+                }
+                p.close();
+            }
+        }
+    }
+public void testSimpleLongOverflow() throws Exception
+    {
+        BigInteger below = BigInteger.valueOf(Long.MIN_VALUE);
+        below = below.subtract(BigInteger.ONE);
+        BigInteger above = BigInteger.valueOf(Long.MAX_VALUE);
+        above = above.add(BigInteger.ONE);
+
+        String DOC_BELOW = below.toString() + " ";
+        String DOC_ABOVE = below.toString() + " ";
+
+        for (int mode : ALL_MODES) {
+            JsonParser p = createParser(FACTORY, mode, DOC_BELOW);
+            p.nextToken();
+            try {
+                long x = p.getLongValue();
+                fail("Expected an exception for underflow (input "+p.getText()+"): instead, got long value: "+x);
+            } catch (InputCoercionException e) {
+                verifyException(e, "out of range of long");
+            }
+            p.close();
+
+            p = createParser(mode, DOC_ABOVE);
+            p.nextToken();
+            try {
+                long x = p.getLongValue();
+                fail("Expected an exception for underflow (input "+p.getText()+"): instead, got long value: "+x);
+            } catch (InputCoercionException e) {
+                verifyException(e, "out of range of long");
+            }
+            p.close();
+        }
+    }
+public void testMaliciousIntOverflow() throws Exception
+    {
+        for (int mode : ALL_STREAMING_MODES) {
+            for (String doc : new String[] { BIG_POS_DOC, BIG_NEG_DOC }) {
+                JsonParser p = createParser(mode, doc);
+                assertToken(JsonToken.START_ARRAY, p.nextToken());
+                assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+                try {
+                    p.getIntValue();
+                    fail("Should not pass");
+                } catch (InputCoercionException e) {
+                    verifyException(e, "out of range of int");
+                    verifyException(e, "Integer with "+BIG_NUM_LEN+" digits");
+                }
+                p.close();
+            }
+        }
+    }
+public void testSimpleLong() throws Exception
+    {
+        _testSimpleLong(MODE_INPUT_STREAM);
+        _testSimpleLong(MODE_INPUT_STREAM_THROTTLED);
+        _testSimpleLong(MODE_READER);
+        _testSimpleLong(MODE_DATA_INPUT);
+    }

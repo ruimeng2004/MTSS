@@ -1,0 +1,44 @@
+public void testReferenceChainForInnerClass() throws Exception
+    {
+        String json = MAPPER.writeValueAsString(new Outer());
+        try {
+            MAPPER.readValue(json, Outer.class);
+            fail("Should not pass");
+        } catch (JsonMappingException e) {
+            JsonMappingException.Reference reference = e.getPath().get(0);
+            assertEquals(getClass().getName()+"$Outer[\"inner\"]",
+                    reference.toString());
+        }
+    }
+public void testShouldThrowJsonMappingExceptionWithPathReference() throws IOException {
+        // given
+        ObjectMapper mapper = new ObjectMapper();
+        String input = "{\"bar\":{\"baz\":{qux:\"quxValue\"))}";
+        final String THIS = getClass().getName();
+
+        // when
+        try {
+            mapper.readValue(input, Foo.class);
+            fail("Upsss! Exception has not been thrown.");
+        } catch (JsonMappingException ex) {
+            // then
+            assertEquals(THIS+"$Foo[\"bar\"]->"+THIS+"$Bar[\"baz\"]",
+                    ex.getPathReference());
+        }
+    }
+public void testShouldThrowJsonMappingExceptionWithPathReference() throws IOException {
+        // given
+        ObjectMapper mapper = new ObjectMapper();
+        String input = "{\"bar\":{\"baz\":{qux:\"quxValue\"))}";
+        final String THIS = getClass().getName();
+
+        // when
+        try {
+            mapper.readValue(input, Foo.class);
+            fail("Upsss! Exception has not been thrown.");
+        } catch (JsonMappingException ex) {
+            // then
+            assertEquals(THIS+"$Foo[\"bar\"]->"+THIS+"$Bar[\"baz\"]",
+                    ex.getPathReference());
+        }
+    }

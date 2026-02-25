@@ -1,0 +1,63 @@
+   /**
+   * Encodes {@code value}.
+   *
+   * @param value a finite value. May not be {@link Double#isNaN() NaNs} or
+   *     {@link Double#isInfinite() infinities}.
+   * @return this writer.
+   */
+public JsonWriter value(Number value)
+   /**
+   * Encodes {@code null}.
+   *
+   * @return this writer.
+   */
+public JsonWriter nullValue()
+   This function has no comment.
+   /**
+   * Encodes {@code value}.
+   *
+   * @param value a finite value. May not be {@link Double#isNaN() NaNs} or
+   *     {@link Double#isInfinite() infinities}.
+   * @return this writer.
+   */
+public JsonWriter value(Number value)
+   /**
+   * Encodes {@code value}.
+   *
+   * @param value a finite value. May not be {@link Double#isNaN() NaNs} or
+   *     {@link Double#isInfinite() infinities}.
+   * @return this writer.
+   */
+public JsonWriter value(Number value)
+   /**
+   * Encodes {@code value}.
+   *
+   * @param value a finite value. May not be {@link Double#isNaN() NaNs} or
+   *     {@link Double#isInfinite() infinities}.
+   * @return this writer.
+   */
+public JsonWriter value(Number value)
+   /**
+   * Encodes {@code value}.
+   *
+   * @param value a finite value. May not be {@link Double#isNaN() NaNs} or
+   *     {@link Double#isInfinite() infinities}.
+   * @return this writer.
+   */
+public JsonWriter value(Number value)
+   /**
+   * Inserts any necessary separators and whitespace before a literal value,
+   * inline array, or inline object. Also adjusts the stack to expect either a
+   * closing bracket or another element.
+   */
+@SuppressWarnings("fallthrough")
+  private void beforeValue(boolean root)
+   /**
+   * Writes {@code value} directly to the writer without quoting or
+   * escaping.
+   *
+   * @param value the literal string value, or null to encode a null literal.
+   * @return this writer.
+   */
+public JsonWriter jsonValue(String value)
+   This function has no comment.

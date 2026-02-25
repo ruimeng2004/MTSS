@@ -1,0 +1,5 @@
+   /**
+     * @return true if the provided reference and declaration can be safely
+     *         inlined according to our criteria
+     */
+private boolean canInline(Reference declaration,Reference initialization,Reference reference)

@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: Should have gotten an exception; instead got token: VALUE_NUMBER_INT
+junit.framework.AssertionFailedError: Should have gotten an exception; instead got token: VALUE_NUMBER_INT

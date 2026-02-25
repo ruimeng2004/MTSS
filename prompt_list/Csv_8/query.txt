@@ -1,0 +1,112 @@
+### Buggy function comment:
+   /**
+     * Creates a customized CSV format.
+     *
+     * @param delimiter
+     *            the char used for value separation, must not be a line break character
+     * @param quoteChar
+     *            the Character used as value encapsulation marker, may be {@code null} to disable
+     * @param quotePolicy
+     *            the quote policy
+     * @param commentStart
+     *            the Character used for comment identification, may be {@code null} to disable
+     * @param escape
+     *            the Character used to escape special characters in values, may be {@code null} to disable
+     * @param ignoreSurroundingSpaces
+     *            <tt>true</tt> when whitespaces enclosing values should be ignored
+     * @param ignoreEmptyLines
+     *            <tt>true</tt> when the parser should skip empty lines
+     * @param recordSeparator
+     *            the line separator to use for output
+     * @param nullString
+     *            the line separator to use for output
+     * @param header
+     *            the header
+     * @param skipHeaderRecord TODO
+     * @throws IllegalArgumentException if the delimiter is a line break character
+     */
+private CSVFormat(final char delimiter,final Character quoteChar,final Quote quotePolicy,final Character commentStart,final Character escape,final boolean ignoreSurroundingSpaces,final boolean ignoreEmptyLines,final String recordSeparator,final String nullString,final String[] header,final boolean skipHeaderRecord)
+   /**
+     * Verifies the consistency of the parameters and throws an IllegalStateException if necessary.
+     *
+     * @throws IllegalStateException
+     */
+void validate()
+
+
+### Error message from JUnit test:
+java.lang.Exception: Unexpected exception, expected<java.lang.IllegalArgumentException> but was<java.lang.IllegalStateException>
+
+### Failed JUnit tests:
+@Test(expected = IllegalArgumentException.class)
+    public void testDuplicateHeaderElements() {
+        CSVFormat.DEFAULT.withHeader("A", "A").validate();
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private CSVFormat(final char delimiter, final Character quoteChar,
+            final Quote quotePolicy, final Character commentStart,
+            final Character escape, final boolean ignoreSurroundingSpaces,
+            final boolean ignoreEmptyLines, final String recordSeparator,
+            final String nullString, final String[] header, final boolean skipHeaderRecord) {
+        if (isLineBreak(delimiter)) {
+            throw new IllegalArgumentException("The delimiter cannot be a line break");
+        }
+        this.delimiter = delimiter;
+        this.quoteChar = quoteChar;
+        this.quotePolicy = quotePolicy;
+        this.commentStart = commentStart;
+        this.escape = escape;
+        this.ignoreSurroundingSpaces = ignoreSurroundingSpaces;
+        this.ignoreEmptyLines = ignoreEmptyLines;
+        this.recordSeparator = recordSeparator;
+        this.nullString = nullString;
+        if (header == null) {
+        	this.header = null;
+        } else {
+            this.header = header.clone();        	
+        }
+        this.skipHeaderRecord = skipHeaderRecord;
+    }
+```
+```java
+void validate() throws IllegalStateException {
+        if (quoteChar != null && delimiter == quoteChar.charValue()) {
+            throw new IllegalStateException(
+                    "The quoteChar character and the delimiter cannot be the same ('" + quoteChar + "')");
+        }
+
+        if (escape != null && delimiter == escape.charValue()) {
+            throw new IllegalStateException(
+                    "The escape character and the delimiter cannot be the same ('" + escape + "')");
+        }
+
+        if (commentStart != null && delimiter == commentStart.charValue()) {
+            throw new IllegalStateException(
+                    "The comment start character and the delimiter cannot be the same ('" + commentStart + "')");
+        }
+
+        if (quoteChar != null && quoteChar.equals(commentStart)) {
+            throw new IllegalStateException(
+                    "The comment start character and the quoteChar cannot be the same ('" + commentStart + "')");
+        }
+
+        if (escape != null && escape.equals(commentStart)) {
+            throw new IllegalStateException(
+                    "The comment start and the escape character cannot be the same ('" + commentStart + "')");
+        }
+
+        if (escape == null && quotePolicy == Quote.NONE) {
+            throw new IllegalStateException("No quotes mode set but no escape character is set");
+        }
+
+        if (header != null) {
+            final Set<String> set = new HashSet<String>(header.length);
+            set.addAll(Arrays.asList(header));
+            if (set.size() != header.length) {
+                throw new IllegalStateException("The header contains duplicate names: " + Arrays.toString(header));
+            }
+        }
+    }
+```

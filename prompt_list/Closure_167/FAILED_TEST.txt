@@ -1,0 +1,87 @@
+public void testIssue783() throws Exception {
+    testTypes(
+        "/** @constructor */" +
+        "var Type = function () {" +
+        "  /** @type {Type} */" +
+        "  this.me_ = this;" +
+        "};" +
+        "Type.prototype.doIt = function() {" +
+        "  var me = this.me_;" +
+        "  for (var i = 0; i < me.unknownProp; i++) {}" +
+        "};",
+        "Property unknownProp never defined on Type");
+  }
+public void testMissingProperty20() throws Exception {
+    testTypes(
+        "/** @param {Object} x */" +
+        "function f(x) { if (x.foo) { } else { x.foo(); } }",
+        "Property foo never defined on Object");
+  }
+@SuppressWarnings("checked")
+      public void testRestrictedTypeGivenToBoolean() {
+    // simple cases
+    assertTypeEquals(BOOLEAN_TYPE,
+        BOOLEAN_TYPE.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(BOOLEAN_TYPE,
+        BOOLEAN_TYPE.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    assertTypeEquals(NO_TYPE,
+        NULL_TYPE.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(NULL_TYPE,
+        NULL_TYPE.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    assertTypeEquals(NUMBER_TYPE,
+        NUMBER_TYPE.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(NUMBER_TYPE,
+        NUMBER_TYPE.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    assertTypeEquals(STRING_TYPE,
+        STRING_TYPE.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(STRING_TYPE,
+        STRING_TYPE.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    assertTypeEquals(STRING_OBJECT_TYPE,
+        STRING_OBJECT_TYPE.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(NO_TYPE,
+        STRING_OBJECT_TYPE.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    assertTypeEquals(NO_TYPE,
+        VOID_TYPE.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(VOID_TYPE,
+        VOID_TYPE.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    assertTypeEquals(NO_OBJECT_TYPE,
+        NO_OBJECT_TYPE.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(NO_TYPE,
+        NO_OBJECT_TYPE.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    assertTypeEquals(NO_TYPE,
+        NO_TYPE.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(NO_TYPE,
+        NO_TYPE.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    assertTypeEquals(ALL_TYPE,
+        ALL_TYPE.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(ALL_TYPE,
+        ALL_TYPE.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    assertTypeEquals(CHECKED_UNKNOWN_TYPE,
+        UNKNOWN_TYPE.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(UNKNOWN_TYPE,
+        UNKNOWN_TYPE.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    // unions
+    UnionType nullableStringValue =
+        (UnionType) createNullableType(STRING_TYPE);
+    assertTypeEquals(STRING_TYPE,
+        nullableStringValue.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(nullableStringValue,
+        nullableStringValue.getRestrictedTypeGivenToBooleanOutcome(false));
+
+    UnionType nullableStringObject =
+        (UnionType) createNullableType(STRING_OBJECT_TYPE);
+    assertTypeEquals(STRING_OBJECT_TYPE,
+        nullableStringObject.getRestrictedTypeGivenToBooleanOutcome(true));
+    assertTypeEquals(NULL_TYPE,
+        nullableStringObject.getRestrictedTypeGivenToBooleanOutcome(false));
+  }

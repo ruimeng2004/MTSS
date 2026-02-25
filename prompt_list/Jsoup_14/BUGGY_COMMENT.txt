@@ -1,0 +1,2 @@
+   // in data state, gather characters until a character reference or tag is found
+void read(Tokeniser t,CharacterReader r)

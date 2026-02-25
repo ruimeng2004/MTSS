@@ -1,0 +1,71 @@
+### Buggy function comment:
+   /**
+     * Parse a CSS query into an Evaluator.
+     * @param query CSS query
+     * @return Evaluator
+     */
+public static Evaluator parse(String query)
+   /**
+     * Pulls a balanced string off the queue. E.g. if queue is "(one (two) three) four", (,) will return "one (two) three",
+     * and leave " four" on the queue. Unbalanced openers and closers can quoted (with ' or ") or escaped (with \). Those escapes will be left
+     * in the returned string, which is suitable for regexes (where we need to preserve the escape), but unsuitable for
+     * contains text strings; use unescape for that.
+     * @param open opener
+     * @param close closer
+     * @return data matched from the queue
+     */
+public String chompBalanced(char open,char close)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Expected exception: org.jsoup.select.Selector$SelectorParseException
+java.lang.Exception: Unexpected exception, expected<org.jsoup.select.Selector$SelectorParseException> but was<java.lang.IllegalArgumentException>
+
+### Failed JUnit tests:
+@Test(expected = Selector.SelectorParseException.class)  public void testParsesSingleQuoteInContains() {
+        Evaluator parse = QueryParser.parse("p:contains(One \" One)");
+    }
+@Test(expected = Selector.SelectorParseException.class) public void exceptionOnUncloseAttribute() {
+        Evaluator parse = QueryParser.parse("section > a[href=\"]");
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static Evaluator parse(String query) {
+            QueryParser p = new QueryParser(query);
+            return p.parse();
+    }
+```
+```java
+public String chompBalanced(char open, char close) {
+        int start = -1;
+        int end = -1;
+        int depth = 0;
+        char last = 0;
+        boolean inQuote = false;
+
+        do {
+            if (isEmpty()) break;
+            Character c = consume();
+            if (last == 0 || last != ESC) {
+                if ((c.equals('\'') || c.equals('"')) && c != open)
+                    inQuote = !inQuote;
+                if (inQuote)
+                    continue;
+                if (c.equals(open)) {
+                    depth++;
+                    if (start == -1)
+                        start = pos;
+                }
+                else if (c.equals(close))
+                    depth--;
+            }
+
+            if (depth > 0 && last != 0)
+                end = pos; // don't include the outer match pair in the return
+            last = c;
+        } while (depth > 0);
+        final String out = (end >= 0) ? queue.substring(start, end) : "";
+        return out;
+    }
+```

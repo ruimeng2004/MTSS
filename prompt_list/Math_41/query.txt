@@ -1,0 +1,117 @@
+### Buggy function comment:
+   /**
+     * Returns the weighted variance of the entries in the specified portion of
+     * the input array, using the precomputed weighted mean value.  Returns
+     * <code>Double.NaN</code> if the designated subarray is empty.
+     * <p>
+     * Uses the formula <pre>
+     *   &Sigma;(weights[i]*(values[i] - mean)<sup>2</sup>)/(&Sigma;(weights[i]) - 1)
+     * </pre></p>
+     * <p>
+     * The formula used assumes that the supplied mean value is the weighted arithmetic
+     * mean of the sample data, not a known population parameter. This method
+     * is supplied only to save computation when the mean has already been
+     * computed.</p>
+     * <p>
+     * This formula will not return the same result as the unweighted variance when all
+     * weights are equal, unless all weights are equal to 1. The formula assumes that
+     * weights are to be treated as "expansion values," as will be the case if for example
+     * the weights represent frequency counts. To normalize weights so that the denominator
+     * in the variance computation equals the length of the input vector minus one, use <pre>
+     *   <code>evaluate(values, MathArrays.normalizeArray(weights, values.length), mean); </code>
+     * </pre>
+     * <p>
+     * Returns 0 for a single-value (i.e. length = 1) sample.</p>
+     * <p>
+     * Throws <code>IllegalArgumentException</code> if any of the following are true:
+     * <ul><li>the values array is null</li>
+     *     <li>the weights array is null</li>
+     *     <li>the weights array does not have the same length as the values array</li>
+     *     <li>the weights array contains one or more infinite values</li>
+     *     <li>the weights array contains one or more NaN values</li>
+     *     <li>the weights array contains negative values</li>
+     *     <li>the start and length arguments do not determine a valid array</li>
+     * </ul></p>
+     * <p>
+     * Does not change the internal state of the statistic.</p>
+     *
+     * @param values the input array
+     * @param weights the weights array
+     * @param mean the precomputed weighted mean value
+     * @param begin index of the first array element to include
+     * @param length the number of elements to include
+     * @return the variance of the values or Double.NaN if length = 0
+     * @throws IllegalArgumentException if the parameters are not valid
+     * @since 2.1
+     */
+public double evaluate(final double[] values,final double[] weights,final double mean,final int begin,final int length)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<1.6644508338125354> but was:<0.31909161062727365>
+
+### Failed JUnit tests:
+@Test
+    public void testEvaluateArraySegmentWeighted() {
+        // See if this statistic computes weighted statistics
+        // If not, skip this test
+        UnivariateStatistic statistic = getUnivariateStatistic();
+        if (!(statistic instanceof WeightedEvaluation)) {
+            return;
+        }
+        final WeightedEvaluation stat = (WeightedEvaluation) getUnivariateStatistic();
+        final double[] arrayZero = new double[5];
+        final double[] weightZero = new double[5];
+        System.arraycopy(testArray, 0, arrayZero, 0, 5);
+        System.arraycopy(testWeightsArray, 0, weightZero, 0, 5);
+        Assert.assertEquals(stat.evaluate(arrayZero, weightZero),
+                stat.evaluate(testArray, testWeightsArray, 0, 5), 0);
+        final double[] arrayOne = new double[5];
+        final double[] weightOne = new double[5];
+        System.arraycopy(testArray, 5, arrayOne, 0, 5);
+        System.arraycopy(testWeightsArray, 5, weightOne, 0, 5);
+        Assert.assertEquals(stat.evaluate(arrayOne, weightOne),
+                stat.evaluate(testArray, testWeightsArray, 5, 5), 0);
+        final double[] arrayEnd = new double[5];
+        final double[] weightEnd = new double[5];
+        System.arraycopy(testArray, testArray.length - 5, arrayEnd, 0, 5);
+        System.arraycopy(testWeightsArray, testArray.length - 5, weightEnd, 0, 5);
+        Assert.assertEquals(stat.evaluate(arrayEnd, weightEnd),
+                stat.evaluate(testArray, testWeightsArray, testArray.length - 5, 5), 0);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public double evaluate(final double[] values, final double[] weights,
+                           final double mean, final int begin, final int length) {
+
+        double var = Double.NaN;
+
+        if (test(values, weights, begin, length)) {
+            if (length == 1) {
+                var = 0.0;
+            } else if (length > 1) {
+                double accum = 0.0;
+                double dev = 0.0;
+                double accum2 = 0.0;
+                for (int i = begin; i < begin + length; i++) {
+                    dev = values[i] - mean;
+                    accum += weights[i] * (dev * dev);
+                    accum2 += weights[i] * dev;
+                }
+
+                double sumWts = 0;
+                for (int i = 0; i < weights.length; i++) {
+                    sumWts += weights[i];
+                }
+
+                if (isBiasCorrected) {
+                    var = (accum - (accum2 * accum2 / sumWts)) / (sumWts - 1.0);
+                } else {
+                    var = (accum - (accum2 * accum2 / sumWts)) / sumWts;
+                }
+            }
+        }
+        return var;
+    }
+```

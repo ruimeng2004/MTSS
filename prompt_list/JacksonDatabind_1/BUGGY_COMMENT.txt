@@ -1,0 +1,8 @@
+   /**
+     * Alternative to {@link #serializeAsField} that is used when a POJO
+     * is serialized as JSON Array; the difference is that no field names
+     * are written.
+     * 
+     * @since 2.1
+     */
+public void serializeAsColumn(Object bean,JsonGenerator jgen,SerializerProvider prov)

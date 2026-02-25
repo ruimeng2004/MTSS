@@ -1,0 +1,8 @@
+   /**
+     * Method called to figure out settable properties for the
+     * bean deserializer to use.
+     *<p>
+     * Note: designed to be overridable, and effort is made to keep interface
+     * similar between versions.
+     */
+protected void addBeanProps(DeserializationContext ctxt,BeanDescription beanDesc,BeanDeserializerBuilder builder)

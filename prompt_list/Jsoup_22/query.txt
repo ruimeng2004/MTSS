@@ -1,0 +1,114 @@
+### Buggy function comment:
+   This function has no comment.
+   /**
+     * Gets the previous element sibling of this element.
+     * @return the previous element, or null if there is no previous element
+     * @see #nextElementSibling()
+     */
+public Element previousElementSibling()
+   This function has no comment.
+   /**
+     * Gets the next sibling element of this element. E.g., if a {@code div} contains two {@code p}s, 
+     * the {@code nextElementSibling} of the first {@code p} is the second {@code p}.
+     * <p/>
+     * This is similar to {@link #nextSibling()}, but specifically finds only Elements
+     * @return the next element, or null if there is no next element
+     * @see #previousElementSibling()
+     */
+public List<Node> siblingNodes()
+public Element nextElementSibling()
+   /**
+     Get this node's previous sibling.
+     @return the previous sibling, or null if this is the first sibling
+     */
+public Node previousSibling()
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<2> but was:<3>
+junit.framework.AssertionFailedError: expected:<2> but was:<3>
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+@Test public void elementIsNotASiblingOfItself() {
+        Document doc = Jsoup.parse("<div><p>One<p>Two<p>Three</div>");
+        Element p2 = doc.select("p").get(1);
+
+        assertEquals("Two", p2.text());
+        Elements els = p2.siblingElements();
+        assertEquals(2, els.size());
+        assertEquals("<p>One</p>", els.get(0).outerHtml());
+        assertEquals("<p>Three</p>", els.get(1).outerHtml());
+    }
+@Test public void nodeIsNotASiblingOfItself() {
+        Document doc = Jsoup.parse("<div><p>One<p>Two<p>Three</div>");
+        Element p2 = doc.select("p").get(1);
+
+        assertEquals("Two", p2.text());
+        List<Node> nodes = p2.siblingNodes();
+        assertEquals(2, nodes.size());
+        assertEquals("<p>One</p>", nodes.get(0).outerHtml());
+        assertEquals("<p>Three</p>", nodes.get(1).outerHtml());
+    }
+@Test public void orphanNodeReturnsNullForSiblingElements() {
+        Node node = new Element(Tag.valueOf("p"), "");
+        Element el = new Element(Tag.valueOf("p"), "");
+
+        assertEquals(0, node.siblingIndex());
+        assertEquals(0, node.siblingNodes().size());
+
+        assertNull(node.previousSibling());
+        assertNull(node.nextSibling());
+
+        assertEquals(0, el.siblingElements().size());
+        assertNull(el.previousElementSibling());
+        assertNull(el.nextElementSibling());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public Elements siblingElements() {
+
+        return parent().children();
+    }
+```
+```java
+public Element previousElementSibling() {
+        List<Element> siblings = parent().children();
+        Integer index = indexInList(this, siblings);
+        Validate.notNull(index);
+        if (index > 0)
+            return siblings.get(index-1);
+        else
+            return null;
+    }
+```
+```java
+public List<Node> siblingNodes() {
+
+        return parent().childNodes();
+    }
+```
+```java
+public Element nextElementSibling() {
+        List<Element> siblings = parent().children();
+        Integer index = indexInList(this, siblings);
+        Validate.notNull(index);
+        if (siblings.size() > index+1)
+            return siblings.get(index+1);
+        else
+            return null;
+    }
+```
+```java
+public Node previousSibling() {
+
+        List<Node> siblings = parentNode.childNodes;
+        Integer index = siblingIndex();
+        Validate.notNull(index);
+        if (index > 0)
+            return siblings.get(index-1);
+        else
+            return null;
+    }
+```

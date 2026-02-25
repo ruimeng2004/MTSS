@@ -1,0 +1,9 @@
+junit.framework.AssertionFailedError: expected:<[['a', 'b']]> but was:<[[1]]>
+java.lang.ArrayIndexOutOfBoundsException: 2
+java.lang.ArrayIndexOutOfBoundsException: 1
+junit.framework.AssertionFailedError: expected:<[['a', 'b', 'c', 'again ?!']]> but was:<[[42, 42]]>
+java.lang.ArrayIndexOutOfBoundsException: 2
+junit.framework.AssertionFailedError: expected:<[['a', 'b', 'c']]> but was:<[[42]]>
+java.lang.ArrayIndexOutOfBoundsException: 1
+java.lang.ClassCastException: [B cannot be cast to java.lang.Byte
+java.lang.ClassCastException: [B cannot be cast to java.lang.Byte

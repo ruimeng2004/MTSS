@@ -1,0 +1,64 @@
+### Buggy function comment:
+   /**
+     * If the property contains a collection, then the length of that
+     * collection, otherwise - 1.
+     * @return int length
+     */
+public int getLength()
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Evaluating <map/b != map/a> expected:<true> but was:<false>
+junit.framework.AssertionFailedError: Evaluating value iterator <$testnull/nothing[1]> expected:<[null]> but was:<[]>
+
+### Failed JUnit tests:
+public void testMapValueEquality() {
+        assertXPathValue(context, "map/b != map/a", Boolean.TRUE);
+        assertXPathValue(context, "map/a != map/b", Boolean.TRUE);
+        assertXPathValue(context, "map/a != map/c", Boolean.FALSE);
+        assertXPathValue(context, "map/a = map/b", Boolean.FALSE);
+        assertXPathValue(context, "map/a = map/c", Boolean.TRUE);
+        assertXPathValue(context, "not(map/a = map/b)", Boolean.TRUE);
+        assertXPathValue(context, "not(map/a = map/c)", Boolean.FALSE);
+    }
+public void testNull() {
+
+        assertXPathPointerLenient(context, "$null", "$null");
+
+        assertXPathPointerLenient(context, "$null[3]", "$null[3]");
+
+        assertXPathPointerLenient(
+            context,
+            "$testnull/nothing",
+            "$testnull/nothing");
+
+        assertXPathPointerLenient(
+            context,
+            "$testnull/nothing[2]",
+            "$testnull/nothing[2]");
+
+        assertXPathPointerLenient(context, "beans[8]/int", "/beans[8]/int");
+
+        assertXPathValueIterator(
+            context,
+            "$testnull/nothing[1]",
+            list(null));
+
+        JXPathContext ctx = JXPathContext.newContext(new TestNull());
+        assertXPathValue(ctx, "nothing", null);
+
+        assertXPathValue(ctx, "child/nothing", null);
+
+        assertXPathValue(ctx, "array[2]", null);
+
+        assertXPathValueLenient(ctx, "nothing/something", null);
+
+        assertXPathValueLenient(ctx, "array[2]/something", null);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public int getLength() {
+        return ValueUtils.getLength(getBaseValue());
+    }
+```

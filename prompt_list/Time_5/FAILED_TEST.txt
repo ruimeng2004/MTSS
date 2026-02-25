@@ -1,0 +1,22 @@
+public void testNormalizedStandard_periodType_months1() {
+        Period test = new Period(1, 15, 0, 0, 0, 0, 0, 0);
+        Period result = test.normalizedStandard(PeriodType.months());
+        assertEquals(new Period(1, 15, 0, 0, 0, 0, 0, 0), test);
+        assertEquals(new Period(0, 27, 0, 0, 0, 0, 0, 0, PeriodType.months()), result);
+    }
+public void testNormalizedStandard_periodType_months2() {
+        Period test = new Period(-2, 15, 0, 0, 0, 0, 0, 0);
+        Period result = test.normalizedStandard(PeriodType.months());
+        assertEquals(new Period(-2, 15, 0, 0, 0, 0, 0, 0), test);
+        assertEquals(new Period(0, -9, 0, 0, 0, 0, 0, 0, PeriodType.months()), result);
+    }
+public void testNormalizedStandard_periodType_monthsWeeks() {
+        PeriodType type = PeriodType.forFields(new DurationFieldType[]{
+                        DurationFieldType.months(),
+                        DurationFieldType.weeks(),
+                        DurationFieldType.days()});
+        Period test = new Period(2, 4, 6, 0, 0, 0, 0, 0);
+        Period result = test.normalizedStandard(type);
+        assertEquals(new Period(2, 4, 6, 0, 0, 0, 0, 0), test);
+        assertEquals(new Period(0, 28, 6, 0, 0, 0, 0, 0, type), result);
+    }

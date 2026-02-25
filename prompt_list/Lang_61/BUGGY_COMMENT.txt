@@ -1,0 +1,11 @@
+   /**
+     * Searches the string builder to find the first reference to the specified
+     * string starting searching from the given index.
+     * <p>
+     * Note that a null input string will return -1, whereas the JDK throws an exception.
+     * 
+     * @param str  the string to find, null returns -1
+     * @param startIndex  the index to start at, invalid index rounded to edge
+     * @return the first index of the string, or -1 if not found
+     */
+public int indexOf(String str,int startIndex)

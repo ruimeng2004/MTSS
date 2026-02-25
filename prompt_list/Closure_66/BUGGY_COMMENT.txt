@@ -1,0 +1,11 @@
+   /**
+   * This is the meat of the type checking.  It is basically one big switch,
+   * with each case representing one type of parse tree node.  The individual
+   * cases are usually pretty straightforward.
+   *
+   * @param t The node traversal object that supplies context, such as the
+   * scope chain to use in name lookups as well as error reporting.
+   * @param n The node being visited.
+   * @param parent The parent of the node n.
+   */
+public void visit(NodeTraversal t,Node n,Node parent)

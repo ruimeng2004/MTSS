@@ -1,0 +1,37 @@
+### Buggy function comment:
+   /**
+     * Retrieves the element's inner HTML. E.g. on a {@code <div>} with one empty {@code <p>}, would return
+     * {@code <p></p>}. (Whereas {@link #outerHtml()} would return {@code <div><p></p></div>}.)
+     * 
+     * @return String of HTML.
+     * @see #outerHtml()
+     */
+public String html()
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<[   
+]<p>Hello
+ there
+</p>> but was:<[]<p>Hello
+ there
+</p>>
+
+### Failed JUnit tests:
+@Test public void testNotPretty() {
+        Document doc = Jsoup.parse("<div>   \n<p>Hello\n there\n</p></div>");
+        doc.outputSettings().prettyPrint(false);
+        assertEquals("<html><head></head><body><div>   \n<p>Hello\n there\n</p></div></body></html>", doc.html());
+
+        Element div = doc.select("div").first();
+        assertEquals("   \n<p>Hello\n there\n</p>", div.html());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public String html() {
+        StringBuilder accum = new StringBuilder();
+        html(accum);
+        return accum.toString().trim();
+    }
+```

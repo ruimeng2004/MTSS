@@ -1,0 +1,31 @@
+### Buggy function comment:
+   /**
+     * Generates a tooltip string to go in an HTML image map.
+     *
+     * @param toolTipText  the tooltip.
+     * 
+     * @return The formatted HTML area tag attribute(s).
+     */
+public String generateToolTipFragment(String toolTipText)
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:< title="Series [&quot;A&quot;], 100.0" alt=""> but was:< title="Series ["A"], 100.0" alt="">
+
+### Failed JUnit tests:
+public void testGenerateURLFragment() {
+        StandardToolTipTagFragmentGenerator g
+                = new StandardToolTipTagFragmentGenerator();
+        assertEquals(" title=\"abc\" alt=\"\"",
+                g.generateToolTipFragment("abc"));
+        assertEquals(" title=\"Series &quot;A&quot;, 100.0\" alt=\"\"",
+                g.generateToolTipFragment("Series \"A\", 100.0"));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public String generateToolTipFragment(String toolTipText) {
+        return " title=\"" + toolTipText
+            + "\" alt=\"\"";
+    }
+```

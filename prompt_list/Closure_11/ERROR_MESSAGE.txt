@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expected a warning
+junit.framework.AssertionFailedError: expected a warning

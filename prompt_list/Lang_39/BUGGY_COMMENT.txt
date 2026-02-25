@@ -1,0 +1,49 @@
+   /**
+     * <p>
+     * Replaces all occurrences of Strings within another String.
+     * </p>
+     * 
+     * <p>
+     * A <code>null</code> reference passed to this method is a no-op, or if
+     * any "search string" or "string to replace" is null, that replace will be
+     * ignored. 
+     * </p>
+     * 
+     * <pre>
+     *  StringUtils.replaceEach(null, *, *, *) = null
+     *  StringUtils.replaceEach("", *, *, *) = ""
+     *  StringUtils.replaceEach("aba", null, null, *) = "aba"
+     *  StringUtils.replaceEach("aba", new String[0], null, *) = "aba"
+     *  StringUtils.replaceEach("aba", null, new String[0], *) = "aba"
+     *  StringUtils.replaceEach("aba", new String[]{"a"}, null, *) = "aba"
+     *  StringUtils.replaceEach("aba", new String[]{"a"}, new String[]{""}, *) = "b"
+     *  StringUtils.replaceEach("aba", new String[]{null}, new String[]{"a"}, *) = "aba"
+     *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"w", "t"}, *) = "wcte"
+     *  (example of how it repeats)
+     *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"d", "t"}, false) = "dcte"
+     *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"d", "t"}, true) = "tcte"
+     *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"d", "ab"}, *) = IllegalArgumentException
+     * </pre>
+     * 
+     * @param text
+     *            text to search and replace in, no-op if null
+     * @param searchList
+     *            the Strings to search for, no-op if null
+     * @param replacementList
+     *            the Strings to replace them with, no-op if null
+     * @param repeat if true, then replace repeatedly 
+     *       until there are no more possible replacements or timeToLive < 0
+     * @param timeToLive
+     *            if less than 0 then there is a circular reference and endless
+     *            loop
+     * @return the text with any replacements processed, <code>null</code> if
+     *         null String input
+     * @throws IllegalArgumentException
+     *             if the search is repeating and there is an endless loop due
+     *             to outputs of one being inputs to another
+     * @throws IndexOutOfBoundsException
+     *             if the lengths of the arrays are not the same (null is ok,
+     *             and/or size 0)
+     * @since 2.4
+     */
+private static String replaceEach(String text,String[] searchList,String[] replacementList,boolean repeat,int timeToLive)

@@ -1,0 +1,12 @@
+   /**
+     * Method called when a new potentially included context is found.
+     */
+protected final JsonToken _nextTokenWithBuffering(final TokenFilterContext buffRoot)
+   This function has no comment.
+   /**
+     * Offlined handling for cases where there was no buffered token to
+     * return, and the token read next could not be returned as-is,
+     * at least not yet, but where we have not yet established that
+     * buffering is needed.
+     */
+protected final JsonToken _nextToken2()

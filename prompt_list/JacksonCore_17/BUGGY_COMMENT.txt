@@ -1,0 +1,7 @@
+   /**
+     * Method called to output a character that is beyond range of
+     * 1- and 2-byte UTF-8 encodings, when outputting "raw" 
+     * text (meaning it is not to be escaped or quoted)
+     */
+private final int _outputRawMultiByteChar(int ch,char[] cbuf,int inputOffset,int inputEnd)
+   This function has no comment.

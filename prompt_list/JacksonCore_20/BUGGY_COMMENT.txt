@@ -1,0 +1,7 @@
+   /**
+     * Method that can be called on backends that support passing opaque datatypes of
+     * non-JSON formats
+     *
+     * @since 2.8
+     */
+public void writeEmbeddedObject(Object object)

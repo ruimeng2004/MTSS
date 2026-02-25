@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expected:<2> but was:<0>
+junit.framework.AssertionFailedError: type class org.apache.commons.lang3.reflect.TypeUtilsTest$Thing not assignable to org.apache.commons.lang3.reflect.TypeUtilsTest$This<java.lang.String, java.lang.String>!

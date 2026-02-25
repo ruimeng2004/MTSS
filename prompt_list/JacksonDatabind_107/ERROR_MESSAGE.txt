@@ -1,0 +1,1 @@
+com.fasterxml.jackson.databind.JsonMappingException: (was java.lang.NullPointerException) (through reference chain: com.fasterxml.jackson.databind.deser.filter.ProblemHandlerUnknownTypeId2221Test$GenericContent["innerObjects"]->java.util.ArrayList[1])

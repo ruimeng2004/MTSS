@@ -1,0 +1,30 @@
+### Buggy function comment:
+   /**
+     * Outputs the record separator.
+     *
+     * @throws IOException
+     *             If an I/O error occurs
+     */
+public void println()
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+@Test
+    public void testNullRecordSeparatorCsv106() {
+        final CSVFormat format = CSVFormat.newFormat(';').withSkipHeaderRecord(true).withHeader("H1", "H2");
+        final String formatStr = format.format("A", "B");
+        assertNotNull(formatStr);
+        assertFalse(formatStr.endsWith("null"));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public void println() throws IOException {
+        final String recordSeparator = format.getRecordSeparator();
+            out.append(recordSeparator);
+        newRecord = true;
+    }
+```

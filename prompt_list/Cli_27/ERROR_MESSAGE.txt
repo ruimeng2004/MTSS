@@ -1,0 +1,3 @@
+junit.framework.ComparisonFailure: selected option expected:<bar> but was:<null>
+junit.framework.ComparisonFailure: selected option expected:<bar> but was:<null>
+junit.framework.ComparisonFailure: selected option expected:<bar> but was:<null>

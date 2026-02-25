@@ -1,0 +1,47 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Exception message should include oompa and lumpa, but was:
+
+### Failed JUnit tests:
+@Test
+	public void shouldPrintTheParametersOnSmartNullPointerExceptionMessage() throws Throwable {
+    	Answer<Object> answer = new ReturnsSmartNulls();
+
+        Foo smartNull = (Foo) answer.answer(invocationOf(Foo.class, "withArgs", "oompa", "lumpa"));
+
+        try {
+            smartNull.get();
+            fail();
+        } catch (SmartNullPointerException ex) {
+        	String message = ex.getMessage();
+        	assertTrue("Exception message should include oompa and lumpa, but was: " + message,
+        			message.contains("oompa, lumpa"));
+        }
+	}
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+            if (new ObjectMethodsGuru().isToString(method)) {
+                return "SmartNull returned by unstubbed " + formatMethodCall()  + " method on mock";
+            }
+
+            new Reporter().smartNullPointerException(location);
+            return null;
+        }
+```
+```java
+public void smartNullPointerException(Location location) {
+        throw new SmartNullPointerException(join(
+                "You have a NullPointerException here:",
+                new Location(),
+                "Because this method was *not* stubbed correctly:",
+                location,
+                ""
+                ));
+    }
+```

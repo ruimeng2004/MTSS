@@ -1,0 +1,18 @@
+public void testLANG571(){
+        String[] stringArray=null;
+        String aString=null;
+        try {
+            @SuppressWarnings("unused")
+            String[] sa = ArrayUtils.add(stringArray, aString);
+            fail("Should have caused IllegalArgumentException");
+        } catch (IllegalArgumentException iae){
+            //expected
+        }
+        try {
+            @SuppressWarnings("unused")
+            String[] sa = ArrayUtils.add(stringArray, 0, aString);
+            fail("Should have caused IllegalArgumentException");
+        } catch (IllegalArgumentException iae){
+            //expected
+        }
+    }

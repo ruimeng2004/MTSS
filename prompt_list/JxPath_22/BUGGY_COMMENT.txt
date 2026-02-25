@@ -1,0 +1,6 @@
+   /**
+     * Get the ns uri of the specified node.
+     * @param node Node to check
+     * @return String ns uri
+     */
+public static String getNamespaceURI(Node node)

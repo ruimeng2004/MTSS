@@ -1,0 +1,4 @@
+   /** Get a line with reversed direction.
+     * @return a new instance, with reversed direction
+     */
+public Line revert()

@@ -1,0 +1,5 @@
+junit.framework.AssertionFailedError: expected:<Array> but was:<null>
+junit.framework.AssertionFailedError: expected:<Function> but was:<null>
+junit.framework.AssertionFailedError: expected:<Object> but was:<null>
+junit.framework.ComparisonFailure: expected:<...tes to false
+junit.framework.AssertionFailedError: unexpected warnings(s):

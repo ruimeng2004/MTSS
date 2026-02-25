@@ -1,0 +1,6 @@
+@Test public void testSupportsNonAsciiTags() {
+        String body = "<�M�����ƥ����>Yes</�M�����ƥ����>";
+        Document doc = Jsoup.parse(body);
+        Elements els = doc.select("�M�����ƥ����");
+        assertEquals("Yes", els.text());
+    }

@@ -1,0 +1,108 @@
+# D4J Fix Evaluation System - Example Configuration
+# Copy this file to config.yaml and update the values
+
+# ============================================================================
+# Evaluation Configuration
+# ============================================================================
+evaluation_config:
+  # Defects4J installation path
+  # Update this to point to your Defects4J installation
+  d4j_path: "/path/to/defects4j"
+  
+  # Workspace directory for checking out bugs
+  # This directory will be created if it doesn't exist
+  workspace_dir: "./workspace"
+  
+  # Output directory for evaluation results
+  # All evaluation outputs will be saved here
+  output_dir: "./evaluation_output"
+  
+  # Test execution timeout (seconds)
+  # Maximum time to wait for test execution
+  timeout: 600
+  
+  # Number of parallel workers for batch evaluation
+  # Set to 1 for sequential processing
+  # Higher values may speed up evaluation but use more resources
+  parallel_workers: 4
+  
+  # Enable caching of validation results
+  # When enabled, successful validations are cached to avoid re-running
+  cache_enabled: true
+  
+  # Deprecated bugs in D4J v3.0
+  # These bugs will be automatically skipped during evaluation
+  deprecated_bugs:
+    - "Lang_2"
+    - "Lang_18"
+    - "Lang_25"
+    - "Lang_48"
+    - "Lang_56"
+    - "JacksonDatabind_65"
+    - "JacksonDatabind_89"
+  
+  # Normalization settings
+  normalization:
+    # Number of context lines in unified diff
+    # More context lines make patches more robust but larger
+    context_lines: 3
+    
+    # Maximum retries for patch application
+    # If patch application fails, retry this many times
+    max_retries: 3
+  
+  # Logging settings
+  logging:
+    # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+    level: "INFO"
+    
+    # Log file path (relative to current directory)
+    # Set to null to disable file logging
+    file: "evaluation.log"
+    
+    # Log format string
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# ============================================================================
+# Model Configuration (for patch generation - not used by evaluation)
+# ============================================================================
+model_config:
+  # API key for remote models
+  # api_key: "your-api-key-here"
+  
+  # Path to local checkpoint
+  cp_path: 'default'
+  
+  # Remote model name
+  remote_model: deepseek-reasoner
+  
+  # Local model name
+  local_model: mistralai/Mixtral-8x7B-Instruct-v0.1
+  
+  # Maximum retry attempts
+  max_try: 2
+  
+  # Temperature for generation
+  temperature: 1.0
+  
+  # Proxy settings
+  remote_proxy: OpenAI
+  local_proxy: batch
+
+# ============================================================================
+# Test Configuration (for patch generation - not used by evaluation)
+# ============================================================================
+test_config:
+  # Timeout for test execution during generation
+  time_out: 600
+
+# ============================================================================
+# Cookie Configuration (for LeetCode - not used by evaluation)
+# ============================================================================
+cookie_config:
+  - leetcode_session: xxxxxxxx
+    csrf_token: xxxxxxxx
+  - leetcode_session: xxxxxxxx
+    csrf_token: xxxxxxxx
+  - leetcode_session: xxxxxxxx
+    csrf_token: xxxxxxxx

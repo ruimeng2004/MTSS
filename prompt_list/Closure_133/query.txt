@@ -1,0 +1,23 @@
+### Buggy function comment:
+   /**
+   * Returns the remainder of the line.
+   */
+private String getRemainingJSDocLine()
+
+
+### Error message from JUnit test:
+java.lang.IllegalStateException: Recorded bad position information
+
+### Failed JUnit tests:
+public void testTextExtents() {
+    parse("@return {@code foo} bar \n *    baz. */",
+        true, "Bad type annotation. type not recognized due to syntax error");
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private String getRemainingJSDocLine() {
+    String result = stream.getRemainingJSDocLine();
+    return result;
+  }
+```

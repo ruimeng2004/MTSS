@@ -1,0 +1,3 @@
+junit.framework.AssertionFailedError: Expected: ({a: number, b: string}|{b: string, c: string, e: number})
+junit.framework.AssertionFailedError: Expected: ({a: number, b: string}|{d: number, e: string, f: string})
+junit.framework.AssertionFailedError: Expected: ({a: number, b: number}|{b: number, c: number})

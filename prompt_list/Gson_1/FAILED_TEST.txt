@@ -1,0 +1,14 @@
+public void testSingle() throws Exception {
+    Gson gson = new Gson();
+    Bar bar1 = new Bar("someString", 1);
+    ArrayList<Integer> arrayList = new ArrayList<Integer>();
+    arrayList.add(1);
+    arrayList.add(2);
+    bar1.map.put("key1", arrayList);
+    bar1.map.put("key2", new ArrayList<Integer>());
+    String json = gson.toJson(bar1);
+    System.out.println(json);
+
+    Bar bar2 = gson.fromJson(json, Bar.class);
+    assertEquals(bar1, bar2);
+  }

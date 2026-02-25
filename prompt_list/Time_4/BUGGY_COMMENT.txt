@@ -1,0 +1,15 @@
+   /**
+     * Gets a copy of this date with the specified field set to a new value.
+     * <p>
+     * If this partial did not previously support the field, the new one will.
+     * Contrast this behaviour with {@link #withField(DateTimeFieldType, int)}.
+     * <p>
+     * For example, if the field type is <code>dayOfMonth</code> then the day
+     * would be changed/added in the returned instance.
+     *
+     * @param fieldType  the field type to set, not null
+     * @param value  the value to set
+     * @return a copy of this instance with the field set
+     * @throws IllegalArgumentException if the value is null or invalid
+     */
+public Partial with(DateTimeFieldType fieldType,int value)

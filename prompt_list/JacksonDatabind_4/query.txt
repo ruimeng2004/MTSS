@@ -1,0 +1,118 @@
+### Buggy function comment:
+   /**
+     * Offlined version used when we do not use the default deserialization method.
+     */
+protected final String[] _deserializeCustom(JsonParser jp,DeserializationContext ctxt)
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<1> but was:<0>
+
+### Failed JUnit tests:
+public void testArrayIndexForExceptions() throws Exception
+    {
+        final String OBJECTS_JSON = "[ \"KEY2\", false ]";
+        try {
+            MAPPER.readValue(OBJECTS_JSON, Key[].class);
+            fail("Should not pass");
+        } catch (JsonMappingException e) {
+            verifyException(e, "Can not deserialize");
+            List<JsonMappingException.Reference> refs = e.getPath();
+            assertEquals(1, refs.size());
+            assertEquals(1, refs.get(0).getIndex());
+        }
+
+        try {
+            MAPPER.readValue("[ \"xyz\", { } ]", String[].class);
+            fail("Should not pass");
+        } catch (JsonMappingException e) {
+            verifyException(e, "Can not deserialize");
+            List<JsonMappingException.Reference> refs = e.getPath();
+            assertEquals(1, refs.size());
+            assertEquals(1, refs.get(0).getIndex());
+        }
+
+        try {
+            MAPPER.readValue("{\"keys\":"+OBJECTS_JSON+"}", KeyListBean.class);
+            fail("Should not pass");
+        } catch (JsonMappingException e) {
+            verifyException(e, "Can not deserialize");
+            List<JsonMappingException.Reference> refs = e.getPath();
+            assertEquals(2, refs.size());
+            // Bean has no index, but has name:
+            assertEquals(-1, refs.get(0).getIndex());
+            assertEquals("keys", refs.get(0).getFieldName());
+
+            // and for List, reverse:
+            assertEquals(1, refs.get(1).getIndex());
+            assertNull(refs.get(1).getFieldName());
+        }
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+protected final String[] _deserializeCustom(JsonParser jp, DeserializationContext ctxt) throws IOException
+    {
+        final ObjectBuffer buffer = ctxt.leaseObjectBuffer();
+        Object[] chunk = buffer.resetAndStart();
+        final JsonDeserializer<String> deser = _elementDeserializer;
+        
+        int ix = 0;
+        JsonToken t;
+
+            while ((t = jp.nextToken()) != JsonToken.END_ARRAY) {
+                // Ok: no need to convert Strings, but must recognize nulls
+                String value = (t == JsonToken.VALUE_NULL) ? deser.getNullValue() : deser.deserialize(jp, ctxt);
+                if (ix >= chunk.length) {
+                    chunk = buffer.appendCompletedChunk(chunk);
+                    ix = 0;
+                }
+                chunk[ix++] = value;
+            }
+            // note: pass String.class, not String[].class, as we need element type for error info
+        String[] result = buffer.completeAndClearBuffer(chunk, ix, String.class);
+        ctxt.returnObjectBuffer(buffer);
+        return result;
+    }
+```
+```java
+@Override
+    public String[] deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException
+    {
+        // Ok: must point to START_ARRAY (or equivalent)
+        if (!jp.isExpectedStartArrayToken()) {
+            return handleNonArray(jp, ctxt);
+        }
+        if (_elementDeserializer != null) {
+            return _deserializeCustom(jp, ctxt);
+        }
+
+        final ObjectBuffer buffer = ctxt.leaseObjectBuffer();
+        Object[] chunk = buffer.resetAndStart();
+
+        int ix = 0;
+        JsonToken t;
+
+            while ((t = jp.nextToken()) != JsonToken.END_ARRAY) {
+                // Ok: no need to convert Strings, but must recognize nulls
+                String value;
+                if (t == JsonToken.VALUE_STRING) {
+                    value = jp.getText();
+                } else if (t == JsonToken.VALUE_NULL) {
+                    value = null; // since we have established that '_elementDeserializer == null' earlier
+                } else {
+                    value = _parseString(jp, ctxt);
+                }
+                if (ix >= chunk.length) {
+                    chunk = buffer.appendCompletedChunk(chunk);
+                    ix = 0;
+                }
+                chunk[ix++] = value;
+            }
+            // note: pass String.class, not String[].class, as we need element type for error info
+        String[] result = buffer.completeAndClearBuffer(chunk, ix, String.class);
+        ctxt.returnObjectBuffer(buffer);
+        return result;
+    }
+```

@@ -1,0 +1,41 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Search text did not come after comment
+
+### Failed JUnit tests:
+@Test
+    public void testInvalidTableContents() throws IOException {
+        File in = ParseTest.getFile("/htmltests/table-invalid-elements.html");
+        Document doc = Jsoup.parse(in, "UTF-8");
+        doc.outputSettings().prettyPrint(true);
+        String rendered = doc.toString();
+        int endOfEmail = rendered.indexOf("Comment");
+        int guarantee = rendered.indexOf("Why am I here?");
+        assertTrue("Comment not found", endOfEmail > -1);
+        assertTrue("Search text not found", guarantee > -1);
+        assertTrue("Search text did not come after comment", guarantee > endOfEmail);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+protected boolean processEndTag(String name) {
+        return process(end.reset().name(name));
+    }
+```
+```java
+protected boolean processStartTag(String name) {
+        return process(start.reset().name(name));
+    }
+```
+```java
+public boolean processStartTag(String name, Attributes attrs) {
+        start.reset();
+        start.nameAttr(name, attrs);
+        return process(start);
+    }
+```

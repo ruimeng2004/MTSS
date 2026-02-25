@@ -1,0 +1,10 @@
+   /** Convert the instance into a double.
+     * @return a double approximating the instance
+     * @see #toSplitDouble()
+     */
+public double toDouble()
+   /** Create an instance from a double value.
+     * @param field field to which this instance belongs
+     * @param x value to convert to an instance
+     */
+protected Dfp(final DfpField field,double x)

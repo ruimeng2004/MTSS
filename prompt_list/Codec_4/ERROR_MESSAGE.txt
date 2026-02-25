@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: Encoder test-1
+junit.framework.AssertionFailedError: BinaryEncoder test-1

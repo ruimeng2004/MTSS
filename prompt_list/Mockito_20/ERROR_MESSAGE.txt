@@ -1,0 +1,8 @@
+junit.framework.ComparisonFailure: expected:<[inner] strength> but was:<[null] strength>
+junit.framework.AssertionFailedError
+junit.framework.ComparisonFailure: expected:<hey!> but was:<null>
+junit.framework.AssertionFailedError
+junit.framework.ComparisonFailure: expected:<hey!> but was:<null>
+junit.framework.ComparisonFailure: expected:<hey!> but was:<null>
+junit.framework.AssertionFailedError
+junit.framework.ComparisonFailure: expected:<hey!> but was:<null>

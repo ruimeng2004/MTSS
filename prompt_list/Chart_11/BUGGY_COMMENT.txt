@@ -1,0 +1,10 @@
+   /**
+     * Tests two polygons for equality.  If both are <code>null</code> this
+     * method returns <code>true</code>.
+     *
+     * @param p1  path 1 (<code>null</code> permitted).
+     * @param p2  path 2 (<code>null</code> permitted).
+     *
+     * @return A boolean.
+     */
+public static boolean equal(GeneralPath p1,GeneralPath p2)

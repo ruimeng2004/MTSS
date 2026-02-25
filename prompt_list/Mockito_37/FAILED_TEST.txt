@@ -1,0 +1,21 @@
+@Test
+    public void shouldFailWhenCallingRealMethodOnIterface() throws Throwable {
+        //given
+        Invocation inovcationOnIterface = new InvocationBuilder().method("simpleMethod").toInvocation();
+        try {
+            //when
+            validator.validate(new CallsRealMethods(), inovcationOnIterface);
+            //then
+            fail();
+        } catch (MockitoException e) {}
+    }
+@Test
+    public void shouldFailFastWhenCallingRealMethodOnInterface() throws Exception {
+        List list = mock(List.class);
+        try {
+            //when
+            when(list.get(0)).thenCallRealMethod();
+            //then
+            fail();
+        } catch (MockitoException e) {}
+    }

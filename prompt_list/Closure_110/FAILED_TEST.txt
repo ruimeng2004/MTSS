@@ -1,0 +1,12 @@
+public void testHoistedFunctionDeclaration() {
+    testScoped(" g(f); function f() {} ",
+               SCOPE_NAMESPACE +
+               " $jscomp.scope.f = function () {}; " +
+               "g($jscomp.scope.f); ");
+  }
+public void testFunctionDeclaration() {
+    testScoped("if (x) { function f() {} } g(f)",
+               SCOPE_NAMESPACE +
+               "if (x) { $jscomp.scope.f = function () {}; } " +
+               "g($jscomp.scope.f); ");
+  }

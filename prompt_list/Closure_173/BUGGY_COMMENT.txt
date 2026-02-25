@@ -1,0 +1,7 @@
+   This function has no comment.
+   /**
+   * Tries apply our various peephole minimizations on the passed in node.
+   */
+@Override
+  @SuppressWarnings("fallthrough")
+  public Node optimizeSubtree(Node node)

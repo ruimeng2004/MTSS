@@ -1,0 +1,15 @@
+   /**
+   * Infer the parameter types from the list of argument names and
+   * the doc info.
+   */
+FunctionTypeBuilder inferParameterTypes(@Nullable Node argsParent,@Nullable JSDocInfo info)
+   /**
+   * Infer the parameter and return types of a function from
+   * the parameter and return types of the function it is overriding.
+   *
+   * @param oldType The function being overridden. Does nothing if this is null.
+   * @param paramsParent The LP node of the function that we're assigning to.
+   *     If null, that just means we're not initializing this to a function
+   *     literal.
+   */
+FunctionTypeBuilder inferFromOverriddenFunction(@Nullable FunctionType oldType,@Nullable Node paramsParent)

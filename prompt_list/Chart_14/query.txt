@@ -1,0 +1,171 @@
+### Buggy function comment:
+   /**
+     * Removes a marker for a specific dataset/renderer and sends a
+     * {@link PlotChangeEvent} to all registered listeners.
+     *
+     * @param index  the dataset/renderer index.
+     * @param marker  the marker.
+     * @param layer  the layer (foreground or background).
+     * @param notify  notify listeners?
+     *
+     * @return A boolean indicating whether or not the marker was actually 
+     *         removed.
+     *
+     * @since 1.0.10
+     */
+public boolean removeRangeMarker(int index,Marker marker,Layer layer,boolean notify)
+   /**
+     * Removes a marker for a specific dataset/renderer and sends a
+     * {@link PlotChangeEvent} to all registered listeners.
+     *
+     * @param index  the dataset/renderer index.
+     * @param marker  the marker.
+     * @param layer  the layer (foreground or background).
+     * @param notify  notify listeners.
+     *
+     * @return A boolean indicating whether or not the marker was actually 
+     *         removed.
+     *
+     * @since 1.0.10
+     * 
+     * @see #addRangeMarker(int, Marker, Layer, boolean)
+     */
+public boolean removeRangeMarker(int index,Marker marker,Layer layer,boolean notify)
+   /**
+     * Removes a marker for a specific dataset/renderer and, if requested, 
+     * sends a {@link PlotChangeEvent} to all registered listeners.
+     *
+     * @param index the dataset/renderer index.
+     * @param marker the marker.
+     * @param layer the layer (foreground or background).
+     *
+     * @return A boolean indicating whether or not the marker was actually 
+     *         removed.
+     *
+     * @since 1.0.10
+     */
+public boolean removeDomainMarker(int index,Marker marker,Layer layer,boolean notify)
+   /**
+     * Removes a marker for a specific dataset/renderer and, if requested, 
+     * sends a {@link PlotChangeEvent} to all registered listeners.
+     *
+     * @param index  the dataset/renderer index.
+     * @param marker  the marker.
+     * @param layer  the layer (foreground or background).
+     * @param notify  notify listeners?
+     *
+     * @return A boolean indicating whether or not the marker was actually 
+     *         removed.
+     *
+     * @since 1.0.10
+     */
+public boolean removeDomainMarker(int index,Marker marker,Layer layer,boolean notify)
+
+
+### Error message from JUnit test:
+java.lang.NullPointerException
+java.lang.NullPointerException
+java.lang.NullPointerException
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+public void testRemoveRangeMarker() {
+    	CategoryPlot plot = new CategoryPlot();
+    	assertFalse(plot.removeRangeMarker(new ValueMarker(0.5)));
+    }
+public void testRemoveDomainMarker() {
+    	CategoryPlot plot = new CategoryPlot();
+    	assertFalse(plot.removeDomainMarker(new CategoryMarker("Category 1")));
+    }
+public void testRemoveRangeMarker() {
+    	XYPlot plot = new XYPlot();
+    	assertFalse(plot.removeRangeMarker(new ValueMarker(0.5)));
+    }
+public void testRemoveDomainMarker() {
+    	XYPlot plot = new XYPlot();
+    	assertFalse(plot.removeDomainMarker(new ValueMarker(0.5)));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public boolean removeRangeMarker(int index, Marker marker, Layer layer,
+    		boolean notify) {
+        if (marker == null) {
+            throw new IllegalArgumentException("Null 'marker' argument.");
+        }
+        ArrayList markers;
+        if (layer == Layer.FOREGROUND) {
+            markers = (ArrayList) this.foregroundRangeMarkers.get(new Integer(
+                    index));
+        }
+        else {
+            markers = (ArrayList) this.backgroundRangeMarkers.get(new Integer(
+                    index));
+        }
+        boolean removed = markers.remove(marker);
+        if (removed && notify) {
+            fireChangeEvent();
+        }
+        return removed;
+    }
+```
+```java
+public boolean removeRangeMarker(int index, Marker marker, Layer layer,
+    		boolean notify) {
+        if (marker == null) {
+            throw new IllegalArgumentException("Null 'marker' argument.");
+        }
+        ArrayList markers;
+        if (layer == Layer.FOREGROUND) {
+            markers = (ArrayList) this.foregroundRangeMarkers.get(new Integer(
+                    index));
+        }
+        else {
+            markers = (ArrayList) this.backgroundRangeMarkers.get(new Integer(
+                    index));
+        }
+        boolean removed = markers.remove(marker);
+        if (removed && notify) {
+            fireChangeEvent();
+        }
+        return removed;
+    }
+```
+```java
+public boolean removeDomainMarker(int index, Marker marker, Layer layer,
+    		boolean notify) {
+        ArrayList markers;
+        if (layer == Layer.FOREGROUND) {
+            markers = (ArrayList) this.foregroundDomainMarkers.get(new Integer(
+                    index));
+        }
+        else {
+            markers = (ArrayList) this.backgroundDomainMarkers.get(new Integer(
+                    index));
+        }
+        boolean removed = markers.remove(marker);
+        if (removed && notify) {
+            fireChangeEvent();
+        }
+        return removed;
+    }
+```
+```java
+public boolean removeDomainMarker(int index, Marker marker, Layer layer,
+    		boolean notify) {
+        ArrayList markers;
+        if (layer == Layer.FOREGROUND) {
+            markers = (ArrayList) this.foregroundDomainMarkers.get(new Integer(
+                    index));
+        }
+        else {
+            markers = (ArrayList) this.backgroundDomainMarkers.get(new Integer(
+                    index));
+        }
+        boolean removed = markers.remove(marker);
+        if (removed && notify) {
+            fireChangeEvent();
+        }
+        return removed;
+    }
+```

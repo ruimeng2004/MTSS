@@ -1,0 +1,29 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError:
+
+### Failed JUnit tests:
+@Test
+    public void listener() throws Exception {
+        InvocationListener invocationListener = mock(InvocationListener.class);
+
+        List mockedList = mock(List.class, withSettings().invocationListeners(invocationListener));
+        reset(mockedList);
+
+        mockedList.clear();
+
+        verify(invocationListener).reportInvocation(any(MethodInvocationReport.class));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public <T> void resetMock(T mock) {
+        MockHandlerInterface<T> oldMockHandler = getMockHandler(mock);
+        MockHandler<T> newMockHandler = new MockHandler<T>(oldMockHandler);
+        MethodInterceptorFilter newFilter = new MethodInterceptorFilter(newMockHandler, (MockSettingsImpl) org.mockito.Mockito.withSettings().defaultAnswer(org.mockito.Mockito.RETURNS_DEFAULTS));
+        ((Factory) mock).setCallback(0, newFilter);
+    }
+```

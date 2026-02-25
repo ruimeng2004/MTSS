@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: expected:<[STRING foo.Foo.Bar 4 [source_file: testcode]

@@ -1,0 +1,10 @@
+   /**
+     * Get relative position of this among like-named siblings.
+     * @return 1..n
+     */
+private int getRelativePositionByQName()
+   /**
+     * Get relative position of this among like-named siblings.
+     * @return 1..n
+     */
+private int getRelativePositionByQName()

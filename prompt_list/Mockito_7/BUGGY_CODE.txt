@@ -1,0 +1,5 @@
+```java
+private void readTypeVariables() {
+            registerTypeVariablesOn(parameterizedType);
+        }
+```

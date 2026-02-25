@@ -1,0 +1,11 @@
+   /**
+     * Factory method returns instances of the GJ cutover chronology. Any
+     * cutover date may be specified.
+     *
+     * @param zone  the time zone to use, null is default
+     * @param gregorianCutover  the cutover to use, null means default
+     * @param minDaysInFirstWeek  minimum number of days in first week of the year; default is 4
+     */
+public static synchronized GJChronology getInstance(DateTimeZone zone,ReadableInstant gregorianCutover,int minDaysInFirstWeek)
+   This function has no comment.
+   This function has no comment.

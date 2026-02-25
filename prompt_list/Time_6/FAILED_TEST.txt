@@ -1,0 +1,29 @@
+public void test_cutoverPreZero() {
+        DateTime cutover = new LocalDate(-2, 6, 30, ISOChronology.getInstanceUTC()).toDateTimeAtStartOfDay(DateTimeZone.UTC);
+        try {
+            GJChronology.getInstance(DateTimeZone.UTC, cutover);
+            fail();
+        } catch (IllegalArgumentException ex) {
+            // expected
+        }
+    }
+public void test_plusWeekyears_positiveToNegative_crossCutover() {
+        LocalDate date = new LocalDate(2003, 6, 30, GJ_CHRONOLOGY);
+        LocalDate expected = new LocalDate(-2, 6, 30, GJ_CHRONOLOGY).withWeekOfWeekyear(date.getWeekOfWeekyear()).withDayOfWeek(date.getDayOfWeek());
+        assertEquals(expected, date.weekyear().addToCopy(-2004));
+    }
+public void test_plusYears_positiveToZero_crossCutover() {
+        LocalDate date = new LocalDate(2003, 6, 30, GJ_CHRONOLOGY);
+        LocalDate expected = new LocalDate(-1, 6, 30, GJ_CHRONOLOGY);
+        assertEquals(expected, date.plusYears(-2003));
+    }
+public void test_plusYears_positiveToNegative_crossCutover() {
+        LocalDate date = new LocalDate(2003, 6, 30, GJ_CHRONOLOGY);
+        LocalDate expected = new LocalDate(-2, 6, 30, GJ_CHRONOLOGY);
+        assertEquals(expected, date.plusYears(-2004));
+    }
+public void test_plusWeekyears_positiveToZero_crossCutover() {
+        LocalDate date = new LocalDate(2003, 6, 30, GJ_CHRONOLOGY);
+        LocalDate expected = new LocalDate(-1, 6, 30, GJ_CHRONOLOGY).withWeekOfWeekyear(date.getWeekOfWeekyear()).withDayOfWeek(date.getDayOfWeek());
+        assertEquals(expected, date.weekyear().addToCopy(-2003));
+    }

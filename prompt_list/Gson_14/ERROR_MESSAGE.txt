@@ -1,0 +1,7 @@
+junit.framework.AssertionFailedError: expected:<? super java.lang.Number> but was:<? super ? super java.lang.Number>
+java.lang.StackOverflowError
+junit.framework.AssertionFailedError: expected:<?> but was:<? extends ? super java.lang.Number>
+junit.framework.AssertionFailedError: expected:<? extends java.lang.Number> but was:<? extends ? extends java.lang.Number>
+java.lang.StackOverflowError
+junit.framework.AssertionFailedError: expected:<?> but was:<? super ? extends java.lang.Number>
+java.lang.StackOverflowError

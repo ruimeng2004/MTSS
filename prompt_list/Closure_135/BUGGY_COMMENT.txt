@@ -1,0 +1,6 @@
+   This function has no comment.
+   /**
+   * Replaces references to "this" with references to name.  Do not
+   * traverse function boundaries.
+   */
+private void replaceReferencesToThis(Node node,String name)

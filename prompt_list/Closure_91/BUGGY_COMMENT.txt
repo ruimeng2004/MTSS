@@ -1,0 +1,5 @@
+   /**
+   * Since this pass reports errors only when a global {@code this} keyword
+   * is encountered, there is no reason to traverse non global contexts.
+   */
+public boolean shouldTraverse(NodeTraversal t,Node n,Node parent)

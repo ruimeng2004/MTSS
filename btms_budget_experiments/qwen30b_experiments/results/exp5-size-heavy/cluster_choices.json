@@ -1,0 +1,1602 @@
+{
+  "0": {
+    "cluster_id": 0,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49921414024077576,
+      "gen": 0.5007858597592243
+    },
+    "confidence": 0.2479134864884686,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49921414024077576,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "1": {
+    "cluster_id": 1,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4974319112304971,
+      "gen": 0.5025680887695029
+    },
+    "confidence": 0.4130608424023671,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4974319112304971,
+      "clamped": false,
+      "cluster_size": 16,
+      "n_representatives": 3
+    }
+  },
+  "2": {
+    "cluster_id": 2,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49831670875831885,
+      "gen": 0.5016832912416811
+    },
+    "confidence": 0.4096115885704281,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49831670875831885,
+      "clamped": false,
+      "cluster_size": 10,
+      "n_representatives": 3
+    }
+  },
+  "3": {
+    "cluster_id": 3,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5003283368127706,
+      "gen": 0.49967166318722944
+    },
+    "confidence": 0.20344220382266617,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5003283368127706,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "4": {
+    "cluster_id": 4,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49906910484119116,
+      "gen": 0.5009308951588088
+    },
+    "confidence": 0.40746403793820657,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49906910484119116,
+      "clamped": false,
+      "cluster_size": 10,
+      "n_representatives": 3
+    }
+  },
+  "5": {
+    "cluster_id": 5,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5027448705508383,
+      "gen": 0.4972551294491617
+    },
+    "confidence": 0.37918379009700004,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5027448705508383,
+      "clamped": false,
+      "cluster_size": 9,
+      "n_representatives": 3
+    }
+  },
+  "6": {
+    "cluster_id": 6,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4993057971994643,
+      "gen": 0.5006942028005357
+    },
+    "confidence": 0.16860459237290054,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4993057971994643,
+      "clamped": false,
+      "cluster_size": 4,
+      "n_representatives": 3
+    }
+  },
+  "7": {
+    "cluster_id": 7,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.48356976657703654,
+      "gen": 0.5164302334229635
+    },
+    "confidence": 0.4309901520065233,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.48356976657703654,
+      "clamped": false,
+      "cluster_size": 21,
+      "n_representatives": 3
+    }
+  },
+  "8": {
+    "cluster_id": 8,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5007576089941056,
+      "gen": 0.4992423910058944
+    },
+    "confidence": 0.28612176343231704,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5007576089941056,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "9": {
+    "cluster_id": 9,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5025680242892887,
+      "gen": 0.4974319757107113
+    },
+    "confidence": 0.33639757783093394,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5025680242892887,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "10": {
+    "cluster_id": 10,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5006668766479817,
+      "gen": 0.4993331233520183
+    },
+    "confidence": 0.3644388308016004,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5006668766479817,
+      "clamped": false,
+      "cluster_size": 9,
+      "n_representatives": 3
+    }
+  },
+  "11": {
+    "cluster_id": 11,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.502905498585945,
+      "gen": 0.497094501414055
+    },
+    "confidence": 0.2630535747653602,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.502905498585945,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "12": {
+    "cluster_id": 12,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5043048666800716,
+      "gen": 0.4956951333199284
+    },
+    "confidence": 0.21618717072392468,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5043048666800716,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "13": {
+    "cluster_id": 13,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.502905401176903,
+      "gen": 0.49709459882309703
+    },
+    "confidence": 0.40581985233299395,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.502905401176903,
+      "clamped": false,
+      "cluster_size": 14,
+      "n_representatives": 3
+    }
+  },
+  "14": {
+    "cluster_id": 14,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4994557374109654,
+      "gen": 0.5005442625890346
+    },
+    "confidence": 0.2478335632644114,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4994557374109654,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "15": {
+    "cluster_id": 15,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5215070478578372,
+      "gen": 0.4784929521421628
+    },
+    "confidence": 0.43975760652266993,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5215070478578372,
+      "clamped": false,
+      "cluster_size": 10,
+      "n_representatives": 3
+    }
+  },
+  "16": {
+    "cluster_id": 16,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.502825881837539,
+      "gen": 0.49717411816246104
+    },
+    "confidence": 0.4147338467081023,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.502825881837539,
+      "clamped": false,
+      "cluster_size": 16,
+      "n_representatives": 3
+    }
+  },
+  "17": {
+    "cluster_id": 17,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5007698301358322,
+      "gen": 0.4992301698641678
+    },
+    "confidence": 0.4065936613634754,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5007698301358322,
+      "clamped": false,
+      "cluster_size": 10,
+      "n_representatives": 3
+    }
+  },
+  "18": {
+    "cluster_id": 18,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5010553460772917,
+      "gen": 0.49894465392270826
+    },
+    "confidence": 0.3270635305301008,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5010553460772917,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "19": {
+    "cluster_id": 19,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4979358414218998,
+      "gen": 0.5020641585781003
+    },
+    "confidence": 0.4113055428811837,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4979358414218998,
+      "clamped": false,
+      "cluster_size": 13,
+      "n_representatives": 3
+    }
+  },
+  "20": {
+    "cluster_id": 20,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.501410025386033,
+      "gen": 0.49858997461396704
+    },
+    "confidence": 0.09240436783501467,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.501410025386033,
+      "clamped": false,
+      "cluster_size": 2,
+      "n_representatives": 2
+    }
+  },
+  "21": {
+    "cluster_id": 21,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.501346559462378,
+      "gen": 0.49865344053762195
+    },
+    "confidence": 0.40772619901262214,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.501346559462378,
+      "clamped": false,
+      "cluster_size": 17,
+      "n_representatives": 3
+    }
+  },
+  "22": {
+    "cluster_id": 22,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49794232700077373,
+      "gen": 0.5020576729992263
+    },
+    "confidence": 0.25779305744234726,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49794232700077373,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "23": {
+    "cluster_id": 23,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4992585459069286,
+      "gen": 0.5007414540930715
+    },
+    "confidence": 0.2096148910565322,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4992585459069286,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "24": {
+    "cluster_id": 24,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5001786909140589,
+      "gen": 0.49982130908594113
+    },
+    "confidence": 0.24211285921282272,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5001786909140589,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "25": {
+    "cluster_id": 25,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5080784322687993,
+      "gen": 0.49192156773120066
+    },
+    "confidence": 0.264800088764741,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5080784322687993,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "26": {
+    "cluster_id": 26,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5002904467903919,
+      "gen": 0.4997095532096081
+    },
+    "confidence": 0.20304839722846799,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5002904467903919,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "27": {
+    "cluster_id": 27,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49834657226861695,
+      "gen": 0.5016534277313831
+    },
+    "confidence": 0.33091631858588094,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49834657226861695,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "28": {
+    "cluster_id": 28,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49812156074508823,
+      "gen": 0.5018784392549118
+    },
+    "confidence": 0.20736382543585366,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49812156074508823,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "29": {
+    "cluster_id": 29,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5054781905126005,
+      "gen": 0.49452180948739954
+    },
+    "confidence": 0.29509113238766077,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5054781905126005,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "30": {
+    "cluster_id": 30,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49763922986579484,
+      "gen": 0.5023607701342052
+    },
+    "confidence": 0.3740697148604502,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49763922986579484,
+      "clamped": false,
+      "cluster_size": 9,
+      "n_representatives": 3
+    }
+  },
+  "31": {
+    "cluster_id": 31,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49856164028869643,
+      "gen": 0.5014383597113036
+    },
+    "confidence": 0.4076159540578982,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49856164028869643,
+      "clamped": false,
+      "cluster_size": 13,
+      "n_representatives": 3
+    }
+  },
+  "32": {
+    "cluster_id": 32,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4987976078943694,
+      "gen": 0.5012023921056306
+    },
+    "confidence": 0.25047237080469215,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4987976078943694,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "33": {
+    "cluster_id": 33,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5005844914168021,
+      "gen": 0.49941550858319794
+    },
+    "confidence": 0.12951528222615455,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5005844914168021,
+      "clamped": false,
+      "cluster_size": 3,
+      "n_representatives": 3
+    }
+  },
+  "34": {
+    "cluster_id": 34,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4986617271935917,
+      "gen": 0.5013382728064083
+    },
+    "confidence": 0.2511633782196935,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4986617271935917,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "35": {
+    "cluster_id": 35,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49907679142556827,
+      "gen": 0.5009232085744317
+    },
+    "confidence": 0.32993764539150694,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49907679142556827,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "36": {
+    "cluster_id": 36,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5007119012697953,
+      "gen": 0.49928809873020474
+    },
+    "confidence": 0.4054323044043779,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5007119012697953,
+      "clamped": false,
+      "cluster_size": 11,
+      "n_representatives": 3
+    }
+  },
+  "37": {
+    "cluster_id": 37,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49938189058367,
+      "gen": 0.50061810941633
+    },
+    "confidence": 0.3641502220734232,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49938189058367,
+      "clamped": false,
+      "cluster_size": 9,
+      "n_representatives": 3
+    }
+  },
+  "38": {
+    "cluster_id": 38,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49901282698373933,
+      "gen": 0.5009871730162607
+    },
+    "confidence": 0.08901507374758483,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49901282698373933,
+      "clamped": false,
+      "cluster_size": 2,
+      "n_representatives": 2
+    }
+  },
+  "39": {
+    "cluster_id": 39,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5025022806387923,
+      "gen": 0.4974977193612077
+    },
+    "confidence": 0.33674880383847683,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5025022806387923,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "40": {
+    "cluster_id": 40,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5005170911406671,
+      "gen": 0.4994829088593329
+    },
+    "confidence": 0.2840514299155882,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5005170911406671,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "41": {
+    "cluster_id": 41,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49941247283592755,
+      "gen": 0.5005875271640725
+    },
+    "confidence": 0.24580744374586122,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49941247283592755,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "42": {
+    "cluster_id": 42,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5010392167085062,
+      "gen": 0.49896078329149385
+    },
+    "confidence": 0.1651162914133996,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5010392167085062,
+      "clamped": false,
+      "cluster_size": 4,
+      "n_representatives": 3
+    }
+  },
+  "43": {
+    "cluster_id": 43,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4995858704824331,
+      "gen": 0.5004141295175669
+    },
+    "confidence": 0.1281478474243686,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4995858704824331,
+      "clamped": false,
+      "cluster_size": 3,
+      "n_representatives": 3
+    }
+  },
+  "44": {
+    "cluster_id": 44,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5005243643296915,
+      "gen": 0.4994756356703085
+    },
+    "confidence": 0.16699186231811694,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5005243643296915,
+      "clamped": false,
+      "cluster_size": 4,
+      "n_representatives": 3
+    }
+  },
+  "45": {
+    "cluster_id": 45,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49340613517731,
+      "gen": 0.50659386482269
+    },
+    "confidence": 0.15465888641798187,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49340613517731,
+      "clamped": false,
+      "cluster_size": 3,
+      "n_representatives": 3
+    }
+  },
+  "46": {
+    "cluster_id": 46,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49854113143122075,
+      "gen": 0.5014588685687793
+    },
+    "confidence": 0.25313352970288777,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49854113143122075,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "47": {
+    "cluster_id": 47,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4978227594526241,
+      "gen": 0.5021772405473759
+    },
+    "confidence": 0.41322257340583884,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4978227594526241,
+      "clamped": false,
+      "cluster_size": 12,
+      "n_representatives": 3
+    }
+  },
+  "48": {
+    "cluster_id": 48,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5009278827998219,
+      "gen": 0.4990721172001781
+    },
+    "confidence": 0.05397472463570668,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5009278827998219,
+      "clamped": false,
+      "cluster_size": 1,
+      "n_representatives": 1
+    }
+  },
+  "49": {
+    "cluster_id": 49,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5023610423335333,
+      "gen": 0.4976389576664667
+    },
+    "confidence": 0.29659166661357134,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5023610423335333,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "50": {
+    "cluster_id": 50,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49893570547499555,
+      "gen": 0.5010642945250044
+    },
+    "confidence": 0.17266215475481095,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49893570547499555,
+      "clamped": false,
+      "cluster_size": 4,
+      "n_representatives": 3
+    }
+  },
+  "51": {
+    "cluster_id": 51,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5004192787963325,
+      "gen": 0.4995807212036675
+    },
+    "confidence": 0.3210615816818383,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5004192787963325,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "52": {
+    "cluster_id": 52,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.50039763377516,
+      "gen": 0.49960236622484
+    },
+    "confidence": 0.1276315062182136,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.50039763377516,
+      "clamped": false,
+      "cluster_size": 3,
+      "n_representatives": 3
+    }
+  },
+  "53": {
+    "cluster_id": 53,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5006637218075514,
+      "gen": 0.49933627819244863
+    },
+    "confidence": 0.20861812102232002,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5006637218075514,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "54": {
+    "cluster_id": 54,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5020283221254777,
+      "gen": 0.49797167787452234
+    },
+    "confidence": 0.33310997454459573,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5020283221254777,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "55": {
+    "cluster_id": 55,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5009329885835702,
+      "gen": 0.49906701141642984
+    },
+    "confidence": 0.3259573529682674,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5009329885835702,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "56": {
+    "cluster_id": 56,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5014580763153257,
+      "gen": 0.4985419236846743
+    },
+    "confidence": 0.21604183333454008,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5014580763153257,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "57": {
+    "cluster_id": 57,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49936380157278326,
+      "gen": 0.5006361984272167
+    },
+    "confidence": 0.2866658025110886,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49936380157278326,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "58": {
+    "cluster_id": 58,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4971325296760227,
+      "gen": 0.5028674703239773
+    },
+    "confidence": 0.42124515510589366,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4971325296760227,
+      "clamped": false,
+      "cluster_size": 13,
+      "n_representatives": 3
+    }
+  },
+  "59": {
+    "cluster_id": 59,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5020291281595144,
+      "gen": 0.4979708718404856
+    },
+    "confidence": 0.2952294575531086,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5020291281595144,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "60": {
+    "cluster_id": 60,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4939623373449295,
+      "gen": 0.5060376626550704
+    },
+    "confidence": 0.41191519437346596,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4939623373449295,
+      "clamped": false,
+      "cluster_size": 10,
+      "n_representatives": 3
+    }
+  },
+  "61": {
+    "cluster_id": 61,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4931092213073277,
+      "gen": 0.5068907786926723
+    },
+    "confidence": 0.413545210924731,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4931092213073277,
+      "clamped": false,
+      "cluster_size": 10,
+      "n_representatives": 3
+    }
+  },
+  "62": {
+    "cluster_id": 62,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4978651474099663,
+      "gen": 0.5021348525900338
+    },
+    "confidence": 0.2962266258011276,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4978651474099663,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "63": {
+    "cluster_id": 63,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5059411957211026,
+      "gen": 0.49405880427889737
+    },
+    "confidence": 0.2962998504074658,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5059411957211026,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "64": {
+    "cluster_id": 64,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49838351671519177,
+      "gen": 0.5016164832848082
+    },
+    "confidence": 0.18290109414679429,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49838351671519177,
+      "clamped": false,
+      "cluster_size": 4,
+      "n_representatives": 3
+    }
+  },
+  "65": {
+    "cluster_id": 65,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.500781127325925,
+      "gen": 0.49921887267407505
+    },
+    "confidence": 0.20853463084952928,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.500781127325925,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "66": {
+    "cluster_id": 66,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5061237738689985,
+      "gen": 0.49387622613100146
+    },
+    "confidence": 0.41208029208892916,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5061237738689985,
+      "clamped": false,
+      "cluster_size": 13,
+      "n_representatives": 3
+    }
+  },
+  "67": {
+    "cluster_id": 67,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.504859369791103,
+      "gen": 0.495140630208897
+    },
+    "confidence": 0.18173610615411062,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.504859369791103,
+      "clamped": false,
+      "cluster_size": 4,
+      "n_representatives": 3
+    }
+  },
+  "68": {
+    "cluster_id": 68,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5016180736557402,
+      "gen": 0.4983819263442598
+    },
+    "confidence": 0.25415530882732346,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5016180736557402,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "69": {
+    "cluster_id": 69,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49969291779761293,
+      "gen": 0.5003070822023871
+    },
+    "confidence": 0.20321913759758753,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49969291779761293,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "70": {
+    "cluster_id": 70,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5010430476135694,
+      "gen": 0.49895695238643056
+    },
+    "confidence": 0.2495426650051461,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5010430476135694,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "71": {
+    "cluster_id": 71,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5012075647208105,
+      "gen": 0.4987924352791895
+    },
+    "confidence": 0.21228003741606627,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5012075647208105,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "72": {
+    "cluster_id": 72,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5006228516053286,
+      "gen": 0.4993771483946714
+    },
+    "confidence": 0.363571233231202,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5006228516053286,
+      "clamped": false,
+      "cluster_size": 9,
+      "n_representatives": 3
+    }
+  },
+  "73": {
+    "cluster_id": 73,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5108861518546018,
+      "gen": 0.48911384814539816
+    },
+    "confidence": 0.27247812164407575,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5108861518546018,
+      "clamped": false,
+      "cluster_size": 6,
+      "n_representatives": 3
+    }
+  },
+  "74": {
+    "cluster_id": 74,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5008043456380621,
+      "gen": 0.4991956543619379
+    },
+    "confidence": 0.1252215878837009,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5008043456380621,
+      "clamped": false,
+      "cluster_size": 3,
+      "n_representatives": 3
+    }
+  },
+  "75": {
+    "cluster_id": 75,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5014078419275598,
+      "gen": 0.4985921580724402
+    },
+    "confidence": 0.12887990329488877,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5014078419275598,
+      "clamped": false,
+      "cluster_size": 3,
+      "n_representatives": 3
+    }
+  },
+  "76": {
+    "cluster_id": 76,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5000312334488048,
+      "gen": 0.49996876655119515
+    },
+    "confidence": 0.08319061060047607,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5000312334488048,
+      "clamped": false,
+      "cluster_size": 2,
+      "n_representatives": 2
+    }
+  },
+  "77": {
+    "cluster_id": 77,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5043599568408316,
+      "gen": 0.49564004315916843
+    },
+    "confidence": 0.424616989551913,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5043599568408316,
+      "clamped": false,
+      "cluster_size": 12,
+      "n_representatives": 3
+    }
+  },
+  "78": {
+    "cluster_id": 78,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4993470815607116,
+      "gen": 0.5006529184392884
+    },
+    "confidence": 0.28613100442400347,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4993470815607116,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "79": {
+    "cluster_id": 79,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5002836956898498,
+      "gen": 0.49971630431015024
+    },
+    "confidence": 0.12475441571446311,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5002836956898498,
+      "clamped": false,
+      "cluster_size": 3,
+      "n_representatives": 3
+    }
+  },
+  "80": {
+    "cluster_id": 80,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5020934211971231,
+      "gen": 0.4979065788028769
+    },
+    "confidence": 0.4114766459315355,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5020934211971231,
+      "clamped": false,
+      "cluster_size": 14,
+      "n_representatives": 3
+    }
+  },
+  "81": {
+    "cluster_id": 81,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49745509574038693,
+      "gen": 0.5025449042596131
+    },
+    "confidence": 0.20985793083247872,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49745509574038693,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "82": {
+    "cluster_id": 82,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5072408407812334,
+      "gen": 0.49275915921876656
+    },
+    "confidence": 0.19084320717950057,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5072408407812334,
+      "clamped": false,
+      "cluster_size": 4,
+      "n_representatives": 3
+    }
+  },
+  "83": {
+    "cluster_id": 83,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4997362522210551,
+      "gen": 0.5002637477789449
+    },
+    "confidence": 0.1636307864154875,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4997362522210551,
+      "clamped": false,
+      "cluster_size": 4,
+      "n_representatives": 3
+    }
+  },
+  "84": {
+    "cluster_id": 84,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5006379059648111,
+      "gen": 0.49936209403518894
+    },
+    "confidence": 0.169223000592733,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5006379059648111,
+      "clamped": false,
+      "cluster_size": 4,
+      "n_representatives": 3
+    }
+  },
+  "85": {
+    "cluster_id": 85,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49776807025976216,
+      "gen": 0.5022319297402378
+    },
+    "confidence": 0.33464510132918224,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49776807025976216,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "86": {
+    "cluster_id": 86,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5029016184875773,
+      "gen": 0.4970983815124227
+    },
+    "confidence": 0.21116987455264064,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5029016184875773,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "87": {
+    "cluster_id": 87,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5035663113559914,
+      "gen": 0.4964336886440086
+    },
+    "confidence": 0.32881667744738957,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5035663113559914,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "88": {
+    "cluster_id": 88,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5038757624167387,
+      "gen": 0.4961242375832613
+    },
+    "confidence": 0.3685487322931117,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5038757624167387,
+      "clamped": false,
+      "cluster_size": 9,
+      "n_representatives": 3
+    }
+  },
+  "89": {
+    "cluster_id": 89,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.500936217937119,
+      "gen": 0.49906378206288105
+    },
+    "confidence": 0.21114582550507807,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.500936217937119,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "90": {
+    "cluster_id": 90,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4985904064099966,
+      "gen": 0.5014095935900034
+    },
+    "confidence": 0.2152579252853636,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4985904064099966,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  },
+  "91": {
+    "cluster_id": 91,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49926814878257797,
+      "gen": 0.500731851217422
+    },
+    "confidence": 0.28795190066460685,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49926814878257797,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "92": {
+    "cluster_id": 92,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5014847807368981,
+      "gen": 0.49851521926310194
+    },
+    "confidence": 0.3354779006423491,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5014847807368981,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "93": {
+    "cluster_id": 93,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.49947067461513794,
+      "gen": 0.5005293253848621
+    },
+    "confidence": 0.1626455708072,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.49947067461513794,
+      "clamped": false,
+      "cluster_size": 4,
+      "n_representatives": 3
+    }
+  },
+  "94": {
+    "cluster_id": 94,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4991111830162451,
+      "gen": 0.5008888169837549
+    },
+    "confidence": 0.125745894761056,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4991111830162451,
+      "clamped": false,
+      "cluster_size": 3,
+      "n_representatives": 3
+    }
+  },
+  "95": {
+    "cluster_id": 95,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5032121318144112,
+      "gen": 0.49678786818558884
+    },
+    "confidence": 0.3400289716417318,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5032121318144112,
+      "clamped": false,
+      "cluster_size": 8,
+      "n_representatives": 3
+    }
+  },
+  "96": {
+    "cluster_id": 96,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5004329075190083,
+      "gen": 0.49956709248099174
+    },
+    "confidence": 0.04742101953715288,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5004329075190083,
+      "clamped": false,
+      "cluster_size": 1,
+      "n_representatives": 1
+    }
+  },
+  "97": {
+    "cluster_id": 97,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5001018915514971,
+      "gen": 0.4998981084485029
+    },
+    "confidence": 0.04197334697873864,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5001018915514971,
+      "clamped": false,
+      "cluster_size": 1,
+      "n_representatives": 1
+    }
+  },
+  "98": {
+    "cluster_id": 98,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.5051084104465405,
+      "gen": 0.49489158955345947
+    },
+    "confidence": 0.294118980499021,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.5051084104465405,
+      "clamped": false,
+      "cluster_size": 7,
+      "n_representatives": 3
+    }
+  },
+  "99": {
+    "cluster_id": 99,
+    "decision": "mixed",
+    "ratio": {
+      "edit": 0.4986684062442731,
+      "gen": 0.5013315937557269
+    },
+    "confidence": 0.21373253535402864,
+    "metadata": {
+      "metric": "hybrid",
+      "raw_ratio": 0.4986684062442731,
+      "clamped": false,
+      "cluster_size": 5,
+      "n_representatives": 3
+    }
+  }
+}

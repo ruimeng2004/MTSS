@@ -1,0 +1,5 @@
+   /**
+     Get the attribute value.
+     @return the attribute value
+     */
+public String getValue()

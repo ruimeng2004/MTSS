@@ -1,0 +1,103 @@
+### Buggy function comment:
+   This function has no comment.
+   /**
+   * Determines if the subtree might throw an exception.
+   */
+private static boolean mayThrowException(Node n)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Unexpected error(s): JSC_UNREACHABLE_CODE. unreachable code at testcode line 1 expected:<0> but was:<1>
+junit.framework.AssertionFailedError: No cross edges found
+junit.framework.AssertionFailedError:
+
+### Failed JUnit tests:
+public void testInstanceOfThrowsException() {
+    testSame("function f() {try { if (value instanceof type) return true; } " +
+             "catch (e) { }}");
+  }
+public void testInstanceOf() {
+    String src = "try { x instanceof 'x' } catch (e) { }";
+    ControlFlowGraph<Node> cfg = createCfg(src, true);
+    assertCrossEdge(cfg, Token.EXPR_RESULT, Token.BLOCK, Branch.ON_EX);
+  }
+public void testSupertypeReferenceOfSubtypeProperty() {
+    String externs = ""
+        + "/** @constructor */ function Ext() {}"
+        + "Ext.prototype.a;";
+    String js = ""
+        + "/** @constructor */ function Foo() {}\n"
+        + "/** @constructor \n@extends Foo*/ function Bar() {}\n"
+        + "Bar.prototype.a;\n"
+        + "/** @param {Foo} foo */"
+        + "function foo(foo) {\n"
+        + "  var x = foo.a;\n"
+        + "}\n";
+    String result = ""
+        + "function Foo() {}\n"
+        + "function Bar() {}\n"
+        + "Bar.prototype.Bar_prototype$a;\n"
+        + "function foo(foo) {\n"
+        + "  var x = foo.Bar_prototype$a;\n"
+        + "}\n";
+    testSets(false, externs, js, result, "{a=[[Bar.prototype]]}");
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override public ObjectType getTypeWithProperty(String field, JSType type) {
+      if (!(type instanceof ObjectType)) {
+        if (type.autoboxesTo() != null) {
+          type = type.autoboxesTo();
+        } else {
+          return null;
+        }
+      }
+
+      // Ignore the prototype itself at all times.
+      if ("prototype".equals(field)) {
+        return null;
+      }
+
+      // We look up the prototype chain to find the highest place (if any) that
+      // this appears.  This will make references to overriden properties look
+      // like references to the initial property, so they are renamed alike.
+      ObjectType foundType = null;
+      ObjectType objType = ObjectType.cast(type);
+      while (objType != null && objType.getImplicitPrototype() != objType) {
+        if (objType.hasOwnProperty(field)) {
+          foundType = objType;
+        }
+        objType = objType.getImplicitPrototype();
+      }
+      // If the property does not exist on the referenced type but the original
+      // type is an object type, see if any subtype has the property.
+        // getGreatestSubtypeWithProperty does not guarantee that the property
+        // is defined on the returned type, it just indicates that it might be,
+        // so we have to double check.
+      return foundType;
+    }
+```
+```java
+private static boolean mayThrowException(Node n) {
+    switch (n.getType()) {
+      case Token.CALL:
+      case Token.GETPROP:
+      case Token.GETELEM:
+      case Token.THROW:
+      case Token.NEW:
+      case Token.ASSIGN:
+      case Token.INC:
+      case Token.DEC:
+        return true;
+      case Token.FUNCTION:
+        return false;
+    }
+    for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
+      if (!ControlFlowGraph.isEnteringNewCfgNode(c) && mayThrowException(c)) {
+        return true;
+      }
+    }
+    return false;
+  }
+```

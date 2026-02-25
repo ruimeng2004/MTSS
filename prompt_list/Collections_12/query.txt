@@ -1,0 +1,44 @@
+### Buggy function comment:
+   /**
+     * Combines an existing Hashtable with this Hashtable.
+     * <p>
+     * Warning: It will overwrite previous entries without warning.
+     *
+     * @param props  the properties to combine
+     */
+public void combine(ExtendedProperties props)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+public void testCollections271() {
+        ExtendedProperties props = new ExtendedProperties();
+        props.setProperty("test", "\\\\\\\\192.168.1.91\\\\test");
+        props.getProperty("test");
+        assertEquals( "\\\\192.168.1.91\\test", props.getProperty("test") );
+
+        ExtendedProperties props2 = new ExtendedProperties();
+        props2.combine(props);
+        assertEquals( "\\\\192.168.1.91\\test", props2.getProperty("test") );
+
+        ExtendedProperties props3 = new ExtendedProperties();
+        props3.setProperty("sub.test", "foo");
+        props2.combine(props3);
+        assertEquals("foo", props2.getProperty("sub.test"));
+
+        ExtendedProperties subs = props2.subset("sub");
+        assertNotNull(subs);
+        assertEquals("foo", subs.getProperty("test"));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public void combine(ExtendedProperties props) {
+        for (Iterator it = props.getKeys(); it.hasNext();) {
+            String key = (String) it.next();
+            super.put(key, props.get(key));
+        }
+    }
+```

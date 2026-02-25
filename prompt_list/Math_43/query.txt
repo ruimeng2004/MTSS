@@ -1,0 +1,101 @@
+### Buggy function comment:
+   /**
+     * Add a value to the data
+     * @param value the value to add
+     */
+public void addValue(double value)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<2.5> but was:<NaN>
+junit.framework.AssertionFailedError: expected:<2.213363839400643> but was:<NaN>
+junit.framework.AssertionFailedError: expected:<1.25> but was:<NaN>
+junit.framework.AssertionFailedError: expected:<2.5> but was:<NaN>
+junit.framework.AssertionFailedError: expected:<2.213363839400643> but was:<NaN>
+junit.framework.AssertionFailedError: expected:<1.25> but was:<NaN>
+
+### Failed JUnit tests:
+@Test
+    public void testOverrideMeanWithMathClass() throws Exception {
+        double[] scores = {1, 2, 3, 4};
+        SummaryStatistics stats = new SummaryStatistics();
+        stats.setMeanImpl(new Mean()); 
+        for(double i : scores) {
+          stats.addValue(i);
+        }
+        Assert.assertEquals((new Mean()).evaluate(scores),stats.getMean(), 0); 
+    }
+@Test
+    public void testOverrideGeoMeanWithMathClass() throws Exception {
+        double[] scores = {1, 2, 3, 4};
+        SummaryStatistics stats = new SummaryStatistics();
+        stats.setGeoMeanImpl(new GeometricMean()); 
+        for(double i : scores) {
+          stats.addValue(i);
+        }
+        Assert.assertEquals((new GeometricMean()).evaluate(scores),stats.getGeometricMean(), 0); 
+    }
+@Test
+    public void testOverrideVarianceWithMathClass() throws Exception {
+        double[] scores = {1, 2, 3, 4};
+        SummaryStatistics stats = new SummaryStatistics();
+        stats.setVarianceImpl(new Variance(false)); //use "population variance"
+        for(double i : scores) {
+          stats.addValue(i);
+        }
+        Assert.assertEquals((new Variance(false)).evaluate(scores),stats.getVariance(), 0); 
+    }
+    @Test
+    public void testOverrideMeanWithMathClass() throws Exception {
+        double[] scores = {1, 2, 3, 4};
+        SummaryStatistics stats = new SummaryStatistics();
+        stats.setMeanImpl(new Mean()); 
+        for(double i : scores) {
+          stats.addValue(i);
+        }
+        Assert.assertEquals((new Mean()).evaluate(scores),stats.getMean(), 0); 
+    }
+    @Test
+    public void testOverrideGeoMeanWithMathClass() throws Exception {
+        double[] scores = {1, 2, 3, 4};
+        SummaryStatistics stats = new SummaryStatistics();
+        stats.setGeoMeanImpl(new GeometricMean()); 
+        for(double i : scores) {
+          stats.addValue(i);
+        }
+        Assert.assertEquals((new GeometricMean()).evaluate(scores),stats.getGeometricMean(), 0); 
+    }
+    @Test
+    public void testOverrideVarianceWithMathClass() throws Exception {
+        double[] scores = {1, 2, 3, 4};
+        SummaryStatistics stats = new SummaryStatistics();
+        stats.setVarianceImpl(new Variance(false)); //use "population variance"
+        for(double i : scores) {
+          stats.addValue(i);
+        }
+        Assert.assertEquals((new Variance(false)).evaluate(scores),stats.getVariance(), 0); 
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public void addValue(double value) {
+        sumImpl.increment(value);
+        sumsqImpl.increment(value);
+        minImpl.increment(value);
+        maxImpl.increment(value);
+        sumLogImpl.increment(value);
+        secondMoment.increment(value);
+        // If mean, variance or geomean have been overridden,
+        // need to increment these
+        if (!(meanImpl instanceof Mean)) {
+            meanImpl.increment(value);
+        }
+        if (!(varianceImpl instanceof Variance)) {
+            varianceImpl.increment(value);
+        }
+        if (!(geoMeanImpl instanceof GeometricMean)) {
+            geoMeanImpl.increment(value);
+        }
+        n++;
+    }
+```

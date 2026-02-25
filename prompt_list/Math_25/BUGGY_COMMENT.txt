@@ -1,0 +1,10 @@
+   /**
+         * Estimate a first guess of the amplitude and angular frequency.
+         * This method assumes that the {@link #sortObservations()} method
+         * has been called previously.
+         *
+         * @throws ZeroException if the abscissa range is zero.
+         * @throws MathIllegalStateException when the guessing procedure cannot
+         * produce sensible results.
+         */
+private void guessAOmega()

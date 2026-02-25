@@ -1,0 +1,314 @@
+@Test  // like using several time the captor in the vararg
+    public void should_capture_arguments_when_args_count_does_NOT_match() throws Exception {
+        //given
+        mock.varargs();
+        Invocation invocation = getLastInvocation();
+
+        //when
+        InvocationMatcher invocationMatcher = new InvocationMatcher(invocation, (List) asList(new LocalizedMatcher(AnyVararg.ANY_VARARG)));
+
+        //then
+        invocationMatcher.captureArgumentsFrom(invocation);
+    }
+@Test
+    public void can_instantiate_class_with_parameterized_constructor() throws Exception {
+        ConstructorArgumentResolver resolver = given(mock(ConstructorArgumentResolver.class).resolveTypeInstances(any(Class[].class)))
+                        .willReturn(new Object[]{null}).getMock();
+
+        new FieldInitializer(this, field("noDefaultConstructor"), resolver).initialize();
+
+        assertNotNull(noDefaultConstructor);
+    }
+@Test
+    public void should_report_failure_if_constructor_throws_exception() throws Exception {
+        given(resolver.resolveTypeInstances(Matchers.<Class<?>[]>anyVararg())).willReturn(new Object[]{ null });
+
+        try {
+            new ParameterizedConstructorInstantiator(this, field("withThrowingConstructor"), resolver).instantiate();
+            fail();
+        } catch (MockitoException e) {
+            assertThat(e.getMessage()).contains("constructor").contains("raised an exception");
+        }
+    }
+@Test
+    public void should_fail_if_an_argument_instance_type_do_not_match_wanted_type() throws Exception {
+        Observer observer = mock(Observer.class);
+        Set wrongArg = mock(Set.class);
+        given(resolver.resolveTypeInstances(Matchers.<Class<?>[]>anyVararg())).willReturn(new Object[]{ observer, wrongArg });
+
+        try {
+            new ParameterizedConstructorInstantiator(this, field("withMultipleConstructor"), resolver).instantiate();
+            fail();
+        } catch (MockitoException e) {
+            assertThat(e.getMessage()).contains("argResolver").contains("incorrect types");
+        }
+    }
+@Test
+    public void should_instantiate_type_with_vararg_constructor() throws Exception {
+        Observer[] vararg = new Observer[] {  };
+        given(resolver.resolveTypeInstances(Matchers.<Class<?>[]>anyVararg())).willReturn(new Object[]{ "", vararg});
+
+        new ParameterizedConstructorInstantiator(this, field("withVarargConstructor"), resolver).instantiate();
+
+        assertNotNull(withVarargConstructor);
+    }
+@Test
+    public void should_instantiate_type_if_resolver_provide_matching_types() throws Exception {
+        Observer observer = mock(Observer.class);
+        Map map = mock(Map.class);
+        given(resolver.resolveTypeInstances(Matchers.<Class<?>[]>anyVararg())).willReturn(new Object[]{ observer, map });
+
+        new ParameterizedConstructorInstantiator(this, field("withMultipleConstructor"), resolver).instantiate();
+
+        assertNotNull(withMultipleConstructor);
+        assertNotNull(withMultipleConstructor.observer);
+        assertNotNull(withMultipleConstructor.map);
+    }
+@Test
+    public void shouldRemoveAllStubbing() throws Exception {
+        when(mock.objectReturningMethod(isA(Integer.class))).thenReturn(100);
+        when(mock.objectReturningMethod(200)).thenReturn(200);
+        reset(mock);
+        assertNull(mock.objectReturningMethod(200));
+        assertEquals("default behavior should return null", null, mock.objectReturningMethod("blah"));
+    }
+@Test
+    public void shouldVerifyWithNullVarArgArray() {
+        Foo foo = Mockito.mock(Foo.class);
+        foo.varArgs((String[]) null);    
+        Mockito.verify(foo).varArgs((String[]) Mockito.anyObject());
+        Mockito.verify(foo).varArgs((String[]) null);
+    }
+@Test
+    public void shouldVerifyWithAnyObject() {
+        Foo foo = Mockito.mock(Foo.class);
+        foo.varArgs("");        
+        Mockito.verify(foo).varArgs((String[]) Mockito.anyObject());
+        Mockito.verify(foo).varArgs((String) Mockito.anyObject());
+    }
+@Test
+    public void shouldStubBooleanVarargs() {
+        when(mock.withBooleanVarargs(1)).thenReturn(true);
+        when(mock.withBooleanVarargs(1, true, false)).thenReturn(true);
+        
+        assertEquals(true, mock.withBooleanVarargs(1));
+        assertEquals(false, mock.withBooleanVarargs(9999));
+        
+        assertEquals(true, mock.withBooleanVarargs(1, true, false));
+        assertEquals(false, mock.withBooleanVarargs(1, true, false, true));
+        assertEquals(false, mock.withBooleanVarargs(2, true, false));
+        assertEquals(false, mock.withBooleanVarargs(1, true));
+        assertEquals(false, mock.withBooleanVarargs(1, false, false));
+    }
+@Test
+    //See bug #157
+    public void shouldMatchEasilyEmptyVararg() throws Exception {
+        //when
+        when(mock.foo(anyVararg())).thenReturn(-1);
+
+        //then
+        assertEquals(-1, mock.foo());
+    }
+@Test
+    public void shouldVerifyBooleanVarargs() {
+        mock.withBooleanVarargs(1);
+        mock.withBooleanVarargs(2, true, false, true);
+        mock.withBooleanVarargs(3, true, true, true);
+
+        verify(mock).withBooleanVarargs(1);
+        verify(mock).withBooleanVarargs(2, true, false, true);
+        try {
+            verify(mock).withBooleanVarargs(3, true, true, true, true);
+            fail();
+        } catch (ArgumentsAreDifferent e) {}
+    }
+@SuppressWarnings("all")
+    @Test
+    //See bug #31
+    public void shouldStubCorrectlyWhenMixedVarargsUsed() {
+        MixedVarargs mixedVarargs = mock(MixedVarargs.class);
+        when(mixedVarargs.doSomething("hello", (String[])null)).thenReturn("hello");
+        when(mixedVarargs.doSomething("goodbye", (String[])null)).thenReturn("goodbye");
+
+        String result = mixedVarargs.doSomething("hello",(String[]) null);
+        assertEquals("hello", result);
+        
+        verify(mixedVarargs).doSomething("hello", (String[])null);
+    }
+@SuppressWarnings("deprecation")
+    @Test
+    public void shouldStubStringVarargs() {
+        when(mock.withStringVarargsReturningString(1)).thenReturn("1");
+        when(mock.withStringVarargsReturningString(2, "1", "2", "3")).thenReturn("2");
+        
+        RuntimeException expected = new RuntimeException();
+        stubVoid(mock).toThrow(expected).on().withStringVarargs(3, "1", "2", "3", "4");
+
+        assertEquals("1", mock.withStringVarargsReturningString(1));
+        assertEquals(null, mock.withStringVarargsReturningString(2));
+        
+        assertEquals("2", mock.withStringVarargsReturningString(2, "1", "2", "3"));
+        assertEquals(null, mock.withStringVarargsReturningString(2, "1", "2"));
+        assertEquals(null, mock.withStringVarargsReturningString(2, "1", "2", "3", "4"));
+        assertEquals(null, mock.withStringVarargsReturningString(2, "1", "2", "9999"));
+        
+        mock.withStringVarargs(3, "1", "2", "3", "9999");
+        mock.withStringVarargs(9999, "1", "2", "3", "4");
+        
+        try {
+            mock.withStringVarargs(3, "1", "2", "3", "4");
+            fail();
+        } catch (Exception e) {
+            assertEquals(expected, e);
+        }
+    }
+@SuppressWarnings("all")
+    @Test
+    public void shouldStubCorrectlyWhenDoubleStringAndMixedVarargsUsed() {
+        MixedVarargs mixedVarargs = mock(MixedVarargs.class);
+        when(mixedVarargs.doSomething("one", "two", (String[])null)).thenReturn("hello");
+        when(mixedVarargs.doSomething("1", "2", (String[])null)).thenReturn("goodbye");
+
+        String result = mixedVarargs.doSomething("one", "two", (String[])null);
+        assertEquals("hello", result);
+    }
+@Test
+    public void shouldVerifyStringVarargs() {
+        mock.withStringVarargs(1);
+        mock.withStringVarargs(2, "1", "2", "3");
+        mock.withStringVarargs(3, "1", "2", "3", "4");
+
+        verify(mock).withStringVarargs(1);
+        verify(mock).withStringVarargs(2, "1", "2", "3");
+        try {
+            verify(mock).withStringVarargs(2, "1", "2", "79", "4");
+            fail();
+        } catch (ArgumentsAreDifferent e) {}
+    }
+@Test
+    public void shouldVerifyObjectVarargs() {
+        mock.withObjectVarargs(1);
+        mock.withObjectVarargs(2, "1", new ArrayList<Object>(), new Integer(1));
+        mock.withObjectVarargs(3, new Integer(1));
+
+        verify(mock).withObjectVarargs(1);
+        verify(mock).withObjectVarargs(2, "1", new ArrayList<Object>(), new Integer(1));
+        try {
+            verifyNoMoreInteractions(mock);
+            fail();
+        } catch (NoInteractionsWanted e) {}
+    }
+@Test
+    public void shouldNotThrowAnyException() throws Exception {
+        Foo foo = mock(Foo.class);
+
+        when(foo.blah(anyString(), anyString())).thenCallRealMethod();
+
+        assertEquals(1, foo.blah("foo", "bar"));
+    }
+@Test
+    public void shouldVerifyCorrectlyWithAnyVarargs() {
+        //when
+        table.newRow("qux", "foo", "bar", "baz");
+        table.newRow("abc", "def");
+        
+        //then
+        verify(table, times(2)).newRow(anyString(), (String[]) anyVararg());
+    }
+@Test
+    public void shouldVerifyCorrectlyNumberOfInvocationsUsingAnyVarargAndEqualArgument() {
+        //when
+        table.newRow("x", "foo", "bar", "baz");
+        table.newRow("x", "def");
+
+        //then
+        verify(table, times(2)).newRow(eq("x"), (String[]) anyVararg());
+    }
+@Test
+    public void shouldStubUsingAnyVarargs() {
+        when(mock.run((String[]) anyVararg())).thenReturn("foo");
+        
+        assertEquals("foo", mock.run("a", "b"));
+    }
+@SuppressWarnings("deprecation")
+    @Test
+    public void shouldVerifyUsingMatchers() {
+        stubVoid(one).toThrow(new RuntimeException()).on().oneArg(true);
+        when(three.varargsObject(5, "first arg", "second arg")).thenReturn("stubbed");
+
+        try {
+            one.oneArg(true);
+            fail();
+        } catch (RuntimeException e) {}
+
+        one.simpleMethod(100);
+        two.simpleMethod("test Mockito");
+        three.varargsObject(10, "first arg", "second arg");
+        
+        assertEquals("stubbed", three.varargsObject(5, "first arg", "second arg"));
+
+        verify(one).oneArg(eq(true));
+        verify(one).simpleMethod(anyInt());
+        verify(two).simpleMethod(startsWith("test"));
+        verify(three).varargsObject(5, "first arg", "second arg");
+        verify(three).varargsObject(eq(10), eq("first arg"), startsWith("second"));
+        
+        verifyNoMoreInteractions(one, two, three);
+        
+        try {
+            verify(three).varargsObject(eq(10), eq("first arg"), startsWith("third"));
+            fail();
+        } catch (WantedButNotInvoked e) {}
+    }
+@Test
+    public void test_stub_only_not_verifiable() throws Exception {
+        IMethods localMock = mock(IMethods.class, withSettings().stubOnly());
+
+        when(localMock.objectReturningMethod(isA(Integer.class))).thenReturn(100);
+        when(localMock.objectReturningMethod(200)).thenReturn(200);
+
+        assertEquals(200, localMock.objectReturningMethod(200));
+        assertEquals(100, localMock.objectReturningMethod(666));
+        assertEquals("default behavior should return null", null, localMock.objectReturningMethod("blah"));
+
+        try {
+            verify(localMock, atLeastOnce()).objectReturningMethod(eq(200));
+            fail();
+        } catch (CannotVerifyStubOnlyMock e) {}
+    }
+@Test
+    public void should_evaluate_latest_stubbing_first() throws Exception {
+        when(mock.objectReturningMethod(isA(Integer.class))).thenReturn(100);
+        when(mock.objectReturningMethod(200)).thenReturn(200);
+        
+        assertEquals(200, mock.objectReturningMethod(200));
+        assertEquals(100, mock.objectReturningMethod(666));
+        assertEquals("default behavior should return null", null, mock.objectReturningMethod("blah"));
+    }
+@Test
+    public void shouldEvaluateLatestStubbingFirst() throws Exception {
+        stub(mock.objectReturningMethod(isA(Integer.class))).toReturn(100);
+        stub(mock.objectReturningMethod(200)).toReturn(200);
+        
+        assertEquals(200, mock.objectReturningMethod(200));
+        assertEquals(100, mock.objectReturningMethod(666));
+        assertEquals("default behavior should return null", null, mock.objectReturningMethod("blah"));
+    }
+@Test
+    public void shouldUseEqualsToVerifyMethodVarargs() {
+        mockOne = mock(IMethods.class);
+        
+        String textOne = "test";
+        String textTwo = new String(textOne);
+        
+        assertEquals(textOne, textTwo);
+        assertNotSame(textOne, textTwo);
+        
+        mockOne.varargsObject(1, textOne, textOne);
+        mockOne.varargsObject(1, textTwo, textTwo);
+        
+        verify(mockOne, times(2)).varargsObject(1, textOne, textOne);
+        
+        inOrder = inOrder(mockOne);
+        inOrder.verify(mockOne, times(2)).varargsObject(1, textOne, textOne);
+    }

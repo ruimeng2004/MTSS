@@ -1,0 +1,4 @@
+   /**
+   * Check to see if the given block comment looks like it should be JSDoc.
+   */
+private void handleBlockComment(Comment comment)

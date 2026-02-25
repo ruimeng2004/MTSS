@@ -1,0 +1,12 @@
+@Test
+    public void testEbeDivideMixedTypes() {
+        doTestEbeBinaryOperation(BinaryOperation.DIV, true);
+    }
+    @Test
+    public void testEbeMultiplyMixedTypes() {
+        doTestEbeBinaryOperation(BinaryOperation.MUL, true);
+    }
+    @Test
+    public void testEbeMultiplySameType() {
+        doTestEbeBinaryOperation(BinaryOperation.MUL, false);
+    }

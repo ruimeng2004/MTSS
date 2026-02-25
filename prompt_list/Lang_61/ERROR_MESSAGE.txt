@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expected:<-1> but was:<6>
+java.lang.ArrayIndexOutOfBoundsException

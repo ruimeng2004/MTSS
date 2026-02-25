@@ -1,0 +1,46 @@
+### Buggy function comment:
+   /**
+     * Print the specified text to the specified PrintWriter.
+     *
+     * @param pw The printWriter to write the help to
+     * @param width The number of characters to display per line
+     * @param nextLineTabStop The position on the next line for the first tab.
+     * @param text The text to be written to the PrintWriter
+     */
+public void printWrapped(PrintWriter pw,int width,int nextLineTabStop,String text)
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:<...e: foobar
+
+### Failed JUnit tests:
+public void testIndentedHeaderAndFooter()
+    {
+        // related to CLI-207
+        Options options = new Options();
+        HelpFormatter formatter = new HelpFormatter();
+        String header = "  Header1\n  Header2";
+        String footer = "  Footer1\n  Footer2";
+        StringWriter out = new StringWriter();
+        formatter.printHelp(new PrintWriter(out), 80, "foobar", header, options, 2, 2, footer, true);
+
+        assertEquals(
+                "usage: foobar" + EOL +
+                "  Header1" + EOL +
+                "  Header2" + EOL +
+                "" + EOL +
+                "  Footer1" + EOL +
+                "  Footer2" + EOL
+                , out.toString());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public void printWrapped(PrintWriter pw, int width, int nextLineTabStop, String text)
+    {
+        StringBuffer sb = new StringBuffer(text.length());
+
+        renderWrappedText(sb, width, nextLineTabStop, text);
+        pw.println(sb.toString());
+    }
+```

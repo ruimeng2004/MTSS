@@ -1,0 +1,50 @@
+### Buggy function comment:
+   /**
+     * Convert a standard properties class into a configuration class.
+     * <p>
+     * NOTE: From Commons Collections 3.2 this method will pick up
+     * any default parent Properties of the specified input object.
+     * <p>
+     * As with java.util.Properties(Properties), any non-String 
+     * values will not be passed on in the new ExtendedProperties 
+     * object.
+     *
+     * @param props  the properties object to convert
+     * @return new ExtendedProperties created from props
+     */
+public static ExtendedProperties convertProperties(Properties props)
+
+
+### Error message from JUnit test:
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+public void testCollections299() {
+        Properties defaults = new Properties();
+        defaults.put("objectTrue", Boolean.TRUE);
+
+        Properties properties = new Properties(defaults);
+        properties.put("objectFalse", Boolean.FALSE);
+
+        ExtendedProperties extended = ExtendedProperties.convertProperties(properties);
+
+        assertNull(extended.getString("objectTrue"));
+        assertNull(extended.getString("objectFalse"));
+
+        assertNull(extended.get("objectTrue"));
+        assertNull(extended.get("objectFalse"));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static ExtendedProperties convertProperties(Properties props) {
+        ExtendedProperties c = new ExtendedProperties();
+
+        for (Enumeration e = props.propertyNames(); e.hasMoreElements();) {
+            String s = (String) e.nextElement();
+            c.setProperty(s, props.getProperty(s));
+        }
+
+        return c;
+    }
+```

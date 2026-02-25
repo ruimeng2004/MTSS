@@ -1,0 +1,4 @@
+junit.framework.ComparisonFailure: expected:<John> but was:<null>
+junit.framework.ComparisonFailure: expected:<John> but was:<null>
+junit.framework.AssertionFailedError: expected:<30> but was:<0>
+junit.framework.AssertionFailedError: expected:<30> but was:<0>

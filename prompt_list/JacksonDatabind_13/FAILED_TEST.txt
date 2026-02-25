@@ -1,0 +1,9 @@
+public void testNullObjectId() throws Exception
+    {
+        // Ok, so missing Object Id is ok, but so is null.
+        
+        Identifiable value = MAPPER.readValue
+                (aposToQuotes("{'value':3, 'next':null, 'id':null}"), Identifiable.class);
+        assertNotNull(value);
+        assertEquals(3, value.value);
+    }

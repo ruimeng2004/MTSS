@@ -1,0 +1,7 @@
+   /**
+     * Initializes the name to index mapping if the format defines a header.
+     *
+     * @return null if the format has no header.
+     * @throws IOException if there is a problem reading the header or skipping the first record
+     */
+private Map<String, Integer> initializeHeader()

@@ -1,0 +1,35 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<<img [src="cid:12345" />
+
+### Failed JUnit tests:
+@Test public void handlesCustomProtocols() {
+        String html = "<img src='cid:12345' /> <img src='data:gzzt' />";
+        String dropped = Jsoup.clean(html, Whitelist.basicWithImages());
+        assertEquals("<img /> \n<img />", dropped);
+
+        String preserved = Jsoup.clean(html, Whitelist.basicWithImages().addProtocols("img", "src", "cid", "data"));
+        assertEquals("<img src=\"cid:12345\" /> \n<img src=\"data:gzzt\" />", preserved);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private boolean testValidProtocol(Element el, Attribute attr, Set<Protocol> protocols) {
+        // try to resolve relative urls to abs, and optionally update the attribute so output html has abs.
+        // rels without a baseuri get removed
+        String value = el.absUrl(attr.getKey());
+        if (!preserveRelativeLinks)
+            attr.setValue(value);
+        
+        for (Protocol protocol : protocols) {
+            String prot = protocol.toString() + ":";
+            if (value.toLowerCase().startsWith(prot)) {
+                return true;
+            }
+        }
+        return false;
+    }
+```

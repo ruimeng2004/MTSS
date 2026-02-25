@@ -1,0 +1,21 @@
+@Test
+    public void shouldMatchCaptureArgumentsWhenArgsCountDoesNOTMatch() throws Exception {
+        //given
+        mock.varargs();
+        Invocation invocation = getLastInvocation();
+
+        //when
+        InvocationMatcher invocationMatcher = new InvocationMatcher(invocation, (List) asList(new LocalizedMatcher(AnyVararg.ANY_VARARG)));
+
+        //then
+        invocationMatcher.captureArgumentsFrom(invocation);
+    }
+@Test
+    //See bug #157
+    public void shouldMatchEasilyEmptyVararg() throws Exception {
+        //when
+        when(mock.foo(anyVararg())).thenReturn(-1);
+
+        //then
+        assertEquals(-1, mock.foo());
+    }

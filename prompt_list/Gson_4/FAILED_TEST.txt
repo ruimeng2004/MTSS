@@ -1,0 +1,62 @@
+public void testTopLevelValueTypeWithSkipValue() throws IOException {
+    JsonReader reader = new JsonReader(reader("true"));
+    reader.skipValue();
+    assertEquals(JsonToken.END_DOCUMENT, reader.peek());
+  }
+public void testTopLevelValueTypes() throws IOException {
+    JsonReader reader1 = new JsonReader(reader("true"));
+    assertTrue(reader1.nextBoolean());
+    assertEquals(JsonToken.END_DOCUMENT, reader1.peek());
+
+    JsonReader reader2 = new JsonReader(reader("false"));
+    assertFalse(reader2.nextBoolean());
+    assertEquals(JsonToken.END_DOCUMENT, reader2.peek());
+
+    JsonReader reader3 = new JsonReader(reader("null"));
+    assertEquals(JsonToken.NULL, reader3.peek());
+    reader3.nextNull();
+    assertEquals(JsonToken.END_DOCUMENT, reader3.peek());
+
+    JsonReader reader4 = new JsonReader(reader("123"));
+    assertEquals(123, reader4.nextInt());
+    assertEquals(JsonToken.END_DOCUMENT, reader4.peek());
+
+    JsonReader reader5 = new JsonReader(reader("123.4"));
+    assertEquals(123.4, reader5.nextDouble());
+    assertEquals(JsonToken.END_DOCUMENT, reader5.peek());
+
+    JsonReader reader6 = new JsonReader(reader("\"a\""));
+    assertEquals("a", reader6.nextString());
+    assertEquals(JsonToken.END_DOCUMENT, reader6.peek());
+  }
+public void testTopLevelValueTypes() throws IOException {
+    StringWriter string1 = new StringWriter();
+    JsonWriter writer1 = new JsonWriter(string1);
+    writer1.value(true);
+    writer1.close();
+    assertEquals("true", string1.toString());
+
+    StringWriter string2 = new StringWriter();
+    JsonWriter writer2 = new JsonWriter(string2);
+    writer2.nullValue();
+    writer2.close();
+    assertEquals("null", string2.toString());
+
+    StringWriter string3 = new StringWriter();
+    JsonWriter writer3 = new JsonWriter(string3);
+    writer3.value(123);
+    writer3.close();
+    assertEquals("123", string3.toString());
+
+    StringWriter string4 = new StringWriter();
+    JsonWriter writer4 = new JsonWriter(string4);
+    writer4.value(123.4);
+    writer4.close();
+    assertEquals("123.4", string4.toString());
+
+    StringWriter string5 = new StringWriter();
+    JsonWriter writert = new JsonWriter(string5);
+    writert.value("a");
+    writert.close();
+    assertEquals("\"a\"", string5.toString());
+  }

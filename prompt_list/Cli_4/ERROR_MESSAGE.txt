@@ -1,0 +1,2 @@
+junit.framework.ComparisonFailure: expected:<[Missing required options: ]fx> but was:<[]fx>
+junit.framework.ComparisonFailure: expected:<[Missing required option: ]f> but was:<[]f>

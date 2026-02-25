@@ -1,0 +1,6 @@
+   /**
+     * Method called to expand size of the current segment, to
+     * accommodate for more contiguous content. Usually only
+     * used when parsing tokens like names if even then.
+     */
+public char[] expandCurrentSegment()

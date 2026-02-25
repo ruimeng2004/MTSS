@@ -1,0 +1,34 @@
+@Test public void elementIsNotASiblingOfItself() {
+        Document doc = Jsoup.parse("<div><p>One<p>Two<p>Three</div>");
+        Element p2 = doc.select("p").get(1);
+
+        assertEquals("Two", p2.text());
+        Elements els = p2.siblingElements();
+        assertEquals(2, els.size());
+        assertEquals("<p>One</p>", els.get(0).outerHtml());
+        assertEquals("<p>Three</p>", els.get(1).outerHtml());
+    }
+@Test public void nodeIsNotASiblingOfItself() {
+        Document doc = Jsoup.parse("<div><p>One<p>Two<p>Three</div>");
+        Element p2 = doc.select("p").get(1);
+
+        assertEquals("Two", p2.text());
+        List<Node> nodes = p2.siblingNodes();
+        assertEquals(2, nodes.size());
+        assertEquals("<p>One</p>", nodes.get(0).outerHtml());
+        assertEquals("<p>Three</p>", nodes.get(1).outerHtml());
+    }
+@Test public void orphanNodeReturnsNullForSiblingElements() {
+        Node node = new Element(Tag.valueOf("p"), "");
+        Element el = new Element(Tag.valueOf("p"), "");
+
+        assertEquals(0, node.siblingIndex());
+        assertEquals(0, node.siblingNodes().size());
+
+        assertNull(node.previousSibling());
+        assertNull(node.nextSibling());
+
+        assertEquals(0, el.siblingElements().size());
+        assertNull(el.previousElementSibling());
+        assertNull(el.nextElementSibling());
+    }

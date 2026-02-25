@@ -1,0 +1,13 @@
+{
+  "total_clusters": 100,
+  "selector_type": "budget_allocator",
+  "decision_counts": {
+    "mixed": 100
+  },
+  "average_confidence": 0.0377816055194263,
+  "edit_ratio": {
+    "mean": 0.5002099781060612,
+    "min": 0.493946896408493,
+    "max": 0.5079650656407733
+  }
+}

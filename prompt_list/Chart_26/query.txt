@@ -1,0 +1,624 @@
+### Buggy function comment:
+   /**
+     * Draws the axis label.
+     *
+     * @param label  the label text.
+     * @param g2  the graphics device.
+     * @param plotArea  the plot area.
+     * @param dataArea  the area inside the axes.
+     * @param edge  the location of the axis.
+     * @param state  the axis state (<code>null</code> not permitted).
+     * @param plotState  the plot state (<code>null</code> permitted).
+     *
+     * @return Information about the axis.
+     */
+protected AxisState drawLabel(String label,Graphics2D g2,Rectangle2D plotArea,Rectangle2D dataArea,RectangleEdge edge,AxisState state,PlotRenderingInfo plotState)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, 
+                    null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, 
+                    null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo() {
+
+        boolean success = false;
+
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, 
+                    null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            success = false;
+        }
+
+        assertTrue(success);
+
+    }
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, 
+                    null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo2() {
+        boolean success = false;
+        try {
+            JFreeChart chart = createGanttChart();
+            CategoryPlot plot = (CategoryPlot) chart.getPlot();
+            plot.setDataset(createDataset());
+            /* BufferedImage img =*/ chart.createBufferedImage(300, 200, null);
+            success = true;
+        }
+        catch (NullPointerException e) {
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo() {
+
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, 
+                    null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            success = false;
+        }
+        assertTrue(success);
+
+    }
+public void testDrawWithNullInfo() {
+
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, 
+                    null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            success = false;
+        }
+        assertTrue(success);
+
+    }
+public void testDrawWithNullInfo() {
+
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, 
+                    null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+          success = false;
+        }
+        assertTrue(success);
+
+    }
+public void testDrawWithNullInfo() {
+
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null,
+                    null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+          success = false;
+        }
+        assertTrue(success);
+
+    }
+public void testDrawWithNullInfo() {
+
+        boolean success = false;
+
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, 
+                    null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+          success = false;
+        }
+
+        assertTrue(success);
+
+    }
+public void testDrawWithNullInfo() {
+
+        boolean success = false;
+
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            this.chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, 
+                    null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            success = false;
+        }
+
+        assertTrue(success);
+
+    }
+public void test1654215() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        JFreeChart chart = ChartFactory.createLineChart("Title", "X", "Y",
+                dataset, PlotOrientation.VERTICAL, true, false, false);
+        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        plot.setRenderer(1, new LineAndShapeRenderer());
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testSerialization3() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        JFreeChart chart = ChartFactory.createBarChart(
+            "Test Chart",
+            "Category Axis",
+            "Value Axis",
+            dataset,
+            PlotOrientation.VERTICAL,
+            true,
+            true,
+            false
+        );
+        JFreeChart chart2 = null;
+        
+        // serialize and deserialize the chart....
+        try {
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            ObjectOutput out = new ObjectOutputStream(buffer);
+            out.writeObject(chart);
+            out.close();
+
+            ObjectInput in = new ObjectInputStream(
+                    new ByteArrayInputStream(buffer.toByteArray()));
+            chart2 = (JFreeChart) in.readObject();
+            in.close();
+        }
+        catch (Exception e) {
+            fail(e.toString());
+        }
+
+        // now check that the chart is usable...
+        boolean passed = true;
+        try {
+            chart2.createBufferedImage(300, 200);
+        }
+        catch (Exception e) {
+            passed = false;  
+            e.printStackTrace();            
+        }
+        assertTrue(passed);
+    }
+public void testSerialization4() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        JFreeChart chart = ChartFactory.createBarChart(
+            "Test Chart",
+            "Category Axis",
+            "Value Axis",
+            dataset,
+            PlotOrientation.VERTICAL,
+            true,
+            true,
+            false
+        );
+        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        plot.addRangeMarker(new ValueMarker(1.1), Layer.FOREGROUND);
+        plot.addRangeMarker(new IntervalMarker(2.2, 3.3), Layer.BACKGROUND);
+        JFreeChart chart2 = null;
+        
+        // serialize and deserialize the chart....
+        try {
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            ObjectOutput out = new ObjectOutputStream(buffer);
+            out.writeObject(chart);
+            out.close();
+
+            ObjectInput in = new ObjectInputStream(
+                    new ByteArrayInputStream(buffer.toByteArray()));
+            chart2 = (JFreeChart) in.readObject();
+            in.close();
+        }
+        catch (Exception e) {
+            fail(e.toString());
+        }
+        assertEquals(chart, chart2);
+        
+        // now check that the chart is usable...
+        boolean passed = true;
+        try {
+            chart2.createBufferedImage(300, 200);
+        }
+        catch (Exception e) {
+            passed = false;  
+            e.printStackTrace();            
+        }
+        assertTrue(passed);
+    }
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            DefaultBoxAndWhiskerCategoryDataset dataset 
+                = new DefaultBoxAndWhiskerCategoryDataset();
+            dataset.add(new BoxAndWhiskerItem(new Double(1.0), new Double(2.0),
+                    new Double(0.0), new Double(4.0), new Double(0.5), 
+                    new Double(4.5), new Double(-0.5), new Double(5.5), 
+                    null), "S1", "C1");
+            CategoryPlot plot = new CategoryPlot(dataset, 
+                    new CategoryAxis("Category"), new NumberAxis("Value"), 
+                    new BoxAndWhiskerRenderer());
+            JFreeChart chart = new JFreeChart(plot);
+            /* BufferedImage image = */ chart.createBufferedImage(300, 200, 
+                    null);
+            success = true;
+        }
+        catch (NullPointerException e) {
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            dataset.addValue(1.0, "S1", "C1");
+            dataset.addValue(2.0, "S1", "C2");
+            dataset.addValue(3.0, "S2", "C1");
+            dataset.addValue(4.0, "S2", "C2");
+            GroupedStackedBarRenderer renderer 
+                = new GroupedStackedBarRenderer();
+            CategoryPlot plot = new CategoryPlot(dataset, 
+                    new CategoryAxis("Category"), new NumberAxis("Value"), 
+                    renderer);
+            JFreeChart chart = new JFreeChart(plot);
+            /* BufferedImage image = */ chart.createBufferedImage(300, 200, 
+                    null);
+            success = true;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            double[][] starts = new double[][] {{0.1, 0.2, 0.3}, 
+                    {0.3, 0.4, 0.5}};
+            double[][] ends = new double[][] {{0.5, 0.6, 0.7}, {0.7, 0.8, 0.9}};
+            DefaultIntervalCategoryDataset dataset 
+                = new DefaultIntervalCategoryDataset(starts, ends);        
+            IntervalBarRenderer renderer = new IntervalBarRenderer();
+            CategoryPlot plot = new CategoryPlot(dataset, 
+                    new CategoryAxis("Category"), new NumberAxis("Value"), 
+                    renderer);
+            JFreeChart chart = new JFreeChart(plot);
+            /* BufferedImage image = */ chart.createBufferedImage(300, 200, 
+                    null);
+            success = true;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            dataset.addValue(1.0, "S1", "C1");
+            CategoryPlot plot = new CategoryPlot(dataset, 
+                    new CategoryAxis("Category"), new NumberAxis("Value"), 
+                    new LayeredBarRenderer());
+            JFreeChart chart = new JFreeChart(plot);
+            /* BufferedImage image = */ chart.createBufferedImage(300, 200, 
+                    null);
+            success = true;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            dataset.addValue(1.0, "S1", "C1");
+            CategoryPlot plot = new CategoryPlot(dataset, 
+                    new CategoryAxis("Category"), new NumberAxis("Value"), 
+                    new LevelRenderer());
+            JFreeChart chart = new JFreeChart(plot);
+            /* BufferedImage image = */ chart.createBufferedImage(300, 200, 
+                    null);
+            success = true;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            dataset.addValue(1.0, "S1", "C1");
+            CategoryPlot plot = new CategoryPlot(dataset, 
+                    new CategoryAxis("Category"), new NumberAxis("Value"), 
+                    new MinMaxCategoryRenderer());
+            JFreeChart chart = new JFreeChart(plot);
+            /* BufferedImage image = */ chart.createBufferedImage(300, 200, 
+                    null);
+            success = true;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            DefaultStatisticalCategoryDataset dataset 
+                = new DefaultStatisticalCategoryDataset();
+            dataset.add(1.0, 2.0, "S1", "C1");
+            dataset.add(3.0, 4.0, "S1", "C2");
+            CategoryPlot plot = new CategoryPlot(dataset, 
+                    new CategoryAxis("Category"), new NumberAxis("Value"), 
+                    new StatisticalBarRenderer());
+            JFreeChart chart = new JFreeChart(plot);
+            /* BufferedImage image = */ chart.createBufferedImage(300, 200, 
+                    null);
+            success = true;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            success = false;
+        }
+        assertTrue(success);
+    }
+public void testDrawWithNullInfo() {
+        boolean success = false;
+        try {
+            DefaultStatisticalCategoryDataset dataset 
+                = new DefaultStatisticalCategoryDataset();
+            dataset.add(1.0, 2.0, "S1", "C1");
+            dataset.add(3.0, 4.0, "S1", "C2");
+            CategoryPlot plot = new CategoryPlot(dataset, 
+                    new CategoryAxis("Category"), new NumberAxis("Value"), 
+                    new StatisticalLineAndShapeRenderer());
+            JFreeChart chart = new JFreeChart(plot);
+            /* BufferedImage image = */ chart.createBufferedImage(300, 200, 
+                    null);
+            success = true;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            success = false;
+        }
+        assertTrue(success);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+protected AxisState drawLabel(String label, Graphics2D g2, 
+            Rectangle2D plotArea, Rectangle2D dataArea, RectangleEdge edge, 
+            AxisState state, PlotRenderingInfo plotState) {
+
+        // it is unlikely that 'state' will be null, but check anyway...
+        if (state == null) {
+            throw new IllegalArgumentException("Null 'state' argument.");
+        }
+        
+        if ((label == null) || (label.equals(""))) {
+            return state;
+        }
+
+        Font font = getLabelFont();
+        RectangleInsets insets = getLabelInsets();
+        g2.setFont(font);
+        g2.setPaint(getLabelPaint());
+        FontMetrics fm = g2.getFontMetrics();
+        Rectangle2D labelBounds = TextUtilities.getTextBounds(label, g2, fm);
+        Shape hotspot = null;
+        
+        if (edge == RectangleEdge.TOP) {
+            AffineTransform t = AffineTransform.getRotateInstance(
+                    getLabelAngle(), labelBounds.getCenterX(), 
+                    labelBounds.getCenterY());
+            Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+            labelBounds = rotatedLabelBounds.getBounds2D();
+            float w = (float) labelBounds.getWidth();
+            float h = (float) labelBounds.getHeight();
+            float labelx = (float) dataArea.getCenterX();
+            float labely = (float) (state.getCursor() - insets.getBottom() 
+                    - h / 2.0);
+            TextUtilities.drawRotatedString(label, g2, labelx, labely, 
+                    TextAnchor.CENTER, getLabelAngle(), TextAnchor.CENTER);
+            hotspot = new Rectangle2D.Float(labelx - w / 2.0f, 
+                    labely - h / 2.0f, w, h);
+            state.cursorUp(insets.getTop() + labelBounds.getHeight() 
+                    + insets.getBottom());
+        }
+        else if (edge == RectangleEdge.BOTTOM) {
+            AffineTransform t = AffineTransform.getRotateInstance(
+                    getLabelAngle(), labelBounds.getCenterX(), 
+                    labelBounds.getCenterY());
+            Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+            labelBounds = rotatedLabelBounds.getBounds2D();
+            float w = (float) labelBounds.getWidth();
+            float h = (float) labelBounds.getHeight();
+            float labelx = (float) dataArea.getCenterX();
+            float labely = (float) (state.getCursor() + insets.getTop() 
+                    + h / 2.0);
+            TextUtilities.drawRotatedString(label, g2, labelx, labely, 
+                    TextAnchor.CENTER, getLabelAngle(), TextAnchor.CENTER);
+            hotspot = new Rectangle2D.Float(labelx - w / 2.0f, 
+                    labely - h / 2.0f, w, h);
+            state.cursorDown(insets.getTop() + labelBounds.getHeight() 
+                    + insets.getBottom());
+        }
+        else if (edge == RectangleEdge.LEFT) {
+            AffineTransform t = AffineTransform.getRotateInstance(
+                    getLabelAngle() - Math.PI / 2.0, labelBounds.getCenterX(), 
+                    labelBounds.getCenterY());
+            Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+            labelBounds = rotatedLabelBounds.getBounds2D();
+            float w = (float) labelBounds.getWidth();
+            float h = (float) labelBounds.getHeight();
+            float labelx = (float) (state.getCursor() - insets.getRight() 
+                    - w / 2.0);
+            float labely = (float) dataArea.getCenterY();
+            TextUtilities.drawRotatedString(label, g2, labelx, labely, 
+                    TextAnchor.CENTER, getLabelAngle() - Math.PI / 2.0, 
+                    TextAnchor.CENTER);
+            hotspot = new Rectangle2D.Float(labelx - w / 2.0f, 
+                    labely - h / 2.0f, w, h);
+            state.cursorLeft(insets.getLeft() + labelBounds.getWidth() 
+                    + insets.getRight());
+        }
+        else if (edge == RectangleEdge.RIGHT) {
+
+            AffineTransform t = AffineTransform.getRotateInstance(
+                    getLabelAngle() + Math.PI / 2.0, 
+                    labelBounds.getCenterX(), labelBounds.getCenterY());
+            Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+            labelBounds = rotatedLabelBounds.getBounds2D();
+            float w = (float) labelBounds.getWidth();
+            float h = (float) labelBounds.getHeight();
+            float labelx = (float) (state.getCursor() 
+                            + insets.getLeft() + w / 2.0);
+            float labely = (float) (dataArea.getY() + dataArea.getHeight() 
+                    / 2.0);
+            TextUtilities.drawRotatedString(label, g2, labelx, labely, 
+                    TextAnchor.CENTER, getLabelAngle() + Math.PI / 2.0, 
+                    TextAnchor.CENTER);
+            hotspot = new Rectangle2D.Float(labelx - w / 2.0f, 
+                    labely - h / 2.0f, w, h);
+            state.cursorRight(insets.getLeft() + labelBounds.getWidth() 
+                    + insets.getRight());
+
+        }
+        if (plotState != null && hotspot != null) {
+            ChartRenderingInfo owner = plotState.getOwner();
+                EntityCollection entities = owner.getEntityCollection();
+                if (entities != null) {
+                    entities.add(new AxisLabelEntity(this, hotspot, 
+                            this.labelToolTip, this.labelURL));
+                }
+        }
+        return state;
+
+    }
+```

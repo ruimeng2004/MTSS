@@ -1,0 +1,12 @@
+   /**
+   * Given a node, get a human-readable name for the type of that node so
+   * that will be easy for the programmer to find the original declaration.
+   *
+   * For example, if SubFoo's property "bar" might have the human-readable
+   * name "Foo.prototype.bar".
+   *
+   * @param n The node.
+   * @param dereference If true, the type of the node will be dereferenced
+   *     to an Object type, if possible.
+   */
+String getReadableJSTypeName(Node n,boolean dereference)

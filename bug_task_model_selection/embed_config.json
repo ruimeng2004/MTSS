@@ -1,0 +1,14 @@
+{
+  "base_url": "https://llm.eulerai.au",
+  "model": "text-embedding-v4",
+
+  "api_key": "sk-EVqrnAQ1GAFr3JBXloBxJQ",
+  "api_key_env": "BAILIAN_API_KEY",
+
+  "proxy": "bailian",
+
+  "items": "bug_task_model_selection/data/artifacts/items.jsonl",
+  "out": "bug_task_model_selection/data/embeddings/embeddings.jsonl",
+
+  "limit": 0
+}

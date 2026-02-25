@@ -1,0 +1,7 @@
+   This function has no comment.
+   This function has no comment.
+   /**
+     * Convenience method for converting contents of the buffer
+     * into a {@link BigDecimal}.
+     */
+public BigDecimal contentsAsDecimal()

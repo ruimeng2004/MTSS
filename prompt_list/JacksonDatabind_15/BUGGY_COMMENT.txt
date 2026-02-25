@@ -1,0 +1,38 @@
+   /**
+     * Helper method that can be used to see if specified property is annotated
+     * to indicate use of a converter for property value (in case of container types,
+     * it is container type itself, not key or content type).
+     * 
+     * @since 2.2
+     */
+protected JsonSerializer<Object> findConvertingSerializer(SerializerProvider provider,BeanPropertyWriter prop)
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   /**
+     * Main serializer constructor method. We will have to be careful
+     * with respect to ordering of various method calls: essentially
+     * we want to reliably figure out which classes are standard types,
+     * and which are beans. The problem is that some bean Classes may
+     * implement standard interfaces (say, {@link java.lang.Iterable}.
+     *<p>
+     * Note: sub-classes may choose to complete replace implementation,
+     * if they want to alter priority of serializer lookups.
+     */
+@Override
+    @SuppressWarnings("unchecked")
+    public JsonSerializer<Object> createSerializer(SerializerProvider prov,JavaType origType)
+   This function has no comment.
+   /**
+     * Helper method that can be used to see if specified property has annotation
+     * indicating that a converter is to be used for contained values (contents
+     * of structured types; array/List/Map values)
+     * 
+     * @param existingSerializer (optional) configured content
+     *    serializer if one already exists.
+     * 
+     * @since 2.2
+     */
+protected JsonSerializer<?> findConvertingContentSerializer(SerializerProvider provider,BeanProperty prop,JsonSerializer<?> existingSerializer)

@@ -1,0 +1,9 @@
+   This function has no comment.
+   This function has no comment.
+   /**
+   * Creates a node representing a qualified name.
+   *
+   * @param name A qualified name (e.g. "foo" or "foo.bar.baz")
+   * @return A NAME or GETPROP node
+   */
+public static Node newQualifiedNameNodeDeclaration(CodingConvention convention,String name,Node value,JSDocInfo info)

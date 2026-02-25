@@ -1,0 +1,11 @@
+```java
+static Type getSupertype(Type context, Class<?> contextRawType, Class<?> supertype) {
+    // Check if the superclass or interface is assignable from the context raw type
+    if (!supertype.isAssignableFrom(contextRawType)) {
+        throw new IllegalArgumentException(supertype.getName() + " is not a supertype of " + contextRawType.getName());
+    }
+    // Resolve and return the generic supertype
+    return resolve(context, contextRawType,
+        $Gson$Types.getGenericSupertype(context, contextRawType, supertype));
+}
+```

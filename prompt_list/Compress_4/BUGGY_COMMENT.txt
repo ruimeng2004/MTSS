@@ -1,0 +1,32 @@
+   /**
+     * Closes this output stream and releases any system resources
+     * associated with the stream.
+     *
+     * @exception  IOException  if an I/O error occurs.
+     */
+public void close()
+   /**
+     * Closes the CPIO output stream as well as the stream being filtered.
+     * 
+     * @throws IOException
+     *             if an I/O error has occurred or if a CPIO file error has
+     *             occurred
+     */
+public void close()
+   /**
+     * Performs all changes collected in this ChangeSet on the input stream and
+     * streams the result to the output stream. Perform may be called more than once.
+     * 
+     * This method finishes the stream, no other entries should be added
+     * after that.
+     * 
+     * @param in
+     *            the InputStream to perform the changes on
+     * @param out
+     *            the resulting OutputStream with all modifications
+     * @throws IOException
+     *             if an read/write error occurs
+     * @return the results of this operation
+     */
+public ChangeSetResults perform(ArchiveInputStream in,ArchiveOutputStream out)
+   This function has no comment.

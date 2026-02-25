@@ -1,0 +1,7 @@
+   /**
+   * Determines whether the given value may be assigned to a define.
+   *
+   * @param val The value being assigned.
+   * @param defines The list of names of existing defines.
+   */
+static boolean isValidDefineValue(Node val,Set<String> defines)

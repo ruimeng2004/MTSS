@@ -1,0 +1,199 @@
+### Buggy function comment:
+   /**
+     * Determines whether a qualified name is inferred.
+     * NOTE(nicksantos): Determining whether a property is declared or not
+     * is really really obnoxious.
+     *
+     * The problem is that there are two (equally valid) coding styles:
+     *
+     * (function() {
+     *   /* The authoritative definition of goog.bar. /
+     *   goog.bar = function() {};
+     * })();
+     *
+     * function f() {
+     *   goog.bar();
+     *   /* Reset goog.bar to a no-op. /
+     *   goog.bar = function() {};
+     * }
+     *
+     * In a dynamic language with first-class functions, it's very difficult
+     * to know which one the user intended without looking at lots of
+     * contextual information (the second example demonstrates a small case
+     * of this, but there are some really pathological cases as well).
+     *
+     * The current algorithm checks if either the declaration has
+     * JsDoc type information, or @const with a known type,
+     * or a function literal with a name we haven't seen before.
+     */
+private boolean isQualifiedNameInferred(String qName,Node n,JSDocInfo info,Node rhsValue,JSType valueType)
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected a warning
+junit.framework.ComparisonFailure: expected:<[function (this:Window, ?): undefined]> but was:<[?]>
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+public void testIssue1023() throws Exception {
+    testTypes(
+        "/** @constructor */" +
+        "function F() {}" +
+        "(function () {" +
+        "  F.prototype = {" +
+        "    /** @param {string} x */" +
+        "    bar: function (x) {  }" +
+        "  };" +
+        "})();" +
+        "(new F()).bar(true)",
+        "actual parameter 1 of F.prototype.bar does not match formal parameter\n" +
+        "found   : boolean\n" +
+        "required: string");
+  }
+public void testMethodBeforeFunction2() throws Exception {
+    testSame(
+        "var y = Window.prototype;" +
+        "Window.prototype = {alert: function(message) {}};" +
+        "/** @constructor */ function Window() {}\n" +
+        "var window = new Window(); \n" +
+        "var x = window;");
+    ObjectType x = (ObjectType) findNameType("x", globalScope);
+    assertEquals("Window", x.toString());
+    assertTrue(x.getImplicitPrototype().hasOwnProperty("alert"));
+    assertEquals("function (this:Window, ?): undefined",
+        x.getPropertyType("alert").toString());
+    assertFalse(x.isPropertyTypeDeclared("alert"));
+
+    ObjectType y = (ObjectType) findNameType("y", globalScope);
+    assertEquals("function (this:Window, ?): undefined",
+        y.getPropertyType("alert").toString());
+  }
+public void testPropertiesOnInterface2() throws Exception {
+    testSame("/** @interface */ var I = function() {};" +
+        "I.prototype = {baz: function(){}};" +
+        "/** @type {number} */ I.prototype.bar;");
+
+    Var i = globalScope.getVar("I");
+    assertEquals("function (this:I): ?", i.getType().toString());
+    assertTrue(i.getType().isInterface());
+
+    ObjectType iPrototype = (ObjectType)
+        ((ObjectType) i.getType()).getPropertyType("prototype");
+    assertEquals("I.prototype", iPrototype.toString());
+    assertTrue(iPrototype.isFunctionPrototypeType());
+
+    assertEquals("number", iPrototype.getPropertyType("bar").toString());
+
+    assertEquals("function (this:I): undefined",
+        iPrototype.getPropertyType("baz").toString());
+
+    assertEquals(iPrototype, globalScope.getVar("I.prototype").getType());
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private boolean isQualifiedNameInferred(
+        String qName, Node n, JSDocInfo info,
+        Node rhsValue, JSType valueType) {
+      if (valueType == null) {
+        return true;
+      }
+
+      // Prototype sets are always declared.
+
+      boolean inferred = true;
+      if (info != null) {
+        inferred = !(info.hasType()
+            || info.hasEnumParameterType()
+            || (isConstantSymbol(info, n) && valueType != null
+                && !valueType.isUnknownType())
+            || FunctionTypeBuilder.isFunctionTypeDeclaration(info));
+      }
+
+      if (inferred && rhsValue != null && rhsValue.isFunction()) {
+        if (info != null) {
+          return false;
+        } else if (!scope.isDeclared(qName, false) &&
+            n.isUnscopedQualifiedName()) {
+
+          // Check if this is in a conditional block.
+          // Functions assigned in conditional blocks are inferred.
+          for (Node current = n.getParent();
+               !(current.isScript() || current.isFunction());
+               current = current.getParent()) {
+            if (NodeUtil.isControlStructure(current)) {
+              return true;
+            }
+          }
+
+          // Check if this is assigned in an inner scope.
+          // Functions assigned in inner scopes are inferred.
+          AstFunctionContents contents =
+              getFunctionAnalysisResults(scope.getRootNode());
+          if (contents == null ||
+              !contents.getEscapedQualifiedNames().contains(qName)) {
+            return false;
+          }
+        }
+      }
+      return inferred;
+    }
+```
+```java
+private FlowScope traverseObjectLiteral(Node n, FlowScope scope) {
+    JSType type = n.getJSType();
+    Preconditions.checkNotNull(type);
+
+    for (Node name = n.getFirstChild(); name != null; name = name.getNext()) {
+      scope = traverse(name.getFirstChild(), scope);
+    }
+
+    // Object literals can be reflected on other types.
+    // See CodingConvention#getObjectLiteralCase and goog.object.reflect.
+    // Ignore these types of literals.
+    ObjectType objectType = ObjectType.cast(type);
+    if (objectType == null) {
+      return scope;
+    }
+    boolean hasLendsName = n.getJSDocInfo() != null &&
+        n.getJSDocInfo().getLendsName() != null;
+    if (objectType.hasReferenceName() && !hasLendsName) {
+      return scope;
+    }
+
+    String qObjName = NodeUtil.getBestLValueName(
+        NodeUtil.getBestLValue(n));
+    for (Node name = n.getFirstChild(); name != null;
+         name = name.getNext()) {
+      String memberName = NodeUtil.getObjectLitKeyName(name);
+      if (memberName != null) {
+        JSType rawValueType =  name.getFirstChild().getJSType();
+        JSType valueType = NodeUtil.getObjectLitKeyTypeFromValueType(
+            name, rawValueType);
+        if (valueType == null) {
+          valueType = unknownType;
+        }
+        objectType.defineInferredProperty(memberName, valueType, name);
+
+        // Do normal flow inference if this is a direct property assignment.
+        if (qObjName != null && name.isStringKey()) {
+          String qKeyName = qObjName + "." + memberName;
+          Var var = syntacticScope.getVar(qKeyName);
+          JSType oldType = var == null ? null : var.getType();
+          if (var != null && var.isTypeInferred()) {
+            var.setType(oldType == null ?
+                valueType : oldType.getLeastSupertype(oldType));
+          }
+
+          scope.inferQualifiedSlot(name, qKeyName,
+              oldType == null ? unknownType : oldType,
+              valueType);
+        }
+      } else {
+        n.setJSType(unknownType);
+      }
+    }
+    return scope;
+  }
+```

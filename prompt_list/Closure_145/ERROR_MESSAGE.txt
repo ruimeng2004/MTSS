@@ -1,0 +1,2 @@
+junit.framework.ComparisonFailure: expected:<if(e1)[{A:function goo(){return true}]}> but was:<if(e1)[A:function goo(){return true]}>
+junit.framework.ComparisonFailure: expected:<if(x)[{A:do foo();while(y)}]> but was:<if(x)[A:do foo();while(y)]>

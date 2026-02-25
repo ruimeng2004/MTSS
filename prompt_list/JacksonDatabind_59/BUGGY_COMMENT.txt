@@ -1,0 +1,8 @@
+   /**
+     * Factory method for creating a subtype of given base type, as defined
+     * by specified subclass; but retaining generic type information if any.
+     * Can be used, for example, to get equivalent of "HashMap&lt;String,Integer&gt;"
+     * from "Map&lt;String,Integer&gt;" by giving <code>HashMap.class</code>
+     * as subclass.
+     */
+public JavaType constructSpecializedType(JavaType baseType,Class<?> subclass)

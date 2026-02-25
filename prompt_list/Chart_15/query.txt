@@ -1,0 +1,75 @@
+### Buggy function comment:
+   /**
+     * Initialises the drawing procedure.  This method will be called before 
+     * the first item is rendered, giving the plot an opportunity to initialise
+     * any state information it wants to maintain.
+     *
+     * @param g2  the graphics device.
+     * @param plotArea  the plot area (<code>null</code> not permitted).
+     * @param plot  the plot.
+     * @param index  the secondary index (<code>null</code> for primary 
+     *               renderer).
+     * @param info  collects chart rendering information for return to caller.
+     * 
+     * @return A state object (maintains state information relevant to one 
+     *         chart drawing).
+     */
+public PiePlotState initialise(Graphics2D g2,Rectangle2D plotArea,PiePlot plot,Integer index,PlotRenderingInfo info)
+   /**
+     * Returns the maximum explode percent.
+     * 
+     * @return The percent.
+     */
+public double getMaximumExplodePercent()
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+public void testDrawWithNullDataset() {
+        JFreeChart chart = ChartFactory.createPieChart3D("Test", null, true, 
+                false, false);
+        boolean success = false;
+        try {
+            BufferedImage image = new BufferedImage(200 , 100, 
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = image.createGraphics();
+            chart.draw(g2, new Rectangle2D.Double(0, 0, 200, 100), null, null);
+            g2.dispose();
+            success = true;
+        }
+        catch (Exception e) {
+            success = false;
+        }
+        assertTrue(success);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public PiePlotState initialise(Graphics2D g2, Rectangle2D plotArea,
+            PiePlot plot, Integer index, PlotRenderingInfo info) {
+     
+        PiePlotState state = new PiePlotState(info);
+        state.setPassesRequired(2);
+            state.setTotal(DatasetUtilities.calculatePieDatasetTotal(
+                    plot.getDataset()));
+        state.setLatestAngle(plot.getStartAngle());
+        return state;
+        
+    }
+```
+```java
+public double getMaximumExplodePercent() {
+        double result = 0.0;
+        Iterator iterator = this.dataset.getKeys().iterator();
+        while (iterator.hasNext()) {
+            Comparable key = (Comparable) iterator.next();
+            Number explode = (Number) this.explodePercentages.get(key);
+            if (explode != null) {
+                result = Math.max(result, explode.doubleValue());   
+            }
+        }
+        return result;
+    }
+```

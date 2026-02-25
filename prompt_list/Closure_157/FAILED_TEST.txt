@@ -1,0 +1,214 @@
+public void testObjectLit2() {
+    assertPrint("var x={1:1}", "var x={1:1}");
+    assertPrint("var x={'1':1}", "var x={1:1}");
+    assertPrint("var x={'1.0':1}", "var x={\"1.0\":1}");
+    assertPrint("var x={1.5:1}", "var x={\"1.5\":1}");
+
+  }
+public void testObjectLit3() {
+    assertPrint("var x={3E9:1}",
+                "var x={3E9:1}");
+    assertPrint("var x={'3000000000':1}", // More than 31 bits
+                "var x={3E9:1}");
+    assertPrint("var x={'3000000001':1}",
+                "var x={3000000001:1}");
+    assertPrint("var x={'6000000001':1}",  // More than 32 bits
+                "var x={6000000001:1}");
+    assertPrint("var x={\"12345678901234567\":1}",  // More than 53 bits
+                "var x={\"12345678901234567\":1}");
+  }
+public void testGetter() {
+    assertPrint("var x = {}", "var x={}");
+    assertPrint("var x = {get a() {return 1}}", "var x={get a(){return 1}}");
+    assertPrint(
+      "var x = {get a() {}, get b(){}}",
+      "var x={get a(){},get b(){}}");
+
+    assertPrint(
+      "var x = {get 'a'() {return 1}}",
+      "var x={get \"a\"(){return 1}}");
+
+    assertPrint(
+      "var x = {get 1() {return 1}}",
+      "var x={get 1(){return 1}}");
+
+    assertPrint(
+      "var x = {get \"()\"() {return 1}}",
+      "var x={get \"()\"(){return 1}}");
+  }
+public void testSetter() {
+    assertPrint("var x = {}", "var x={}");
+    assertPrint(
+       "var x = {set a(y) {return 1}}",
+       "var x={set a(y){return 1}}");
+
+    assertPrint(
+      "var x = {get 'a'() {return 1}}",
+      "var x={get \"a\"(){return 1}}");
+
+    assertPrint(
+      "var x = {set 1(y) {return 1}}",
+      "var x={set 1(y){return 1}}");
+
+    assertPrint(
+      "var x = {set \"(x)\"(y) {return 1}}",
+      "var x={set \"(x)\"(y){return 1}}");
+  }
+public void testFunctionsNamesAndIds() {
+    final String jsSource =
+        "goog.widget = function(str) {\n" +
+        "  this.member_fn = function() {};\n" +
+        "  local_fn = function() {};\n" +
+        "  (function(a){})(1);\n" +
+        "}\n" +
+        "function foo() {\n" +
+        "  function bar() {}\n" +
+        "}\n" +
+        "literal = {f1 : function(){}, f2 : function(){}};\n" +
+        "goog.array.map(arr, function named(){});\n" +
+        "goog.array.map(arr, function(){});\n" +
+        "named_twice = function quax(){};\n" +
+        "recliteral = {l1 : {l2 : function(){}}};\n" +
+        "namedliteral = {n1 : function litnamed(){}};\n" +
+        "namedrecliteral = {n1 : {n2 : function reclitnamed(){}}};\n" +
+        "numliteral = {1 : function(){}};\n" +
+        "recnumliteral = {1 : {a : function(){}}};\n";
+
+    testSame(jsSource);
+
+    final Map<Integer, String> idNameMap = Maps.newLinkedHashMap();
+    int count = 0;
+    for (Node f : functionNames.getFunctionNodeList()) {
+      int id = functionNames.getFunctionId(f);
+      String name = functionNames.getFunctionName(f);
+      idNameMap.put(id, name);
+      count++;
+    }
+
+    assertEquals("Unexpected number of functions", 16, count);
+
+    final Map<Integer, String> expectedMap = Maps.newLinkedHashMap();
+
+    expectedMap.put(0, "goog.widget.member_fn");
+    expectedMap.put(1, "goog.widget::local_fn");
+    expectedMap.put(2, "goog.widget::<anonymous>");
+    expectedMap.put(3, "goog.widget");
+    expectedMap.put(4, "foo::bar");
+    expectedMap.put(5, "foo");
+    expectedMap.put(6, "literal.f1");
+    expectedMap.put(7, "literal.f2");
+    expectedMap.put(8, "named");
+    expectedMap.put(9, "<anonymous>");
+    expectedMap.put(10, "quax");
+    expectedMap.put(11, "recliteral.l1.l2");
+    expectedMap.put(12, "litnamed");
+    expectedMap.put(13, "reclitnamed");
+    expectedMap.put(14, "numliteral.__2");
+    expectedMap.put(15, "recnumliteral.__3.a");
+    assertEquals("Function id/name mismatch",
+                 expectedMap, idNameMap);
+  }
+public void testPrototypePropertiesAsObjLitKeys2() {
+    testSame("Bar.prototype = {get 2(){}}; bar[2];");
+
+    testSame("Bar.prototype = {get 'a'(){}}; bar['a'];");
+
+    test("Bar.prototype = {get getA(){}}; bar.getA;",
+         "Bar.prototype = {get a(){}}; bar.a;");
+  }
+public void testPrototypePropertiesAsObjLitKeys3() {
+    testSame("Bar.prototype = {set 2(x){}}; bar[2];");
+
+    testSame("Bar.prototype = {set 'a'(x){}}; bar['a'];");
+
+    test("Bar.prototype = {set getA(x){}}; bar.getA;",
+         "Bar.prototype = {set a(x){}}; bar.a;");
+  }
+public void testDefineNumber() throws Exception {
+    checkDefinitionsInJs(
+        "var a = 1",
+        ImmutableSet.of("DEF NAME a -> NUMBER"));
+
+    checkDefinitionsInJs(
+        "a = 1",
+        ImmutableSet.of("DEF NAME a -> NUMBER"));
+
+    checkDefinitionsInJs(
+        "a.b = 1",
+        ImmutableSet.of("DEF GETPROP a.b -> NUMBER"));
+
+    // getelem expressions are invisible to the definition gatherer.
+    checkDefinitionsInJs(
+        "a[\"b\"] = 1",
+        ImmutableSet.<String>of());
+
+    checkDefinitionsInJs(
+        "f().b = 1",
+        ImmutableSet.of("DEF GETPROP null -> NUMBER"));
+
+    checkDefinitionsInJs(
+        "({a : 1}); o.a",
+        ImmutableSet.of("DEF STRING null -> NUMBER",
+                        "USE GETPROP o.a -> [NUMBER]"));
+
+    // TODO(johnlenz): Fix this.
+    checkDefinitionsInJs(
+      "({'a' : 1}); o['a']",
+      ImmutableSet.<String>of("DEF STRING null -> NUMBER"));
+
+    checkDefinitionsInJs(
+      "({1 : 1}); o[1]",
+      ImmutableSet.<String>of("DEF STRING null -> NUMBER"));
+
+    checkDefinitionsInJs(
+        "var a = {b : 1}; a.b",
+        ImmutableSet.of("DEF NAME a -> <null>",
+                        "DEF STRING null -> NUMBER",
+                        "USE NAME a -> [<null>]",
+                        "USE GETPROP a.b -> [NUMBER]"));
+  }
+public void testObjectLiteral6() {
+    testNewParser("({1: true})",
+      "SCRIPT 0\n" +
+      "    EXPR_RESULT 0\n" +
+      "        OBJECTLIT 0 [parenthesized: true]\n" +
+      "            STRING 1 0 [quoted: 1]\n" +
+      "                TRUE 0\n");
+  }
+public void testObjectLiteral7() {
+    mode = LanguageMode.ECMASCRIPT5;
+
+    testNewParser("({get 1() {}})",
+      "SCRIPT 0\n" +
+      "    EXPR_RESULT 0\n" +
+      "        OBJECTLIT 0 [parenthesized: true]\n" +
+      "            GET 1 0 [quoted: 1]\n" +
+      "                FUNCTION  0\n" +
+      "                    NAME  0\n" +
+      "                    LP 0\n" +
+      "                    BLOCK 0\n");
+  }
+public void testObjectLiteral8() {
+    mode = LanguageMode.ECMASCRIPT5;
+
+    testNewParser("({set 1(a) {}})",
+      "SCRIPT 0\n" +
+      "    EXPR_RESULT 0\n" +
+      "        OBJECTLIT 0 [parenthesized: true]\n" +
+      "            SET 1 0 [quoted: 1]\n" +
+      "                FUNCTION  0\n" +
+      "                    NAME  0\n" +
+      "                    LP 0\n" +
+      "                        NAME a 0\n" +
+      "                    BLOCK 0\n");
+  }
+public void testObjectLiteralDoc1() {
+    Node n = parse("var x = {/** @type {number} */ 1: 2};");
+
+    Node objectLit = n.getFirstChild().getFirstChild().getFirstChild();
+    assertEquals(Token.OBJECTLIT, objectLit.getType());
+
+    Node number = objectLit.getFirstChild();
+    assertEquals(Token.STRING, number.getType());
+    assertNotNull(number.getJSDocInfo());
+  }

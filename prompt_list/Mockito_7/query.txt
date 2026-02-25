@@ -1,0 +1,20 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+org.mockito.exceptions.base.MockitoException: Raw extraction not supported for : 'null'
+
+### Failed JUnit tests:
+@Test
+  public void discoverDeepMockingOfGenerics() {
+    MyClass1 myMock1 = mock(MyClass1.class, RETURNS_DEEP_STUBS);
+    when(myMock1.getNested().getNested().returnSomething()).thenReturn("Hello World.");
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private void readTypeVariables() {
+            registerTypeVariablesOn(parameterizedType);
+        }
+```

@@ -1,0 +1,14 @@
+   /**
+   * Gets the boolean value of a node that represents a expression. This method
+   * effectively emulates the <code>Boolean()</code> JavaScript cast function.
+   * Note: unlike getBooleanValue this function does not return UNKNOWN
+   * for expressions with side-effects.
+   */
+static TernaryValue getImpureBooleanValue(Node n)
+   /**
+   * Gets the boolean value of a node that represents a literal. This method
+   * effectively emulates the <code>Boolean()</code> JavaScript cast function
+   * except it return UNKNOWN for known values with side-effects, use
+   * getExpressionBooleanValue if you don't care about side-effects.
+   */
+static TernaryValue getPureBooleanValue(Node n)

@@ -1,0 +1,7 @@
+   /**
+   * @param locals A predicate to apply to unknown local values.
+   * @return Whether the node is known to be a value that is not a reference
+   *     outside the expression scope.
+   */
+static boolean evaluatesToLocalValue(Node value,Predicate<Node> locals)
+   This function has no comment.

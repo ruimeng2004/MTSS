@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expected:<0.2578330049> but was:<0.257819926636807>
+junit.framework.AssertionFailedError: expected:<11.4121122022341> but was:<11.41300466147456>

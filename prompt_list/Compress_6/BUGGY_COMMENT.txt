@@ -1,0 +1,9 @@
+   /**
+     * Creates a new zip entry with the specified name.
+     * @param name the name of the entry
+     */
+public ZipArchiveEntry(String name)
+   /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+public boolean equals(Object obj)

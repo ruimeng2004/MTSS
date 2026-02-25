@@ -1,0 +1,7 @@
+   /**
+     * Sets the values of Options using the values in <code>properties</code>.
+     *
+     * @param properties The value properties to be processed.
+     */
+private void handleProperties(Properties properties)
+   This function has no comment.

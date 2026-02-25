@@ -1,0 +1,13 @@
+   /**
+   * Check whether there's any property conflict for for a particular super
+   * interface
+   * @param t The node traversal object that supplies context
+   * @param n The node being visited
+   * @param functionName The function name being checked
+   * @param properties The property names in the super interfaces that have
+   * been visited
+   * @param currentProperties The property names in the super interface
+   * that have been visited
+   * @param interfaceType The super interface that is being visited
+   */
+private void checkInterfaceConflictProperties(NodeTraversal t,Node n,String functionName,HashMap<String, ObjectType> properties,HashMap<String, ObjectType> currentProperties,ObjectType interfaceType)

@@ -1,0 +1,4 @@
+   /**
+   * @see #findCalledFunctions(Node)
+   */
+private void findCalledFunctions(Node node,Set<String> changed)

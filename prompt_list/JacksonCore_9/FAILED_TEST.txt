@@ -1,0 +1,12 @@
+public void testGetValueAsTextBytes() throws Exception
+    {
+        JsonFactory f = new JsonFactory();
+        _testGetValueAsText(f, true, false);
+        _testGetValueAsText(f, true, true);
+    }
+public void testGetValueAsTextChars() throws Exception
+    {
+        JsonFactory f = new JsonFactory();
+        _testGetValueAsText(f, false, false);
+        _testGetValueAsText(f, false, true);
+    }

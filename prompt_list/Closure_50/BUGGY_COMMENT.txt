@@ -1,0 +1,4 @@
+   /**
+   * Try to fold an array join: ['a', 'b', 'c'].join('') -> 'abc';
+   */
+private Node tryFoldArrayJoin(Node n)

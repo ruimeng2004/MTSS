@@ -1,0 +1,14 @@
+public void testIssue182a() {
+    testFailure("var NS = {read: function() { return this.foo; }};");
+  }
+public void testIssue182b() {
+    testFailure("var NS = {write: function() { this.foo = 3; }};");
+  }
+public void testValueWithInnerFn() {
+    testChecks("/** @param {number} i */ function f(i) { function g() {} }",
+        "function f(i) {" +
+        "  function g() {}" +
+        "  jscomp.typecheck.checkType(i, " +
+        "      [jscomp.typecheck.valueChecker('number')]);" +
+        "}");
+  }

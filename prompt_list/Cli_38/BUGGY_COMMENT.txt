@@ -1,0 +1,6 @@
+   /**
+     * Tells if the token looks like a short option.
+     * 
+     * @param token
+     */
+private boolean isShortOption(String token)

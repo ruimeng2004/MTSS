@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: option g not FileInputStream
+junit.framework.AssertionFailedError: option f parsed expected null, but was:<non-existing.file>

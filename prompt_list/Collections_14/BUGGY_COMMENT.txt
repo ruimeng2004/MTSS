@@ -1,0 +1,10 @@
+   /**
+     * Overrides convertKey() from {@link AbstractHashedMap} to convert keys to 
+     * lower case.
+     * <p>
+     * Returns {@link AbstractHashedMap#NULL} if key is null.
+     * 
+     * @param key  the key convert
+     * @return the converted key
+     */
+protected Object convertKey(Object key)

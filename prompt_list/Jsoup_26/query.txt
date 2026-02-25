@@ -1,0 +1,36 @@
+### Buggy function comment:
+   /**
+     Creates a new, clean document, from the original dirty document, containing only elements allowed by the whitelist.
+     The original document is not modified. Only elements from the dirt document's <code>body</code> are used.
+     @param dirtyDocument Untrusted base document to clean.
+     @return cleaned document.
+     */
+public Document clean(Document dirtyDocument)
+
+
+### Error message from JUnit test:
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+@Test public void handlesFramesets() {
+        String dirty = "<html><head><script></script><noscript></noscript></head><frameset><frame src=\"foo\" /><frame src=\"foo\" /></frameset></html>";
+        String clean = Jsoup.clean(dirty, Whitelist.basic());
+        assertEquals("", clean); // nothing good can come out of that
+
+        Document dirtyDoc = Jsoup.parse(dirty);
+        Document cleanDoc = new Cleaner(Whitelist.basic()).clean(dirtyDoc);
+        assertFalse(cleanDoc == null);
+        assertEquals(0, cleanDoc.body().childNodes().size());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public Document clean(Document dirtyDocument) {
+        Validate.notNull(dirtyDocument);
+
+        Document clean = Document.createShell(dirtyDocument.baseUri());
+            copySafeNodes(dirtyDocument.body(), clean.body());
+
+        return clean;
+    }
+```

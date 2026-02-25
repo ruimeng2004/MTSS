@@ -1,0 +1,40 @@
+### Buggy function comment:
+   /**
+     Remove an attribute by key. <b>Case insensitive.</b>
+     @param key attribute key to remove
+     */
+public void removeIgnoreCase(String key)
+
+
+### Error message from JUnit test:
+java.util.ConcurrentModificationException
+
+### Failed JUnit tests:
+@Test
+    public void testChainedRemoveAttributes() {
+        String html = "<a one two three four>Text</a>";
+        Document doc = Jsoup.parse(html);
+        Element a = doc.select("a").first();
+        a
+            .removeAttr("zero")
+            .removeAttr("one")
+            .removeAttr("two")
+            .removeAttr("three")
+            .removeAttr("four")
+            .removeAttr("five");
+        assertEquals("<a>Text</a>", a.outerHtml());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public void removeIgnoreCase(String key) {
+        Validate.notEmpty(key);
+        if (attributes == null)
+            return;
+        for (Iterator<String> it = attributes.keySet().iterator(); it.hasNext(); ) {
+            String attrKey = it.next();
+            if (attrKey.equalsIgnoreCase(key))
+                attributes.remove(attrKey);
+        }
+    }
+```

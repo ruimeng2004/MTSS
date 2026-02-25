@@ -1,0 +1,14 @@
+   /**
+     * Returns the result of multiplying this by the vector <code>v</code>.
+     *
+     * @param v the vector to operate on
+     * @return this*v
+     * @throws IllegalArgumentException if columnDimension != v.size()
+     */
+public BigDecimal[] operate(BigDecimal[] v)
+   /**
+     * @param v vector to operate on
+     * @throws IllegalArgumentException if columnDimension != v.length
+     * @return resulting vector
+     */
+public double[] operate(double[] v)

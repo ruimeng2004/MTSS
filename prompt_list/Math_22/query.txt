@@ -1,0 +1,46 @@
+### Buggy function comment:
+   /** {@inheritDoc} */
+public boolean isSupportLowerBoundInclusive()
+   /** {@inheritDoc} */
+public boolean isSupportUpperBoundInclusive()
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<false> but was:<true>
+junit.framework.AssertionFailedError: expected:<true> but was:<false>
+
+### Failed JUnit tests:
+@Test
+    public void testIsSupportLowerBoundInclusive() {
+        final double lowerBound = distribution.getSupportLowerBound();
+        double result = Double.NaN;
+        result = distribution.density(lowerBound);
+        Assert.assertEquals(
+                !Double.isInfinite(lowerBound) && !Double.isNaN(result) &&
+                !Double.isInfinite(result),
+                distribution.isSupportLowerBoundInclusive());
+         
+    }
+    @Test
+    public void testIsSupportUpperBoundInclusive() {
+        final double upperBound = distribution.getSupportUpperBound();
+        double result = Double.NaN;
+        result = distribution.density(upperBound);
+        Assert.assertEquals(
+                !Double.isInfinite(upperBound) && !Double.isNaN(result) &&
+                !Double.isInfinite(result),
+                distribution.isSupportUpperBoundInclusive());
+         
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public boolean isSupportLowerBoundInclusive() {
+        return true;
+    }
+```
+```java
+public boolean isSupportUpperBoundInclusive() {
+        return false;
+    }
+```

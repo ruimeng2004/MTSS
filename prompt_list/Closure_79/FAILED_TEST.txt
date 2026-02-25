@@ -1,0 +1,28 @@
+public void testIssue() {
+    super.allowExternsChanges(true);
+    test("var a,b,c; var a,b", "a(), b()", "a(), b()", null, null);
+  }
+public void testPropReferenceInExterns1() {
+    testSame("asdf.foo;", "var asdf;",
+        VarCheck.UNDEFINED_EXTERN_VAR_ERROR);
+  }
+public void testPropReferenceInExterns3() {
+    testSame("asdf.foo;", "var asdf;",
+        VarCheck.UNDEFINED_EXTERN_VAR_ERROR);
+
+    externValidationErrorLevel = CheckLevel.ERROR;
+    test(
+        "asdf.foo;", "var asdf;", "",
+         VarCheck.UNDEFINED_EXTERN_VAR_ERROR, null);
+
+    externValidationErrorLevel = CheckLevel.OFF;
+    test("asdf.foo;", "var asdf;", "var asdf;", null, null);
+  }
+public void testVarReferenceInExterns() {
+    testSame("asdf;", "var asdf;",
+        VarCheck.NAME_REFERENCE_IN_EXTERNS_ERROR);
+  }
+public void testCallInExterns() {
+    testSame("yz();", "function yz() {}",
+        VarCheck.NAME_REFERENCE_IN_EXTERNS_ERROR);
+  }

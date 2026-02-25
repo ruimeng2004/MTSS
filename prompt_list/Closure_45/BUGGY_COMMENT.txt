@@ -1,0 +1,21 @@
+   /**
+   * Look at all the property assigns to all variables.
+   * These may or may not count as references. For example,
+   *
+   * <code>
+   * var x = {};
+   * x.foo = 3; // not a reference.
+   * var y = foo();
+   * y.foo = 3; // is a reference.
+   * </code>
+   *
+   * Interpreting assignments could mark a variable as referenced that
+   * wasn't referenced before, in order to keep it alive. Because we find
+   * references by lazily traversing subtrees, marking a variable as
+   * referenced could trigger new traversals of new subtrees, which could
+   * find new references.
+   *
+   * Therefore, this interpretation needs to be run to a fixed point.
+   */
+private void interpretAssigns()
+   This function has no comment.

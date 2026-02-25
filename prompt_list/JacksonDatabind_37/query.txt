@@ -1,0 +1,38 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "name" (class com.fasterxml.jackson.databind.objectid.Objecid1083Test$JsonMapSchema), not marked as ignorable (0 known properties: ])
+
+### Failed JUnit tests:
+public void testSimple() throws Exception {
+          final ObjectMapper mapper = new ObjectMapper();
+          final String json = aposToQuotes("{'schemas': [{\n"
+              + "  'name': 'FoodMart'\n"
+              + "}]}\n");
+          mapper.readValue(json, JsonRoot.class);
+      }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+    protected JavaType _narrow(Class<?> subclass)
+    {
+        if (_class == subclass) {
+            return this;
+        }
+        // Should we check that there is a sub-class relationship?
+        // 15-Jan-2016, tatu: Almost yes, but there are some complications with
+        //    placeholder values, so no.
+        /*
+        if (!_class.isAssignableFrom(subclass)) {
+            throw new IllegalArgumentException("Class "+subclass.getName()+" not sub-type of "
+                    +_class.getName());
+        }
+        */
+        // 15-Jan-2015, tatu: Not correct; should really re-resolve...
+        return new SimpleType(subclass, _bindings, _superClass, _superInterfaces,
+                _valueHandler, _typeHandler, _asStatic);
+    }
+```

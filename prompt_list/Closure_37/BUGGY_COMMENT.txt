@@ -1,0 +1,5 @@
+   This function has no comment.
+   /**
+   * Traverses a function.
+   */
+private void traverseFunction(Node n,Node parent)

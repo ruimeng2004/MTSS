@@ -1,0 +1,5 @@
+   /**
+     * {@inheritDoc}
+     */
+@Override
+    public int translate(CharSequence input,int index,Writer out)

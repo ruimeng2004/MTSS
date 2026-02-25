@@ -1,0 +1,5 @@
+   /**
+     * Attempt to cast this comment to an XML Declaration note.
+     * @return an XML declaration if it could be parsed as one, null otherwise.
+     */
+public XmlDeclaration asXmlDeclaration()

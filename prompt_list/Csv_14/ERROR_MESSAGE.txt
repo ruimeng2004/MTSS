@@ -1,0 +1,6 @@
+junit.framework.AssertionFailedError: expected:<[\]> but was:<["\"]>
+junit.framework.AssertionFailedError: expected:<[\\]> but was:<["\\"]>
+junit.framework.AssertionFailedError: expected:<[\\]> but was:<["\\"]>
+junit.framework.AssertionFailedError: expected:<[\]> but was:<['\']>
+junit.framework.AssertionFailedError: expected:<[\\]> but was:<['\\']>
+junit.framework.AssertionFailedError: expected:<[\\]> but was:<['\\']>

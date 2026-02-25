@@ -1,0 +1,9 @@
+   /**
+     * Walks through all recorded entries and adds the data available
+     * from the local file header.
+     *
+     * <p>Also records the offsets for the data to read from the
+     * entries.</p>
+     */
+private void resolveLocalFileHeaderData(Map<ZipArchiveEntry, NameAndComment>
+                                            entriesWithoutUTF8Flag)

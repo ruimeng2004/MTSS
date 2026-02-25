@@ -1,0 +1,5 @@
+   /**
+     * Add a value to the data
+     * @param value the value to add
+     */
+public void addValue(double value)

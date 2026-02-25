@@ -1,0 +1,10 @@
+   This function has no comment.
+   /**
+     * Whether this class is able to read the given entry.
+     *
+     * <p>May return false if it is set up to use encryption or a
+     * compression method that hasn't been implemented yet.</p>
+     * @since 1.1
+     */
+@Override
+    public boolean canReadEntryData(final ArchiveEntry ae)

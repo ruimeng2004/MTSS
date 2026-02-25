@@ -1,0 +1,3 @@
+java.lang.RuntimeException: --define flag syntax invalid: FOO="x'"
+junit.framework.AssertionFailedError:
+junit.framework.AssertionFailedError:

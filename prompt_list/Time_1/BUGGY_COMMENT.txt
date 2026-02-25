@@ -1,0 +1,18 @@
+   /**
+     * Always returns zero, indicating that sort order is not relevent.
+     *
+     * @return zero always
+     */
+public int compareTo(DurationField durationField)
+   /**
+     * Constructs a Partial with the specified fields and values.
+     * The fields must be specified in the order largest to smallest.
+     * <p>
+     * The constructor uses the specified chronology.
+     * 
+     * @param types  the types to create the partial from, not null
+     * @param values  the values to store, not null
+     * @param chronology  the chronology, null means ISO
+     * @throws IllegalArgumentException if the types or values are invalid
+     */
+public Partial(DateTimeFieldType[] types,int[] values,Chronology chronology)

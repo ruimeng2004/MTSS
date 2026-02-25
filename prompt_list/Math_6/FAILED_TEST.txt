@@ -1,0 +1,484 @@
+@Test
+    public void testTrivial() {
+        LinearProblem problem
+            = new LinearProblem(new double[][] { { 2 } }, new double[] { 3 });
+        NonLinearConjugateGradientOptimizer optimizer
+            = new NonLinearConjugateGradientOptimizer(NonLinearConjugateGradientOptimizer.Formula.POLAK_RIBIERE,
+                                                      new SimpleValueChecker(1e-6, 1e-6));
+        PointValuePair optimum
+            = optimizer.optimize(new MaxEval(100),
+                                 problem.getObjectiveFunction(),
+                                 problem.getObjectiveFunctionGradient(),
+                                 GoalType.MINIMIZE,
+                                 new InitialGuess(new double[] { 0 }));
+        Assert.assertEquals(1.5, optimum.getPoint()[0], 1.0e-10);
+        Assert.assertEquals(0.0, optimum.getValue(), 1.0e-10);
+
+        // Check that the number of iterations is updated (MATH-949).
+        Assert.assertTrue(optimizer.getIterations() > 0);
+    }
+@Test
+    public void testConstrainedRosen() {
+        double[] startPoint = point(DIM, 0.1);
+        double[] insigma = point(DIM, 0.1);
+        double[][] boundaries = boundaries(DIM, -1, 2);
+        PointValuePair expected =
+            new PointValuePair(point(DIM,1.0),0.0);
+        doTest(new Rosen(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, 2*LAMBDA, true, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+        doTest(new Rosen(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, 2*LAMBDA, false, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+    }
+@Test
+    public void testElliRotated() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new ElliRotated(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, true, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+        doTest(new ElliRotated(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, false, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+    }
+@Test
+    public void testEllipse() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new Elli(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, true, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+        doTest(new Elli(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, false, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+    }
+@Test
+    public void testTwoAxes() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new TwoAxes(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, 2*LAMBDA, true, 0, 1e-13,
+                1e-13, 1e-6, 200000, expected);
+        doTest(new TwoAxes(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, 2*LAMBDA, false, 0, 1e-13,
+                1e-8, 1e-3, 200000, expected);
+    }
+@Test
+    public void testCigar() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new Cigar(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, true, 0, 1e-13,
+                1e-13, 1e-6, 200000, expected);
+        doTest(new Cigar(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, false, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+    }
+@Test
+    @Retry(3)
+    public void testRosen() {
+        double[] startPoint = point(DIM,0.1);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,1.0),0.0);
+        doTest(new Rosen(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, true, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+        doTest(new Rosen(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, false, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+    }
+@Test
+    public void testRastrigin() {
+        double[] startPoint = point(DIM,0.1);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new Rastrigin(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, (int)(200*Math.sqrt(DIM)), true, 0, 1e-13,
+                1e-13, 1e-6, 200000, expected);
+        doTest(new Rastrigin(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, (int)(200*Math.sqrt(DIM)), false, 0, 1e-13,
+                1e-13, 1e-6, 200000, expected);
+    }
+@Test
+    public void testDiagonalRosen() {
+        double[] startPoint = point(DIM,0.1);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,1.0),0.0);
+        doTest(new Rosen(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, false, 1, 1e-13,
+                1e-10, 1e-4, 1000000, expected);
+     }
+@Test
+    public void testSsDiffPow() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new SsDiffPow(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, 10, true, 0, 1e-13,
+                1e-4, 1e-1, 200000, expected);
+        doTest(new SsDiffPow(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, 10, false, 0, 1e-13,
+                1e-4, 1e-1, 200000, expected);
+    }
+@Test
+    @Retry(3)
+    public void testMaximize() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),1.0);
+        doTest(new MinusElli(), startPoint, insigma, boundaries,
+                GoalType.MAXIMIZE, LAMBDA, true, 0, 1.0-1e-13,
+                2e-10, 5e-6, 100000, expected);
+        doTest(new MinusElli(), startPoint, insigma, boundaries,
+                GoalType.MAXIMIZE, LAMBDA, false, 0, 1.0-1e-13,
+                2e-10, 5e-6, 100000, expected);
+        boundaries = boundaries(DIM,-0.3,0.3); 
+        startPoint = point(DIM,0.1);
+        doTest(new MinusElli(), startPoint, insigma, boundaries,
+                GoalType.MAXIMIZE, LAMBDA, true, 0, 1.0-1e-13,
+                2e-10, 5e-6, 100000, expected);
+    }
+@Test
+    public void testAckley() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,1.0);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new Ackley(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, 2*LAMBDA, true, 0, 1e-13,
+                1e-9, 1e-5, 100000, expected);
+        doTest(new Ackley(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, 2*LAMBDA, false, 0, 1e-13,
+                1e-9, 1e-5, 100000, expected);
+    }
+@Test
+    public void testCigTab() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.3);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new CigTab(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, true, 0, 1e-13,
+                1e-13, 5e-5, 100000, expected);
+        doTest(new CigTab(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, false, 0, 1e-13,
+                1e-13, 5e-5, 100000, expected);
+    }
+@Test
+    public void testDiffPow() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new DiffPow(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, 10, true, 0, 1e-13,
+                1e-8, 1e-1, 100000, expected);
+        doTest(new DiffPow(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, 10, false, 0, 1e-13,
+                1e-8, 2e-1, 100000, expected);
+    }
+@Test
+    public void testSphere() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new Sphere(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, true, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+        doTest(new Sphere(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, false, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+    }
+@Test
+    public void testTablet() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = null;
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new Tablet(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, true, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+        doTest(new Tablet(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, false, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+    }
+@Test
+    public void testCigarWithBoundaries() {
+        double[] startPoint = point(DIM,1.0);
+        double[] insigma = point(DIM,0.1);
+        double[][] boundaries = boundaries(DIM, -1e100, Double.POSITIVE_INFINITY);
+        PointValuePair expected =
+            new PointValuePair(point(DIM,0.0),0.0);
+        doTest(new Cigar(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, true, 0, 1e-13,
+                1e-13, 1e-6, 200000, expected);
+        doTest(new Cigar(), startPoint, insigma, boundaries,
+                GoalType.MINIMIZE, LAMBDA, false, 0, 1e-13,
+                1e-13, 1e-6, 100000, expected);
+    }
+@Test
+    public void testSumSinc() {
+        final MultivariateFunction func = new SumSincFunction(-1);
+
+        int dim = 2;
+        final double[] minPoint = new double[dim];
+        for (int i = 0; i < dim; i++) {
+            minPoint[i] = 0;
+        }
+
+        double[] init = new double[dim];
+
+        // Initial is minimum.
+        for (int i = 0; i < dim; i++) {
+            init[i] = minPoint[i];
+        }
+        doTest(func, minPoint, init, GoalType.MINIMIZE, 1e-9, 1e-9);
+
+        // Initial is far from minimum.
+        for (int i = 0; i < dim; i++) {
+            init[i] = minPoint[i] + 3;
+        }
+        doTest(func, minPoint, init, GoalType.MINIMIZE, 1e-9, 1e-5);
+        // More stringent line search tolerance enhances the precision
+        // of the result.
+        doTest(func, minPoint, init, GoalType.MINIMIZE, 1e-9, 1e-9, 1e-7);
+    }
+@Test
+    public void testMaximize1() {
+        SimplexOptimizer optimizer = new SimplexOptimizer(1e-11, 1e-30);
+        final FourExtrema fourExtrema = new FourExtrema();
+
+        final PointValuePair optimum
+            = optimizer.optimize(new MaxEval(200),
+                                 new ObjectiveFunction(fourExtrema),
+                                 GoalType.MAXIMIZE,
+                                 new InitialGuess(new double[] { -3.0, 0.0 }),
+                                 new MultiDirectionalSimplex(new double[] { 0.2, 0.2 }));
+        Assert.assertEquals(fourExtrema.xM, optimum.getPoint()[0], 7e-7);
+        Assert.assertEquals(fourExtrema.yM, optimum.getPoint()[1], 3e-7);
+        Assert.assertEquals(fourExtrema.valueXmYm, optimum.getValue(), 2e-14);
+        Assert.assertTrue(optimizer.getEvaluations() > 120);
+        Assert.assertTrue(optimizer.getEvaluations() < 150);
+
+        // Check that the number of iterations is updated (MATH-949).
+        Assert.assertTrue(optimizer.getIterations() > 0);
+    }
+@Test
+    public void testMaximize2() {
+        SimplexOptimizer optimizer = new SimplexOptimizer(new SimpleValueChecker(1e-15, 1e-30));
+        final FourExtrema fourExtrema = new FourExtrema();
+
+        final PointValuePair optimum
+            = optimizer.optimize(new MaxEval(200),
+                                 new ObjectiveFunction(fourExtrema),
+                                 GoalType.MAXIMIZE,
+                                 new InitialGuess(new double[] { 1, 0 }),
+                                 new MultiDirectionalSimplex(new double[] { 0.2, 0.2 }));
+        Assert.assertEquals(fourExtrema.xP, optimum.getPoint()[0], 2e-8);
+        Assert.assertEquals(fourExtrema.yP, optimum.getPoint()[1], 3e-6);
+        Assert.assertEquals(fourExtrema.valueXpYp, optimum.getValue(), 2e-12);
+        Assert.assertTrue(optimizer.getEvaluations() > 180);
+        Assert.assertTrue(optimizer.getEvaluations() < 220);
+
+        // Check that the number of iterations is updated (MATH-949).
+        Assert.assertTrue(optimizer.getIterations() > 0);
+    }
+@Test
+    public void testMinimize1() {
+        SimplexOptimizer optimizer = new SimplexOptimizer(1e-11, 1e-30);
+        final FourExtrema fourExtrema = new FourExtrema();
+
+        final PointValuePair optimum
+            = optimizer.optimize(new MaxEval(200),
+                                 new ObjectiveFunction(fourExtrema),
+                                 GoalType.MINIMIZE,
+                                 new InitialGuess(new double[] { -3, 0 }),
+                                 new MultiDirectionalSimplex(new double[] { 0.2, 0.2 }));
+        Assert.assertEquals(fourExtrema.xM, optimum.getPoint()[0], 4e-6);
+        Assert.assertEquals(fourExtrema.yP, optimum.getPoint()[1], 3e-6);
+        Assert.assertEquals(fourExtrema.valueXmYp, optimum.getValue(), 8e-13);
+        Assert.assertTrue(optimizer.getEvaluations() > 120);
+        Assert.assertTrue(optimizer.getEvaluations() < 150);
+
+        // Check that the number of iterations is updated (MATH-949).
+        Assert.assertTrue(optimizer.getIterations() > 0);
+    }
+@Test
+    public void testMinimize2() {
+        SimplexOptimizer optimizer = new SimplexOptimizer(1e-11, 1e-30);
+        final FourExtrema fourExtrema = new FourExtrema();
+
+        final PointValuePair optimum
+            = optimizer.optimize(new MaxEval(200),
+                                 new ObjectiveFunction(fourExtrema),
+                                 GoalType.MINIMIZE,
+                                 new InitialGuess(new double[] { 1, 0 }),
+                                 new MultiDirectionalSimplex(new double[] { 0.2, 0.2 }));
+        Assert.assertEquals(fourExtrema.xP, optimum.getPoint()[0], 2e-8);
+        Assert.assertEquals(fourExtrema.yM, optimum.getPoint()[1], 3e-6);
+        Assert.assertEquals(fourExtrema.valueXpYm, optimum.getValue(), 2e-12);
+        Assert.assertTrue(optimizer.getEvaluations() > 120);
+        Assert.assertTrue(optimizer.getEvaluations() < 150);
+
+        // Check that the number of iterations is updated (MATH-949).
+        Assert.assertTrue(optimizer.getIterations() > 0);
+    }
+@Test
+    public void testMaximize1() {
+        SimplexOptimizer optimizer = new SimplexOptimizer(1e-10, 1e-30);
+        final FourExtrema fourExtrema = new FourExtrema();
+
+        final PointValuePair optimum
+            = optimizer.optimize(new MaxEval(100),
+                                 new ObjectiveFunction(fourExtrema),
+                                 GoalType.MAXIMIZE,
+                                 new InitialGuess(new double[] { -3, 0 }),
+                                 new NelderMeadSimplex(new double[] { 0.2, 0.2 }));
+        Assert.assertEquals(fourExtrema.xM, optimum.getPoint()[0], 1e-5);
+        Assert.assertEquals(fourExtrema.yM, optimum.getPoint()[1], 3e-6);
+        Assert.assertEquals(fourExtrema.valueXmYm, optimum.getValue(), 3e-12);
+        Assert.assertTrue(optimizer.getEvaluations() > 60);
+        Assert.assertTrue(optimizer.getEvaluations() < 90);
+
+        // Check that the number of iterations is updated (MATH-949).
+        Assert.assertTrue(optimizer.getIterations() > 0);
+    }
+@Test
+    public void testMaximize2() {
+        SimplexOptimizer optimizer = new SimplexOptimizer(1e-10, 1e-30);
+        final FourExtrema fourExtrema = new FourExtrema();
+
+        final PointValuePair optimum
+            = optimizer.optimize(new MaxEval(100),
+                                 new ObjectiveFunction(fourExtrema),
+                                 GoalType.MAXIMIZE,
+                                 new InitialGuess(new double[] { 1, 0 }),
+                                 new NelderMeadSimplex(new double[] { 0.2, 0.2 }));
+        Assert.assertEquals(fourExtrema.xP, optimum.getPoint()[0], 4e-6);
+        Assert.assertEquals(fourExtrema.yP, optimum.getPoint()[1], 5e-6);
+        Assert.assertEquals(fourExtrema.valueXpYp, optimum.getValue(), 7e-12);
+        Assert.assertTrue(optimizer.getEvaluations() > 60);
+        Assert.assertTrue(optimizer.getEvaluations() < 90);
+
+        // Check that the number of iterations is updated (MATH-949).
+        Assert.assertTrue(optimizer.getIterations() > 0);
+    }
+@Test
+    public void testMinimize1() {
+        SimplexOptimizer optimizer = new SimplexOptimizer(1e-10, 1e-30);
+        final FourExtrema fourExtrema = new FourExtrema();
+
+        final PointValuePair optimum
+            = optimizer.optimize(new MaxEval(100),
+                                 new ObjectiveFunction(fourExtrema),
+                                 GoalType.MINIMIZE,
+                                 new InitialGuess(new double[] { -3, 0 }),
+                                 new NelderMeadSimplex(new double[] { 0.2, 0.2 }));
+        Assert.assertEquals(fourExtrema.xM, optimum.getPoint()[0], 2e-7);
+        Assert.assertEquals(fourExtrema.yP, optimum.getPoint()[1], 2e-5);
+        Assert.assertEquals(fourExtrema.valueXmYp, optimum.getValue(), 6e-12);
+        Assert.assertTrue(optimizer.getEvaluations() > 60);
+        Assert.assertTrue(optimizer.getEvaluations() < 90);
+
+        // Check that the number of iterations is updated (MATH-949).
+        Assert.assertTrue(optimizer.getIterations() > 0);
+    }
+@Test
+    public void testMinimize2() {
+        SimplexOptimizer optimizer = new SimplexOptimizer(1e-10, 1e-30);
+        final FourExtrema fourExtrema = new FourExtrema();
+
+        final PointValuePair optimum
+            = optimizer.optimize(new MaxEval(100),
+                                 new ObjectiveFunction(fourExtrema),
+                                 GoalType.MINIMIZE,
+                                 new InitialGuess(new double[] { 1, 0 }),
+                                 new NelderMeadSimplex(new double[] { 0.2, 0.2 }));
+        Assert.assertEquals(fourExtrema.xP, optimum.getPoint()[0], 5e-6);
+        Assert.assertEquals(fourExtrema.yM, optimum.getPoint()[1], 6e-6);
+        Assert.assertEquals(fourExtrema.valueXpYm, optimum.getValue(), 1e-11);
+        Assert.assertTrue(optimizer.getEvaluations() > 60);
+        Assert.assertTrue(optimizer.getEvaluations() < 90);
+
+        // Check that the number of iterations is updated (MATH-949).
+        Assert.assertTrue(optimizer.getIterations() > 0);
+    }
+    @Test
+    public void testGetIterations() {
+        AbstractLeastSquaresOptimizer optim = createOptimizer();
+        optim.optimize(new MaxEval(100), new Target(new double[] { 1 }),
+                       new Weight(new double[] { 1 }),
+                       new InitialGuess(new double[] { 3 }),
+                       new ModelFunction(new MultivariateVectorFunction() {
+                               @Override
+                               public double[] value(double[] point) {
+                                   return new double[] {
+                                       FastMath.pow(point[0], 4)
+                                   };
+                               }
+                           }),
+                       new ModelFunctionJacobian(new MultivariateMatrixFunction() {
+                               @Override
+                               public double[][] value(double[] point) {
+                                   return new double[][] {
+                                       { 0.25 * FastMath.pow(point[0], 3) }
+                                   };
+                               }
+                           }));
+
+        Assert.assertTrue(optim.getIterations() > 0);
+    }
+    @Test
+    public void testGetIterations() {
+        AbstractLeastSquaresOptimizer optim = createOptimizer();
+        optim.optimize(new MaxEval(100), new Target(new double[] { 1 }),
+                       new Weight(new double[] { 1 }),
+                       new InitialGuess(new double[] { 3 }),
+                       new ModelFunction(new MultivariateVectorFunction() {
+                               @Override
+                               public double[] value(double[] point) {
+                                   return new double[] {
+                                       FastMath.pow(point[0], 4)
+                                   };
+                               }
+                           }),
+                       new ModelFunctionJacobian(new MultivariateMatrixFunction() {
+                               @Override
+                               public double[][] value(double[] point) {
+                                   return new double[][] {
+                                       { 0.25 * FastMath.pow(point[0], 3) }
+                                   };
+                               }
+                           }));
+
+        Assert.assertTrue(optim.getIterations() > 0);
+    }

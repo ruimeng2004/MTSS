@@ -1,0 +1,1 @@
+junit.framework.ComparisonFailure: expected:<module$[]baz> but was:<module$[foo\]baz>

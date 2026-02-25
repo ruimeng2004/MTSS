@@ -1,0 +1,11 @@
+   /**
+     * Create an archive input stream from an input stream, autodetecting
+     * the archive type from the first few bytes of the stream. The InputStream
+     * must support marks, like BufferedInputStream.
+     * 
+     * @param in the input stream
+     * @return the archive input stream
+     * @throws ArchiveException if the archiver name is not known
+     * @throws IllegalArgumentException if the stream is null or does not support mark
+     */
+public ArchiveInputStream createArchiveInputStream(final InputStream in)

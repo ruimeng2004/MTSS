@@ -1,0 +1,26 @@
+   /**
+     * Iterates over the items in an {@link XYDataset} to find
+     * the range of x-values.
+     *
+     * @param dataset  the dataset (<code>null</code> not permitted).
+     * @param includeInterval  a flag that determines, for an
+     *          {@link IntervalXYDataset}, whether the x-interval or just the
+     *          x-value is used to determine the overall range.
+     *
+     * @return The range (possibly <code>null</code>).
+     */
+public static Range iterateDomainBounds(XYDataset dataset,boolean includeInterval)
+   /**
+     * Iterates over the data items of the xy dataset to find
+     * the range bounds.
+     *
+     * @param dataset  the dataset (<code>null</code> not permitted).
+     * @param includeInterval  a flag that determines, for an
+     *          {@link IntervalXYDataset}, whether the y-interval or just the
+     *          y-value is used to determine the overall range.
+     *
+     * @return The range (possibly <code>null</code>).
+     *
+     * @since 1.0.10
+     */
+public static Range iterateRangeBounds(XYDataset dataset,boolean includeInterval)

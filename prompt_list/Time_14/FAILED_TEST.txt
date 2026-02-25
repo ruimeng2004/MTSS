@@ -1,0 +1,48 @@
+public void testPlusMonths_int_negativeFromLeap() {
+        MonthDay test = new MonthDay(2, 29, ISOChronology.getInstanceUTC());
+        MonthDay result = test.plusMonths(-1);
+        MonthDay expected = new MonthDay(1, 29, ISOChronology.getInstance());
+        assertEquals(expected, result);
+    }
+public void testMinusDays_int_negativeFromLeap() {
+        MonthDay test = new MonthDay(2, 29, ISOChronology.getInstanceUTC());
+        MonthDay result = test.minusDays(-1);
+        MonthDay expected = new MonthDay(3, 1, ISOChronology.getInstance());
+        assertEquals(expected, result);
+    }
+public void testPlusMonths_int_fromLeap() {
+        MonthDay test = new MonthDay(2, 29, ISOChronology.getInstanceUTC());
+        MonthDay result = test.plusMonths(1);
+        MonthDay expected = new MonthDay(3, 29, ISOChronology.getInstance());
+        assertEquals(expected, result);
+    }
+public void testPlusMonths_int_negativeEndOfMonthAdjust() {
+        MonthDay test = new MonthDay(3, 31, ISOChronology.getInstanceUTC());
+        MonthDay result = test.plusMonths(-1);
+        MonthDay expected = new MonthDay(2, 29, ISOChronology.getInstance());
+        assertEquals(expected, result);
+    }
+public void testMinusMonths_int_endOfMonthAdjust() {
+        MonthDay test = new MonthDay(3, 31, ISOChronology.getInstanceUTC());
+        MonthDay result = test.minusMonths(1);
+        MonthDay expected = new MonthDay(2, 29, ISOChronology.getInstance());
+        assertEquals(expected, result);
+    }
+public void testMinusMonths_int_negativeFromLeap() {
+        MonthDay test = new MonthDay(2, 29, ISOChronology.getInstanceUTC());
+        MonthDay result = test.minusMonths(-1);
+        MonthDay expected = new MonthDay(3, 29, ISOChronology.getInstance());
+        assertEquals(expected, result);
+    }
+public void testMinusMonths_int_fromLeap() {
+        MonthDay test = new MonthDay(2, 29, ISOChronology.getInstanceUTC());
+        MonthDay result = test.minusMonths(1);
+        MonthDay expected = new MonthDay(1, 29, ISOChronology.getInstance());
+        assertEquals(expected, result);
+    }
+public void testPlusDays_int_fromLeap() {
+        MonthDay test = new MonthDay(2, 29, ISOChronology.getInstanceUTC());
+        MonthDay result = test.plusDays(1);
+        MonthDay expected = new MonthDay(3, 1, ISOChronology.getInstance());
+        assertEquals(expected, result);
+    }

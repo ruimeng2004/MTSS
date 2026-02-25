@@ -1,0 +1,111 @@
+# ----------------------------
+# OS / Editor
+# ----------------------------
+.DS_Store
+Thumbs.db
+__MACOSX/
+.idea/
+.vscode/
+
+# ----------------------------
+# Python caches / env
+# ----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+.venv/
+venv/
+env/
+
+# ----------------------------
+# Local tooling / secrets
+# ----------------------------
+.dev/
+.env
+.env.*
+.amazonq/
+
+# ----------------------------
+# Large artifacts / archives
+# ----------------------------
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+*.gz
+
+*.jar
+*.war
+*.class
+*.so
+*.dylib
+*.dll
+*.exe
+
+# ----------------------------
+# Project outputs (can be large)
+# ----------------------------
+/log/
+/result/
+/result_patch/
+/archive/
+
+# D4J / datasets / caches
+/defects4j/
+/data/
+
+# Embedding/vector stores (often large)
+/embedding/vectors/
+/embedding/vector_index/
+/embedding/cluster_exports/
+/embedding/cluster_plots/
+
+# DPP/PPL outputs
+/dpp/result/
+/dpp/result_cluster/
+
+# ----------------------------
+# Runtime logs & run artifacts
+# ----------------------------
+*.log
+*.log.*
+reval_log.txt
+evaluator_bugs_report.txt
+parallel_performance_analysis.txt
+
+# ----------------------------
+# Large workspace / eval output dirs
+# ----------------------------
+/evaluation_output/
+/evaluation_output_fixed/
+/parallel_workspace/
+/workspace/
+/d4j_workspace/
+/test_workspace/
+/test_workspace_100w/
+/btms_routing_workspace/
+/backup/
+
+# Large experiment result dirs (keep scripts/docs, exclude raw output)
+/btms_budget_experiments/qwencoder_experiments/
+
+# ----------------------------
+# Temp / debug files
+# ----------------------------
+*.patch
+/anewTASK
+/sampled_bugs.json
+/sampled_bugs.txt
+
+# PPL result outputs
+/ppl/result/
+
+# D4J full framework (2GB, separate repo)
+/d4j/

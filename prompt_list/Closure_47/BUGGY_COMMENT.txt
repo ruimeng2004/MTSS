@@ -1,0 +1,5 @@
+   /**
+   * Creates an "OriginalMapping" object for the given entry object.
+   */
+private OriginalMapping getOriginalMappingForEntry(Entry entry)
+   This function has no comment.

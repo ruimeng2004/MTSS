@@ -1,0 +1,12 @@
+public void testUnexpectedToken() throws Exception {
+    try {
+      DefaultDateTypeAdapter adapter = new DefaultDateTypeAdapter(Date.class);
+      adapter.fromJson("{}");
+      fail("Unexpected token should fail.");
+    } catch (IllegalStateException expected) { }
+  }
+public void testNullValue() throws Exception {
+    DefaultDateTypeAdapter adapter = new DefaultDateTypeAdapter(Date.class);
+    assertNull(adapter.fromJson("null"));
+    assertEquals("null", adapter.toJson(null));
+  }

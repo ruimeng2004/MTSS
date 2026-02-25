@@ -1,0 +1,15 @@
+   /**
+     * Write the buffer out using a custom routine.
+     * 
+     * @param out  the output stream
+     * @throws IOException
+     */
+private void writeObject(ObjectOutputStream out)
+   /**
+     * Read the buffer in using a custom routine.
+     * 
+     * @param in  the input stream
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+private void readObject(ObjectInputStream in)

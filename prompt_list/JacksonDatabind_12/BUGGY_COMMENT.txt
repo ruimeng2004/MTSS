@@ -1,0 +1,15 @@
+   /**
+     * Turns out that these are expensive enough to create so that caching
+     * does make sense.
+     *<p>
+     * IMPORTANT: but, note, that instances CAN NOT BE CACHED if there is
+     * a value type deserializer; this caused an issue with 2.4.4 of
+     * JAXB Annotations (failing a test).
+     * It is also possible that some other settings could make deserializers
+     * un-cacheable; but on the other hand, caching can make a big positive
+     * difference with performance... so it's a hard choice.
+     * 
+     * @since 2.4.4
+     */
+@Override
+    public boolean isCachable()

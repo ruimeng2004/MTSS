@@ -1,0 +1,3 @@
+junit.framework.ComparisonFailure: expected:<[]bar> but was:<[=]bar>
+junit.framework.ComparisonFailure: expected:<[]bar> but was:<[oo=]bar>
+org.apache.commons.cli.UnrecognizedOptionException: Unrecognized option: --foo=bar

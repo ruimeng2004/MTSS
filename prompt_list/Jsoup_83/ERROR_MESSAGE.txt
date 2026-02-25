@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expected:<<p =a>One<a[></a></p><p><a>Something</a></p><a]>Else</a>> but was:<<p =a>One<a[ <p>Something</a></p><a <p]>Else</a>>
+junit.framework.AssertionFailedError: expected:<<p[></p><p></p><div id="one"><span>Two</span></div]>> but was:<<p[ <p<div id="one" <span>Two</p]>>

@@ -1,0 +1,6 @@
+   /**
+     * Helper method used by standard deserializer.
+     * 
+     * @since 2.3
+     */
+public TokenBuffer deserialize(JsonParser jp,DeserializationContext ctxt)

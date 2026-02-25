@@ -1,0 +1,2 @@
+   // does not recurse.
+private void normalise(Element element)

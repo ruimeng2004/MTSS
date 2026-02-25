@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expected:<one[]> but was:<one[<p>two]>
+junit.framework.AssertionFailedError: expected:<One[]> but was:<One[<b>Two <p>Test</p]>

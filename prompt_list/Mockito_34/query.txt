@@ -1,0 +1,43 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+java.lang.ArrayIndexOutOfBoundsException: 0
+java.lang.ArrayIndexOutOfBoundsException: 0
+
+### Failed JUnit tests:
+@Test
+    public void shouldMatchCaptureArgumentsWhenArgsCountDoesNOTMatch() throws Exception {
+        //given
+        mock.varargs();
+        Invocation invocation = getLastInvocation();
+
+        //when
+        InvocationMatcher invocationMatcher = new InvocationMatcher(invocation, (List) asList(new LocalizedMatcher(AnyVararg.ANY_VARARG)));
+
+        //then
+        invocationMatcher.captureArgumentsFrom(invocation);
+    }
+@Test
+    //See bug #157
+    public void shouldMatchEasilyEmptyVararg() throws Exception {
+        //when
+        when(mock.foo(anyVararg())).thenReturn(-1);
+
+        //then
+        assertEquals(-1, mock.foo());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public void captureArgumentsFrom(Invocation i) {
+        int k = 0;
+        for (Matcher m : matchers) {
+            if (m instanceof CapturesArguments) {
+                ((CapturesArguments) m).captureFrom(i.getArguments()[k]);
+            }
+            k++;
+        }
+    }
+```

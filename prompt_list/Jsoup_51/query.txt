@@ -1,0 +1,24 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<[Yes]> but was:<[]>
+
+### Failed JUnit tests:
+@Test public void testSupportsNonAsciiTags() {
+        String body = "<�M�����ƥ����>Yes</�M�����ƥ����>";
+        Document doc = Jsoup.parse(body);
+        Elements els = doc.select("�M�����ƥ����");
+        assertEquals("Yes", els.text());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+boolean matchesLetter() {
+        if (isEmpty())
+            return false;
+        char c = input[pos];
+        return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+    }
+```

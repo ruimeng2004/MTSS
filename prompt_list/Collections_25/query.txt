@@ -1,0 +1,129 @@
+### Buggy function comment:
+   /**
+     * Gets an iterator that provides an ordered iteration over the elements
+     * contained in a collection of ordered {@link Iterator}s.
+     * <p>
+     * Given two ordered {@link Iterator}s <code>A</code> and <code>B</code>,
+     * the {@link Iterator#next()} method will return the lesser of
+     * <code>A.next()</code> and <code>B.next()</code>.
+     * <p>
+     * The comparator is optional. If null is specified then natural order is used.
+     *
+     * @param <E>  the element type
+     * @param comparator  the comparator to use, may be null for natural order
+     * @param iterator1  the first iterators to use, not null
+     * @param iterator2  the first iterators to use, not null
+     * @return a combination iterator over the iterators
+     * @throws NullPointerException if either iterator is null
+     */
+public static Iterator<E> collatedIterator(final Comparator<? super E> comparator,final Iterator<? extends E> iterator1,final Iterator<? extends E> iterator2)
+   /**
+     * Gets an iterator that provides an ordered iteration over the elements
+     * contained in a collection of ordered {@link Iterator}s.
+     * <p>
+     * Given two ordered {@link Iterator}s <code>A</code> and <code>B</code>,
+     * the {@link Iterator#next()} method will return the lesser of
+     * <code>A.next()</code> and <code>B.next()</code>.
+     * <p>
+     * The comparator is optional. If null is specified then natural order is used.
+     *
+     * @param <E>  the element type
+     * @param comparator  the comparator to use, may be null for natural order
+     * @param iterator1  the first iterators to use, not null
+     * @param iterator2  the first iterators to use, not null
+     * @return a combination iterator over the iterators
+     * @throws NullPointerException if either iterator is null
+     */
+public static Iterator<E> collatedIterator(final Comparator<? super E> comparator,final Iterator<? extends E> iterator1,final Iterator<? extends E> iterator2)
+   /**
+     * Gets an iterator that provides an ordered iteration over the elements
+     * contained in a collection of ordered {@link Iterator}s.
+     * <p>
+     * Given two ordered {@link Iterator}s <code>A</code> and <code>B</code>,
+     * the {@link Iterator#next()} method will return the lesser of
+     * <code>A.next()</code> and <code>B.next()</code>.
+     * <p>
+     * The comparator is optional. If null is specified then natural order is used.
+     *
+     * @param <E>  the element type
+     * @param comparator  the comparator to use, may be null for natural order
+     * @param iterator1  the first iterators to use, not null
+     * @param iterator2  the first iterators to use, not null
+     * @return a combination iterator over the iterators
+     * @throws NullPointerException if either iterator is null
+     */
+public static Iterator<E> collatedIterator(final Comparator<? super E> comparator,final Iterator<? extends E> iterator1,final Iterator<? extends E> iterator2)
+
+
+### Error message from JUnit test:
+java.lang.NullPointerException: You must invoke setComparator() to set a comparator first.
+
+### Failed JUnit tests:
+@Test
+    public void testCollatedIterator() {
+        try {
+            IteratorUtils.collatedIterator(null, collectionOdd.iterator(), null);
+            fail("expecting NullPointerException");
+        } catch (NullPointerException npe) {
+            // expected
+        }
+
+        try {
+            IteratorUtils.collatedIterator(null, null, collectionEven.iterator());
+            fail("expecting NullPointerException");
+        } catch (NullPointerException npe) {
+            // expected
+        }
+
+        // natural ordering
+        Iterator<Integer> it = 
+                IteratorUtils.collatedIterator(null, collectionOdd.iterator(), collectionEven.iterator());
+
+        List<Integer> result = IteratorUtils.toList(it);
+        assertEquals(12, result.size());
+
+        List<Integer> combinedList = new ArrayList<Integer>();
+        combinedList.addAll(collectionOdd);
+        combinedList.addAll(collectionEven);
+        Collections.sort(combinedList);
+
+        assertEquals(combinedList, result);
+
+        it = IteratorUtils.collatedIterator(null, collectionOdd.iterator(), emptyCollection.iterator());
+        result = IteratorUtils.toList(it);
+        assertEquals(collectionOdd, result);
+
+        final Comparator<Integer> reverseComparator =
+                ComparatorUtils.reversedComparator(ComparatorUtils.<Integer>naturalComparator());
+
+        Collections.reverse((List<Integer>) collectionOdd);
+        Collections.reverse((List<Integer>) collectionEven);
+        Collections.reverse(combinedList);
+
+        it = IteratorUtils.collatedIterator(reverseComparator,
+                                            collectionOdd.iterator(),
+                                            collectionEven.iterator());
+        result = IteratorUtils.toList(it);
+        assertEquals(combinedList, result);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static <E> Iterator<E> collatedIterator(final Comparator<? super E> comparator,
+                                                   final Iterator<? extends E> iterator1,
+                                                   final Iterator<? extends E> iterator2) {
+        return new CollatingIterator<E>(comparator, iterator1, iterator2);
+    }
+```
+```java
+public static <E> Iterator<E> collatedIterator(final Comparator<? super E> comparator,
+                                                   final Collection<Iterator<? extends E>> iterators) {
+        return new CollatingIterator<E>(comparator, iterators);
+    }
+```
+```java
+public static <E> Iterator<E> collatedIterator(final Comparator<? super E> comparator,
+                                                   final Iterator<? extends E>... iterators) {
+        return new CollatingIterator<E>(comparator, iterators);
+    }
+```

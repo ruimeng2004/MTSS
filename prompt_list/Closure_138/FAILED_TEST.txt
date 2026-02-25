@@ -1,0 +1,37 @@
+public void testGoogIsArrayOnNull() throws Exception {
+    testClosureFunction("goog.isArray",
+        null,
+        ARRAY_TYPE,
+        null);
+  }
+public void testGoogIsFunctionOnNull() throws Exception {
+    testClosureFunction("goog.isFunction",
+        null,
+        U2U_CONSTRUCTOR_TYPE,
+        null);
+  }
+public void testGoogIsObjectOnNull() throws Exception {
+    testClosureFunction("goog.isObject",
+        null,
+        OBJECT_TYPE,
+        null);
+  }
+public void testIssue124b() throws Exception {
+    testTypes(
+        "var t = null;" +
+        "function test() {" +
+        "  if (t != null) { t = null; }" +
+        "  t = undefined;" +
+        "}",
+        "condition always evaluates to false\n" +
+        "left : (null|undefined)\n" +
+        "right: null");
+  }
+public void testIssue124() throws Exception {
+    testTypes(
+        "var t = null;" +
+        "function test() {" +
+        "  if (t != null) { t = null; }" +
+        "  t = 1;" +
+        "}");
+  }

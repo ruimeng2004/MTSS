@@ -1,0 +1,148 @@
+   /**
+     * <p>
+     * Checks if the CharSequence contains any character in the given set of characters.
+     * </p>
+     * 
+     * <p>
+     * A <code>null</code> CharSequence will return <code>false</code>. A <code>null</code> search CharSequence will return
+     * <code>false</code>.
+     * </p>
+     * 
+     * <pre>
+     * StringUtils.containsAny(null, *)            = false
+     * StringUtils.containsAny("", *)              = false
+     * StringUtils.containsAny(*, null)            = false
+     * StringUtils.containsAny(*, "")              = false
+     * StringUtils.containsAny("zzabyycdxx", "za") = true
+     * StringUtils.containsAny("zzabyycdxx", "by") = true
+     * StringUtils.containsAny("aba","z")          = false
+     * </pre>
+     * 
+     * @param cs
+     *            the CharSequence to check, may be null
+     * @param searchChars
+     *            the chars to search for, may be null
+     * @return the <code>true</code> if any of the chars are found, <code>false</code> if no match or null input
+     * @since 2.4
+     */
+public static boolean containsAny(CharSequence cs,String searchChars)
+   /**
+     * <p>
+     * Checks if the CharSequence contains any character in the given set of characters.
+     * </p>
+     * 
+     * <p>
+     * A <code>null</code> CharSequence will return <code>false</code>. A <code>null</code> search CharSequence will return
+     * <code>false</code>.
+     * </p>
+     * 
+     * <pre>
+     * StringUtils.containsAny(null, *)            = false
+     * StringUtils.containsAny("", *)              = false
+     * StringUtils.containsAny(*, null)            = false
+     * StringUtils.containsAny(*, "")              = false
+     * StringUtils.containsAny("zzabyycdxx", "za") = true
+     * StringUtils.containsAny("zzabyycdxx", "by") = true
+     * StringUtils.containsAny("aba","z")          = false
+     * </pre>
+     * 
+     * @param cs
+     *            the CharSequence to check, may be null
+     * @param searchChars
+     *            the chars to search for, may be null
+     * @return the <code>true</code> if any of the chars are found, <code>false</code> if no match or null input
+     * @since 2.4
+     */
+public static boolean containsAny(CharSequence cs,String searchChars)
+   /**
+     * <p>Searches a CharSequence to find the first index of any
+     * character not in the given set of characters.</p>
+     *
+     * <p>A <code>null</code> CharSequence will return <code>-1</code>.
+     * A <code>null</code> or zero length search array will return <code>-1</code>.</p>
+     *
+     * <pre>
+     * StringUtils.indexOfAnyBut(null, *)           = -1
+     * StringUtils.indexOfAnyBut("", *)             = -1
+     * StringUtils.indexOfAnyBut(*, null)           = -1
+     * StringUtils.indexOfAnyBut(*, [])             = -1
+     * StringUtils.indexOfAnyBut("zzabyycdxx",'za') = 3
+     * StringUtils.indexOfAnyBut("zzabyycdxx", '')  = 0
+     * StringUtils.indexOfAnyBut("aba", 'ab')       = -1
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @param searchChars  the chars to search for, may be null
+     * @return the index of any of the chars, -1 if no match or null input
+     * @since 2.0
+     */
+public static int indexOfAnyBut(CharSequence cs,char[] searchChars)
+   /**
+     * <p>Search a CharSequence to find the first index of any
+     * character in the given set of characters.</p>
+     *
+     * <p>A <code>null</code> String will return <code>-1</code>.
+     * A <code>null</code> or zero length search array will return <code>-1</code>.</p>
+     *
+     * <pre>
+     * StringUtils.indexOfAny(null, *)                = -1
+     * StringUtils.indexOfAny("", *)                  = -1
+     * StringUtils.indexOfAny(*, null)                = -1
+     * StringUtils.indexOfAny(*, [])                  = -1
+     * StringUtils.indexOfAny("zzabyycdxx",['z','a']) = 0
+     * StringUtils.indexOfAny("zzabyycdxx",['b','y']) = 3
+     * StringUtils.indexOfAny("aba", ['z'])           = -1
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @param searchChars  the chars to search for, may be null
+     * @return the index of any of the chars, -1 if no match or null input
+     * @since 2.0
+     */
+public static int indexOfAny(CharSequence cs,char[] searchChars)
+   /**
+     * <p>Searches a CharSequence to find the first index of any
+     * character not in the given set of characters.</p>
+     *
+     * <p>A <code>null</code> CharSequence will return <code>-1</code>.
+     * A <code>null</code> or zero length search array will return <code>-1</code>.</p>
+     *
+     * <pre>
+     * StringUtils.indexOfAnyBut(null, *)           = -1
+     * StringUtils.indexOfAnyBut("", *)             = -1
+     * StringUtils.indexOfAnyBut(*, null)           = -1
+     * StringUtils.indexOfAnyBut(*, [])             = -1
+     * StringUtils.indexOfAnyBut("zzabyycdxx",'za') = 3
+     * StringUtils.indexOfAnyBut("zzabyycdxx", '')  = 0
+     * StringUtils.indexOfAnyBut("aba", 'ab')       = -1
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @param searchChars  the chars to search for, may be null
+     * @return the index of any of the chars, -1 if no match or null input
+     * @since 2.0
+     */
+public static int indexOfAnyBut(CharSequence cs,char[] searchChars)
+   /**
+     * <p>Checks that the CharSequence does not contain certain characters.</p>
+     *
+     * <p>A <code>null</code> CharSequence will return <code>true</code>.
+     * A <code>null</code> invalid character array will return <code>true</code>.
+     * An empty CharSequence (length()=0) always returns true.</p>
+     *
+     * <pre>
+     * StringUtils.containsNone(null, *)       = true
+     * StringUtils.containsNone(*, null)       = true
+     * StringUtils.containsNone("", *)         = true
+     * StringUtils.containsNone("ab", '')      = true
+     * StringUtils.containsNone("abab", 'xyz') = true
+     * StringUtils.containsNone("ab1", 'xyz')  = true
+     * StringUtils.containsNone("abz", 'xyz')  = false
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @param searchChars  an array of invalid chars, may be null
+     * @return true if it contains none of the invalid chars, or is null
+     * @since 2.0
+     */
+public static boolean containsNone(CharSequence cs,char[] searchChars)

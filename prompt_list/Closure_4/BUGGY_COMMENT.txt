@@ -1,0 +1,4 @@
+   /**
+   * Resolve the referenced type within the enclosing scope.
+   */
+@Override JSType resolveInternal(ErrorReporter t,StaticScope<JSType> enclosing)

@@ -1,0 +1,6 @@
+   /**
+   * Give an expression and a variable. It returns READ, if the first
+   * reference of that variable is a read. It returns KILL, if the first
+   * reference of that variable is an assignment. It returns MAY_LIVE otherwise.
+   */
+private VariableLiveness isVariableReadBeforeKill(Node n,String variable)

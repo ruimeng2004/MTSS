@@ -1,0 +1,11 @@
+   /**
+     * Returns at most 63 bits read from the underlying stream.
+     *
+     * @param count the number of bits to read, must be a positive
+     * number not bigger than 63.
+     * @return the bits concatenated as a long using the stream's byte order.
+     *         -1 if the end of the underlying stream has been reached before reading
+     *         the requested number of bits
+     * @throws IOException on error
+     */
+public long readBits(final int count)

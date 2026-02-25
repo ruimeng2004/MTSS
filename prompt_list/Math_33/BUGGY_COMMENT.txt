@@ -1,0 +1,5 @@
+   /**
+     * Removes the phase 1 objective function, positive cost non-artificial variables,
+     * and the non-basic artificial variables from this tableau.
+     */
+protected void dropPhase1Objective()

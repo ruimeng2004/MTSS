@@ -1,0 +1,1 @@
+junit.framework.ComparisonFailure: expected:<var x="\0[00]"> but was:<var x="\0[]">

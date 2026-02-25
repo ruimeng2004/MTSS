@@ -1,0 +1,8 @@
+junit.framework.AssertionFailedError: expected:<MOVABLE> but was:<DECOMPOSABLE>
+junit.framework.AssertionFailedError: expected:<MOVABLE> but was:<DECOMPOSABLE>
+java.lang.IllegalStateException: Call site missed.
+junit.framework.AssertionFailedError: expected:<[(g : g), k]> but was:<[]>
+junit.framework.AssertionFailedError: expected:<[(f : (g || h)), i]> but was:<[]>
+junit.framework.AssertionFailedError: expected:<[(f || g), h]> but was:<[]>
+junit.framework.AssertionFailedError: expected:<[(f : g), h]> but was:<[]>
+junit.framework.AssertionFailedError: expected:<[(g || g), k]> but was:<[]>

@@ -1,0 +1,5 @@
+   /**
+     * {@inheritDoc}
+     */
+@Override
+    protected double doSolve()

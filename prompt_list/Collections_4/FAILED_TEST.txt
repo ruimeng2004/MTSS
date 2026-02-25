@@ -1,0 +1,47 @@
+public void testPutWithList() {
+        MultiValueMap test = MultiValueMap.decorate(new HashMap(), ArrayList.class);
+        assertEquals("a", test.put("A", "a"));
+        assertEquals("b", test.put("A", "b"));
+        assertEquals(1, test.size());
+        assertEquals(2, test.size("A"));
+        assertEquals(2, test.totalSize());
+    }
+public void testPutAll_KeyCollection() {
+        MultiValueMap map = new MultiValueMap();
+        Collection coll = Arrays.asList(new Object[] {"X", "Y", "Z"});
+        
+        assertEquals(true, map.putAll("A", coll));
+        assertEquals(3, map.size("A"));
+        assertEquals(true, map.containsValue("A", "X"));
+        assertEquals(true, map.containsValue("A", "Y"));
+        assertEquals(true, map.containsValue("A", "Z"));
+        
+        assertEquals(false, map.putAll("A", null));
+        assertEquals(3, map.size("A"));
+        assertEquals(true, map.containsValue("A", "X"));
+        assertEquals(true, map.containsValue("A", "Y"));
+        assertEquals(true, map.containsValue("A", "Z"));
+        
+        assertEquals(false, map.putAll("A", new ArrayList()));
+        assertEquals(3, map.size("A"));
+        assertEquals(true, map.containsValue("A", "X"));
+        assertEquals(true, map.containsValue("A", "Y"));
+        assertEquals(true, map.containsValue("A", "Z"));
+        
+        coll = Arrays.asList(new Object[] {"M"});
+        assertEquals(true, map.putAll("A", coll));
+        assertEquals(4, map.size("A"));
+        assertEquals(true, map.containsValue("A", "X"));
+        assertEquals(true, map.containsValue("A", "Y"));
+        assertEquals(true, map.containsValue("A", "Z"));
+        assertEquals(true, map.containsValue("A", "M"));
+    }
+public void testPutWithSet() {
+        MultiValueMap test = MultiValueMap.decorate(new HashMap(), HashSet.class);
+        assertEquals("a", test.put("A", "a"));
+        assertEquals("b", test.put("A", "b"));
+        assertEquals(null, test.put("A", "a"));
+        assertEquals(1, test.size());
+        assertEquals(2, test.size("A"));
+        assertEquals(2, test.totalSize());
+    }

@@ -1,0 +1,5 @@
+public void testDelegatingArray1804() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        MyType thing = mapper.readValue("[]", MyType.class);
+        assertNotNull(thing);
+    }

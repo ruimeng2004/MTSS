@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: UnmodifiableTrie shall not be decorated expected same:<Trie[0]={
+junit.framework.AssertionFailedError: expected same:<Trie[18]={

@@ -1,0 +1,5 @@
+   /**
+     * There are two types of calls we are interested in calls without explicit
+     * "this" values (what we are call "free" calls) and direct call to eval.
+     */
+private void annotateCalls(Node n)

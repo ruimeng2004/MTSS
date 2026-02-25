@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: an exception should have been thrown

@@ -1,0 +1,61 @@
+### Buggy function comment:
+   /**
+     * <p>Throws a {@link MissingOptionException} if all of the
+     * required options are no present.</p>
+     *
+     * @throws MissingOptionException if any of the required Options
+     * are not present.
+     */
+private void checkRequiredOptions()
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:<[Missing required options: ]fx> but was:<[]fx>
+junit.framework.ComparisonFailure: expected:<[Missing required option: ]f> but was:<[]f>
+
+### Failed JUnit tests:
+public void testMissingOptionsException() throws ParseException {
+        Options options = new Options();
+        options.addOption(OptionBuilder.isRequired().create("f"));
+        options.addOption(OptionBuilder.isRequired().create("x"));
+        try {
+            new PosixParser().parse(options, new String[0]);
+            fail("Expected MissingOptionException to be thrown");
+        } catch (MissingOptionException e) {
+            assertEquals("Missing required options: fx", e.getMessage());
+        }
+    }
+public void testMissingOptionException() throws ParseException {
+        Options options = new Options();
+        options.addOption(OptionBuilder.isRequired().create("f"));
+        try {
+            new PosixParser().parse(options, new String[0]);
+            fail("Expected MissingOptionException to be thrown");
+        } catch (MissingOptionException e) {
+            assertEquals("Missing required option: f", e.getMessage());
+        }
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private void checkRequiredOptions()
+        throws MissingOptionException
+    {
+        // if there are required options that have not been
+        // processsed
+        if (requiredOptions.size() > 0)
+        {
+            Iterator iter = requiredOptions.iterator();
+            StringBuffer buff = new StringBuffer();
+
+
+            // loop through the required options
+            while (iter.hasNext())
+            {
+                buff.append(iter.next());
+            }
+
+            throw new MissingOptionException(buff.toString());
+        }
+    }
+```

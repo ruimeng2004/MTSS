@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError
+java.lang.IllegalStateException: Unexpected expression nodeDELPROP 1 [sourcename:  [testcode] ] [parenthesized: true]

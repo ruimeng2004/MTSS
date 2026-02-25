@@ -1,0 +1,3 @@
+junit.framework.AssertionFailedError: Expected token END_OBJECT, current token null
+junit.framework.ComparisonFailure: expected:<{"ob":{"value":3}[}]> but was:<{"ob":{"value":3}[]>
+junit.framework.AssertionFailedError: expected:<END_OBJECT> but was:<null>

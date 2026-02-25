@@ -1,0 +1,35 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+org.mockito.internal.creation.instance.InstantationException: Unable to create mock instance of 'SomeInnerClass'.
+
+### Failed JUnit tests:
+@Test public void creates_instances_of_inner_classes() {
+        assertEquals(new ConstructorInstantiator(this).newInstance(SomeInnerClass.class).getClass(), SomeInnerClass.class);
+        assertEquals(new ConstructorInstantiator(new ChildOfThis()).newInstance(SomeInnerClass.class).getClass(), SomeInnerClass.class);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public <T> T newInstance(Class<T> cls) {
+        if (outerClassInstance == null) {
+            return noArgConstructor(cls);
+        }
+        return withOuterClass(cls);
+    }
+```
+```java
+private <T> T withOuterClass(Class<T> cls) {
+        try {
+            //this is kind of overengineered because we don't need to support more params
+            //however, I know we will be needing it :)
+            Constructor<T> c = cls.getDeclaredConstructor(outerClassInstance.getClass());
+            return c.newInstance(outerClassInstance);
+        } catch (Exception e) {
+            throw paramsException(cls, e);
+        }
+    }
+```

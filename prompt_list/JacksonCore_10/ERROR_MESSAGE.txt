@@ -1,0 +1,4 @@
+java.lang.ArrayIndexOutOfBoundsException: 256
+junit.framework.AssertionFailedError: expected:<16384> but was:<32768>
+junit.framework.AssertionFailedError: expected:<8534> but was:<8524>
+junit.framework.AssertionFailedError: expected:<1024> but was:<2048>

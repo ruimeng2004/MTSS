@@ -1,0 +1,11 @@
+   /**
+   * Fix-up all local names to be unique for this subtree.
+   * @param fnNode A mutable instance of the function to be inlined.
+   */
+private void makeLocalNamesUnique(Node fnNode,boolean isCallInLoop)
+   /**
+     * Rename or remove labels.
+     * @param node  The label node.
+     * @param parent The parent of the label node.
+     */
+private void visitLabel(Node node,Node parent)

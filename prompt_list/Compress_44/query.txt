@@ -1,0 +1,41 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Expected exception: java.lang.NullPointerException
+junit.framework.AssertionFailedError: Expected exception: java.lang.NullPointerException
+junit.framework.AssertionFailedError: Expected exception: java.lang.NullPointerException
+
+### Failed JUnit tests:
+@Test(expected = NullPointerException.class)
+    public void testClassInstantiationWithParameterBeingNullThrowsNullPointerExceptionOne() {
+
+        ChecksumCalculatingInputStream checksumCalculatingInputStream = new ChecksumCalculatingInputStream(null,null);
+
+
+    }
+@Test(expected = NullPointerException.class)
+    public void testClassInstantiationWithParameterBeingNullThrowsNullPointerExceptionTwo() {
+
+        ChecksumCalculatingInputStream checksumCalculatingInputStream = new ChecksumCalculatingInputStream(null,new ByteArrayInputStream(new byte[1]));
+
+
+    }
+@Test(expected = NullPointerException.class)
+    public void testClassInstantiationWithParameterBeingNullThrowsNullPointerExceptionThree() {
+
+        ChecksumCalculatingInputStream checksumCalculatingInputStream = new ChecksumCalculatingInputStream(new CRC32(),null);
+
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public ChecksumCalculatingInputStream(final Checksum checksum, final InputStream in) {
+
+
+
+        this.checksum = checksum;
+        this.in = in;
+    }
+```

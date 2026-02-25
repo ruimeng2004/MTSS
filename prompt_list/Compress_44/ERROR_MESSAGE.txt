@@ -1,0 +1,3 @@
+junit.framework.AssertionFailedError: Expected exception: java.lang.NullPointerException
+junit.framework.AssertionFailedError: Expected exception: java.lang.NullPointerException
+junit.framework.AssertionFailedError: Expected exception: java.lang.NullPointerException

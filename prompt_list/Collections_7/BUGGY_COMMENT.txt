@@ -1,0 +1,150 @@
+   /**
+     * Get a long associated with the given configuration key.
+     *
+     * @param key The configuration key.
+     * @param defaultValue The default value.
+     * @return The associated long if key is found and has valid
+     * format, default value otherwise.
+     * @throws ClassCastException is thrown if the key maps to an
+     * object that is not a Long.
+     * @throws NumberFormatException is thrown if the value mapped
+     * by the key has not a valid number format.
+     */
+public Long getLong(String key,Long defaultValue)
+   /**
+     * Get a List of strings associated with the given configuration key.
+     * <p>
+     * The list is a copy of the internal data of this object, and as
+     * such you may alter it freely.
+     *
+     * @param key The configuration key.
+     * @param defaultValue The default value.
+     * @return The associated List.
+     * @throws ClassCastException is thrown if the key maps to an
+     * object that is not a List.
+     * @since Commons Collections 3.2
+     */
+public List getList(String key,List defaultValue)
+   /**
+     * Get a double associated with the given configuration key.
+     *
+     * @param key The configuration key.
+     * @param defaultValue The default value.
+     * @return The associated double if key is found and has valid
+     * format, default value otherwise.
+     * @throws ClassCastException is thrown if the key maps to an
+     * object that is not a Double.
+     * @throws NumberFormatException is thrown if the value mapped
+     * by the key has not a valid number format.
+     */
+public Double getDouble(String key,Double defaultValue)
+   /**
+     * Get a int associated with the given configuration key.
+     *
+     * @param key The configuration key.
+     * @param defaultValue The default value.
+     * @return The associated int if key is found and has valid
+     * format, default value otherwise.
+     * @throws ClassCastException is thrown if the key maps to an
+     * object that is not a Integer.
+     * @throws NumberFormatException is thrown if the value mapped
+     * by the key has not a valid number format.
+     */
+public Integer getInteger(String key,Integer defaultValue)
+   /**
+     * Adds a decoded property to the map w/o checking for commas - used
+     * internally when a property has been broken up into
+     * strings that could contain escaped commas to prevent
+     * the inadvertent vectorization.
+     * <p>
+     * Thanks to Leon Messerschmidt for this one.
+     *
+     * @param key  the key to store at
+     * @param value  the decoded object to store
+     */
+private void addPropertyInternal(String key,Object value)
+   /**
+     * Gets a property from the configuration.
+     *
+     * @param key property to retrieve
+     * @return value as object. Will return user value if exists,
+     *        if not then default value if exists, otherwise null
+     */
+public Object getProperty(String key)
+   /**
+     * Get a byte associated with the given configuration key.
+     *
+     * @param key The configuration key.
+     * @param defaultValue The default value.
+     * @return The associated byte if key is found and has valid
+     * format, default value otherwise.
+     * @throws ClassCastException is thrown if the key maps to an
+     * object that is not a Byte.
+     * @throws NumberFormatException is thrown if the value mapped
+     * by the key has not a valid number format.
+     */
+public Byte getByte(String key,Byte defaultValue)
+   /**
+     * Adds a key/value pair to the map.  This routine does
+     * no magic morphing.  It ensures the keylist is maintained
+     *
+     * @param key  the key to store at
+     * @param value  the decoded object to store
+     */
+private void addPropertyDirect(String key,Object value)
+   /**
+     * Get a short associated with the given configuration key.
+     *
+     * @param key The configuration key.
+     * @param defaultValue The default value.
+     * @return The associated short if key is found and has valid
+     * format, default value otherwise.
+     * @throws ClassCastException is thrown if the key maps to an
+     * object that is not a Short.
+     * @throws NumberFormatException is thrown if the value mapped
+     * by the key has not a valid number format.
+     */
+public Short getShort(String key,Short defaultValue)
+   /**
+     * Get a float associated with the given configuration key.
+     *
+     * @param key The configuration key.
+     * @param defaultValue The default value.
+     * @return The associated float if key is found and has valid
+     * format, default value otherwise.
+     * @throws ClassCastException is thrown if the key maps to an
+     * object that is not a Float.
+     * @throws NumberFormatException is thrown if the value mapped
+     * by the key has not a valid number format.
+     */
+public Float getFloat(String key,Float defaultValue)
+   /**
+     * Get a Vector of strings associated with the given configuration key.
+     * <p>
+     * The list is a copy of the internal data of this object, and as
+     * such you may alter it freely.
+     *
+     * @param key The configuration key.
+     * @param defaultValue The default value.
+     * @return The associated Vector.
+     * @throws ClassCastException is thrown if the key maps to an
+     * object that is not a Vector.
+     */
+public Vector getVector(String key,Vector defaultValue)
+   /**
+     * Get a boolean associated with the given configuration key.
+     *
+     * @param key The configuration key.
+     * @param defaultValue The default value.
+     * @return The associated boolean if key is found and has valid
+     * format, default value otherwise.
+     * @throws ClassCastException is thrown if the key maps to an
+     * object that is not a Boolean.
+     */
+public Boolean getBoolean(String key,Boolean defaultValue)
+   /**
+     * Clear a property in the configuration.
+     *
+     * @param key  the property key to remove along with corresponding value
+     */
+public void clearProperty(String key)

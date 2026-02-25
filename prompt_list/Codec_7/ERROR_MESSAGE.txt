@@ -1,0 +1,2 @@
+junit.framework.ComparisonFailure: byteToString static Hello World expected:<SGVsbG8gV29ybGQ=[]> but was:<SGVsbG8gV29ybGQ=[
+junit.framework.ComparisonFailure: expected:<Zg==[]> but was:<Zg==[

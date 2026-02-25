@@ -1,0 +1,234 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Expected name 'b' (JsonParser), TokenBuffer had 'a'
+
+### Failed JUnit tests:
+public void testOutputContext() throws IOException
+    {
+        TokenBuffer buf = new TokenBuffer(null, false); // no ObjectCodec
+        StringWriter w = new StringWriter();
+        JsonGenerator gen = MAPPER.getFactory().createGenerator(w);
+ 
+        // test content: [{"a":1,"b":{"c":2}},{"a":2,"b":{"c":3}}]
+
+        buf.writeStartArray();
+        gen.writeStartArray();
+        _verifyOutputContext(buf, gen);
+        
+        buf.writeStartObject();
+        gen.writeStartObject();
+        _verifyOutputContext(buf, gen);
+        
+        buf.writeFieldName("a");
+        gen.writeFieldName("a");
+        _verifyOutputContext(buf, gen);
+
+        buf.writeNumber(1);
+        gen.writeNumber(1);
+        _verifyOutputContext(buf, gen);
+
+        buf.writeFieldName("b");
+        gen.writeFieldName("b");
+        _verifyOutputContext(buf, gen);
+
+        buf.writeStartObject();
+        gen.writeStartObject();
+        _verifyOutputContext(buf, gen);
+        
+        buf.writeFieldName("c");
+        gen.writeFieldName("c");
+        _verifyOutputContext(buf, gen);
+
+        buf.writeNumber(2);
+        gen.writeNumber(2);
+        _verifyOutputContext(buf, gen);
+
+        buf.writeEndObject();
+        gen.writeEndObject();
+        _verifyOutputContext(buf, gen);
+
+        buf.writeEndObject();
+        gen.writeEndObject();
+        _verifyOutputContext(buf, gen);
+
+        buf.writeEndArray();
+        gen.writeEndArray();
+        _verifyOutputContext(buf, gen);
+        
+        buf.close();
+        gen.close();
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+    public void writeNumber(float f) throws IOException {
+        _append(JsonToken.VALUE_NUMBER_FLOAT, Float.valueOf(f));
+    }
+```
+```java
+@Override
+    public void writeNull() throws IOException {
+        _append(JsonToken.VALUE_NULL);
+    }
+```
+```java
+@Override
+    public void writeNumber(long l) throws IOException {
+        _append(JsonToken.VALUE_NUMBER_INT, Long.valueOf(l));
+    }
+```
+```java
+@Override
+    public void writeNumber(String encodedValue) throws IOException {
+        /* 03-Dec-2010, tatu: related to [JACKSON-423], should try to keep as numeric
+         *   identity as long as possible
+         */
+        _append(JsonToken.VALUE_NUMBER_FLOAT, encodedValue);
+    }
+```
+```java
+@Override
+    public void writeString(String text) throws IOException {
+        if (text == null) {
+            writeNull();
+        } else {
+            _append(JsonToken.VALUE_STRING, text);
+        }
+    }
+```
+```java
+@Override
+    public void writeRawValue(char[] text, int offset, int len) throws IOException {
+        _append(JsonToken.VALUE_EMBEDDED_OBJECT, new String(text, offset, len));
+    }
+```
+```java
+@Override
+    public void writeString(SerializableString text) throws IOException {
+        if (text == null) {
+            writeNull();
+        } else {
+            _append(JsonToken.VALUE_STRING, text);
+        }
+    }
+```
+```java
+@Override
+    public void writeObject(Object value) throws IOException
+    {
+        if (value == null) {
+            writeNull();
+            return;
+        }
+        Class<?> raw = value.getClass();
+        if (raw == byte[].class || (value instanceof RawValue)) {
+            _append(JsonToken.VALUE_EMBEDDED_OBJECT, value);
+            return;
+        }
+        if (_objectCodec == null) {
+            /* 28-May-2014, tatu: Tricky choice here; if no codec, should we
+             *   err out, or just embed? For now, do latter.
+             */
+//          throw new JsonMappingException("No ObjectCodec configured for TokenBuffer, writeObject() called");
+            _append(JsonToken.VALUE_EMBEDDED_OBJECT, value);
+        } else {
+            _objectCodec.writeValue(this, value);
+        }
+    }
+```
+```java
+@Override
+    public void writeRawValue(String text) throws IOException {
+        _append(JsonToken.VALUE_EMBEDDED_OBJECT, new RawValue(text));
+    }
+```
+```java
+@Override
+    public void writeNumber(BigInteger v) throws IOException {
+        if (v == null) {
+            writeNull();
+        } else {
+            _append(JsonToken.VALUE_NUMBER_INT, v);
+        }
+    }
+```
+```java
+@Override
+    public void writeNumber(int i) throws IOException {
+        _append(JsonToken.VALUE_NUMBER_INT, Integer.valueOf(i));
+    }
+```
+```java
+@Override
+    public void writeNumber(BigDecimal dec) throws IOException {
+        if (dec == null) {
+            writeNull();
+        } else {
+            _append(JsonToken.VALUE_NUMBER_FLOAT, dec);
+        }
+    }
+```
+```java
+@Override
+    public void writeNumber(short i) throws IOException {
+        _append(JsonToken.VALUE_NUMBER_INT, Short.valueOf(i));
+    }
+```
+```java
+@Override
+    public void writeTree(TreeNode node) throws IOException
+    {
+        if (node == null) {
+            writeNull();
+            return;
+        }
+
+        if (_objectCodec == null) {
+            // as with 'writeObject()', is codec optional?
+            _append(JsonToken.VALUE_EMBEDDED_OBJECT, node);
+        } else {
+            _objectCodec.writeTree(this, node);
+        }
+    }
+```
+```java
+@Override
+    public void writeBoolean(boolean state) throws IOException {
+        _append(state ? JsonToken.VALUE_TRUE : JsonToken.VALUE_FALSE);
+    }
+```
+```java
+@Override
+    public void writeRawValue(String text, int offset, int len) throws IOException {
+        if (offset > 0 || len != text.length()) {
+            text = text.substring(offset, offset+len);
+        }
+        _append(JsonToken.VALUE_EMBEDDED_OBJECT, new RawValue(text));
+    }
+```
+```java
+@Override
+    public void writeNumber(double d) throws IOException {
+        _append(JsonToken.VALUE_NUMBER_FLOAT, Double.valueOf(d));
+    }
+```

@@ -1,0 +1,5 @@
+   /** {@inheritDoc} */
+public double integrate(final FirstOrderDifferentialEquations equations,final double t0,final double[] y0,final double t,final double[] y)
+   /** {@inheritDoc} */
+@Override
+  public double integrate(final FirstOrderDifferentialEquations equations,final double t0,final double[] y0,final double t,final double[] y)

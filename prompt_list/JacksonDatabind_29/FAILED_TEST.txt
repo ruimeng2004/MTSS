@@ -1,0 +1,12 @@
+public void testExternalTypeIdWithNull() throws Exception
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerSubtypes(ValueBean.class);
+        ExternalBean b;
+        b = mapper.readValue(aposToQuotes("{'bean':null,'extType':'vbean'}"),
+                ExternalBean.class);
+        assertNotNull(b);
+        b = mapper.readValue(aposToQuotes("{'extType':'vbean','bean':null}"),
+                ExternalBean.class);
+        assertNotNull(b);
+    }

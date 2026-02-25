@@ -1,0 +1,16 @@
+public void testGetprop4() throws Exception {
+    testTypes("var x = null; x.prop = 3;",
+        "No properties on this expression\n" +
+        "found   : null\n" +
+        "required: Object");
+  }
+public void testIssue810() throws Exception {
+    testTypes(
+        "/** @constructor */" +
+        "var Type = function () {" +
+        "};" +
+        "Type.prototype.doIt = function(obj) {" +
+        "  this.prop = obj.unknownProp;" +
+        "};",
+        "Property unknownProp never defined on obj");
+  }

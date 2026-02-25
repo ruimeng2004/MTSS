@@ -1,0 +1,127 @@
+### Buggy function comment:
+   /**
+     * Remove duplicate VAR declarations encountered discovered during
+     * scope creation.
+     */
+@Override
+    public void onRedeclaration(Scope s,String name,Node n,Node parent,Node gramps,Node nodeWithLineNumber)
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError:
+junit.framework.AssertionFailedError: Unexpected error(s): JSC_VAR_MULTIPLY_DECLARED_ERROR. Variable f first declared in testcode at testcode line 1 expected:<0> but was:<1>
+junit.framework.AssertionFailedError:
+
+### Failed JUnit tests:
+public void testNormalizeFunctionDeclarations() throws Exception {
+    testSame("function f() {}");
+    testSame("var f = function () {}");
+    test("var f = function f() {}",
+         "var f = function f$$1() {}");
+    testSame("var f = function g() {}");
+    test("a:function g() {}",
+         "a:{ var g = function () {} }");
+    test("{function g() {}}",
+         "{var g = function () {}}");
+    testSame("if (function g() {}) {}");
+    test("if (true) {function g() {}}",
+         "if (true) {var g = function () {}}");
+    test("if (true) {} else {function g() {}}",
+         "if (true) {} else {var g = function () {}}");
+    testSame("switch (function g() {}) {}");
+    test("switch (1) { case 1: function g() {}}",
+         "switch (1) { case 1: var g = function () {}}");
+
+
+    testSameInFunction("function f() {}");
+    testInFunction("f(); a:function g() {}",
+                   "f(); a:{ var g = function () {} }");
+    testInFunction("f(); {function g() {}}",
+                   "f(); {var g = function () {}}");
+    testInFunction("f(); if (true) {function g() {}}",
+                   "f(); if (true) {var g = function () {}}");
+    testInFunction("if (true) {} else {function g() {}}",
+                   "if (true) {} else {var g = function () {}}");
+  }
+public void testRemoveDuplicateVarDeclarations3() {
+    test("var f = 1; function f(){}",
+         "f = 1; function f(){}");
+    test("var f; function f(){}",
+         "function f(){}");
+    test("if (a) { var f = 1; } else { function f(){} }",
+         "if (a) { var f = 1; } else { f = function (){} }");
+
+    test("function f(){} var f = 1;",
+         "function f(){} f = 1;");
+    test("function f(){} var f;",
+         "function f(){}");
+    test("if (a) { function f(){} } else { var f = 1; }",
+         "if (a) { var f = function (){} } else { f = 1; }");
+
+    // TODO(johnlenz): Do we need to handle this differently for "third_party"
+    // mode? Remove the previous function definitions?
+    test("function f(){} function f(){}",
+         "function f(){} function f(){}",
+         SyntacticScopeCreator.VAR_MULTIPLY_DECLARED_ERROR);
+    test("if (a) { function f(){} } else { function f(){} }",
+         "if (a) { var f = function (){} } else { f = function (){} }");
+  }
+public void testMoveFunctions2() throws Exception {
+    testSame("function f() { function foo() {} }");
+    test("function f() { f(); a:function bar() {} }",
+         "function f() { f(); a:{ var bar = function () {} }}");
+    test("function f() { f(); {function bar() {}}}",
+         "function f() { f(); {var bar = function () {}}}");
+    test("function f() { f(); if (true) {function bar() {}}}",
+         "function f() { f(); if (true) {var bar = function () {}}}");
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+    public void onRedeclaration(
+        Scope s, String name, Node n, Node parent, Node gramps,
+        Node nodeWithLineNumber) {
+      Preconditions.checkState(n.getType() == Token.NAME);
+      if (parent.getType() == Token.VAR) {
+      // If name is "arguments", Var maybe null.
+        Preconditions.checkState(parent.hasOneChild());
+
+        replaceVarWithAssignment(n, parent, gramps);
+      }
+    }
+```
+```java
+@Override
+    public void visit(NodeTraversal t, Node n, Node parent) {
+      // Note: Constant properties annotations are not propagated.
+      if (n.getType() == Token.NAME) {
+        if (n.getString().isEmpty()) {
+          return;
+        }
+
+        JSDocInfo info = null;
+        // Find the JSDocInfo for a top level variable.
+        Var var = t.getScope().getVar(n.getString());
+        if (var != null) {
+          info = var.getJSDocInfo();
+        }
+
+        if ((info != null && info.isConstant()) &&
+            !n.getBooleanProp(Node.IS_CONSTANT_NAME)) {
+          n.putBooleanProp(Node.IS_CONSTANT_NAME, true);
+          if (assertOnChange) {
+            String name = n.getString();
+            throw new IllegalStateException(
+                "Unexpected const change.\n" +
+                "  name: "+ name + "\n" +
+                "  gramps:" + n.getParent().getParent().toStringTree());
+          }
+          // Even though the AST has changed (an annotation was added),
+          // the annotations are not compared so don't report the change.
+          // reportCodeChange("constant annotation");
+        }
+      }
+    }
+```

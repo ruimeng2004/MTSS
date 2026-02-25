@@ -1,0 +1,1 @@
+junit.framework.ComparisonFailure: expected:<{[foo: (number|undefined)]}> but was:<{[]}>

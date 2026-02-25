@@ -1,0 +1,194 @@
+### Buggy function comment:
+   /**
+     * Factory method for creating a subtype of given base type, as defined
+     * by specified subclass; but retaining generic type information if any.
+     * Can be used, for example, to get equivalent of "HashMap&lt;String,Integer&gt;"
+     * from "Map&lt;String,Integer&gt;" by giving <code>HashMap.class</code>
+     * as subclass.
+     */
+public JavaType constructSpecializedType(JavaType baseType,Class<?> subclass)
+   /**
+     * Factory method for constructing {@link JavaType} that
+     * represents a parameterized type. For example, to represent
+     * type <code>List&lt;Set&lt;Integer>></code>, you could
+     * call
+     *<pre>
+     *  JavaType inner = TypeFactory.constructParametrizedType(Set.class, Set.class, Integer.class);
+     *  return TypeFactory.constructParametrizedType(ArrayList.class, List.class, inner);
+     *</pre>
+     *<p>
+     * The reason for first two arguments to be separate is that parameterization may
+     * apply to a super-type. For example, if generic type was instead to be
+     * constructed for <code>ArrayList&lt;Integer></code>, the usual call would be:
+     *<pre>
+     *  TypeFactory.constructParametrizedType(ArrayList.class, List.class, Integer.class);
+     *</pre>
+     * since parameterization is applied to {@link java.util.List}.
+     * In most cases distinction does not matter, but there are types where it does;
+     * one such example is parameterization of types that implement {@link java.util.Iterator}.
+     *<p>
+     * NOTE: type modifiers are NOT called on constructed type.
+     * 
+     * @param parametrized Actual full type
+     * @param parameterClasses Type parameters to apply
+     *
+     * @since 2.5 NOTE: was briefly deprecated for 2.6
+     */
+public JavaType constructParametricType(Class<?> parametrized,Class<?>... parameterClasses)
+   This function has no comment.
+
+
+### Error message from JUnit test:
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+public void testCanonicalNames()
+    {
+        TypeFactory tf = TypeFactory.defaultInstance();
+        JavaType t = tf.constructType(java.util.Calendar.class);
+        String can = t.toCanonical();
+        assertEquals("java.util.Calendar", can);
+        assertEquals(t, tf.constructFromCanonical(can));
+
+        // Generic maps and collections will default to Object.class if type-erased
+        t = tf.constructType(java.util.ArrayList.class);
+        can = t.toCanonical();
+        assertEquals("java.util.ArrayList<java.lang.Object>", can);
+        assertEquals(t, tf.constructFromCanonical(can));
+
+        t = tf.constructType(java.util.TreeMap.class);
+        can = t.toCanonical();
+        assertEquals("java.util.TreeMap<java.lang.Object,java.lang.Object>", can);
+        assertEquals(t, tf.constructFromCanonical(can));
+
+        // And then EnumMap (actual use case for us)
+        t = tf.constructMapType(EnumMap.class, EnumForCanonical.class, String.class);
+        can = t.toCanonical();
+        assertEquals("java.util.EnumMap<com.fasterxml.jackson.databind.type.TestTypeFactory$EnumForCanonical,java.lang.String>",
+                can);
+        assertEquals(t, tf.constructFromCanonical(can));
+
+        // [databind#1941]: allow "raw" types too
+
+        t = tf.constructFromCanonical("java.util.List");
+        assertEquals(List.class, t.getRawClass());
+        assertEquals(CollectionType.class, t.getClass());
+        // 01-Mar-2018, tatu: not 100% should we expect type parameters here...
+        //    But currently we do NOT get any
+        /*
+        assertEquals(1, t.containedTypeCount());
+        assertEquals(Object.class, t.containedType(0).getRawClass());
+        */
+        assertEquals(Object.class, t.getContentType().getRawClass());
+        can = t.toCanonical();
+        assertEquals("java.util.List<java.lang.Object>", can);
+        assertEquals(t, tf.constructFromCanonical(can));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public JavaType constructSpecializedType(JavaType baseType, Class<?> subclass)
+    {
+        // simple optimization to avoid costly introspection if type-erased type does NOT differ
+        final Class<?> rawBase = baseType.getRawClass();
+        if (rawBase == subclass) {
+            return baseType;
+        }
+
+        JavaType newType;
+
+        // also: if we start from untyped, not much to save
+        do { // bogus loop to be able to break
+            if (rawBase == Object.class) {
+                newType = _fromClass(null, subclass, TypeBindings.emptyBindings());
+                break;
+            }
+            if (!rawBase.isAssignableFrom(subclass)) {
+                throw new IllegalArgumentException(String.format(
+                        "Class %s not subtype of %s", subclass.getName(), baseType));
+            }
+            // A few special cases where we can simplify handling:
+
+            // (1) Original target type has no generics -- just resolve subtype
+            if (baseType.getBindings().isEmpty()) {
+                newType = _fromClass(null, subclass, TypeBindings.emptyBindings());     
+                break;
+            }
+            // (2) A small set of "well-known" List/Map subtypes where can take a short-cut
+            if (baseType.isContainerType()) {
+                if (baseType.isMapLikeType()) {
+                    if ((subclass == HashMap.class)
+                            || (subclass == LinkedHashMap.class)
+                            || (subclass == EnumMap.class)
+                            || (subclass == TreeMap.class)) {
+                        newType = _fromClass(null, subclass,
+                                TypeBindings.create(subclass, baseType.getKeyType(), baseType.getContentType()));
+                        break;
+                    }
+                } else if (baseType.isCollectionLikeType()) {
+                    if ((subclass == ArrayList.class)
+                            || (subclass == LinkedList.class)
+                            || (subclass == HashSet.class)
+                            || (subclass == TreeSet.class)) {
+                        newType = _fromClass(null, subclass,
+                                TypeBindings.create(subclass, baseType.getContentType()));
+                        break;
+                    }
+                    // 29-Oct-2015, tatu: One further shortcut: there are variants of `EnumSet`,
+                    //    but they are impl details and we basically do not care...
+                    if (rawBase == EnumSet.class) {
+                        return baseType;
+                    }
+                }
+            }
+            // (3) Sub-class does not take type parameters -- just resolve subtype
+            int typeParamCount = subclass.getTypeParameters().length;
+            if (typeParamCount == 0) {
+                newType = _fromClass(null, subclass, TypeBindings.emptyBindings());     
+                break;
+            }
+            // (4) If all else fails, do the full traversal using placeholders
+            TypeBindings tb = _bindingsForSubtype(baseType, typeParamCount, subclass);
+            newType = _fromClass(null, subclass, tb);
+
+        } while (false);
+
+        // 25-Sep-2016, tatu: As per [databind#1384] also need to ensure handlers get
+        //   copied as well
+        newType = newType.withHandlersFrom(baseType);
+        return newType;
+    }
+```
+```java
+public JavaType constructParametricType(Class<?> parametrized, Class<?>... parameterClasses) {
+        int len = parameterClasses.length;
+        JavaType[] pt = new JavaType[len];
+        for (int i = 0; i < len; ++i) {
+            pt[i] = _fromClass(null, parameterClasses[i], null);
+        }
+        return constructParametricType(parametrized, pt);
+    }
+```
+```java
+protected JavaType parseType(MyTokenizer tokens)
+        throws IllegalArgumentException
+    {
+        if (!tokens.hasMoreTokens()) {
+            throw _problem(tokens, "Unexpected end-of-string");
+        }
+        Class<?> base = findClass(tokens.nextToken(), tokens);
+
+        // either end (ok, non generic type), or generics
+        if (tokens.hasMoreTokens()) {
+            String token = tokens.nextToken();
+            if ("<".equals(token)) {
+                List<JavaType> parameterTypes = parseTypes(tokens);
+                TypeBindings b = TypeBindings.create(base, parameterTypes);
+                return _factory._fromClass(null, base, b);
+            }
+            // can be comma that separates types, or closing '>'
+            tokens.pushBack(token);
+        }
+        return _factory._fromClass(null, base, null);
+    }
+```

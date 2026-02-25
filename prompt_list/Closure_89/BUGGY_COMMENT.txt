@@ -1,0 +1,13 @@
+   /**
+   * Updates the initial assignment to a collapsible property at global scope
+   * by changing it to a variable declaration (e.g. a.b = 1 -> var a$b = 1).
+   * The property's value may either be a primitive or an object literal or
+   * function whose properties aren't collapsible.
+   *
+   * @param alias The flattened property name (e.g. "a$b")
+   * @param refName The name for the reference being updated.
+   * @param ref An object containing information about the assignment getting
+   *     updated
+   */
+private void updateSimpleDeclaration(String alias,Name refName,Ref ref)
+   This function has no comment.

@@ -1,0 +1,15 @@
+public void testRewritePrototypeMethods2() throws Exception {
+    // type checking on
+    enableTypeCheck(CheckLevel.ERROR);
+    checkTypes(RewritePrototypeMethodTestInput.INPUT,
+               RewritePrototypeMethodTestInput.EXPECTED,
+               RewritePrototypeMethodTestInput.EXPECTED_TYPE_CHECKING_ON);
+  }
+public void testGoodExtends9() throws Exception {
+    testTypes(
+        "/** @constructor */ function Super() {}" +
+        "Super.prototype.foo = function() {};" +
+        "/** @constructor \n * @extends {Super} */ function Sub() {}" +
+        "Sub.prototype = new Super();" +
+        "/** @override */ Sub.prototype.foo = function() {};");
+  }

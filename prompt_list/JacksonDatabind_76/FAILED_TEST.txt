@@ -1,0 +1,48 @@
+public void testWithUnwrappedAndCreatorSingleParameterAtBeginning() throws Exception {
+        final String json = aposToQuotes("{'person_id':1234,'first_name':'John','last_name':'Doe','years_old':30,'living':true}");
+
+        final ObjectMapper mapper = new ObjectMapper();
+        Person person = mapper.readValue(json, Person.class);
+        assertEquals(1234, person.getId());
+        assertNotNull(person.getName());
+        assertEquals("John", person.getName().getFirst());
+        assertEquals("Doe", person.getName().getLast());
+        assertEquals(30, person.getAge());
+        assertEquals(true, person.isAlive());
+    }
+public void testWithUnwrappedAndCreatorMultipleParametersAtBeginning() throws Exception {
+        final String json = aposToQuotes("{'animal_id':1234,'living':true,'first_name':'John','last_name':'Doe','years_old':30}");
+
+        final ObjectMapper mapper = new ObjectMapper();
+        Animal animal = mapper.readValue(json, Animal.class);
+        assertEquals(1234, animal.getId());
+        assertNotNull(animal.getName());
+        assertEquals("John", animal.getName().getFirst());
+        assertEquals("Doe", animal.getName().getLast());
+        assertEquals(30, animal.getAge());
+        assertEquals(true, animal.isAlive());
+    }
+public void testWithUnwrappedAndCreatorSingleParameterInMiddle() throws Exception {
+        final String json = aposToQuotes("{'first_name':'John','last_name':'Doe','person_id':1234,'years_old':30,'living':true}");
+
+        final ObjectMapper mapper = new ObjectMapper();
+        Person person = mapper.readValue(json, Person.class);
+        assertEquals(1234, person.getId());
+        assertNotNull(person.getName());
+        assertEquals("John", person.getName().getFirst());
+        assertEquals("Doe", person.getName().getLast());
+        assertEquals(30, person.getAge());
+        assertEquals(true, person.isAlive());
+    }
+public void testWithUnwrappedAndCreatorMultipleParametersInMiddle() throws Exception {
+        final String json = aposToQuotes("{'first_name':'John','animal_id':1234,'last_name':'Doe','living':true,'years_old':30}");
+
+        final ObjectMapper mapper = new ObjectMapper();
+        Animal animal = mapper.readValue(json, Animal.class);
+        assertEquals(1234, animal.getId());
+        assertNotNull(animal.getName());
+        assertEquals("John", animal.getName().getFirst());
+        assertEquals("Doe", animal.getName().getLast());
+        assertEquals(30, animal.getAge());
+        assertEquals(true, animal.isAlive());
+    }

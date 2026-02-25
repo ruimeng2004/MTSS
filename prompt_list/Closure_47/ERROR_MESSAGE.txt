@@ -1,0 +1,16 @@
+junit.framework.AssertionFailedError: expected:<5> but was:<4>
+junit.framework.ComparisonFailure: expected:<...t":1,
+junit.framework.AssertionFailedError: expected:<10> but was:<9>
+junit.framework.AssertionFailedError: expected:<10> but was:<9>
+junit.framework.ComparisonFailure: expected:<...t":1,
+junit.framework.AssertionFailedError: expected:<10> but was:<9>
+junit.framework.ComparisonFailure: expected:<...t":1,
+junit.framework.AssertionFailedError: expected:<5> but was:<4>
+junit.framework.AssertionFailedError: expected:<10> but was:<9>
+junit.framework.AssertionFailedError: expected:<10> but was:<9>
+junit.framework.AssertionFailedError: expected:<10> but was:<9>
+junit.framework.ComparisonFailure: expected:<...t":1,
+junit.framework.ComparisonFailure: expected:<...t":1,
+junit.framework.ComparisonFailure: expected:<...t":1,
+junit.framework.ComparisonFailure: expected:<...t":1,
+junit.framework.ComparisonFailure: expected:<...

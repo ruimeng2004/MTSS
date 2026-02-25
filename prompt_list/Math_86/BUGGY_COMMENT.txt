@@ -1,0 +1,16 @@
+   /**
+     * Calculates the Cholesky decomposition of the given matrix.
+     * @param matrix the matrix to decompose
+     * @param relativeSymmetryThreshold threshold above which off-diagonal
+     * elements are considered too different and matrix not symmetric
+     * @param absolutePositivityThreshold threshold below which diagonal
+     * elements are considered null and matrix not positive definite
+     * @exception NonSquareMatrixException if matrix is not square
+     * @exception NotSymmetricMatrixException if matrix is not symmetric
+     * @exception NotPositiveDefiniteMatrixException if the matrix is not
+     * strictly positive definite
+     * @see #CholeskyDecompositionImpl(RealMatrix)
+     * @see #DEFAULT_RELATIVE_SYMMETRY_THRESHOLD
+     * @see #DEFAULT_ABSOLUTE_POSITIVITY_THRESHOLD
+     */
+public CholeskyDecompositionImpl(final RealMatrix matrix,final double relativeSymmetryThreshold,final double absolutePositivityThreshold)

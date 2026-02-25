@@ -1,0 +1,10 @@
+   /**
+     * Parse a date from ISO-8601 formatted string. It expects a format
+     * [yyyy-MM-dd|yyyyMMdd][T(hh:mm[:ss[.sss]]|hhmm[ss[.sss]])]?[Z|[+-]hh[:mm]]]
+     * 
+     * @param date ISO string to parse in the appropriate format.
+     * @param pos The position to start parsing from, updated to where parsing stopped.
+     * @return the parsed date
+     * @throws ParseException if the date is not in the appropriate format
+     */
+public static Date parse(String date,ParsePosition pos)

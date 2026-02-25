@@ -1,0 +1,37 @@
+   /**
+     * Construct a solver.
+     */
+public BrentOptimizer()
+   This function has no comment.
+   This function has no comment.
+   /**
+     * Find the minimum of the function within the interval {@code (lo, hi)}.
+     *
+     * If the function is defined on the interval {@code (lo, hi)}, then
+     * this method finds an approximation {@code x} to the point at which
+     * the function attains its minimum.<br/>
+     * {@code t} and {@code eps} define a tolerance {@code tol = eps |x| + t}
+     * and the function is never evaluated at two points closer together than
+     * {@code tol}. {@code eps} should be no smaller than <em>2 macheps</em> and
+     * preferable not much less than <em>sqrt(macheps)</em>, where
+     * <em>macheps</em> is the relative machine precision. {@code t} should be
+     * positive.
+     * @param isMinim {@code true} when minimizing the function.
+     * @param lo Lower bound of the interval.
+     * @param mid Point inside the interval {@code [lo, hi]}.
+     * @param hi Higher bound of the interval.
+     * @param eps Relative accuracy.
+     * @param t Absolute accuracy.
+     * @return the optimum point.
+     * @throws MaxIterationsExceededException if the maximum iteration count
+     * is exceeded.
+     * @throws FunctionEvaluationException if an error occurs evaluating
+     * the function.
+     */
+private double localMin(boolean isMinim,UnivariateRealFunction f,GoalType goalType,double lo,double mid,double hi,double eps,double t)
+   /**
+     * Perform the optimization.
+     *
+     * @return the optimum.
+     */
+protected double doOptimize()

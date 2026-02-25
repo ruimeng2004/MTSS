@@ -1,0 +1,1317 @@
+{
+  "summary": {
+    "total_cases": 100,
+    "gen": {
+      "total": 693,
+      "fixed": 316,
+      "fix_rate": 45.5988455988456
+    },
+    "sr": {
+      "total": 699,
+      "fixed": 308,
+      "fix_rate": 44.06294706723891
+    }
+  },
+  "cases": {
+    "Closure_111": {
+      "ppl_diff": 0.363789,
+      "avgnll_diff": 0.307192,
+      "total_diff": 0.670981,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Jsoup_65": {
+      "ppl_diff": 0.291914,
+      "avgnll_diff": 0.250045,
+      "total_diff": 0.541958,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_96": {
+      "ppl_diff": 0.284095,
+      "avgnll_diff": 0.241237,
+      "total_diff": 0.525332,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_18": {
+      "ppl_diff": 0.279218,
+      "avgnll_diff": 0.244824,
+      "total_diff": 0.524042,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_83": {
+      "ppl_diff": 0.262188,
+      "avgnll_diff": 0.232427,
+      "total_diff": 0.494615,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_48": {
+      "ppl_diff": 0.218505,
+      "avgnll_diff": 0.19757,
+      "total_diff": 0.416075,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_50": {
+      "ppl_diff": 0.186827,
+      "avgnll_diff": 0.169975,
+      "total_diff": 0.356802,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Mockito_13": {
+      "ppl_diff": 0.182616,
+      "avgnll_diff": 0.167508,
+      "total_diff": 0.350123,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Compress_4": {
+      "ppl_diff": 0.181882,
+      "avgnll_diff": 0.164755,
+      "total_diff": 0.346637,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 5
+      }
+    },
+    "Cli_3": {
+      "ppl_diff": 0.175304,
+      "avgnll_diff": 0.159281,
+      "total_diff": 0.334585,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_14": {
+      "ppl_diff": 0.166297,
+      "avgnll_diff": 0.149222,
+      "total_diff": 0.31552,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 9
+      }
+    },
+    "Math_74": {
+      "ppl_diff": 0.159734,
+      "avgnll_diff": 0.147993,
+      "total_diff": 0.307727,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_81": {
+      "ppl_diff": 0.157135,
+      "avgnll_diff": 0.145797,
+      "total_diff": 0.302932,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Collections_7": {
+      "ppl_diff": 0.154037,
+      "avgnll_diff": 0.142967,
+      "total_diff": 0.297004,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 8
+      }
+    },
+    "Closure_132": {
+      "ppl_diff": 0.146384,
+      "avgnll_diff": 0.136566,
+      "total_diff": 0.28295,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Time_26": {
+      "ppl_diff": 0.139382,
+      "avgnll_diff": 0.130233,
+      "total_diff": 0.269615,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 5
+      }
+    },
+    "JacksonCore_22": {
+      "ppl_diff": 0.135494,
+      "avgnll_diff": 0.126496,
+      "total_diff": 0.26199,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_31": {
+      "ppl_diff": 0.142865,
+      "avgnll_diff": 0.110403,
+      "total_diff": 0.253267,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_104": {
+      "ppl_diff": 0.113912,
+      "avgnll_diff": 0.107283,
+      "total_diff": 0.221195,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_59": {
+      "ppl_diff": 0.11345,
+      "avgnll_diff": 0.107255,
+      "total_diff": 0.220705,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Collections_9": {
+      "ppl_diff": 0.112248,
+      "avgnll_diff": 0.102142,
+      "total_diff": 0.21439,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "JacksonCore_12": {
+      "ppl_diff": 0.110188,
+      "avgnll_diff": 0.103878,
+      "total_diff": 0.214066,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 5
+      }
+    },
+    "JacksonDatabind_37": {
+      "ppl_diff": 0.106271,
+      "avgnll_diff": 0.100157,
+      "total_diff": 0.206427,
+      "gen": {
+        "fixed": false,
+        "attempts": 2
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Collections_15": {
+      "ppl_diff": 0.105321,
+      "avgnll_diff": 0.097245,
+      "total_diff": 0.202566,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Collections_5": {
+      "ppl_diff": 0.098901,
+      "avgnll_diff": 0.093148,
+      "total_diff": 0.192049,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonCore_23": {
+      "ppl_diff": 0.093227,
+      "avgnll_diff": 0.086699,
+      "total_diff": 0.179927,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_131": {
+      "ppl_diff": 0.087677,
+      "avgnll_diff": 0.082597,
+      "total_diff": 0.170274,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Codec_4": {
+      "ppl_diff": 0.086783,
+      "avgnll_diff": 0.08179,
+      "total_diff": 0.168573,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Jsoup_5": {
+      "ppl_diff": 0.086816,
+      "avgnll_diff": 0.079942,
+      "total_diff": 0.166757,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Collections_26": {
+      "ppl_diff": 0.085492,
+      "avgnll_diff": 0.079557,
+      "total_diff": 0.165049,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_69": {
+      "ppl_diff": 0.080851,
+      "avgnll_diff": 0.077082,
+      "total_diff": 0.157932,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_11": {
+      "ppl_diff": 0.080701,
+      "avgnll_diff": 0.075617,
+      "total_diff": 0.156318,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Jsoup_84": {
+      "ppl_diff": 0.078708,
+      "avgnll_diff": 0.074412,
+      "total_diff": 0.153121,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_29": {
+      "ppl_diff": 0.077289,
+      "avgnll_diff": 0.073987,
+      "total_diff": 0.151276,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 9
+      }
+    },
+    "Closure_52": {
+      "ppl_diff": 0.077225,
+      "avgnll_diff": 0.073693,
+      "total_diff": 0.150918,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_159": {
+      "ppl_diff": 0.077503,
+      "avgnll_diff": 0.073138,
+      "total_diff": 0.150641,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Jsoup_40": {
+      "ppl_diff": 0.074523,
+      "avgnll_diff": 0.070915,
+      "total_diff": 0.145438,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_51": {
+      "ppl_diff": 0.07156,
+      "avgnll_diff": 0.068696,
+      "total_diff": 0.140255,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_90": {
+      "ppl_diff": 0.070797,
+      "avgnll_diff": 0.068056,
+      "total_diff": 0.138852,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_112": {
+      "ppl_diff": 0.07121,
+      "avgnll_diff": 0.067577,
+      "total_diff": 0.138787,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Mockito_8": {
+      "ppl_diff": 0.064835,
+      "avgnll_diff": 0.061834,
+      "total_diff": 0.126669,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Gson_1": {
+      "ppl_diff": 0.063273,
+      "avgnll_diff": 0.060664,
+      "total_diff": 0.123937,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Lang_27": {
+      "ppl_diff": 0.062178,
+      "avgnll_diff": 0.060222,
+      "total_diff": 0.1224,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Jsoup_64": {
+      "ppl_diff": 0.06198,
+      "avgnll_diff": 0.05836,
+      "total_diff": 0.12034,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_55": {
+      "ppl_diff": 0.061119,
+      "avgnll_diff": 0.05742,
+      "total_diff": 0.11854,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_68": {
+      "ppl_diff": 0.060212,
+      "avgnll_diff": 0.058141,
+      "total_diff": 0.118353,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 5
+      }
+    },
+    "JacksonDatabind_64": {
+      "ppl_diff": 0.058472,
+      "avgnll_diff": 0.056768,
+      "total_diff": 0.11524,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 5
+      }
+    },
+    "Jsoup_80": {
+      "ppl_diff": 0.058244,
+      "avgnll_diff": 0.056189,
+      "total_diff": 0.114433,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_7": {
+      "ppl_diff": 0.058031,
+      "avgnll_diff": 0.055421,
+      "total_diff": 0.113452,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_139": {
+      "ppl_diff": 0.05733,
+      "avgnll_diff": 0.054524,
+      "total_diff": 0.111854,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_173": {
+      "ppl_diff": 0.056156,
+      "avgnll_diff": 0.054425,
+      "total_diff": 0.11058,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_22": {
+      "ppl_diff": 0.055369,
+      "avgnll_diff": 0.053189,
+      "total_diff": 0.108558,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_63": {
+      "ppl_diff": 0.053742,
+      "avgnll_diff": 0.052107,
+      "total_diff": 0.105849,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Math_6": {
+      "ppl_diff": 0.053701,
+      "avgnll_diff": 0.05195,
+      "total_diff": 0.105651,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 5
+      }
+    },
+    "Collections_19": {
+      "ppl_diff": 0.054298,
+      "avgnll_diff": 0.051198,
+      "total_diff": 0.105496,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Jsoup_70": {
+      "ppl_diff": 0.052314,
+      "avgnll_diff": 0.0508,
+      "total_diff": 0.103115,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_150": {
+      "ppl_diff": 0.053666,
+      "avgnll_diff": 0.049015,
+      "total_diff": 0.102681,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_66": {
+      "ppl_diff": 0.051876,
+      "avgnll_diff": 0.050529,
+      "total_diff": 0.102405,
+      "gen": {
+        "fixed": false,
+        "attempts": 8
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 8
+      }
+    },
+    "Lang_63": {
+      "ppl_diff": 0.051538,
+      "avgnll_diff": 0.04937,
+      "total_diff": 0.100909,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 9
+      }
+    },
+    "Jsoup_2": {
+      "ppl_diff": 0.051003,
+      "avgnll_diff": 0.049667,
+      "total_diff": 0.100669,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_51": {
+      "ppl_diff": 0.050894,
+      "avgnll_diff": 0.049231,
+      "total_diff": 0.100125,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Time_20": {
+      "ppl_diff": 0.050786,
+      "avgnll_diff": 0.048504,
+      "total_diff": 0.099291,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonXml_1": {
+      "ppl_diff": 0.050065,
+      "avgnll_diff": 0.048346,
+      "total_diff": 0.098411,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_44": {
+      "ppl_diff": 0.049997,
+      "avgnll_diff": 0.047963,
+      "total_diff": 0.09796,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_91": {
+      "ppl_diff": 0.049731,
+      "avgnll_diff": 0.04723,
+      "total_diff": 0.09696,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_6": {
+      "ppl_diff": 0.049137,
+      "avgnll_diff": 0.046753,
+      "total_diff": 0.095889,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Time_16": {
+      "ppl_diff": 0.048567,
+      "avgnll_diff": 0.046793,
+      "total_diff": 0.09536,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_34": {
+      "ppl_diff": 0.048716,
+      "avgnll_diff": 0.046175,
+      "total_diff": 0.094891,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_97": {
+      "ppl_diff": 0.047198,
+      "avgnll_diff": 0.045939,
+      "total_diff": 0.093138,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_68": {
+      "ppl_diff": 0.047004,
+      "avgnll_diff": 0.045848,
+      "total_diff": 0.092852,
+      "gen": {
+        "fixed": false,
+        "attempts": 9
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Compress_26": {
+      "ppl_diff": 0.047145,
+      "avgnll_diff": 0.044449,
+      "total_diff": 0.091594,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_170": {
+      "ppl_diff": 0.044801,
+      "avgnll_diff": 0.042583,
+      "total_diff": 0.087385,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_9": {
+      "ppl_diff": 0.044216,
+      "avgnll_diff": 0.04282,
+      "total_diff": 0.087036,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Compress_17": {
+      "ppl_diff": 0.043637,
+      "avgnll_diff": 0.042343,
+      "total_diff": 0.085981,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_60": {
+      "ppl_diff": 0.04353,
+      "avgnll_diff": 0.042332,
+      "total_diff": 0.085862,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_71": {
+      "ppl_diff": 0.043188,
+      "avgnll_diff": 0.042225,
+      "total_diff": 0.085414,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 5
+      }
+    },
+    "Math_95": {
+      "ppl_diff": 0.043891,
+      "avgnll_diff": 0.041438,
+      "total_diff": 0.085329,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Math_39": {
+      "ppl_diff": 0.042921,
+      "avgnll_diff": 0.041924,
+      "total_diff": 0.084845,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_17": {
+      "ppl_diff": 0.043516,
+      "avgnll_diff": 0.040386,
+      "total_diff": 0.083902,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_15": {
+      "ppl_diff": 0.041036,
+      "avgnll_diff": 0.039667,
+      "total_diff": 0.080703,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_109": {
+      "ppl_diff": 0.0408,
+      "avgnll_diff": 0.03971,
+      "total_diff": 0.08051,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_140": {
+      "ppl_diff": 0.040693,
+      "avgnll_diff": 0.039239,
+      "total_diff": 0.079932,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Time_3": {
+      "ppl_diff": 0.040263,
+      "avgnll_diff": 0.039367,
+      "total_diff": 0.079631,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_53": {
+      "ppl_diff": 0.040489,
+      "avgnll_diff": 0.03875,
+      "total_diff": 0.079239,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_167": {
+      "ppl_diff": 0.039759,
+      "avgnll_diff": 0.038889,
+      "total_diff": 0.078649,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_7": {
+      "ppl_diff": 0.038255,
+      "avgnll_diff": 0.037445,
+      "total_diff": 0.0757,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_46": {
+      "ppl_diff": 0.038511,
+      "avgnll_diff": 0.037059,
+      "total_diff": 0.07557,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_85": {
+      "ppl_diff": 0.038329,
+      "avgnll_diff": 0.036797,
+      "total_diff": 0.075126,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Compress_28": {
+      "ppl_diff": 0.037842,
+      "avgnll_diff": 0.036799,
+      "total_diff": 0.074641,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_41": {
+      "ppl_diff": 0.037038,
+      "avgnll_diff": 0.036242,
+      "total_diff": 0.07328,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_75": {
+      "ppl_diff": 0.036588,
+      "avgnll_diff": 0.03567,
+      "total_diff": 0.072258,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_32": {
+      "ppl_diff": 0.036506,
+      "avgnll_diff": 0.035695,
+      "total_diff": 0.0722,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_90": {
+      "ppl_diff": 0.036452,
+      "avgnll_diff": 0.035697,
+      "total_diff": 0.072149,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_7": {
+      "ppl_diff": 0.036736,
+      "avgnll_diff": 0.034839,
+      "total_diff": 0.071574,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Math_20": {
+      "ppl_diff": 0.036457,
+      "avgnll_diff": 0.034959,
+      "total_diff": 0.071415,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "JacksonDatabind_25": {
+      "ppl_diff": 0.03586,
+      "avgnll_diff": 0.035165,
+      "total_diff": 0.071025,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Closure_126": {
+      "ppl_diff": 0.035955,
+      "avgnll_diff": 0.034947,
+      "total_diff": 0.070902,
+      "gen": {
+        "fixed": false,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Closure_69": {
+      "ppl_diff": 0.035997,
+      "avgnll_diff": 0.034832,
+      "total_diff": 0.070829,
+      "gen": {
+        "fixed": false,
+        "attempts": 8
+      },
+      "sr": {
+        "fixed": false,
+        "attempts": 10
+      }
+    },
+    "Jsoup_75": {
+      "ppl_diff": 0.03618,
+      "avgnll_diff": 0.034467,
+      "total_diff": 0.070648,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    },
+    "Codec_7": {
+      "ppl_diff": 0.035511,
+      "avgnll_diff": 0.034681,
+      "total_diff": 0.070192,
+      "gen": {
+        "fixed": true,
+        "attempts": 10
+      },
+      "sr": {
+        "fixed": true,
+        "attempts": 10
+      }
+    }
+  }
+}

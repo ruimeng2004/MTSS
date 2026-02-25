@@ -1,0 +1,3 @@
+junit.framework.ComparisonFailure: expected:<var a,b,c;a||[(b||c);a*(b*c);a|(b|c)]> but was:<var a,b,c;a||[b||c;a*b*c;a|b|c]>
+junit.framework.ComparisonFailure: expected:<3*[(4%3*5)]> but was:<3*[4%3*5]>
+junit.framework.AssertionFailedError:

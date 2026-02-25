@@ -1,0 +1,16 @@
+public void testRemoveRangeMarker() {
+    	CategoryPlot plot = new CategoryPlot();
+    	assertFalse(plot.removeRangeMarker(new ValueMarker(0.5)));
+    }
+public void testRemoveDomainMarker() {
+    	CategoryPlot plot = new CategoryPlot();
+    	assertFalse(plot.removeDomainMarker(new CategoryMarker("Category 1")));
+    }
+public void testRemoveRangeMarker() {
+    	XYPlot plot = new XYPlot();
+    	assertFalse(plot.removeRangeMarker(new ValueMarker(0.5)));
+    }
+public void testRemoveDomainMarker() {
+    	XYPlot plot = new XYPlot();
+    	assertFalse(plot.removeDomainMarker(new ValueMarker(0.5)));
+    }

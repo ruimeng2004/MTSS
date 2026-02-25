@@ -1,0 +1,7 @@
+   /**
+     * Removes the specified mapping from this map.
+     * 
+     * @param key  the mapping to remove
+     * @return the value mapped to the removed key, null if key not in map
+     */
+public Object remove(Object key)

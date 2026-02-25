@@ -1,0 +1,41 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+java.lang.NullPointerException
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+public void testNullSafeBugDeserialize() throws Exception {
+    Device device = gson.fromJson("{'id':'ec57803e2'}", Device.class);
+    assertEquals("ec57803e2", device.id);
+  }
+public void testNullSafeBugSerialize() throws Exception {
+    Device device = new Device("ec57803e");
+    gson.toJson(device);
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@SuppressWarnings("unchecked") // Casts guarded by conditionals.
+  static TypeAdapter<?> getTypeAdapter(ConstructorConstructor constructorConstructor, Gson gson,
+      TypeToken<?> fieldType, JsonAdapter annotation) {
+    Class<?> value = annotation.value();
+    TypeAdapter<?> typeAdapter;
+    if (TypeAdapter.class.isAssignableFrom(value)) {
+      Class<TypeAdapter<?>> typeAdapterClass = (Class<TypeAdapter<?>>) value;
+      typeAdapter = constructorConstructor.get(TypeToken.get(typeAdapterClass)).construct();
+    } else if (TypeAdapterFactory.class.isAssignableFrom(value)) {
+      Class<TypeAdapterFactory> typeAdapterFactory = (Class<TypeAdapterFactory>) value;
+      typeAdapter = constructorConstructor.get(TypeToken.get(typeAdapterFactory))
+          .construct()
+          .create(gson, fieldType);
+    } else {
+      throw new IllegalArgumentException(
+          "@JsonAdapter value must be TypeAdapter or TypeAdapterFactory reference.");
+    }
+      typeAdapter = typeAdapter.nullSafe();
+    return typeAdapter;
+  }
+```

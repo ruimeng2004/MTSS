@@ -1,0 +1,2 @@
+   // todo - this is getting gnarly. needs a rewrite.
+static Document parseByteData(ByteBuffer byteData,String charsetName,String baseUri,Parser parser)

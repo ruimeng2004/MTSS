@@ -1,0 +1,11 @@
+   /**
+   * Computes the follow() node of a given node and its parent. There is a side
+   * effect when calling this function. If this function computed an edge that
+   * exists a FINALLY, it'll attempt to connect the fromNode to the outer
+   * FINALLY according to the finallyMap.
+   *
+   * @param fromNode The original source node since {@code node} is changed
+   *        during recursion.
+   * @param node The node that follow() should compute.
+   */
+private static Node computeFollowNode(Node fromNode,Node node,ControlFlowAnalysis cfa)

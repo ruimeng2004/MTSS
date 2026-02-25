@@ -1,0 +1,106 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Expected failure for `long` overflow
+junit.framework.AssertionFailedError: Expected failure for `int` overflow
+
+### Failed JUnit tests:
+public void testNumberOverflowLong() throws IOException
+    {
+        final BigInteger tooBig = BigInteger.valueOf(Long.MAX_VALUE).add(BigInteger.ONE);
+        try (final JsonParser p = MAPPER.readTree("[ "+tooBig+" ]").traverse()) {
+            assertToken(JsonToken.START_ARRAY, p.nextToken());
+            assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+            assertEquals(NumberType.BIG_INTEGER, p.getNumberType());
+            try {
+                p.getLongValue();
+                fail("Expected failure for `long` overflow");
+            } catch (InputCoercionException e) {
+                verifyException(e, "Numeric value ("+tooBig+") out of range of long");
+            }
+        }
+        try (final JsonParser p = MAPPER.readTree("{ \"value\" : "+tooBig+" }").traverse()) {
+            assertToken(JsonToken.START_OBJECT, p.nextToken());
+            assertToken(JsonToken.FIELD_NAME, p.nextToken());
+            assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+            assertEquals(NumberType.BIG_INTEGER, p.getNumberType());
+            try {
+                p.getLongValue();
+                fail("Expected failure for `long` overflow");
+            } catch (InputCoercionException e) {
+                verifyException(e, "Numeric value ("+tooBig+") out of range of long");
+            }
+        }
+        // But also from floating-point
+        final String tooBig2 = "1.0e30";
+        try (final JsonParser p = MAPPER.readTree("[ "+tooBig2+" ]").traverse()) {
+            assertToken(JsonToken.START_ARRAY, p.nextToken());
+            assertToken(JsonToken.VALUE_NUMBER_FLOAT, p.nextToken());
+            assertEquals(NumberType.DOUBLE, p.getNumberType());
+            try {
+                p.getLongValue();
+                fail("Expected failure for `long` overflow");
+            } catch (InputCoercionException e) {
+                verifyException(e, "Numeric value ("+tooBig2+") out of range of long");
+            }
+        }
+    }
+public void testNumberOverflowInt() throws IOException
+    {
+        final long tooBig = 1L + Integer.MAX_VALUE;
+        try (final JsonParser p = MAPPER.readTree("[ "+tooBig+" ]").traverse()) {
+            assertToken(JsonToken.START_ARRAY, p.nextToken());
+            assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+            assertEquals(NumberType.LONG, p.getNumberType());
+            try {
+                p.getIntValue();
+                fail("Expected failure for `int` overflow");
+            } catch (InputCoercionException e) {
+                verifyException(e, "Numeric value ("+tooBig+") out of range of int");
+            }
+        }
+        try (final JsonParser p = MAPPER.readTree("{ \"value\" : "+tooBig+" }").traverse()) {
+            assertToken(JsonToken.START_OBJECT, p.nextToken());
+            assertToken(JsonToken.FIELD_NAME, p.nextToken());
+            assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
+            assertEquals(NumberType.LONG, p.getNumberType());
+            try {
+                p.getIntValue();
+                fail("Expected failure for `int` overflow");
+            } catch (InputCoercionException e) {
+                verifyException(e, "Numeric value ("+tooBig+") out of range of int");
+            }
+        }
+        // But also from floating-point
+        final String tooBig2 = "1.0e10";
+        try (final JsonParser p = MAPPER.readTree("[ "+tooBig2+" ]").traverse()) {
+            assertToken(JsonToken.START_ARRAY, p.nextToken());
+            assertToken(JsonToken.VALUE_NUMBER_FLOAT, p.nextToken());
+            assertEquals(NumberType.DOUBLE, p.getNumberType());
+            try {
+                p.getIntValue();
+                fail("Expected failure for `int` overflow");
+            } catch (InputCoercionException e) {
+                verifyException(e, "Numeric value ("+tooBig2+") out of range of int");
+            }
+        }
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+    public int getIntValue() throws IOException {
+        final NumericNode node = (NumericNode) currentNumericNode();
+        return node.intValue();
+    }
+```
+```java
+@Override
+    public long getLongValue() throws IOException {
+        final NumericNode node = (NumericNode) currentNumericNode();
+        return node.longValue();
+    }
+```

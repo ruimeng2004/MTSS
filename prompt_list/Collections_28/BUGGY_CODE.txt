@@ -1,0 +1,6 @@
+```java
+@Override
+        public void clear() {
+            AbstractPatriciaTrie.this.clear();
+        }
+```

@@ -1,0 +1,77 @@
+### Buggy function comment:
+   /**
+     * <p>Throws a {@link MissingOptionException} if all of the
+     * required options are no present.</p>
+     *
+     * @throws MissingOptionException if any of the required Options
+     * are not present.
+     */
+protected void checkRequiredOptions()
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:<... required options: f[, ]x> but was:<... required options: f[]x>
+junit.framework.ComparisonFailure: Incorrect exception message expected:<... required options: b[, ]c> but was:<... required options: b[]c>
+
+### Failed JUnit tests:
+public void testMissingOptionsException() throws ParseException {
+        Options options = new Options();
+        options.addOption(OptionBuilder.isRequired().create("f"));
+        options.addOption(OptionBuilder.isRequired().create("x"));
+        try {
+            new PosixParser().parse(options, new String[0]);
+            fail("Expected MissingOptionException to be thrown");
+        } catch (MissingOptionException e) {
+            assertEquals("Missing required options: f, x", e.getMessage());
+        }
+    }
+public void testMissingRequiredOptions()
+    {
+        String[] args = new String[] { "-a" };
+
+        _options.addOption( OptionBuilder.withLongOpt( "cfile" )
+                                     .hasArg()
+                                     .isRequired()
+                                     .withDescription( "set the value of [c]" )
+                                     .create( 'c' ) );
+
+        try
+        {
+            CommandLine cl = parser.parse(_options,args);
+            fail( "exception should have been thrown" );
+        }
+        catch (MissingOptionException e)
+        {
+            assertEquals( "Incorrect exception message", "Missing required options: b, c", e.getMessage() );
+        }
+        catch (ParseException e)
+        {
+            fail( "expected to catch MissingOptionException" );
+        }
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+protected void checkRequiredOptions()
+        throws MissingOptionException
+    {
+        // if there are required options that have not been
+        // processsed
+        if (getRequiredOptions().size() > 0)
+        {
+            Iterator iter = getRequiredOptions().iterator();
+            StringBuffer buff = new StringBuffer("Missing required option");
+            buff.append(getRequiredOptions().size() == 1 ? "" : "s");
+            buff.append(": ");
+
+
+            // loop through the required options
+            while (iter.hasNext())
+            {
+                buff.append(iter.next());
+            }
+
+            throw new MissingOptionException(buff.toString());
+        }
+    }
+```

@@ -1,0 +1,1 @@
+com.fasterxml.jackson.databind.JsonMappingException: Class java.lang.Long not subtype of [simple type, class long] (through reference chain: java.util.HashMap["longAsField"]->com.fasterxml.jackson.databind.jsontype.Data["key"])

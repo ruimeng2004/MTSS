@@ -1,0 +1,8 @@
+public void testByteArrayTypeOverride890() throws Exception
+    {
+        HiddenBinaryBean890 result = MAPPER.readValue(
+                aposToQuotes("{'someBytes':'AQIDBA=='}"), HiddenBinaryBean890.class);
+        assertNotNull(result);
+        assertNotNull(result.someBytes);
+        assertEquals(byte[].class, result.someBytes.getClass());
+    }

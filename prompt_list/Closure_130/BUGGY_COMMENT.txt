@@ -1,0 +1,16 @@
+   /**
+   * For each qualified name N in the global scope, we check if:
+   * (a) No ancestor of N is ever aliased or assigned an unknown value type.
+   *     (If N = "a.b.c", "a" and "a.b" are never aliased).
+   * (b) N has exactly one write, and it lives in the global scope.
+   * (c) N is aliased in a local scope.
+   *
+   * If (a) is true, then GlobalNamespace must know all the writes to N.
+   * If (a) and (b) are true, then N cannot change during the execution of
+   *    a local scope.
+   * If (a) and (b) and (c) are true, then the alias can be inlined if the
+   *    alias obeys the usual rules for how we decide whether a variable is
+   *    inlineable.
+   * @see InlineVariables
+   */
+private void inlineAliases(GlobalNamespace namespace)

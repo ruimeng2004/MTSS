@@ -1,0 +1,2 @@
+   // switching the chartset midstream when a meta http-equiv tag defines the charset.
+static Document parseByteData(ByteBuffer byteData,String charsetName,String baseUri,Parser parser)

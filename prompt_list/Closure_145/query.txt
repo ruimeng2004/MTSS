@@ -1,0 +1,68 @@
+### Buggy function comment:
+   /**
+   * @return Whether the Node is a DO or FUNCTION (with or without
+   * labels).
+   */
+private boolean isOneExactlyFunctionOrDo(Node n)
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:<if(e1)[{A:function goo(){return true}]}> but was:<if(e1)[A:function goo(){return true]}>
+junit.framework.ComparisonFailure: expected:<if(x)[{A:do foo();while(y)}]> but was:<if(x)[A:do foo();while(y)]>
+
+### Failed JUnit tests:
+public void testFunctionSafariCompatiblity() {
+    // Functions within IFs cause syntax errors on Safari.
+    assertPrint("function(){if(e1){function goo(){return true}}else foo()}",
+        "function(){if(e1){function goo(){return true}}else foo()}");
+
+    assertPrint("function(){if(e1)function goo(){return true}else foo()}",
+        "function(){if(e1){function goo(){return true}}else foo()}");
+
+    assertPrint("if(e1){function goo(){return true}}",
+        "if(e1){function goo(){return true}}");
+
+    assertPrint("if(e1)function goo(){return true}",
+        "if(e1){function goo(){return true}}");
+
+    assertPrint("if(e1)A:function goo(){return true}",
+        "if(e1){A:function goo(){return true}}");
+  }
+public void testDoLoopIECompatiblity() {
+    // Do loops within IFs cause syntax errors in IE6 and IE7.
+    assertPrint("function(){if(e1){do foo();while(e2)}else foo()}",
+        "function(){if(e1){do foo();while(e2)}else foo()}");
+
+    assertPrint("function(){if(e1)do foo();while(e2)else foo()}",
+        "function(){if(e1){do foo();while(e2)}else foo()}");
+
+    assertPrint("if(x){do{foo()}while(y)}else bar()",
+        "if(x){do foo();while(y)}else bar()");
+
+    assertPrint("if(x)do{foo()}while(y);else bar()",
+        "if(x){do foo();while(y)}else bar()");
+
+    assertPrint("if(x){do{foo()}while(y)}",
+        "if(x){do foo();while(y)}");
+
+    assertPrint("if(x)do{foo()}while(y);",
+        "if(x){do foo();while(y)}");
+
+    assertPrint("if(x)A:do{foo()}while(y);",
+        "if(x){A:do foo();while(y)}");
+    
+    assertPrint("var i = 0;a: do{b: do{i++;break b;} while(0);} while(0);",
+        "var i=0;a:do{b:do{i++;break b}while(0)}while(0)");
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private boolean isOneExactlyFunctionOrDo(Node n) {
+        // For labels with block children, we need to ensure that a
+        // labeled FUNCTION or DO isn't generated when extraneous BLOCKs 
+        // are skipped. 
+          // Either a empty statement or an block with more than one child,
+          // way it isn't a FUNCTION or DO.
+      return (n.getType() == Token.FUNCTION || n.getType() == Token.DO);
+  }
+```

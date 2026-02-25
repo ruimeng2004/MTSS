@@ -1,0 +1,5 @@
+   /**
+     * Specialized method for removing specified existing entry.
+     * NOTE: entry MUST exist, otherwise an exception is thrown.
+     */
+public void remove(SettableBeanProperty propToRm)

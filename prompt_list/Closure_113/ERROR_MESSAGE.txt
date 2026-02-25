@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: There should be one error. required "namespace.Class1" namespace never provided

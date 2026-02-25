@@ -1,0 +1,4 @@
+   /**
+     * @since 2.8.9
+     */
+protected XmlSerializerProvider(XmlSerializerProvider src)

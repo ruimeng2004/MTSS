@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: EOF expected:<-1> but was:<13>
+junit.framework.AssertionFailedError: Streaming base64 encode

@@ -1,0 +1,24 @@
+@Test
+    public void shouldNotThrowNPEWhenIntPassed() {
+        mock.intArgumentMethod(100);
+        
+        verify(mock).intArgumentMethod(isA(Integer.class));
+    }
+@Test
+    public void shouldNotThrowNPEWhenIntegerPassed() {
+        mock.intArgumentMethod(100);
+
+        verify(mock).intArgumentMethod(isA(Integer.class));
+    }
+@Test
+    public void shouldNotThrowNPEWhenIntegerPassedToEq() {
+        mock.intArgumentMethod(100);
+        
+        verify(mock).intArgumentMethod(eq(new Integer(100)));
+    }
+@Test
+    public void shouldNotThrowNPEWhenIntegerPassedToSame() {
+        mock.intArgumentMethod(100);
+
+        verify(mock, never()).intArgumentMethod(same(new Integer(100)));
+    }

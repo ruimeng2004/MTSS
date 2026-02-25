@@ -1,0 +1,5 @@
+   /**
+   * @return Whether the Node is a DO or FUNCTION (with or without
+   * labels).
+   */
+private boolean isOneExactlyFunctionOrDo(Node n)

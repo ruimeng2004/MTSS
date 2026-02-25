@@ -1,0 +1,31 @@
+accelerate==1.2.1
+astunparse==1.6.3
+gym==0.26.2
+pandas==1.5.3
+pydantic==2.8.2
+python-dotenv==1.0.1
+python-leetcode==1.2.1
+Requests==2.32.3
+retry==0.9.2
+tiktoken==0.6.0
+torch==2.5.1
+tqdm==4.66.2
+transformers==4.47.1
+
+# clustering visualization
+matplotlib==3.10.6
+scikit-learn==1.8.0
+
+# cuVS vector database dependencies
+pylibraft-cu12==24.10.0
+cuvs-cu12==24.10.0
+rmm-cu12==24.10.0
+cupy-cuda12x==13.3.0
+
+# D4J Fix Evaluation System dependencies
+pyyaml>=6.0
+gitpython>=3.1.0
+pytest>=7.0.0
+pytest-cov>=4.0.0
+tree-sitter>=0.20.0
+tree-sitter-java>=0.20.0

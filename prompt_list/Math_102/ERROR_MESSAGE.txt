@@ -1,0 +1,6 @@
+junit.framework.AssertionFailedError: chi-square test statistic expected:<114875.90421929007> but was:<3624883.3429077636>
+junit.framework.AssertionFailedError: chi-square test statistic expected:<9.023307936427388> but was:<16.413107036160778>
+junit.framework.AssertionFailedError: chi-square test statistic expected:<114875.90421929007> but was:<3624883.3429077636>
+junit.framework.AssertionFailedError: chi-square test statistic expected:<9.023307936427388> but was:<16.413107036160778>
+junit.framework.AssertionFailedError: chi-square test statistic expected:<114875.90421929007> but was:<3624883.3429077636>
+junit.framework.AssertionFailedError: chi-square test statistic expected:<9.023307936427388> but was:<16.413107036160778>

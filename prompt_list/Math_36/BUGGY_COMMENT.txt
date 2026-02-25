@@ -1,0 +1,22 @@
+   /**
+     * <p>
+     * Gets the fraction as a <tt>double</tt>. This calculates the fraction as
+     * the numerator divided by denominator.
+     * </p>
+     *
+     * @return the fraction as a <tt>double</tt>
+     * @see java.lang.Number#doubleValue()
+     */
+@Override
+    public double doubleValue()
+   /**
+     * <p>
+     * Gets the fraction as a <tt>float</tt>. This calculates the fraction as
+     * the numerator divided by denominator.
+     * </p>
+     *
+     * @return the fraction as a <tt>float</tt>.
+     * @see java.lang.Number#floatValue()
+     */
+@Override
+    public float floatValue()

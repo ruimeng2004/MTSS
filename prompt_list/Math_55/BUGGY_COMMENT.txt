@@ -1,0 +1,6 @@
+   /** Compute the cross-product of two vectors.
+   * @param v1 first vector
+   * @param v2 second vector
+   * @return the cross product v1 ^ v2 as a new Vector
+   */
+public static Vector3D crossProduct(final Vector3D v1,final Vector3D v2)

@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expected:<org.jfree.chart.util.ShapeList@cef18a3f> but was:<org.jfree.chart.util.ShapeList@e657ea8d>
+junit.framework.AssertionFailedError

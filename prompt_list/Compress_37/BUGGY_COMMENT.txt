@@ -1,0 +1,2 @@
+   // https://www.gnu.org/software/tar/manual/html_section/tar_92.html#SEC188
+Map<String, String> parsePaxHeaders(final InputStream i)

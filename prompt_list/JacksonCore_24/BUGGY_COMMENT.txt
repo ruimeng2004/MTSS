@@ -1,0 +1,7 @@
+   This function has no comment.
+   // @since 2.10
+protected void reportOverflowInt(String numDesc)
+   // @since 2.10
+protected void reportOverflowLong(String numDesc)
+   // @since 2.9.8
+protected void _reportTooLongIntegral(int expType,String rawNum)

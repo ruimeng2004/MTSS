@@ -1,0 +1,54 @@
+### Buggy function comment:
+   /**
+     * Write the buffer out using a custom routine.
+     * 
+     * @param out  the output stream
+     * @throws IOException
+     */
+private void writeObject(ObjectOutputStream out)
+   /**
+     * Read the buffer in using a custom routine.
+     * 
+     * @param in  the input stream
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+private void readObject(ObjectInputStream in)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<1> but was:<0>
+
+### Failed JUnit tests:
+public void testCollections220() throws Exception {
+         UnboundedFifoBuffer buffer = new UnboundedFifoBuffer();
+         
+         buffer = (UnboundedFifoBuffer) serializeDeserialize(buffer);
+
+         // test size() gets incremented
+         buffer.add("Foo");
+         assertEquals(1, buffer.size());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        out.writeInt(size());
+        for (Iterator it = iterator(); it.hasNext();) {
+            out.writeObject(it.next());
+        }
+    }
+```
+```java
+private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        int size = in.readInt();
+        buffer = new Object[size + 1];
+        for (int i = 0; i < size; i++) {
+            buffer[i] = in.readObject();
+        }
+        head = 0;
+        tail = size;
+    }
+```

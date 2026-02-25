@@ -1,0 +1,28 @@
+### Buggy function comment:
+   /**
+     * Build a sparse matrix with the supplied row and column dimensions.
+     *
+     * @param rowDimension Number of rows of the matrix.
+     * @param columnDimension Number of columns of the matrix.
+     */
+public OpenMapRealMatrix(int rowDimension,int columnDimension)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Expected exception: org.apache.commons.math.exception.NumberIsTooLargeException
+
+### Failed JUnit tests:
+@Test(expected=NumberIsTooLargeException.class)
+    public void testMath679() {
+        new OpenMapRealMatrix(3, Integer.MAX_VALUE);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public OpenMapRealMatrix(int rowDimension, int columnDimension) {
+        super(rowDimension, columnDimension);
+        this.rows = rowDimension;
+        this.columns = columnDimension;
+        this.entries = new OpenIntToDoubleHashMap(0.0);
+    }
+```

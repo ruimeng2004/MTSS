@@ -1,0 +1,7 @@
+junit.framework.AssertionFailedError: expected:<<img />
+<svg>
+ <im[age] />
+</svg>> but was:<<img />
+<svg>
+ <im[g] />
+</svg>>

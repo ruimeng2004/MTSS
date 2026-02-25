@@ -1,0 +1,10 @@
+```java
+public double getResult() {
+        return optimizer.getResult();
+    }
+```
+```java
+public double getFunctionValue() {
+        return optimizer.getFunctionValue();
+    }
+```

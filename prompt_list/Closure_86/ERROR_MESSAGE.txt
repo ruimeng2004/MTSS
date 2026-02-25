@@ -1,0 +1,7 @@
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError: expected:<[A]> but was:<[A, f]>
+junit.framework.AssertionFailedError: expected:<[A]> but was:<[A, f]>
+junit.framework.AssertionFailedError: expected:<[externObjSEThis]> but was:<[externObjSEThis, NEW STRING externObjSEThisMethod]>
+junit.framework.AssertionFailedError: expected:<[externObjSEThis]> but was:<[externObjSEThis, NEW STRING externObjSEThisMethod, f]>
+junit.framework.AssertionFailedError: expected:<[]> but was:<[NEW STRING setLocation]>
+junit.framework.AssertionFailedError: expected:<[]> but was:<[NEW STRING setLocation]>

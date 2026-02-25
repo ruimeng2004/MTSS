@@ -1,0 +1,9 @@
+public void testJsonElementTypeMismatch() {
+    try {
+      gson.fromJson("\"abc\"", JsonObject.class);
+      fail();
+    } catch (JsonSyntaxException expected) {
+      assertEquals("Expected a com.google.gson.JsonObject but was com.google.gson.JsonPrimitive",
+          expected.getMessage());
+    }
+  }

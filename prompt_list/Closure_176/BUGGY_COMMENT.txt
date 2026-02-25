@@ -1,0 +1,5 @@
+   /**
+   * Updates the scope according to the result of a type change, like
+   * an assignment or a type cast.
+   */
+private void updateScopeForTypeChange(FlowScope scope,Node left,JSType leftType,JSType resultType)

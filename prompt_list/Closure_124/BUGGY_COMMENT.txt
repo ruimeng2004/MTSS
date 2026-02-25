@@ -1,0 +1,6 @@
+   /**
+   * Checks name referenced in node to determine if it might have
+   * changed.
+   * @return Whether the replacement can be made.
+   */
+private boolean isSafeReplacement(Node node,Node replacement)

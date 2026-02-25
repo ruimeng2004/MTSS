@@ -1,0 +1,12 @@
+```java
+@Override
+    public int hashCode() {
+        return 1;
+    }
+```
+```java
+@Override
+    public boolean equals(Object o) {
+            return method.equals(o);
+    }
+```

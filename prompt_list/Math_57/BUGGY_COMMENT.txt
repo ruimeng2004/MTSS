@@ -1,0 +1,10 @@
+   /**
+     * Use K-means++ to choose the initial centers.
+     *
+     * @param <T> type of the points to cluster
+     * @param points the points to choose the initial centers from
+     * @param k the number of centers to choose
+     * @param random random generator to use
+     * @return the initial centers
+     */
+private static List<Cluster<T>> chooseInitialCenters(final Collection<T> points,final int k,final Random random)

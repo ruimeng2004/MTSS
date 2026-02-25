@@ -1,0 +1,111 @@
+### Buggy function comment:
+   /**
+     * Factory method returns instances of the GJ cutover chronology. Any
+     * cutover date may be specified.
+     *
+     * @param zone  the time zone to use, null is default
+     * @param gregorianCutover  the cutover to use, null means default
+     * @param minDaysInFirstWeek  minimum number of days in first week of the year; default is 4
+     */
+public static synchronized GJChronology getInstance(DateTimeZone zone,ReadableInstant gregorianCutover,int minDaysInFirstWeek)
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError: expected:<-0002-06-30> but was:<-0001-06-28>
+org.joda.time.IllegalFieldValueException: Value 0 for year is not supported
+junit.framework.AssertionFailedError: expected:<-0002-06-30> but was:<-0001-06-30>
+org.joda.time.IllegalFieldValueException: Value 0 for year is not supported
+
+### Failed JUnit tests:
+public void test_cutoverPreZero() {
+        DateTime cutover = new LocalDate(-2, 6, 30, ISOChronology.getInstanceUTC()).toDateTimeAtStartOfDay(DateTimeZone.UTC);
+        try {
+            GJChronology.getInstance(DateTimeZone.UTC, cutover);
+            fail();
+        } catch (IllegalArgumentException ex) {
+            // expected
+        }
+    }
+public void test_plusWeekyears_positiveToNegative_crossCutover() {
+        LocalDate date = new LocalDate(2003, 6, 30, GJ_CHRONOLOGY);
+        LocalDate expected = new LocalDate(-2, 6, 30, GJ_CHRONOLOGY).withWeekOfWeekyear(date.getWeekOfWeekyear()).withDayOfWeek(date.getDayOfWeek());
+        assertEquals(expected, date.weekyear().addToCopy(-2004));
+    }
+public void test_plusYears_positiveToZero_crossCutover() {
+        LocalDate date = new LocalDate(2003, 6, 30, GJ_CHRONOLOGY);
+        LocalDate expected = new LocalDate(-1, 6, 30, GJ_CHRONOLOGY);
+        assertEquals(expected, date.plusYears(-2003));
+    }
+public void test_plusYears_positiveToNegative_crossCutover() {
+        LocalDate date = new LocalDate(2003, 6, 30, GJ_CHRONOLOGY);
+        LocalDate expected = new LocalDate(-2, 6, 30, GJ_CHRONOLOGY);
+        assertEquals(expected, date.plusYears(-2004));
+    }
+public void test_plusWeekyears_positiveToZero_crossCutover() {
+        LocalDate date = new LocalDate(2003, 6, 30, GJ_CHRONOLOGY);
+        LocalDate expected = new LocalDate(-1, 6, 30, GJ_CHRONOLOGY).withWeekOfWeekyear(date.getWeekOfWeekyear()).withDayOfWeek(date.getDayOfWeek());
+        assertEquals(expected, date.weekyear().addToCopy(-2003));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static synchronized GJChronology getInstance(
+            DateTimeZone zone,
+            ReadableInstant gregorianCutover,
+            int minDaysInFirstWeek) {
+        
+        zone = DateTimeUtils.getZone(zone);
+        Instant cutoverInstant;
+        if (gregorianCutover == null) {
+            cutoverInstant = DEFAULT_CUTOVER;
+        } else {
+            cutoverInstant = gregorianCutover.toInstant();
+        }
+
+        GJChronology chrono;
+        synchronized (cCache) {
+            ArrayList<GJChronology> chronos = cCache.get(zone);
+            if (chronos == null) {
+                chronos = new ArrayList<GJChronology>(2);
+                cCache.put(zone, chronos);
+            } else {
+                for (int i = chronos.size(); --i >= 0;) {
+                    chrono = chronos.get(i);
+                    if (minDaysInFirstWeek == chrono.getMinimumDaysInFirstWeek() &&
+                        cutoverInstant.equals(chrono.getGregorianCutover())) {
+                        
+                        return chrono;
+                    }
+                }
+            }
+            if (zone == DateTimeZone.UTC) {
+                chrono = new GJChronology
+                    (JulianChronology.getInstance(zone, minDaysInFirstWeek),
+                     GregorianChronology.getInstance(zone, minDaysInFirstWeek),
+                     cutoverInstant);
+            } else {
+                chrono = getInstance(DateTimeZone.UTC, cutoverInstant, minDaysInFirstWeek);
+                chrono = new GJChronology
+                    (ZonedChronology.getInstance(chrono, zone),
+                     chrono.iJulianChronology,
+                     chrono.iGregorianChronology,
+                     chrono.iCutoverInstant);
+            }
+            chronos.add(chrono);
+        }
+        return chrono;
+    }
+```
+```java
+public long add(long instant, long value) {
+            return iGregorianField.add(instant, value);
+        }
+```
+```java
+public long add(long instant, int value) {
+            return iGregorianField.add(instant, value);
+        }
+```

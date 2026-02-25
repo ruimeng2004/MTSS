@@ -1,0 +1,14 @@
+   /**
+     * Returns a matrix of p-values associated with the (two-sided) null
+     * hypothesis that the corresponding correlation coefficient is zero.
+     * <p><code>getCorrelationPValues().getEntry(i,j)</code> is the probability
+     * that a random variable distributed as <code>t<sub>n-2</sub></code> takes
+     * a value with absolute value greater than or equal to <br>
+     * <code>|r|((n - 2) / (1 - r<sup>2</sup>))<sup>1/2</sup></code></p>
+     * <p>The values in the matrix are sometimes referred to as the
+     * <i>significance</i> of the corresponding correlation coefficients.</p>
+     *
+     * @return matrix of p-values
+     * @throws MathException if an error occurs estimating probabilities
+     */
+public RealMatrix getCorrelationPValues()

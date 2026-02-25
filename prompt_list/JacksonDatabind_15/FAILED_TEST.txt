@@ -1,0 +1,6 @@
+public void testIssue731() throws Exception
+    {
+        String json = objectWriter().writeValueAsString(new ConvertingBeanWithUntypedConverter(1, 2));
+        // must be  {"a":2,"b":4}
+        assertEquals("{\"a\":2,\"b\":4}", json);
+    }

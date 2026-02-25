@@ -1,0 +1,8 @@
+   /**
+     * Puts the values contained in a supplied Map into the Map starting at
+     * the specified index.
+     *
+     * @param index the index in the Map to start at.
+     * @param map the Map containing the entries to be added.
+     */
+public void putAll(int index,final Map<? extends K, ? extends V> map)

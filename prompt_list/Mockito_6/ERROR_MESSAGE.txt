@@ -1,0 +1,7 @@
+junit.framework.ComparisonFailure: expected:<null> but was:<0>
+junit.framework.ComparisonFailure: expected:<null> but was:<0>
+junit.framework.ComparisonFailure: expected:<null> but was:<matched>
+junit.framework.ComparisonFailure: expected:<null> but was:<matched>
+junit.framework.ComparisonFailure: expected:<null> but was:<matched>
+junit.framework.ComparisonFailure: expected:<null> but was:<matched>
+junit.framework.ComparisonFailure: expected:<null> but was:<matched>

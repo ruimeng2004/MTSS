@@ -1,0 +1,86 @@
+### Buggy function comment:
+   /**
+     * Set the selected option of this group to <code>name</code>.
+     *
+     * @param option the option that is selected
+     * @throws AlreadySelectedException if an option from this group has 
+     * already been selected.
+     */
+public void setSelected(Option option)
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: selected option expected:<bar> but was:<null>
+junit.framework.ComparisonFailure: selected option expected:<bar> but was:<null>
+junit.framework.ComparisonFailure: selected option expected:<bar> but was:<null>
+
+### Failed JUnit tests:
+public void testOptionGroupLong() throws Exception
+    {
+        OptionGroup group = new OptionGroup();
+        group.addOption(OptionBuilder.withLongOpt("foo").create());
+        group.addOption(OptionBuilder.withLongOpt("bar").create());
+        
+        Options options = new Options();
+        options.addOptionGroup(group);
+        
+        CommandLine cl = parser.parse(options, new String[] { "--bar" });
+        
+        assertTrue(cl.hasOption("bar"));
+        assertEquals("selected option", "bar", group.getSelected());
+    }
+    
+    public void testOptionGroupLong() throws Exception
+    {
+        OptionGroup group = new OptionGroup();
+        group.addOption(OptionBuilder.withLongOpt("foo").create());
+        group.addOption(OptionBuilder.withLongOpt("bar").create());
+        
+        Options options = new Options();
+        options.addOptionGroup(group);
+        
+        CommandLine cl = parser.parse(options, new String[] { "--bar" });
+        
+        assertTrue(cl.hasOption("bar"));
+        assertEquals("selected option", "bar", group.getSelected());
+    }
+    
+    public void testOptionGroupLong() throws Exception
+    {
+        OptionGroup group = new OptionGroup();
+        group.addOption(OptionBuilder.withLongOpt("foo").create());
+        group.addOption(OptionBuilder.withLongOpt("bar").create());
+        
+        Options options = new Options();
+        options.addOptionGroup(group);
+        
+        CommandLine cl = parser.parse(options, new String[] { "--bar" });
+        
+        assertTrue(cl.hasOption("bar"));
+        assertEquals("selected option", "bar", group.getSelected());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public void setSelected(Option option) throws AlreadySelectedException
+    {
+        if (option == null)
+        {
+            // reset the option previously selected
+            selected = null;
+            return;
+        }
+        
+        // if no option has already been selected or the 
+        // same option is being reselected then set the
+        // selected member variable
+        if (selected == null || selected.equals(option.getOpt()))
+        {
+            selected = option.getOpt();
+        }
+        else
+        {
+            throw new AlreadySelectedException(this, option);
+        }
+    }
+```

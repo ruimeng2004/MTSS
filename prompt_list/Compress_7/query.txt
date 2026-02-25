@@ -1,0 +1,43 @@
+### Buggy function comment:
+   /**
+     * Parse an entry name from a buffer.
+     * Parsing stops when a NUL is found
+     * or the buffer length is reached.
+     *
+     * @param buffer The buffer from which to parse.
+     * @param offset The offset into the buffer from which to parse.
+     * @param length The maximum number of bytes to parse.
+     * @return The entry name.
+     */
+public static String parseName(byte[] buffer,final int offset,final int length)
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:<0302-0601-3[±±±F06±W220±ZB±LALALA±±±±±±±±±±CAN±±DC±±±04±060302±]MOE.model> but was:<0302-0601-3[ﾱﾱﾱF06ﾱW220ﾱZBﾱLALALAﾱﾱﾱﾱﾱﾱﾱﾱﾱﾱCANﾱﾱDCﾱﾱ�?4�?60302ﾱ]MOE.model>
+
+### Failed JUnit tests:
+public void testRoundTripNames(){
+        checkName("");
+        checkName("The quick brown fox\n");
+        checkName("\177");
+        // checkName("\0"); // does not work, because NUL is ignored
+        // COMPRESS-114
+        checkName("0302-0601-3F06W220ZBLALALACANDC04060302MOE.model");
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static String parseName(byte[] buffer, final int offset, final int length) {
+        StringBuffer result = new StringBuffer(length);
+        int          end = offset + length;
+
+        for (int i = offset; i < end; ++i) {
+            if (buffer[i] == 0) {
+                break;
+            }
+            result.append((char) buffer[i]);
+        }
+
+        return result.toString();
+    }
+```

@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expected:<...ead><style></style><[meta name="foo"></head><body>One]</body></html>> but was:<...ead><style></style><[/head><body>&lt;meta name=foo&gt;&lt;/head&gt;&lt;body&gt;One&lt;/body&gt;&lt;/html&gt;]</body></html>>
+junit.framework.AssertionFailedError: expected:<...oframes></noframes><[meta name="foo"></head><body>One]</body></html>> but was:<...oframes></noframes><[/head><body>&lt;meta name=foo&gt;&lt;/head&gt;&lt;body&gt;One&lt;/body&gt;&lt;/html&gt;]</body></html>>

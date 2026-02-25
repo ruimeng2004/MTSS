@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: Expected IOException
+junit.framework.AssertionFailedError: Expected IllegalArgumentException - embedded NUL

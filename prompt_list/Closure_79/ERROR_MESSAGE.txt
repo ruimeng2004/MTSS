@@ -1,0 +1,5 @@
+java.lang.RuntimeException: INTERNAL COMPILER ERROR.
+junit.framework.AssertionFailedError: compiler.reportCodeChange() should have been called
+junit.framework.AssertionFailedError: compiler.reportCodeChange() should have been called
+junit.framework.AssertionFailedError: compiler.reportCodeChange() should have been called
+junit.framework.AssertionFailedError: compiler.reportCodeChange() should have been called

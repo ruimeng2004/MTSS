@@ -1,0 +1,363 @@
+### Buggy function comment:
+   /**
+     * <p>
+     * Checks if the CharSequence contains any character in the given set of characters.
+     * </p>
+     * 
+     * <p>
+     * A <code>null</code> CharSequence will return <code>false</code>. A <code>null</code> search CharSequence will return
+     * <code>false</code>.
+     * </p>
+     * 
+     * <pre>
+     * StringUtils.containsAny(null, *)            = false
+     * StringUtils.containsAny("", *)              = false
+     * StringUtils.containsAny(*, null)            = false
+     * StringUtils.containsAny(*, "")              = false
+     * StringUtils.containsAny("zzabyycdxx", "za") = true
+     * StringUtils.containsAny("zzabyycdxx", "by") = true
+     * StringUtils.containsAny("aba","z")          = false
+     * </pre>
+     * 
+     * @param cs
+     *            the CharSequence to check, may be null
+     * @param searchChars
+     *            the chars to search for, may be null
+     * @return the <code>true</code> if any of the chars are found, <code>false</code> if no match or null input
+     * @since 2.4
+     */
+public static boolean containsAny(CharSequence cs,String searchChars)
+   /**
+     * <p>
+     * Checks if the CharSequence contains any character in the given set of characters.
+     * </p>
+     * 
+     * <p>
+     * A <code>null</code> CharSequence will return <code>false</code>. A <code>null</code> search CharSequence will return
+     * <code>false</code>.
+     * </p>
+     * 
+     * <pre>
+     * StringUtils.containsAny(null, *)            = false
+     * StringUtils.containsAny("", *)              = false
+     * StringUtils.containsAny(*, null)            = false
+     * StringUtils.containsAny(*, "")              = false
+     * StringUtils.containsAny("zzabyycdxx", "za") = true
+     * StringUtils.containsAny("zzabyycdxx", "by") = true
+     * StringUtils.containsAny("aba","z")          = false
+     * </pre>
+     * 
+     * @param cs
+     *            the CharSequence to check, may be null
+     * @param searchChars
+     *            the chars to search for, may be null
+     * @return the <code>true</code> if any of the chars are found, <code>false</code> if no match or null input
+     * @since 2.4
+     */
+public static boolean containsAny(CharSequence cs,String searchChars)
+   /**
+     * <p>Searches a CharSequence to find the first index of any
+     * character not in the given set of characters.</p>
+     *
+     * <p>A <code>null</code> CharSequence will return <code>-1</code>.
+     * A <code>null</code> or zero length search array will return <code>-1</code>.</p>
+     *
+     * <pre>
+     * StringUtils.indexOfAnyBut(null, *)           = -1
+     * StringUtils.indexOfAnyBut("", *)             = -1
+     * StringUtils.indexOfAnyBut(*, null)           = -1
+     * StringUtils.indexOfAnyBut(*, [])             = -1
+     * StringUtils.indexOfAnyBut("zzabyycdxx",'za') = 3
+     * StringUtils.indexOfAnyBut("zzabyycdxx", '')  = 0
+     * StringUtils.indexOfAnyBut("aba", 'ab')       = -1
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @param searchChars  the chars to search for, may be null
+     * @return the index of any of the chars, -1 if no match or null input
+     * @since 2.0
+     */
+public static int indexOfAnyBut(CharSequence cs,char[] searchChars)
+   /**
+     * <p>Search a CharSequence to find the first index of any
+     * character in the given set of characters.</p>
+     *
+     * <p>A <code>null</code> String will return <code>-1</code>.
+     * A <code>null</code> or zero length search array will return <code>-1</code>.</p>
+     *
+     * <pre>
+     * StringUtils.indexOfAny(null, *)                = -1
+     * StringUtils.indexOfAny("", *)                  = -1
+     * StringUtils.indexOfAny(*, null)                = -1
+     * StringUtils.indexOfAny(*, [])                  = -1
+     * StringUtils.indexOfAny("zzabyycdxx",['z','a']) = 0
+     * StringUtils.indexOfAny("zzabyycdxx",['b','y']) = 3
+     * StringUtils.indexOfAny("aba", ['z'])           = -1
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @param searchChars  the chars to search for, may be null
+     * @return the index of any of the chars, -1 if no match or null input
+     * @since 2.0
+     */
+public static int indexOfAny(CharSequence cs,char[] searchChars)
+   /**
+     * <p>Searches a CharSequence to find the first index of any
+     * character not in the given set of characters.</p>
+     *
+     * <p>A <code>null</code> CharSequence will return <code>-1</code>.
+     * A <code>null</code> or zero length search array will return <code>-1</code>.</p>
+     *
+     * <pre>
+     * StringUtils.indexOfAnyBut(null, *)           = -1
+     * StringUtils.indexOfAnyBut("", *)             = -1
+     * StringUtils.indexOfAnyBut(*, null)           = -1
+     * StringUtils.indexOfAnyBut(*, [])             = -1
+     * StringUtils.indexOfAnyBut("zzabyycdxx",'za') = 3
+     * StringUtils.indexOfAnyBut("zzabyycdxx", '')  = 0
+     * StringUtils.indexOfAnyBut("aba", 'ab')       = -1
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @param searchChars  the chars to search for, may be null
+     * @return the index of any of the chars, -1 if no match or null input
+     * @since 2.0
+     */
+public static int indexOfAnyBut(CharSequence cs,char[] searchChars)
+   /**
+     * <p>Checks that the CharSequence does not contain certain characters.</p>
+     *
+     * <p>A <code>null</code> CharSequence will return <code>true</code>.
+     * A <code>null</code> invalid character array will return <code>true</code>.
+     * An empty CharSequence (length()=0) always returns true.</p>
+     *
+     * <pre>
+     * StringUtils.containsNone(null, *)       = true
+     * StringUtils.containsNone(*, null)       = true
+     * StringUtils.containsNone("", *)         = true
+     * StringUtils.containsNone("ab", '')      = true
+     * StringUtils.containsNone("abab", 'xyz') = true
+     * StringUtils.containsNone("ab1", 'xyz')  = true
+     * StringUtils.containsNone("abz", 'xyz')  = false
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @param searchChars  an array of invalid chars, may be null
+     * @return true if it contains none of the invalid chars, or is null
+     * @since 2.0
+     */
+public static boolean containsNone(CharSequence cs,char[] searchChars)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<true> but was:<false>
+junit.framework.AssertionFailedError: expected:<true> but was:<false>
+junit.framework.AssertionFailedError: expected:<false> but was:<true>
+junit.framework.AssertionFailedError: expected:<2> but was:<3>
+junit.framework.AssertionFailedError: expected:<false> but was:<true>
+junit.framework.AssertionFailedError: expected:<2> but was:<0>
+junit.framework.AssertionFailedError: expected:<2> but was:<3>
+junit.framework.AssertionFailedError: expected:<true> but was:<false>
+junit.framework.AssertionFailedError: expected:<2> but was:<0>
+junit.framework.AssertionFailedError: expected:<true> but was:<false>
+
+### Failed JUnit tests:
+public void testContainsNone_CharArrayWithSupplementaryChars() {
+        assertEquals(false, StringUtils.containsNone(CharU20000 + CharU20001, CharU20000.toCharArray()));
+        assertEquals(false, StringUtils.containsNone(CharU20000 + CharU20001, CharU20001.toCharArray()));
+        assertEquals(false, StringUtils.containsNone(CharU20000, CharU20000.toCharArray()));
+        // Sanity check:
+        assertEquals(-1, CharU20000.indexOf(CharU20001));
+        assertEquals(0, CharU20000.indexOf(CharU20001.charAt(0)));
+        assertEquals(-1, CharU20000.indexOf(CharU20001.charAt(1)));
+        // Test:
+        assertEquals(true, StringUtils.containsNone(CharU20000, CharU20001.toCharArray()));
+        assertEquals(true, StringUtils.containsNone(CharU20001, CharU20000.toCharArray()));
+    }
+public void testContainsNone_StringWithSupplementaryChars() {
+        assertEquals(false, StringUtils.containsNone(CharU20000 + CharU20001, CharU20000));
+        assertEquals(false, StringUtils.containsNone(CharU20000 + CharU20001, CharU20001));
+        assertEquals(false, StringUtils.containsNone(CharU20000, CharU20000));
+        // Sanity check:
+        assertEquals(-1, CharU20000.indexOf(CharU20001));
+        assertEquals(0, CharU20000.indexOf(CharU20001.charAt(0)));
+        assertEquals(-1, CharU20000.indexOf(CharU20001.charAt(1)));
+        // Test:
+        assertEquals(true, StringUtils.containsNone(CharU20000, CharU20001));
+        assertEquals(true, StringUtils.containsNone(CharU20001, CharU20000));
+    }
+public void testContainsAny_StringCharArrayWithBadSupplementaryChars() {
+        // Test edge case: 1/2 of a (broken) supplementary char
+        assertEquals(false, StringUtils.containsAny(CharUSuppCharHigh, CharU20001.toCharArray()));
+        assertEquals(false, StringUtils.containsAny("abc" + CharUSuppCharHigh + "xyz", CharU20001.toCharArray()));
+        assertEquals(-1, CharUSuppCharLow.indexOf(CharU20001));
+        assertEquals(false, StringUtils.containsAny(CharUSuppCharLow, CharU20001.toCharArray()));
+        assertEquals(false, StringUtils.containsAny(CharU20001, CharUSuppCharHigh.toCharArray()));
+        assertEquals(0, CharU20001.indexOf(CharUSuppCharLow));
+        assertEquals(true, StringUtils.containsAny(CharU20001, CharUSuppCharLow.toCharArray()));
+    }
+public void testIndexOfAnyBut_StringStringWithSupplementaryChars() {
+        assertEquals(2, StringUtils.indexOfAnyBut(CharU20000 + CharU20001, CharU20000));
+        assertEquals(0, StringUtils.indexOfAnyBut(CharU20000 + CharU20001, CharU20001));
+        assertEquals(-1, StringUtils.indexOfAnyBut(CharU20000, CharU20000));
+        assertEquals(0, StringUtils.indexOfAnyBut(CharU20000, CharU20001));        
+    }
+public void testContainsAny_StringWithBadSupplementaryChars() {
+        // Test edge case: 1/2 of a (broken) supplementary char
+        assertEquals(false, StringUtils.containsAny(CharUSuppCharHigh, CharU20001));
+        assertEquals(-1, CharUSuppCharLow.indexOf(CharU20001));
+        assertEquals(false, StringUtils.containsAny(CharUSuppCharLow, CharU20001));
+        assertEquals(false, StringUtils.containsAny(CharU20001, CharUSuppCharHigh));
+        assertEquals(0, CharU20001.indexOf(CharUSuppCharLow));
+        assertEquals(true, StringUtils.containsAny(CharU20001, CharUSuppCharLow));
+    }
+public void testIndexOfAny_StringCharArrayWithSupplementaryChars() {
+        assertEquals(0, StringUtils.indexOfAny(CharU20000 + CharU20001, CharU20000.toCharArray()));
+        assertEquals(2, StringUtils.indexOfAny(CharU20000 + CharU20001, CharU20001.toCharArray()));
+        assertEquals(0, StringUtils.indexOfAny(CharU20000, CharU20000.toCharArray()));
+        assertEquals(-1, StringUtils.indexOfAny(CharU20000, CharU20001.toCharArray()));    
+    }
+public void testIndexOfAnyBut_StringCharArrayWithSupplementaryChars() {
+        assertEquals(2, StringUtils.indexOfAnyBut(CharU20000 + CharU20001, CharU20000.toCharArray()));
+        assertEquals(0, StringUtils.indexOfAnyBut(CharU20000 + CharU20001, CharU20001.toCharArray()));
+        assertEquals(-1, StringUtils.indexOfAnyBut(CharU20000, CharU20000.toCharArray()));
+        assertEquals(0, StringUtils.indexOfAnyBut(CharU20000, CharU20001.toCharArray()));        
+    }
+public void testContainsNone_StringWithBadSupplementaryChars() {
+        // Test edge case: 1/2 of a (broken) supplementary char
+        assertEquals(true, StringUtils.containsNone(CharUSuppCharHigh, CharU20001));
+        assertEquals(-1, CharUSuppCharLow.indexOf(CharU20001));
+        assertEquals(true, StringUtils.containsNone(CharUSuppCharLow, CharU20001));
+        assertEquals(-1, CharU20001.indexOf(CharUSuppCharHigh));
+        assertEquals(true, StringUtils.containsNone(CharU20001, CharUSuppCharHigh));
+        assertEquals(0, CharU20001.indexOf(CharUSuppCharLow));
+        assertEquals(false, StringUtils.containsNone(CharU20001, CharUSuppCharLow));        
+    }
+public void testIndexOfAny_StringStringWithSupplementaryChars() {
+        assertEquals(0, StringUtils.indexOfAny(CharU20000 + CharU20001, CharU20000));
+        assertEquals(2, StringUtils.indexOfAny(CharU20000 + CharU20001, CharU20001));
+        assertEquals(0, StringUtils.indexOfAny(CharU20000, CharU20000));
+        assertEquals(-1, StringUtils.indexOfAny(CharU20000, CharU20001));    
+    }
+public void testContainsNone_CharArrayWithBadSupplementaryChars() {
+        // Test edge case: 1/2 of a (broken) supplementary char
+        assertEquals(true, StringUtils.containsNone(CharUSuppCharHigh, CharU20001.toCharArray()));
+        assertEquals(-1, CharUSuppCharLow.indexOf(CharU20001));
+        assertEquals(true, StringUtils.containsNone(CharUSuppCharLow, CharU20001.toCharArray()));
+        assertEquals(-1, CharU20001.indexOf(CharUSuppCharHigh));
+        assertEquals(true, StringUtils.containsNone(CharU20001, CharUSuppCharHigh.toCharArray()));
+        assertEquals(0, CharU20001.indexOf(CharUSuppCharLow));
+        assertEquals(false, StringUtils.containsNone(CharU20001, CharUSuppCharLow.toCharArray()));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static boolean containsAny(CharSequence cs, char[] searchChars) {
+        if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
+            return false;
+        }
+        int csLength = cs.length();
+        int searchLength = searchChars.length;
+        int csLast = csLength - 1;
+        int searchLast = searchLength - 1;
+        for (int i = 0; i < csLength; i++) {
+            char ch = cs.charAt(i);
+            for (int j = 0; j < searchLength; j++) {
+                if (searchChars[j] == ch) {
+                    if (i < csLast && j < searchLast && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_SURROGATE) {
+                            // missing low surrogate, fine, like String.indexOf(String)
+                        if (searchChars[j + 1] == cs.charAt(i + 1)) {
+                            return true;
+                        }
+                    } else {
+                        // ch is in the Basic Multilingual Plane
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+```
+```java
+public static boolean containsAny(CharSequence cs, String searchChars) {
+        if (searchChars == null) {
+            return false;
+        }
+        return containsAny(cs, searchChars.toCharArray());
+    }
+```
+```java
+public static int indexOfAnyBut(CharSequence cs, char[] searchChars) {
+        if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
+            return INDEX_NOT_FOUND;
+        }
+        int csLen = cs.length();
+        int searchLen = searchChars.length;
+        outer:
+        for (int i = 0; i < csLen; i++) {
+            char ch = cs.charAt(i);
+            for (int j = 0; j < searchLen; j++) {
+                if (searchChars[j] == ch) {
+                        continue outer;
+                }
+            }
+            return i;
+        }
+        return INDEX_NOT_FOUND;
+    }
+```
+```java
+public static int indexOfAny(CharSequence cs, char[] searchChars) {
+        if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
+            return INDEX_NOT_FOUND;
+        }
+        int csLen = cs.length();
+        int searchLen = searchChars.length;
+        for (int i = 0; i < csLen; i++) {
+            char ch = cs.charAt(i);
+            for (int j = 0; j < searchLen; j++) {
+                if (searchChars[j] == ch) {
+                        // ch is a supplementary character
+                        return i;
+                }
+            }
+        }
+        return INDEX_NOT_FOUND;
+    }
+```
+```java
+public static int indexOfAnyBut(String str, String searchChars) {
+        if (isEmpty(str) || isEmpty(searchChars)) {
+            return INDEX_NOT_FOUND;
+        }
+        int strLen = str.length();
+        for (int i = 0; i < strLen; i++) {
+            char ch = str.charAt(i);
+            if (searchChars.indexOf(ch) < 0) {
+                    return i;
+            }
+        }
+        return INDEX_NOT_FOUND;
+    }
+```
+```java
+public static boolean containsNone(CharSequence cs, char[] searchChars) {
+        if (cs == null || searchChars == null) {
+            return true;
+        }
+        int csLen = cs.length();
+        int searchLen = searchChars.length;
+        for (int i = 0; i < csLen; i++) {
+            char ch = cs.charAt(i);
+            for (int j = 0; j < searchLen; j++) {
+                if (searchChars[j] == ch) {
+                            // missing low surrogate, fine, like String.indexOf(String)
+                        // ch is in the Basic Multilingual Plane
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+```

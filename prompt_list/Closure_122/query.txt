@@ -1,0 +1,45 @@
+### Buggy function comment:
+   /**
+   * Check to see if the given block comment looks like it should be JSDoc.
+   */
+private void handleBlockComment(Comment comment)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+public void testSuspiciousBlockCommentWarning3() {
+    parse("/* \n *@type {number} */ var x = 3;", SUSPICIOUS_COMMENT_WARNING);
+  }
+public void testSuspiciousBlockCommentWarning4() {
+    parse(
+        "  /*\n" +
+        "   * @type {number}\n" +
+        "   */\n" +
+        "  var x = 3;",
+        SUSPICIOUS_COMMENT_WARNING);
+  }
+public void testSuspiciousBlockCommentWarning5() {
+    parse(
+        "  /*\n" +
+        "   * some random text here\n" +
+        "   * @type {number}\n" +
+        "   */\n" +
+        "  var x = 3;",
+        SUSPICIOUS_COMMENT_WARNING);
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private void handleBlockComment(Comment comment) {
+    if (comment.getValue().indexOf("/* @") != -1 || comment.getValue().indexOf("\n * @") != -1) {
+      errorReporter.warning(
+          SUSPICIOUS_COMMENT_WARNING,
+          sourceName,
+          comment.getLineno(), "", 0);
+    }
+  }
+```

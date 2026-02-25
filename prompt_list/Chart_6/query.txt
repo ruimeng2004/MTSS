@@ -1,0 +1,71 @@
+### Buggy function comment:
+   /**
+     * Tests the list for equality with another object (typically also a list).
+     *
+     * @param obj  the other object (<code>null</code> permitted).
+     *
+     * @return A boolean.
+     */
+public boolean equals(Object obj)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<org.jfree.chart.util.ShapeList@cef18a3f> but was:<org.jfree.chart.util.ShapeList@e657ea8d>
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+public void testSerialization() {
+
+        ShapeList l1 = new ShapeList();
+        l1.setShape(0, new Rectangle(1, 2, 3, 4));
+        l1.setShape(1, new Line2D.Double(1.0, 2.0, 3.0, 4.0));
+        l1.setShape(2, null);
+
+        ShapeList l2 = null;
+
+        try {
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            ObjectOutput out = new ObjectOutputStream(buffer);
+            out.writeObject(l1);
+            out.close();
+
+            ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(
+            		buffer.toByteArray()));
+            l2 = (ShapeList) in.readObject();
+            in.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(l1, l2);
+
+    }
+public void testEquals() {
+        ShapeList l1 = new ShapeList();
+        l1.setShape(0, new Rectangle(1, 2, 3, 4));
+        l1.setShape(1, new Line2D.Double(1.0, 2.0, 3.0, 4.0));
+        l1.setShape(2, null);
+
+        ShapeList l2 = new ShapeList();
+        l2.setShape(0, new Rectangle(1, 2, 3, 4));
+        l2.setShape(1, new Line2D.Double(1.0, 2.0, 3.0, 4.0));
+        l2.setShape(2, null);
+
+        assertTrue(l1.equals(l2));
+        assertTrue(l2.equals(l2));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public boolean equals(Object obj) {
+
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ShapeList)) {
+            return false;
+        }
+        return super.equals(obj);
+
+    }
+```

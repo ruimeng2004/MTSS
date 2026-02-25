@@ -1,0 +1,7 @@
+   /**
+   * Removes unreferenced arguments from a function declaration and when
+   * possible the function's callSites.
+   *
+   * @param fnScope The scope inside the function
+   */
+private void removeUnreferencedFunctionArgs(Scope fnScope)

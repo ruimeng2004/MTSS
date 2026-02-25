@@ -1,0 +1,5 @@
+   /**
+     * Initialize derived fields from defining fields.
+     * This is called from constructor and from readObject (de-serialization)
+     */
+private void init()

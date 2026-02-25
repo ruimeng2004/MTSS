@@ -1,0 +1,54 @@
+# 完整参数实验 (qwen3_30b)
+name: "exp_full_30b" #ppl数据
+
+embeddings_path: "bug_task_model_selection/data/embeddings/embeddings.jsonl" #embedding输入
+ppl_paths:
+  edit: "bug_task_model_selection/data/ppl/qwen3_30b_edit.jsonl" #两种path去选择
+  gen: "bug_task_model_selection/data/ppl/qwen3_30b_gen.jsonl"
+
+views:
+  - buggy_code #同一个bug的不同文本/视角表示方式 生成不同embedding来做聚类 任务建模选择
+  - buggy_code_obfuscated
+  - buggy_code_mixed
+  - report
+  - test
+  - error
+  - error_plus_test
+
+clustering_algorithms: #不同的聚类方法
+  - kmeans
+  - hac_average
+  - hac_ward
+  - hac_complete
+  - hac_single
+  - bisecting_kmeans
+
+k_values: #聚类簇数的搜索范围
+  - 50
+  - 100
+  - 150
+  - 200
+  - 300
+  - 500
+
+sampling_methods: #每个簇选择代表点的策略
+  - farthest_first
+  - kdpp
+
+reps_per_cluster_values: #每个簇选择多少代表点
+  - 1
+  - 3
+  - 5
+  - 7
+
+voting_strategies: #代表点如何去投票
+  - majority
+  - mean_ppl
+
+seeds: #随机种子
+  - 42
+  - 123
+  - 456
+
+output_dir: "bug_task_model_selection/data/exp_full_30b" #输出目录
+skip_existing: true

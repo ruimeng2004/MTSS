@@ -1,0 +1,68 @@
+### Buggy function comment:
+   /**
+     * Get relative position of this among like-named siblings.
+     * @return 1..n
+     */
+private int getRelativePositionByQName()
+   /**
+     * Get relative position of this among like-named siblings.
+     * @return 1..n
+     */
+private int getRelativePositionByQName()
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Evaluating pointer iterator </a:doc/a:elem> expected:<[/a:doc[1]/a:elem[1], /a:doc[1]/a:elem[2]]> but was:<[/a:doc[1]/a:elem[1], /a:doc[1]/a:elem[1]]>
+junit.framework.AssertionFailedError: Evaluating pointer iterator </a:doc/a:elem> expected:<[/a:doc[1]/a:elem[1], /a:doc[1]/a:elem[2]]> but was:<[/a:doc[1]/a:elem[1], /a:doc[1]/a:elem[1]]>
+
+### Failed JUnit tests:
+public void testIterateJDOM() {
+        doTestIterate(DocumentContainer.MODEL_JDOM);
+    }
+public void testIterateDOM() {
+        doTestIterate(DocumentContainer.MODEL_DOM);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private int getRelativePositionByQName() {
+        int count = 1;
+        Node n = node.getPreviousSibling();
+        while (n != null) {
+            if (n.getNodeType() == Node.ELEMENT_NODE) {
+                String nm = n.getNodeName();
+                if (nm.equals(node.getNodeName())) {
+                count++;
+                }
+            }
+            n = n.getPreviousSibling();
+        }
+        return count;
+    }
+```
+```java
+private int getRelativePositionByQName() {
+        if (node instanceof Element) {
+            Object parent = ((Element) node).getParent();
+            if (!(parent instanceof Element)) {
+                return 1;
+            }
+
+            List children = ((Element) parent).getContent();
+            int count = 0;
+            String name = ((Element) node).getQualifiedName();
+            for (int i = 0; i < children.size(); i++) {
+                Object child = children.get(i);
+                if ((child instanceof Element)
+                    && ((Element) child).getQualifiedName().equals(name)) {
+                    count++;
+                }
+                if (child == node) {
+                    break;
+                }
+            }
+            return count;
+        }
+        return 1;
+    }
+```

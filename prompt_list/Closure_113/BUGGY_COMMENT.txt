@@ -1,0 +1,4 @@
+   /**
+   * Handles a goog.require call.
+   */
+private void processRequireCall(NodeTraversal t,Node n,Node parent)

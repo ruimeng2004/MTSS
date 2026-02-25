@@ -1,0 +1,10 @@
+   This function has no comment.
+   This function has no comment.
+   /**
+   * We could use addList recursively here, but sometimes we produce
+   * very deeply nested operators and run out of stack space, so we
+   * just unroll the recursion when possible.
+   *
+   * We assume nodes are left-recursive.
+   */
+private void unrollBinaryOperator(Node n,int op,String opStr,Context context,Context rhsContext,int leftPrecedence,int rightPrecedence)

@@ -1,0 +1,54 @@
+### Buggy function comment:
+   /**
+     * Overrides convertKey() from {@link AbstractHashedMap} to convert keys to 
+     * lower case.
+     * <p>
+     * Returns {@link AbstractHashedMap#NULL} if key is null.
+     * 
+     * @param key  the key convert
+     * @return the converted key
+     */
+protected Object convertKey(Object key)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: en: 1 expected:<value> but was:<null>
+
+### Failed JUnit tests:
+public void testLocaleIndependence() {
+        Locale orig = Locale.getDefault();
+
+        Locale[] locales = { Locale.ENGLISH, new Locale("tr"), Locale.getDefault() };
+
+        String[][] data = { 
+            { "i", "I" },
+            { "\u03C2", "\u03C3" },
+            { "\u03A3", "\u03C2" },
+            { "\u03A3", "\u03C3" },
+        };
+
+        try {
+            for (int i = 0; i < locales.length; i++) {
+                Locale.setDefault(locales[i]);
+                for (int j = 0; j < data.length; j++) {
+                    assertTrue("Test data corrupt: " + j, data[j][0].equalsIgnoreCase(data[j][1]));
+                    CaseInsensitiveMap map = new CaseInsensitiveMap();
+                    map.put(data[j][0], "value");
+                    assertEquals(Locale.getDefault() + ": " + j, "value", map.get(data[j][1]));
+                }
+            }
+        } finally {
+            Locale.setDefault(orig);
+        }
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+protected Object convertKey(Object key) {
+        if (key != null) {
+            return key.toString().toLowerCase();
+        } else {
+            return AbstractHashedMap.NULL;
+        }
+    }
+```

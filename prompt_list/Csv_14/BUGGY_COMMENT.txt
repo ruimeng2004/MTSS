@@ -1,0 +1,2 @@
+   // the original object is needed so can check for Number
+private void printAndQuote(final Object object,final CharSequence value,final int offset,final int len,final Appendable out,final boolean newRecord)

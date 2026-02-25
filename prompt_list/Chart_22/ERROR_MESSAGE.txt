@@ -1,0 +1,6 @@
+org.jfree.data.UnknownKeyException: The key (C2) is not recognised.
+junit.framework.AssertionFailedError: expected:<1> but was:<2>
+org.jfree.data.UnknownKeyException: The key (C2) is not recognised.
+org.jfree.data.UnknownKeyException: The key (C1) is not recognised.
+org.jfree.data.UnknownKeyException: The key (C2) is not recognised.
+java.lang.ArrayIndexOutOfBoundsException: -1

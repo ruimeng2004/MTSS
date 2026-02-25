@@ -1,0 +1,5 @@
+   /**
+   * Try to fold comparison nodes, e.g ==
+   */
+@SuppressWarnings("fallthrough")
+  private Node tryFoldComparison(Node n,Node left,Node right)

@@ -1,0 +1,20 @@
+   /**
+     * Adds the value to the collection associated with the specified key.
+     * <p>
+     * Unlike a normal <code>Map</code> the previous value is not replaced.
+     * Instead the new value is added to the collection stored against the key.
+     *
+     * @param key  the key to store against
+     * @param value  the value to add to the collection at the key
+     * @return the value added if the map changed and null if the map did not change
+     */
+public Object put(Object key,Object value)
+   /**
+     * Adds a collection of values to the collection associated with
+     * the specified key.
+     *
+     * @param key  the key to store against
+     * @param values  the values to add to the collection at the key, null ignored
+     * @return true if this map changed
+     */
+public boolean putAll(Object key,Collection values)

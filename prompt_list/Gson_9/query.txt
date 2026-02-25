@@ -1,0 +1,30 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+public void testBoxedBooleans() throws IOException {
+    StringWriter stringWriter = new StringWriter();
+    JsonWriter jsonWriter = new JsonWriter(stringWriter);
+    jsonWriter.beginArray();
+    jsonWriter.value((Boolean) true);
+    jsonWriter.value((Boolean) false);
+    jsonWriter.value((Boolean) null);
+    jsonWriter.endArray();
+    assertEquals("[true,false,null]", stringWriter.toString());
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+    public void write(JsonWriter out, Boolean value) throws IOException {
+      if (value == null) {
+        out.nullValue();
+        return;
+      }
+      out.value(value);
+    }
+```

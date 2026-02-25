@@ -1,0 +1,2 @@
+   //-----------------------------------------------------------------------
+public int[] add(ReadablePartial partial,int fieldIndex,int[] values,int valueToAdd)

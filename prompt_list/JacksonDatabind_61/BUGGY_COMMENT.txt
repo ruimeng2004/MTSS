@@ -1,0 +1,11 @@
+   /**
+         * Method called to check if the default type handler should be
+         * used for given type.
+         * Note: "natural types" (String, Boolean, Integer, Double) will never
+         * use typing; that is both due to them being concrete and final,
+         * and since actual serializers and deserializers will also ignore any
+         * attempts to enforce typing.
+         */
+public boolean useForType(JavaType t)
+   This function has no comment.
+   This function has no comment.

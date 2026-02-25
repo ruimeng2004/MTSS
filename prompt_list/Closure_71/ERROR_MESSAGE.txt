@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: Overriding private property of Foo.prototype.
+junit.framework.AssertionFailedError: There should be one error.  expected:<1> but was:<0>

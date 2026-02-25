@@ -1,0 +1,6 @@
+   /**
+     * Replaces an assignment like x = {...} with t1=a,t2=b,t3=c,true.
+     * Note that the resulting expression will always evaluate to
+     * true, as would the x = {...} expression.
+     */
+private void replaceAssignmentExpression(Var v,Reference ref,Map<String, String> varmap)

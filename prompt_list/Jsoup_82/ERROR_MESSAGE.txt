@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: expected:<[UTF-8]> but was:<[ISO-2022-CN]>

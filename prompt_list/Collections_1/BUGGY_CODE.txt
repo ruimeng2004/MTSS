@@ -1,0 +1,17 @@
+```java
+public Object setValue(Object value) {
+            if (canRemove == false) {
+                throw new IllegalStateException(AbstractHashedMap.SETVALUE_INVALID);
+            }
+            Object old = getValue();
+            switch (nextIndex) {
+                case 3: 
+                    parent.value3 = value;
+                case 2:
+                    parent.value2 = value;
+                case 1:
+                    parent.value1 = value;
+            }
+            return old;
+        }
+```

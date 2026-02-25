@@ -1,0 +1,6 @@
+   /**
+     * Get the current solution.
+     *
+     * @return current solution
+     */
+protected RealPointValuePair getSolution()

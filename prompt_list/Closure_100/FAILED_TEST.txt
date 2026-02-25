@@ -1,0 +1,28 @@
+public void testStaticFunction6() {
+    testSame("function a() { return function() { this = 8; } }");
+  }
+public void testStaticFunction7() {
+    testSame("var a = function() { return function() { this = 8; } }");
+  }
+public void testStaticFunction8() {
+    testFailure("var a = function() { return this.foo; };");
+  }
+public void testGlobalThis7() {
+    testFailure("var a = this.foo;");
+  }
+public void testStaticMethod2() {
+    testSame("a.b = function() { return function() { this.m2 = 5; } }");
+  }
+public void testStaticMethod3() {
+    testSame("a.b.c = function() { return function() { this.m2 = 5; } }");
+  }
+public void testInnerFunction1() {
+    testFailure("function f() { function g() { return this.x; } }");
+  }
+public void testInnerFunction2() {
+    testFailure("function f() { var g = function() { return this.x; } }");
+  }
+public void testInnerFunction3() {
+    testFailure(
+        "function f() { var x = {}; x.y = function() { return this.x; } }");
+  }

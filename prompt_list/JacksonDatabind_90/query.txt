@@ -1,0 +1,29 @@
+### Buggy function comment:
+   /**
+     * Method that will return true if any of <code>canCreateXxx</code> method
+     * returns true: that is, if there is any way that an instance could
+     * be created.
+     */
+public boolean canInstantiate()
+
+
+### Error message from JUnit test:
+com.fasterxml.jackson.databind.JsonMappingException: Can not construct instance of com.fasterxml.jackson.databind.creators.DelegatingArrayCreator1804Test$MyType: abstract types either need to be mapped to concrete types, have custom deserializer, or contain additional type information
+
+### Failed JUnit tests:
+public void testDelegatingArray1804() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        MyType thing = mapper.readValue("[]", MyType.class);
+        assertNotNull(thing);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public boolean canInstantiate() {
+        return canCreateUsingDefault()
+                || canCreateUsingDelegate() 
+                || canCreateFromObjectWith() || canCreateFromString()
+                || canCreateFromInt() || canCreateFromLong()
+                || canCreateFromDouble() || canCreateFromBoolean();
+    }
+```

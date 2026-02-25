@@ -1,0 +1,13 @@
+   This function has no comment.
+   This function has no comment.
+   /**
+     * Method called to deserialize POJO value from a JSON floating-point
+     * number.
+     */
+public Object deserializeFromDouble(JsonParser p,DeserializationContext ctxt)
+   /**
+     * Method called to deserialize POJO value from a JSON boolean value (true, false)
+     */
+public Object deserializeFromBoolean(JsonParser p,DeserializationContext ctxt)
+   This function has no comment.
+   This function has no comment.

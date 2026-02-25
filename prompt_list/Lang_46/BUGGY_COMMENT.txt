@@ -1,0 +1,88 @@
+   /**
+     * <p>Escapes the characters in a <code>String</code> using Java String rules.</p>
+     *
+     * <p>Deals correctly with quotes and control-chars (tab, backslash, cr, ff, etc.) </p>
+     *
+     * <p>So a tab becomes the characters <code>'\\'</code> and
+     * <code>'t'</code>.</p>
+     *
+     * <p>The only difference between Java strings and JavaScript strings
+     * is that in JavaScript, a single quote must be escaped.</p>
+     *
+     * <p>Example:
+     * <pre>
+     * input string: He didn't say, "Stop!"
+     * output string: He didn't say, \"Stop!\"
+     * </pre>
+     * </p>
+     *
+     * @param str  String to escape values in, may be null
+     * @return String with escaped values, <code>null</code> if null string input
+     */
+public static String escapeJava(String str)
+   /**
+     * <p>Escapes the characters in a <code>String</code> using JavaScript String rules
+     * to a <code>Writer</code>.</p>
+     * 
+     * <p>A <code>null</code> string input has no effect.</p>
+     * 
+     * @see #escapeJavaScript(java.lang.String)
+     * @param out  Writer to write escaped string into
+     * @param str  String to escape values in, may be null
+     * @throws IllegalArgumentException if the Writer is <code>null</code>
+     * @throws IOException if error occurs on underlying Writer
+     **/
+public static void escapeJavaScript(Writer out,String str)
+   /**
+     * <p>Escapes the characters in a <code>String</code> using JavaScript String rules
+     * to a <code>Writer</code>.</p>
+     * 
+     * <p>A <code>null</code> string input has no effect.</p>
+     * 
+     * @see #escapeJavaScript(java.lang.String)
+     * @param out  Writer to write escaped string into
+     * @param str  String to escape values in, may be null
+     * @throws IllegalArgumentException if the Writer is <code>null</code>
+     * @throws IOException if error occurs on underlying Writer
+     **/
+public static void escapeJavaScript(Writer out,String str)
+   /**
+     * <p>Worker method for the {@link #escapeJavaScript(String)} method.</p>
+     * 
+     * @param str String to escape values in, may be null
+     * @param escapeSingleQuotes escapes single quotes if <code>true</code>
+     * @param escapeForwardSlash TODO
+     * @return the escaped string
+     */
+private static String escapeJavaStyleString(String str,boolean escapeSingleQuotes)
+   /**
+     * <p>Worker method for the {@link #escapeJavaScript(String)} method.</p>
+     * 
+     * @param str String to escape values in, may be null
+     * @param escapeSingleQuotes escapes single quotes if <code>true</code>
+     * @param escapeForwardSlash TODO
+     * @return the escaped string
+     */
+private static String escapeJavaStyleString(String str,boolean escapeSingleQuotes)
+   /**
+     * <p>Escapes the characters in a <code>String</code> using Java String rules.</p>
+     *
+     * <p>Deals correctly with quotes and control-chars (tab, backslash, cr, ff, etc.) </p>
+     *
+     * <p>So a tab becomes the characters <code>'\\'</code> and
+     * <code>'t'</code>.</p>
+     *
+     * <p>The only difference between Java strings and JavaScript strings
+     * is that in JavaScript, a single quote must be escaped.</p>
+     *
+     * <p>Example:
+     * <pre>
+     * input string: He didn't say, "Stop!"
+     * output string: He didn't say, \"Stop!\"
+     * </pre>
+     * </p>
+     *
+     * @param str  String to escape values in, may be null
+     * @return String with escaped values, <code>null</code> if null string input
+     */
+public static String escapeJava(String str)

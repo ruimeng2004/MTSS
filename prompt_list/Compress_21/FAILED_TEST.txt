@@ -1,0 +1,24 @@
+public void testSevenEmptyFiles() throws Exception {
+        testCompress252(7, 0);
+    }
+public void testEightFilesSomeNotEmpty() throws Exception {
+        testCompress252(8, 2);
+    }
+public void testSixEmptyFiles() throws Exception {
+        testCompress252(6, 0);
+    }
+public void testEightEmptyFiles() throws Exception {
+        testCompress252(8, 0);
+    }
+public void testNineEmptyFiles() throws Exception {
+        testCompress252(9, 0);
+    }
+public void testSixFilesSomeNotEmpty() throws Exception {
+        testCompress252(6, 2);
+    }
+public void testNineFilesSomeNotEmpty() throws Exception {
+        testCompress252(9, 2);
+    }
+public void testSevenFilesSomeNotEmpty() throws Exception {
+        testCompress252(7, 2);
+    }

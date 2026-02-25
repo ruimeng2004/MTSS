@@ -1,0 +1,56 @@
+### Buggy function comment:
+   /**
+     * Searches the string builder to find the first reference to the specified char.
+     * 
+     * @param ch  the character to find
+     * @param startIndex  the index to start at, invalid index rounded to edge
+     * @return the first index of the character, or -1 if not found
+     */
+public int indexOf(char ch,int startIndex)
+   /**
+     * Checks if the string builder contains the specified char.
+     *
+     * @param ch  the character to find
+     * @return true if the builder contains the character
+     */
+public boolean contains(char ch)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: The contains(char) method is looking beyond the end of the string
+
+### Failed JUnit tests:
+public void testLang295() {
+        StrBuilder sb = new StrBuilder("onetwothree");
+        sb.deleteFirst("three");
+        assertFalse( "The contains(char) method is looking beyond the end of the string", sb.contains('h'));
+        assertEquals( "The indexOf(char) method is looking beyond the end of the string", -1, sb.indexOf('h'));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public int indexOf(char ch, int startIndex) {
+        startIndex = (startIndex < 0 ? 0 : startIndex);
+        if (startIndex >= size) {
+            return -1;
+        }
+        char[] thisBuf = buffer;
+        for (int i = startIndex; i < thisBuf.length; i++) {
+            if (thisBuf[i] == ch) {
+                return i;
+            }
+        }
+        return -1;
+    }
+```
+```java
+public boolean contains(char ch) {
+        char[] thisBuf = buffer;
+        for (int i = 0; i < thisBuf.length; i++) {
+            if (thisBuf[i] == ch) {
+                return true;
+            }
+        }
+        return false;
+    }
+```

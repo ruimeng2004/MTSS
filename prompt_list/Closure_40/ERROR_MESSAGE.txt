@@ -1,0 +1,2 @@
+java.lang.RuntimeException: java.lang.RuntimeException: INTERNAL COMPILER ERROR.
+junit.framework.AssertionFailedError:

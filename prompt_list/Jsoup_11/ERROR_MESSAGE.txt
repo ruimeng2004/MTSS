@@ -1,0 +1,4 @@
+org.jsoup.select.Selector$SelectorParseException: Could not parse query ':not(p)': unexpected token at ':not(p)'
+junit.framework.AssertionFailedError: expected:<3> but was:<0>
+org.jsoup.select.Selector$SelectorParseException: Could not parse query 'div:not(.left)': unexpected token at ':not(.left)'
+org.jsoup.select.Selector$SelectorParseException: Could not parse query 'p:not([id=1])': unexpected token at ':not([id=1])'

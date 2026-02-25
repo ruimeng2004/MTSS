@@ -1,0 +1,42 @@
+public void testIssue2508576_1() {
+    // Method defined by an extern should be left alone.
+    String externs = "function alert(a) {}";
+    testSame(externs, "({a:alert,b:alert}).a(\"a\")", null);
+  }
+public void testIssue2508576_3() {
+    // Anonymous object definition without side-effect should be removed.
+    test("({a:function(){},b:alert}).a(\"a\")", "");
+  }
+public void testSeparateMethods() {
+    testSame("var f = new Foo();f.oneOrTwoArg2(1);");
+    testSame("var f = new Baz();f.oneOrTwoArg2(1, 2);");
+    testSame("Boz.staticMethod1(1);");
+    testSame("Boz.staticMethod2(1, 2);");
+
+    // Can't detect these incorrect usuages as they are defined indirectly.
+    testSame("var f = new Bar();f.oneOrTwoArg2(1, 2, 3);");
+    testSame("Boz.staticMethod1(1, 2);");
+    testSame("Boz.staticMethod2(1);");
+  }
+public void testDollarSignSuperExport2() {
+    boolean normalizedExpectedJs = false;
+    super.enableNormalize(false);
+
+    useGoogleCodingConvention = false;
+    // See http://code.google.com/p/closure-compiler/issues/detail?id=32
+    test("var x = function($super,duper,$fantastic){};" +
+            "var y = function($super,duper){};",
+         "var c = function($super,    a,         b){};" +
+            "var d = function($super,    a){};");
+
+    localRenamingOnly = false;
+    test("var $super = 1", "var a = 1");
+
+    useGoogleCodingConvention = true;
+    test("var x = function($super,duper,$fantastic){};" +
+            "var y = function($super,duper){};",
+         "var d = function(a,     b,    c         ){};" +
+            "var e = function(     a,    b){};");
+
+    super.disableNormalize();
+  }

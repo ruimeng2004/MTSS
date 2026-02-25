@@ -1,0 +1,34 @@
+   /**
+     * Gets the millisecond offset to subtract from local time to get UTC time.
+     * This offset can be used to undo adding the offset obtained by getOffset.
+     *
+     * <pre>
+     * millisLocal == millisUTC   + getOffset(millisUTC)
+     * millisUTC   == millisLocal - getOffsetFromLocal(millisLocal)
+     * </pre>
+     *
+     * NOTE: After calculating millisLocal, some error may be introduced. At
+     * offset transitions (due to DST or other historical changes), ranges of
+     * local times may map to different UTC times.
+     * <p>
+     * This method will return an offset suitable for calculating an instant
+     * after any DST gap. For example, consider a zone with a cutover
+     * from 01:00 to 01:59:<br />
+     * Input: 00:00  Output: 00:00<br />
+     * Input: 00:30  Output: 00:30<br />
+     * Input: 01:00  Output: 02:00<br />
+     * Input: 01:30  Output: 02:30<br />
+     * Input: 02:00  Output: 02:00<br />
+     * Input: 02:30  Output: 02:30<br />
+     * <p>
+     * During a DST overlap (where the local time is ambiguous) this method will return
+     * the earlier instant. The combination of these two rules is to always favour
+     * daylight (summer) time over standard (winter) time.
+     * <p>
+     * NOTE: Prior to v2.0, the DST overlap behaviour was not defined and varied by hemisphere.
+     * Prior to v1.5, the DST gap behaviour was also not defined.
+     *
+     * @param instantLocal  the millisecond instant, relative to this time zone, to get the offset for
+     * @return the millisecond offset to subtract from local time to get UTC time
+     */
+public int getOffsetFromLocal(long instantLocal)

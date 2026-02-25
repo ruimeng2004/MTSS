@@ -1,0 +1,9 @@
+   /**
+     * Print the specified text to the specified PrintWriter.
+     *
+     * @param pw The printWriter to write the help to
+     * @param width The number of characters to display per line
+     * @param nextLineTabStop The position on the next line for the first tab.
+     * @param text The text to be written to the PrintWriter
+     */
+public void printWrapped(PrintWriter pw,int width,int nextLineTabStop,String text)

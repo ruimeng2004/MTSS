@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: isNumber(String) LANG-664 failed

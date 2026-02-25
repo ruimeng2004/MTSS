@@ -1,0 +1,20 @@
+   /**
+   * BasicTypeExpression := '*' | 'null' | 'undefined' | TypeName
+   *     | FunctionType | UnionType | RecordType | ArrayType
+   */
+private Node parseBasicTypeExpression(JsDocToken token)
+   /**
+   * Parses a {@link JSDocInfo} object. This parsing method reads all tokens
+   * returned by the {@link JsDocTokenStream#getJsDocToken()} method until the
+   * {@link JsDocToken#EOC} is returned.
+   *
+   * @return {@code true} if JSDoc information was correctly parsed,
+   *     {@code false} otherwise
+   */
+boolean parse()
+   /**
+   * FunctionType := 'function' FunctionSignatureType
+   * FunctionSignatureType :=
+   *    TypeParameters '(' 'this' ':' TypeName, ParametersType ')' ResultType
+   */
+private Node parseFunctionType(JsDocToken token)

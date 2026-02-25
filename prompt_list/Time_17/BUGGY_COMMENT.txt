@@ -1,0 +1,8 @@
+   /**
+     * Adjusts the offset to be the earlier or later one during an overlap.
+     * 
+     * @param instant  the instant to adjust
+     * @param earlierOrLater  false for earlier, true for later
+     * @return the adjusted instant millis
+     */
+public long adjustOffset(long instant,boolean earlierOrLater)

@@ -1,0 +1,25 @@
+@Test public void should_return_zero_if_mock_is_compared_to_itself() {
+        //given
+        Date d = mock(Date.class);
+        d.compareTo(d);
+        Invocation compareTo = this.getLastInvocation();
+
+        //when
+        Object result = values.answer(compareTo);
+
+        //then
+        assertEquals(0, result);
+    }
+@Test
+    public void should_compare_to_be_consistent_with_equals_when_comparing_the_same_reference() {
+        //given
+        Date today    = mock(Date.class);
+
+        //when
+        Set<Date> set = new TreeSet<Date>();
+        set.add(today);
+        set.add(today);
+
+        //then
+        assertEquals(1, set.size());
+    }

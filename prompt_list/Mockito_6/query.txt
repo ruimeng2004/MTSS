@@ -1,0 +1,466 @@
+### Buggy function comment:
+   /**
+     * Any <code>Collection</code> or <code>null</code>.
+     * <p>
+     * This method <b>*dones't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return empty Collection.
+     */
+public static Collection anyCollection()
+   /**
+     * Any kind object, not necessary of the given class.
+     * The class argument is provided only to avoid casting.
+     * <p>
+     * Sometimes looks better than <code>anyObject()</code> - especially when explicit casting is required
+     * <p>
+     * Alias to {@link Matchers#anyObject()}
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @param clazz The type to avoid casting
+     * @return <code>null</code>.
+     */
+public static T any(Class<T> clazz)
+   /**
+     * Any <code>String</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return empty String ("")
+     */
+public static String anyString()
+   /**
+     * Any kind object, not necessary of the given class.
+     * The class argument is provided only to avoid casting.
+     * <p>
+     * Sometimes looks better than <code>anyObject()</code> - especially when explicit casting is required
+     * <p>
+     * Alias to {@link Matchers#anyObject()}
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @param clazz The type to avoid casting
+     * @return <code>null</code>.
+     */
+public static T any(Class<T> clazz)
+   /**
+     * Any <code>char</code>, <code>Character</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return <code>0</code>.
+     */
+public static char anyChar()
+   /**
+     * Generic friendly alias to {@link Matchers#anyMap()}.
+     * It's an alternative to &#064;SuppressWarnings("unchecked") to keep code clean of compiler warnings.
+     * <p>
+     * Any <code>Map</code> or <code>null</code>
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     *
+     * @param keyClazz Type of the map key to avoid casting
+     * @param valueClazz Type of the value to avoid casting
+     * @return empty Map.
+     */
+public static Map<K, V> anyMapOf(Class<K> keyClazz,Class<V> valueClazz)
+   /**
+     * Any <code>byte</code>, <code>Byte</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return <code>0</code>.
+     */
+public static byte anyByte()
+   /**
+     * Any <code>Set</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     *
+     * @return empty Set
+     */
+public static Set anySet()
+   /**
+     * Generic friendly alias to {@link Matchers#anySet()}.
+     * It's an alternative to &#064;SuppressWarnings("unchecked") to keep code clean of compiler warnings.
+     * <p>
+     * Any <code>Set</code> or <code>null</code>
+     * <p>
+     * This method <b>*dones't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     *
+     * @param clazz Type owned by the Set to avoid casting
+     * @return empty Set
+     */
+public static Set<T> anySetOf(Class<T> clazz)
+   /**
+     * Any <code>short</code>, <code>Short</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return <code>0</code>.
+     */
+public static short anyShort()
+   /**
+     * Generic friendly alias to {@link Matchers#anyList()}.
+     * It's an alternative to &#064;SuppressWarnings("unchecked") to keep code clean of compiler warnings.
+     * <p>
+     * Any <code>List</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @param clazz Type owned by the list to avoid casting
+     * @return empty List.
+     */
+public static List<T> anyListOf(Class<T> clazz)
+   /**
+     * Any <code>float</code>, <code>Float</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return <code>0</code>.
+     */
+public static float anyFloat()
+   /**
+     * Any <code>boolean</code>, <code>Boolean</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return <code>false</code>.
+     */
+public static boolean anyBoolean()
+   /**
+     * Any <code>Map</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return empty Map.
+     */
+public static Map anyMap()
+   /**
+     * Any <code>Object</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * Has aliases: {@link #any()} and {@link #any(Class clazz)}
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return <code>null</code>.
+     */
+public static T anyObject()
+   /**
+     * Generic friendly alias to {@link Matchers#anyCollection()}.
+     * It's an alternative to &#064;SuppressWarnings("unchecked") to keep code clean of compiler warnings.     
+     * <p>
+     * Any <code>Collection</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @param clazz Type owned by the collection to avoid casting
+     * @return empty Collection.
+     */
+public static Collection<T> anyCollectionOf(Class<T> clazz)
+   /**
+     * Any <code>double</code>, <code>Double</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return <code>0</code>.
+     */
+public static double anyDouble()
+   /**
+     * Any <code>List</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return empty List.
+     */
+public static List anyList()
+   /**
+     * Any <code>long</code>, <code>Long</code> or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return <code>0</code>.
+     */
+public static long anyLong()
+   /**
+     * Any int, Integer or <code>null</code>.
+     * <p>
+     * This method <b>*doesn't do any type checks*</b>, it is only there to avoid casting
+     * in your code. This might however change (type checks could be added) in a
+     * future major release.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @return <code>0</code>.
+     */
+public static int anyInt()
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:<null> but was:<0>
+junit.framework.ComparisonFailure: expected:<null> but was:<0>
+junit.framework.ComparisonFailure: expected:<null> but was:<matched>
+junit.framework.ComparisonFailure: expected:<null> but was:<matched>
+junit.framework.ComparisonFailure: expected:<null> but was:<matched>
+junit.framework.ComparisonFailure: expected:<null> but was:<matched>
+junit.framework.ComparisonFailure: expected:<null> but was:<matched>
+
+### Failed JUnit tests:
+@Test
+    public void shouldNotAcceptNullInAllAnyPrimitiveWrapperMatchers() {
+        when(mock.forInteger(anyInt())).thenReturn("0");
+        when(mock.forCharacter(anyChar())).thenReturn("1");
+        when(mock.forShort(anyShort())).thenReturn("2");
+        when(mock.forByte(anyByte())).thenReturn("3");
+        when(mock.forBoolean(anyBoolean())).thenReturn("4");
+        when(mock.forLong(anyLong())).thenReturn("5");
+        when(mock.forFloat(anyFloat())).thenReturn("6");
+        when(mock.forDouble(anyDouble())).thenReturn("7");
+        
+        assertEquals(null, mock.forInteger(null));
+        assertEquals(null, mock.forCharacter(null));
+        assertEquals(null, mock.forShort(null));
+        assertEquals(null, mock.forByte(null));
+        assertEquals(null, mock.forBoolean(null));
+        assertEquals(null, mock.forLong(null));
+        assertEquals(null, mock.forFloat(null));
+        assertEquals(null, mock.forDouble(null));
+    }
+@Test
+    public void shouldNotAcceptNullInAnyXMatchers() {
+        when(mock.oneArg(anyObject())).thenReturn("0");
+        when(mock.oneArg(anyString())).thenReturn("1");
+        when(mock.forList(anyList())).thenReturn("2");
+        when(mock.forMap(anyMap())).thenReturn("3");
+        when(mock.forCollection(anyCollection())).thenReturn("4");
+        when(mock.forSet(anySet())).thenReturn("5");
+        
+        assertEquals(null, mock.oneArg((Object) null));
+        assertEquals(null, mock.oneArg((String) null));
+        assertEquals(null, mock.forList(null));
+        assertEquals(null, mock.forMap(null));
+        assertEquals(null, mock.forCollection(null));
+        assertEquals(null, mock.forSet(null));
+    }
+@Test
+    public void anyStringMatcher() {
+        when(mock.oneArg(anyString())).thenReturn("matched");
+        
+        assertEquals("matched", mock.oneArg(""));
+        assertEquals("matched", mock.oneArg("any string"));
+        assertEquals(null, mock.oneArg((String) null));
+    }
+@Test
+    public void shouldAllowAnyCollection() {
+        when(mock.forCollection(anyCollection())).thenReturn("matched");
+        
+        assertEquals("matched", mock.forCollection(Arrays.asList("x", "y")));
+        assertEquals(null, mock.forCollection(null));
+
+        verify(mock, times(1)).forCollection(anyCollection());
+    }
+@Test
+    public void shouldAllowAnyList() {
+        when(mock.forList(anyList())).thenReturn("matched");
+        
+        assertEquals("matched", mock.forList(Arrays.asList("x", "y")));
+        assertEquals(null, mock.forList(null));
+
+        verify(mock, times(1)).forList(anyList());
+    }
+@Test
+    public void shouldAllowAnyMap() {
+        when(mock.forMap(anyMap())).thenReturn("matched");
+        
+        assertEquals("matched", mock.forMap(new HashMap<String, String>()));
+        assertEquals(null, mock.forMap(null));
+
+        verify(mock, times(1)).forMap(anyMap());
+    }
+@Test
+    public void shouldAllowAnySet() {
+        when(mock.forSet(anySet())).thenReturn("matched");
+        
+        assertEquals("matched", mock.forSet(new HashSet<String>()));
+        assertEquals(null, mock.forSet(null));
+
+        verify(mock, times(1)).forSet(anySet());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static Collection anyCollection() {
+        return reportMatcher(Any.ANY).returnList();
+    }
+```
+```java
+public static <T> T any(Class<T> clazz) {
+        return (T) reportMatcher(Any.ANY).returnFor(clazz);
+    }
+```
+```java
+public static String anyString() {
+        return reportMatcher(Any.ANY).returnString();
+    }
+```
+```java
+public static <T> T any() {
+        return (T) anyObject();
+    }
+```
+```java
+public static char anyChar() {
+        return reportMatcher(Any.ANY).returnChar();
+    }
+```
+```java
+public static <K, V>  Map<K, V> anyMapOf(Class<K> keyClazz, Class<V> valueClazz) {
+        return reportMatcher(Any.ANY).returnMap();
+    }
+```
+```java
+public static byte anyByte() {
+        return reportMatcher(Any.ANY).returnZero();
+    }
+```
+```java
+public static Set anySet() {
+        return reportMatcher(Any.ANY).returnSet();
+    }
+```
+```java
+public static <T> Set<T> anySetOf(Class<T> clazz) {
+        return (Set) reportMatcher(Any.ANY).returnSet();
+    }
+```
+```java
+public static short anyShort() {
+        return reportMatcher(Any.ANY).returnZero();
+    }
+```
+```java
+public static <T> List<T> anyListOf(Class<T> clazz) {
+        return (List) reportMatcher(Any.ANY).returnList();
+    }
+```
+```java
+public static float anyFloat() {
+        return reportMatcher(Any.ANY).returnZero();
+    }
+```
+```java
+public static boolean anyBoolean() {
+        return reportMatcher(Any.ANY).returnFalse();
+    }
+```
+```java
+public static Map anyMap() {
+        return reportMatcher(Any.ANY).returnMap();
+    }
+```
+```java
+public static <T> T anyObject() {
+        return (T) reportMatcher(Any.ANY).returnNull();
+    }
+```
+```java
+public static <T> Collection<T> anyCollectionOf(Class<T> clazz) {
+        return (Collection) reportMatcher(Any.ANY).returnList();
+    }
+```
+```java
+public static double anyDouble() {
+        return reportMatcher(Any.ANY).returnZero();
+    }
+```
+```java
+public static List anyList() {
+        return reportMatcher(Any.ANY).returnList();
+    }
+```
+```java
+public static long anyLong() {
+        return reportMatcher(Any.ANY).returnZero();
+    }
+```
+```java
+public static int anyInt() {
+        return reportMatcher(Any.ANY).returnZero();
+    }
+```

@@ -1,0 +1,1 @@
+java.lang.NullPointerException: You must invoke setComparator() to set a comparator first.

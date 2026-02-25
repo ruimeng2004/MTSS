@@ -1,0 +1,1 @@
+junit.framework.AssertionFailedError: COMPRESS-197: Error detected parsing the header

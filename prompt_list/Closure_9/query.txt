@@ -1,0 +1,64 @@
+### Buggy function comment:
+   This function has no comment.
+   /**
+     * Emit goog.provide and add suffix to all global vars to avoid conflicts
+     * with other modules.
+     */
+private void visitScript(NodeTraversal t,Node script)
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:<module$[]baz> but was:<module$[foo\]baz>
+
+### Failed JUnit tests:
+public void testGuessModuleName() {
+    ProcessCommonJSModules pass = new ProcessCommonJSModules(null, "foo");
+    assertEquals("module$baz",
+        pass.guessCJSModuleName("foo/baz.js"));
+    assertEquals("module$baz",
+        pass.guessCJSModuleName("foo\\baz.js"));
+    assertEquals("module$bar$baz",
+        pass.guessCJSModuleName("foo\\bar\\baz.js"));
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private String normalizeSourceName(String filename) {
+    // The DOS command shell will normalize "/" to "\", so we have to
+    // wrestle it back.
+
+    if (filename.indexOf(filenamePrefix) == 0) {
+      filename = filename.substring(filenamePrefix.length());
+    }
+
+    return filename;
+  }
+```
+```java
+private void visitScript(NodeTraversal t, Node script) {
+      Preconditions.checkArgument(scriptNodeCount == 1,
+          "ProcessCommonJSModules supports only one invocation per " +
+          "CompilerInput / script node");
+      String moduleName = guessCJSModuleName(normalizeSourceName(script.getSourceFileName()));
+      script.addChildToFront(IR.var(IR.name(moduleName), IR.objectlit())
+          .copyInformationFromForTree(script));
+      if (reportDependencies) {
+        CompilerInput ci = t.getInput();
+        ci.addProvide(moduleName);
+        JSModule m = new JSModule(moduleName);
+        m.addAndOverrideModule(ci);
+        module = m;
+      }
+      script.addChildToFront(IR.exprResult(
+          IR.call(IR.getprop(IR.name("goog"), IR.string("provide")),
+              IR.string(moduleName))).copyInformationFromForTree(script));
+
+      emitOptionalModuleExportsOverride(script, moduleName);
+
+      // Rename vars to not conflict in global scope.
+      NodeTraversal.traverse(compiler, script, new SuffixVarsCallback(
+          moduleName));
+
+      compiler.reportCodeChange();
+    }
+```

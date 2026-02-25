@@ -1,0 +1,6 @@
+   /**
+     * Method overridden to support more reliable deserialization of
+     * String collections.
+     */
+@Override
+    public String nextTextValue()

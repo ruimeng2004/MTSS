@@ -1,0 +1,112 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+   // @since 2.1
+@Override
+    public final String getValueAsString(String defValue)
+   // @since 2.1
+@Override
+    public final String getValueAsString(String defValue)
+   // @since 2.1
+@Override
+    public String getValueAsString(String defValue)
+   // @since 2.1
+@Override
+    public String getValueAsString(String defValue)
+
+
+### Error message from JUnit test:
+junit.framework.ComparisonFailure: expected:<a> but was:<null>
+junit.framework.ComparisonFailure: expected:<a> but was:<null>
+
+### Failed JUnit tests:
+public void testGetValueAsTextBytes() throws Exception
+    {
+        JsonFactory f = new JsonFactory();
+        _testGetValueAsText(f, true, false);
+        _testGetValueAsText(f, true, true);
+    }
+public void testGetValueAsTextChars() throws Exception
+    {
+        JsonFactory f = new JsonFactory();
+        _testGetValueAsText(f, false, false);
+        _testGetValueAsText(f, false, true);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+@Override
+    public String getValueAsString(String defaultValue) throws IOException {
+        if (_currToken == JsonToken.VALUE_STRING) {
+            return getText();
+        }
+        if (_currToken == null || _currToken == JsonToken.VALUE_NULL || !_currToken.isScalarValue()) {
+            return defaultValue;
+        }
+        return getText();
+    }
+```
+```java
+@Override
+    public String getValueAsString() throws IOException {
+        if (_currToken == JsonToken.VALUE_STRING) {
+            return getText();
+        }
+        return getValueAsString(null);
+    }
+```
+```java
+@Override
+    public final String getValueAsString() throws IOException
+    {
+        if (_currToken == JsonToken.VALUE_STRING) {
+            if (_tokenIncomplete) {
+                _tokenIncomplete = false;
+                _finishString(); // only strings can be incomplete
+            }
+            return _textBuffer.contentsAsString();
+        }
+        return super.getValueAsString(null);
+    }
+```
+```java
+@Override
+    public final String getValueAsString(String defValue) throws IOException {
+        if (_currToken == JsonToken.VALUE_STRING) {
+            if (_tokenIncomplete) {
+                _tokenIncomplete = false;
+                _finishString(); // only strings can be incomplete
+            }
+            return _textBuffer.contentsAsString();
+        }
+        return super.getValueAsString(defValue);
+    }
+```
+```java
+@Override
+    public String getValueAsString(String defValue) throws IOException
+    {
+        if (_currToken == JsonToken.VALUE_STRING) {
+            if (_tokenIncomplete) {
+                _tokenIncomplete = false;
+                return _finishAndReturnString(); // only strings can be incomplete
+            }
+            return _textBuffer.contentsAsString();
+        }
+        return super.getValueAsString(defValue);
+    }
+```
+```java
+@Override
+    public String getValueAsString() throws IOException
+    {
+        if (_currToken == JsonToken.VALUE_STRING) {
+            if (_tokenIncomplete) {
+                _tokenIncomplete = false;
+                return _finishAndReturnString(); // only strings can be incomplete
+            }
+            return _textBuffer.contentsAsString();
+        }
+        return super.getValueAsString(null);
+    }
+```

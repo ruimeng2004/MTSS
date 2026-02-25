@@ -1,0 +1,7 @@
+   /**
+   * Parses the externs and main inputs.
+   *
+   * @return A synthetic root node whose two children are the externs root
+   *     and the main root
+   */
+Node parseInputs()

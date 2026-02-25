@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError: expected:<5.0> but was:<NaN>
+junit.framework.AssertionFailedError: expected:<5.0> but was:<NaN>

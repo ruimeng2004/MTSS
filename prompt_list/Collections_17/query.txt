@@ -1,0 +1,41 @@
+### Buggy function comment:
+   /**
+     * Evaluates the predicate returning true if the input equals the stored value.
+     * 
+     * @param object  the input object
+     * @return true if input object equals stored value
+     */
+public boolean evaluate(T object)
+   /**
+     * Constructor that performs no validation.
+     * Use <code>getInstance</code> if you want that.
+     * 
+     * @param object  the object to compare to
+     */
+public EqualPredicate(T object)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError
+
+### Failed JUnit tests:
+@Test
+    public void objectFactoryUsesEqualsForTest() throws Exception {
+        Predicate<EqualsTestObject> predicate = equalPredicate(FALSE_OBJECT);
+        assertFalse(predicate, FALSE_OBJECT);
+        assertTrue(equalPredicate(TRUE_OBJECT), TRUE_OBJECT);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public boolean evaluate(T object) {
+            return equator.equate(iValue, object);
+    }
+```
+```java
+public EqualPredicate(T object) {
+        // do not use the DefaultEquator to keep backwards compatibility
+        // the DefaultEquator returns also true if the two object references are equal
+        this(object, new DefaultEquator<T>());
+    }
+```

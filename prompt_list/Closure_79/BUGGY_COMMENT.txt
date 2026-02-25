@@ -1,0 +1,6 @@
+   /**
+   * Create a new variable in a synthetic script. This will prevent
+   * subsequent compiler passes from crashing.
+   */
+private void createSynthesizedExternVar(String varName)
+   This function has no comment.

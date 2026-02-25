@@ -1,0 +1,67 @@
+### Buggy function comment:
+   This function has no comment.
+   This function has no comment.
+
+
+### Error message from JUnit test:
+java.lang.IllegalStateException
+java.lang.IllegalStateException
+java.lang.IllegalStateException
+
+### Failed JUnit tests:
+public void testIssue727_1() {
+    testIR(
+        IR.tryFinally(
+            IR.block(),
+            IR.block()),
+        "TRY\n" +
+        "    BLOCK\n" +
+        "    BLOCK\n" +
+        "    BLOCK\n");
+  }
+public void testIssue727_2() {
+    testIR(
+        IR.tryCatch(
+            IR.block(),
+            IR.catchNode(
+                IR.name("e"),
+                IR.block())),
+        "TRY\n" +
+        "    BLOCK\n" +
+        "    BLOCK\n" +
+        "        CATCH\n" +
+        "            NAME e\n" +
+        "            BLOCK\n");
+  }
+public void testIssue727_3() {
+    testIR(
+        IR.tryCatchFinally(
+            IR.block(),
+            IR.catchNode(IR.name("e"), IR.block()),
+            IR.block()),
+        "TRY\n" +
+        "    BLOCK\n" +
+        "    BLOCK\n" +
+        "        CATCH\n" +
+        "            NAME e\n" +
+        "            BLOCK\n" +
+        "    BLOCK\n");
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static Node tryCatch(Node tryBody, Node catchNode) {
+    Preconditions.checkState(tryBody.isBlock());
+    Preconditions.checkState(catchNode.isCatch());
+    Node catchBody = block(catchNode).copyInformationFrom(catchNode);
+    return new Node(Token.TRY, tryBody, catchBody);
+  }
+```
+```java
+public static Node tryFinally(Node tryBody, Node finallyBody) {
+    Preconditions.checkState(tryBody.isLabelName());
+    Preconditions.checkState(finallyBody.isLabelName());
+    Node catchBody = block().copyInformationFrom(tryBody);
+    return new Node(Token.TRY, tryBody, catchBody, finallyBody);
+  }
+```

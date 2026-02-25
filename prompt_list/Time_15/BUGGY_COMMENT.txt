@@ -1,0 +1,10 @@
+   /**
+     * Multiply two values throwing an exception if overflow occurs.
+     * 
+     * @param val1  the first value
+     * @param val2  the second value
+     * @return the new total
+     * @throws ArithmeticException if the value is too big or too small
+     * @since 1.2
+     */
+public static long safeMultiply(long val1,int val2)

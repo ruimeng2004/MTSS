@@ -1,0 +1,38 @@
+### Buggy function comment:
+   /**
+     * @return Whether the variable is only assigned a value once for its
+     *     lifetime.
+     */
+boolean isAssignedOnceInLifetime()
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError:
+
+### Failed JUnit tests:
+public void testExternalIssue1053() {
+    testSame(
+        "var u; function f() { u = Random(); var x = u; f(); alert(x===u)}");
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+boolean isAssignedOnceInLifetime() {
+      Reference ref = getOneAndOnlyAssignment();
+      if (ref == null) {
+        return false;
+      }
+
+      // Make sure this assignment is not in a loop.
+      for (BasicBlock block = ref.getBasicBlock();
+           block != null; block = block.getParent()) {
+        if (block.isFunction) {
+          break;
+        } else if (block.isLoop) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+```

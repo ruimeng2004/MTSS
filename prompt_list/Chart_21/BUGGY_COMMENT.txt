@@ -1,0 +1,16 @@
+   /**
+     * Resets the cached bounds, by iterating over the entire dataset to find
+     * the current bounds.
+     */
+private void updateBounds()
+   /**
+     * Adds a list of values relating to one Box and Whisker entity to the 
+     * table.  The various median values are calculated.
+     *
+     * @param item  a box and whisker item (<code>null</code> not permitted).
+     * @param rowKey  the row key (<code>null</code> not permitted).
+     * @param columnKey  the column key (<code>null</code> not permitted).
+     * 
+     * @see #add(List, Comparable, Comparable)
+     */
+public void add(BoxAndWhiskerItem item,Comparable rowKey,Comparable columnKey)

@@ -1,0 +1,59 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<...ocument.write('</scr['] + 'ipt>');
+
+### Failed JUnit tests:
+@Test public void handlesQuotesInCommentsInScripts() {
+        String html = "<script>\n" +
+                "  <!--\n" +
+                "    document.write('</scr' + 'ipt>');\n" +
+                "  // -->\n" +
+                "</script>";
+        Document node = Jsoup.parseBodyFragment(html);
+        assertEquals("<script>\n" +
+                "  <!--\n" +
+                "    document.write('</scr' + 'ipt>');\n" +
+                "  // -->\n" +
+                "</script>", node.body().html());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+void read(Tokeniser t, CharacterReader r) {
+            if (r.matchesLetter()) {
+                String name = r.consumeLetterSequence();
+                t.tagPending.appendTagName(name.toLowerCase());
+                t.dataBuffer.append(name);
+                r.advance();
+                return;
+            }
+
+            if (t.isAppropriateEndTagToken() && !r.isEmpty()) {
+                char c = r.consume();
+                switch (c) {
+                    case '\t':
+                    case '\n':
+                    case '\f':
+                    case ' ':
+                        t.transition(BeforeAttributeName);
+                        break;
+                    case '/':
+                        t.transition(SelfClosingStartTag);
+                        break;
+                    case '>':
+                        t.emitTagPending();
+                        t.transition(Data);
+                        break;
+                    default:
+                        t.dataBuffer.append(c);
+                        anythingElse(t, r);
+                        break;
+                }
+            } else {
+                anythingElse(t, r);
+            }
+        }
+```

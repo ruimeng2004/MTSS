@@ -1,0 +1,14 @@
+public void testParameter4() {
+    // Make sure that we do not merge two-arg functions because of the
+    // IE sort bug (see comments in computeEscaped)
+    test("function FUNC(x, y) {var a,b; y; a=0; a; x; b=0; b}",
+         "function FUNC(x, y) {var a; y; a=0; a; x; a=0; a}");
+  }
+public void testParseLicenseWithAnnotation() throws Exception {
+    Node node = new Node(1);
+    this.fileLevelJsDocBuilder = node.getJsDocBuilderForNode();
+    String comment = "@license Foo \n * @author Charlie Brown */";
+    parse(comment);
+    assertEquals(" Foo \n @author Charlie Brown ",
+        node.getJSDocInfo().getLicense());
+  }

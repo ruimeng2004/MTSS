@@ -1,0 +1,12 @@
+junit.framework.ComparisonFailure: expected:<var x={[1]:1}> but was:<var x={["1"]:1}>
+junit.framework.ComparisonFailure: expected:<var x={[3E9]:1}> but was:<var x={["3000000000"]:1}>
+junit.framework.ComparisonFailure: expected:<var x={get ["a"](){return 1}}> but was:<var x={get [a](){return 1}}>
+junit.framework.ComparisonFailure: expected:<var x={get ["a"](){return 1}}> but was:<var x={get [a](){return 1}}>
+junit.framework.AssertionFailedError: Function id/name mismatch expected:<{0=goog.widget.member_fn, 1=goog.widget::local_fn, 2=goog.widget::<anonymous>, 3=goog.widget, 4=foo::bar, 5=foo, 6=literal.f1, 7=literal.f2, 8=named, 9=<anonymous>, 10=quax, 11=recliteral.l1.l2, 12=litnamed, 13=reclitnamed, 14=numliteral.__2, 15=recnumliteral.__3.a}> but was:<{0=goog.widget.member_fn, 1=goog.widget::local_fn, 2=goog.widget::<anonymous>, 3=goog.widget, 4=foo::bar, 5=foo, 6=literal.f1, 7=literal.f2, 8=named, 9=<anonymous>, 10=quax, 11=recliteral.l1.l2, 12=litnamed, 13=reclitnamed, 14=<anonymous>, 15=<anonymous>}>
+java.lang.RuntimeException: INTERNAL COMPILER ERROR.
+java.lang.RuntimeException: INTERNAL COMPILER ERROR.
+junit.framework.AssertionFailedError: expected:<[DEF STRING null -> NUMBER]> but was:<[]>
+junit.framework.ComparisonFailure: expected:<...: true]
+junit.framework.ComparisonFailure: expected:<...ue]
+junit.framework.ComparisonFailure: expected:<...ue]
+junit.framework.AssertionFailedError: expected:<40> but was:<39>

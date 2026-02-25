@@ -1,0 +1,4 @@
+   /**
+   * Try to fold arithmetic binary operators
+   */
+private Node performArithmeticOp(int opType,Node left,Node right)

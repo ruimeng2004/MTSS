@@ -1,0 +1,45 @@
+   /**
+     * Returns the object for the given row and column keys.
+     *
+     * @param rowKey  the row key (<code>null</code> not permitted).
+     * @param columnKey  the column key (<code>null</code> not permitted).
+     *
+     * @return The object (possibly <code>null</code>).
+     * 
+     * @throws IllegalArgumentException if <code>rowKey<code> or 
+     *         <code>columnKey</code> is <code>null</code>.
+     * @throws UnknownKeyException if <code>rowKey</code> or 
+     *         <code>columnKey</code> is not recognised.
+     */
+public Object getObject(Comparable rowKey,Comparable columnKey)
+   /**
+     * Removes an object from the table by setting it to <code>null</code>.  If
+     * all the objects in the specified row and/or column are now 
+     * <code>null</code>, the row and/or column is removed from the table.
+     *
+     * @param rowKey  the row key (<code>null</code> not permitted).
+     * @param columnKey  the column key (<code>null</code> not permitted).
+     * 
+     * @see #addObject(Object, Comparable, Comparable)
+     */
+public void removeObject(Comparable rowKey,Comparable columnKey)
+   /**
+     * Removes an entire column from the table.
+     *
+     * @param columnKey  the column key (<code>null</code> not permitted).
+     * 
+     * @throws UnknownKeyException if <code>rowKey</code> is not recognised.
+     * 
+     * @see #removeRow(Comparable)
+     */
+public void removeColumn(Comparable columnKey)
+   /**
+     * Removes an entire row from the table.
+     *
+     * @param rowKey  the row key (<code>null</code> not permitted).
+     * 
+     * @throws UnknownKeyException if <code>rowKey</code> is not recognised.
+     * 
+     * @see #removeColumn(Comparable)
+     */
+public void removeRow(Comparable rowKey)

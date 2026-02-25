@@ -1,0 +1,85 @@
+### Buggy function comment:
+   /**
+     * Object argument that is equal to the given value.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @param value
+     *            the given value.
+     * @return <code>null</code>.
+     */
+public static T eq(T value)
+   /**
+     * Object argument that implements the given class. 
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @param <T>
+     *            the accepted type.
+     * @param clazz
+     *            the class of the accepted type.
+     * @return <code>null</code>.
+     */
+public static T isA(Class<T> clazz)
+   /**
+     * Object argument that is the same as the given value.
+     * <p>
+     * See examples in javadoc for {@link Matchers} class
+     * 
+     * @param <T>
+     *            the type of the object, it is passed through to prevent casts.
+     * @param value
+     *            the given value.
+     * @return <code>null</code>.
+     */
+public static T same(T value)
+
+
+### Error message from JUnit test:
+java.lang.NullPointerException
+java.lang.NullPointerException
+java.lang.NullPointerException
+java.lang.NullPointerException
+
+### Failed JUnit tests:
+@Test
+    public void shouldNotThrowNPEWhenIntPassed() {
+        mock.intArgumentMethod(100);
+        
+        verify(mock).intArgumentMethod(isA(Integer.class));
+    }
+@Test
+    public void shouldNotThrowNPEWhenIntegerPassed() {
+        mock.intArgumentMethod(100);
+
+        verify(mock).intArgumentMethod(isA(Integer.class));
+    }
+@Test
+    public void shouldNotThrowNPEWhenIntegerPassedToEq() {
+        mock.intArgumentMethod(100);
+        
+        verify(mock).intArgumentMethod(eq(new Integer(100)));
+    }
+@Test
+    public void shouldNotThrowNPEWhenIntegerPassedToSame() {
+        mock.intArgumentMethod(100);
+
+        verify(mock, never()).intArgumentMethod(same(new Integer(100)));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static <T> T eq(T value) {
+        return reportMatcher(new Equals(value)).<T>returnNull();
+    }
+```
+```java
+public static <T> T isA(Class<T> clazz) {
+        return reportMatcher(new InstanceOf(clazz)).<T>returnNull();
+    }
+```
+```java
+public static <T> T same(T value) {
+        return reportMatcher(new Same(value)).<T>returnNull();
+    }
+```

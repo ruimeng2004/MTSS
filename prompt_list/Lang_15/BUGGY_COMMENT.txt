@@ -1,0 +1,19 @@
+   /**
+     * <p> Checks if the subject type may be implicitly cast to the target
+     * parameterized type following the Java generics rules. </p>
+     *
+     * @param type the subject type to be assigned to the target type
+     * @param toParameterizedType the target parameterized type
+     * @param typeVarAssigns a map with type variables
+     * @return true if <code>type</code> is assignable to <code>toType</code>.
+     */
+private static boolean isAssignable(Type type,ParameterizedType toParameterizedType,Map<TypeVariable<?>, Type> typeVarAssigns)
+   /**
+     * <p> Return a map of the type arguments of a class in the context of <code>toClass</code>. </p>
+     *
+     * @param cls the class in question
+     * @param toClass the context class
+     * @param subtypeVarAssigns a map with type variables
+     * @return the map with type arguments
+     */
+private static Map<TypeVariable<?>, Type> getTypeArguments(Class<?> cls,Class<?> toClass,Map<TypeVariable<?>, Type> subtypeVarAssigns)

@@ -1,0 +1,2 @@
+junit.framework.AssertionFailedError
+org.apache.commons.math.optimization.OptimizationException: org.apache.commons.math.MaxIterationsExceededException: Maximal number of iterations (100) exceeded

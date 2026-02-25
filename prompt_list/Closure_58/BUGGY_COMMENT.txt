@@ -1,0 +1,12 @@
+   /**
+   * Computes the GEN and KILL set.
+   *
+   * @param n Root node.
+   * @param gen Local variables that are live because of the instruction at
+   *        {@code n} will be added to this set.
+   * @param kill Local variables that are killed because of the instruction at
+   *        {@code n} will be added to this set.
+   * @param conditional {@code true} if any assignments encountered are
+   *        conditionally executed. These assignments might not kill a variable.
+   */
+private void computeGenKill(Node n,BitSet gen,BitSet kill,boolean conditional)

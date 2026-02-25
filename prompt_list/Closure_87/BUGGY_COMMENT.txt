@@ -1,0 +1,5 @@
+   /**
+   * @return Whether the node is a block with a single statement that is
+   *     an expression.
+   */
+private boolean isFoldableExpressBlock(Node n)

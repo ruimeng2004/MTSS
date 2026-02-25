@@ -1,0 +1,10 @@
+   /**
+     * Decompose a symmetric positive semidefinite matrix.
+     *
+     * @param matrix Symmetric positive semidefinite matrix.
+     * @param small Diagonal elements threshold under which  column are
+     * considered to be dependent on previous ones and are discarded.
+     * @exception NonPositiveDefiniteMatrixException if the matrix is not
+     * positive semidefinite.
+     */
+public RectangularCholeskyDecomposition(RealMatrix matrix,double small)

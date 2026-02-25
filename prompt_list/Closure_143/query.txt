@@ -1,0 +1,101 @@
+### Buggy function comment:
+   /**
+     * Attempts to replace the input node with a simpler but functionally
+     * equivalent set of nodes.
+     */
+private void trySimplify(Node parent,Node node)
+   /**
+   * Create a map of constant names to constant values from a textual
+   * description of the map.
+   *
+   * @param definitions A list of overriding definitions for defines in
+   *     the form <name>[=<val>], where <val> is a number, boolean, or
+   *     single-quoted string without single quotes.
+   */
+@VisibleForTesting
+  static void createDefineReplacements(List<String> definitions,CompilerOptions options)
+
+
+### Error message from JUnit test:
+java.lang.RuntimeException: --define flag syntax invalid: FOO="x'"
+junit.framework.AssertionFailedError:
+junit.framework.AssertionFailedError:
+
+### Failed JUnit tests:
+public void testDefineFlag3() {
+    args.add("--define=FOO=\"x'\"");
+    test("/** @define {string} */ var FOO = \"a\";",
+         "var FOO = \"x'\";");
+  }
+public void testCall1() {
+    test("Math.sin(0);", "");
+  }
+public void testNew1() {
+    test("new Date;", "");
+  }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private void trySimplify(Node parent, Node node) {
+      if (node.getType() != Token.EXPR_RESULT) {
+        return;
+      }
+
+      Node exprBody = node.getFirstChild();
+      if (!NodeUtil.nodeTypeMayHaveSideEffects(exprBody)
+      ) {
+        changeProxy.replaceWith(parent, node, getSideEffectNodes(exprBody));
+      }
+    }
+```
+```java
+@VisibleForTesting
+  static void createDefineReplacements(List<String> definitions,
+      CompilerOptions options) {
+    // Parse the definitions
+    for (String override : definitions) {
+      String[] assignment = override.split("=", 2);
+      String defName = assignment[0];
+
+      if (defName.length() > 0) {
+        if (assignment.length == 1) {
+          options.setDefineToBooleanLiteral(defName, true);
+          continue;
+        } else {
+          String defValue = assignment[1];
+
+          if (defValue.equals("true")) {
+            options.setDefineToBooleanLiteral(defName, true);
+            continue;
+          } else if (defValue.equals("false")) {
+            options.setDefineToBooleanLiteral(defName, false);
+            continue;
+          } else if (defValue.length() > 1
+              && ((defValue.charAt(0) == '\'' &&
+                  defValue.charAt(defValue.length() - 1) == '\'')
+            )) {
+            // If the value starts and ends with a single quote,
+            // we assume that it's a string.
+            String maybeStringVal =
+                defValue.substring(1, defValue.length() - 1);
+            if (maybeStringVal.indexOf(defValue.charAt(0)) == -1) {
+              options.setDefineToStringLiteral(defName, maybeStringVal);
+              continue;
+            }
+          } else {
+            try {
+              options.setDefineToDoubleLiteral(defName,
+                  Double.parseDouble(defValue));
+              continue;
+            } catch (NumberFormatException e) {
+              // do nothing, it will be caught at the end
+            }
+          }
+        }
+      }
+
+      throw new RuntimeException(
+          "--define flag syntax invalid: " + override);
+    }
+  }
+```

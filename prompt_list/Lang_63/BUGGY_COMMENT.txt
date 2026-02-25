@@ -1,0 +1,14 @@
+   This function has no comment.
+   /**
+     * <p>Formats the time gap as a string, using the specified format.
+     * Padding the left hand side of numbers with zeroes is optional and 
+     * the timezone may be specified. 
+     * 
+     * @param startMillis  the start of the duration
+     * @param endMillis  the end of the duration
+     * @param format  the way in which to format the duration
+     * @param padWithZeros whether to pad the left hand side of numbers with 0's
+     * @param timezone the millis are defined in
+     * @return the time as a String
+     */
+public static String formatPeriod(long startMillis,long endMillis,String format,boolean padWithZeros,TimeZone timezone)

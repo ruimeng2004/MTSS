@@ -1,0 +1,60 @@
+### Buggy function comment:
+   /**
+     * Removes the elements in <code>remove</code> from <code>collection</code>. That is, this
+     * method returns a collection containing all the elements in <code>c</code>
+     * that are not in <code>remove</code>. The cardinality of an element <code>e</code>
+     * in the returned collection is the same as the cardinality of <code>e</code>
+     * in <code>collection</code> unless <code>remove</code> contains <code>e</code>, in which
+     * case the cardinality is zero. This method is useful if you do not wish to modify
+     * the collection <code>c</code> and thus cannot call <code>collection.removeAll(remove);</code>.
+     * 
+     * @param collection  the collection from which items are removed (in the returned collection)
+     * @param remove  the items to be removed from the returned <code>collection</code>
+     * @return a <code>Collection</code> containing all the elements of <code>collection</code> except
+     * any elements that also occur in <code>remove</code>.
+     * @throws NullPointerException if either parameter is null
+     * @since Commons Collections 3.3 (method existed in 3.2 but was completely broken)
+     */
+public static Collection removeAll(Collection collection,Collection remove)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<1> but was:<2>
+
+### Failed JUnit tests:
+public void testRemoveAll() {
+        List base = new ArrayList();
+        base.add("A");
+        base.add("B");
+        base.add("C");
+        List sub = new ArrayList();
+        sub.add("A");
+        sub.add("C");
+        sub.add("X");
+        
+        Collection result = CollectionUtils.removeAll(base, sub);
+        assertEquals(1, result.size());
+        assertEquals(false, result.contains("A"));
+        assertEquals(true, result.contains("B"));
+        assertEquals(false, result.contains("C"));
+        assertEquals(3, base.size());
+        assertEquals(true, base.contains("A"));
+        assertEquals(true, base.contains("B"));
+        assertEquals(true, base.contains("C"));
+        assertEquals(3, sub.size());
+        assertEquals(true, sub.contains("A"));
+        assertEquals(true, sub.contains("C"));
+        assertEquals(true, sub.contains("X"));
+        
+        try {
+            CollectionUtils.removeAll(null, null);
+            fail("expecting NullPointerException");
+        } catch(NullPointerException npe){} // this is what we want
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public static Collection removeAll(Collection collection, Collection remove) {
+        return ListUtils.retainAll(collection, remove);
+    }
+```

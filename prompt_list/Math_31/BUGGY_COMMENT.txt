@@ -1,0 +1,26 @@
+   /**
+     * <p>
+     * Evaluates the continued fraction at the value x.
+     * </p>
+     *
+     * <p>
+     * The implementation of this method is based on the modified Lentz algorithm as described
+     * on page 18 ff. in:
+     * <ul>
+     * <li>
+     *   I. J. Thompson,  A. R. Barnett. "Coulomb and Bessel Functions of Complex Arguments and Order."
+     *   <a target="_blank" href="http://www.fresco.org.uk/papers/Thompson-JCP64p490.pdf">
+     *   http://www.fresco.org.uk/papers/Thompson-JCP64p490.pdf</a>
+     * </li>
+     * </ul>
+     * Note: the implementation uses the terms a<sub>i</sub> and b<sub>i</sub> as defined in
+     * <a href="http://mathworld.wolfram.com/ContinuedFraction.html">Continued Fraction / MathWorld</a>.
+     * </p>
+     *
+     * @param x the evaluation point.
+     * @param epsilon maximum error allowed.
+     * @param maxIterations maximum number of convergents
+     * @return the value of the continued fraction evaluated at x.
+     * @throws ConvergenceException if the algorithm fails to converge.
+     */
+public double evaluate(double x,double epsilon,int maxIterations)

@@ -1,0 +1,15 @@
+   /**
+     * Searches the string builder to find the first reference to the specified char.
+     * 
+     * @param ch  the character to find
+     * @param startIndex  the index to start at, invalid index rounded to edge
+     * @return the first index of the character, or -1 if not found
+     */
+public int indexOf(char ch,int startIndex)
+   /**
+     * Checks if the string builder contains the specified char.
+     *
+     * @param ch  the character to find
+     * @return true if the builder contains the character
+     */
+public boolean contains(char ch)

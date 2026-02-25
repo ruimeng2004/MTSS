@@ -1,0 +1,172 @@
+# BTMS Enhanced Configuration
+# Configuration for bug task modeling selection with budget allocation support
+
+name: "mtss_btms_enhanced"
+
+# ============================================================================
+# SELECTOR CONFIGURATION
+# ============================================================================
+# Choose between binary selection (edit/gen) or budget allocation (ratios)
+selector_type: "budget_allocator"  # Options: "binary", "budget_allocator"
+
+# Binary Selector Configuration (only used when selector_type = "binary")
+binary_selector:
+  voting_strategy: "majority"  # Options: "majority", "mean_ppl"
+  default_choice: "edit"  # Default choice when no clear winner
+
+# Budget Allocator Configuration (only used when selector_type = "budget_allocator")
+budget_allocator:
+  # Metric for computing allocation ratios
+  # Options: "ppl_gap", "vote_consistency", "size_adjusted", "hybrid"
+  metric: "hybrid"
+  
+  # Ratio constraints (prevent extreme allocations)
+  min_ratio: 0.2  # Minimum allocation for either mode (20%)
+  max_ratio: 0.8  # Maximum allocation for either mode (80%)
+  
+  # Metric-specific parameters
+  metric_params:
+    # PPL Gap parameters
+    temperature: 1.0  # Temperature for sigmoid normalization
+    
+    # Vote Consistency parameters
+    confidence_threshold: 0.5  # Threshold for PPL gap confidence
+    
+    # Size Adjusted parameters
+    size_normalization_factor: 10  # Cluster size for full confidence
+    
+    # Hybrid parameters (only used when metric = "hybrid")
+    ppl_weight: 0.4    # Weight for PPL gap component
+    vote_weight: 0.4   # Weight for voting component
+    size_weight: 0.2   # Weight for size component
+
+# ============================================================================
+# ADAPTIVE REPRESENTATIVES CONFIGURATION
+# ============================================================================
+# Dynamically determine number of representatives based on cluster size
+adaptive_reps:
+  enabled: true
+  
+  # Formula: reps = min(max(min_reps, cluster_size // divisor), max_reps)
+  divisor: 3  # Cluster size divided by this to get base reps
+  max_reps: 7  # Maximum representatives per cluster
+  min_reps: 1  # Minimum representatives per cluster
+  
+  # Examples with divisor=3, max_reps=7, min_reps=1:
+  # cluster_size=1-2  → reps=1
+  # cluster_size=3-5  → reps=1
+  # cluster_size=6-8  → reps=2
+  # cluster_size=9-11 → reps=3
+  # cluster_size=21+  → reps=7 (capped)
+
+# Fallback: Fixed reps (used when adaptive_reps.enabled = false)
+fixed_reps_per_cluster: 5
+
+# ============================================================================
+# OUTLIER DETECTION AND MERGING
+# ============================================================================
+outlier_detection:
+  enabled: true
+  
+  # Clusters with size <= threshold are considered outliers
+  threshold: 2
+  
+  # Merge strategy for outlier clusters
+  # Options: "single" (merge all into one), "similarity" (group by similarity)
+  merge_strategy: "single"
+  
+  # Default ratio for outlier clusters (when using budget allocation)
+  default_ratio: 0.5  # 50:50 split
+  
+  # Similarity-based merging parameters (only used when merge_strategy = "similarity")
+  similarity:
+    # Distance threshold for grouping outlier clusters
+    threshold: 0.3
+    
+    # Linkage method for hierarchical clustering
+    # Options: "average", "complete", "single"
+    linkage: "average"
+
+# ============================================================================
+# DATA PATHS
+# ============================================================================
+# Paths to input data files
+data_paths:
+  embeddings: "data/artifacts/embeddings.jsonl"
+  ppl_edit: "data/ppl/edit_ppl.jsonl"
+  ppl_gen: "data/ppl/gen_ppl.jsonl"
+  assignments: "data/clustering/assignments.jsonl"
+  representatives: "data/sampling/representatives.jsonl"
+
+# ============================================================================
+# OUTPUT CONFIGURATION
+# ============================================================================
+output:
+  base_dir: "evaluation_output/btms_enhanced"
+  save_statistics: true
+  save_individual_choices: true
+
+# ============================================================================
+# EXPERIMENT SETTINGS
+# ============================================================================
+experiment:
+  seed: 42
+  verbose: true
+
+# ============================================================================
+# ABLATION STUDY CONFIGURATIONS
+# ============================================================================
+# Below are example configurations for ablation studies
+
+# --- Baseline 1: Binary Selection (Original System) ---
+# selector_type: "binary"
+# binary_selector:
+#   voting_strategy: "majority"
+# adaptive_reps:
+#   enabled: false
+# outlier_detection:
+#   enabled: false
+
+# --- Baseline 2: Budget Allocation without Outlier Handling ---
+# selector_type: "budget_allocator"
+# budget_allocator:
+#   metric: "ppl_gap"
+# adaptive_reps:
+#   enabled: true
+# outlier_detection:
+#   enabled: false
+
+# --- Experiment 1: PPL Gap Metric ---
+# selector_type: "budget_allocator"
+# budget_allocator:
+#   metric: "ppl_gap"
+#   min_ratio: 0.2
+#   max_ratio: 0.8
+#   metric_params:
+#     temperature: 1.0
+
+# --- Experiment 2: Vote Consistency Metric ---
+# selector_type: "budget_allocator"
+# budget_allocator:
+#   metric: "vote_consistency"
+#   metric_params:
+#     confidence_threshold: 0.5
+
+# --- Experiment 3: Size Adjusted Metric ---
+# selector_type: "budget_allocator"
+# budget_allocator:
+#   metric: "size_adjusted"
+#   metric_params:
+#     size_normalization_factor: 10
+
+# --- Experiment 4: Hybrid Metric (Recommended) ---
+# selector_type: "budget_allocator"
+# budget_allocator:
+#   metric: "hybrid"
+#   metric_params:
+#     ppl_weight: 0.4
+#     vote_weight: 0.4
+#     size_weight: 0.2
+#     temperature: 1.0
+#     confidence_threshold: 0.5
+#     size_normalization_factor: 10

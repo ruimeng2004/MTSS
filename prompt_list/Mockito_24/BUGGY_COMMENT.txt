@@ -1,0 +1,4 @@
+   /* (non-Javadoc)
+     * @see org.mockito.stubbing.Answer#answer(org.mockito.invocation.InvocationOnMock)
+     */
+public Object answer(InvocationOnMock invocation)

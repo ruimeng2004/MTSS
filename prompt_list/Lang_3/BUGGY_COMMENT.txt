@@ -1,0 +1,32 @@
+   /**
+     * <p>Turns a string value into a java.lang.Number.</p>
+     *
+     * <p>If the string starts with {@code 0x} or {@code -0x} (lower or upper case) or {@code #} or {@code -#}, it
+     * will be interpreted as a hexadecimal Integer - or Long, if the number of digits after the
+     * prefix is more than 8 - or BigInteger if there are more than 16 digits.
+     * </p>
+     * <p>Then, the value is examined for a type qualifier on the end, i.e. one of
+     * <code>'f','F','d','D','l','L'</code>.  If it is found, it starts 
+     * trying to create successively larger types from the type specified
+     * until one is found that can represent the value.</p>
+     *
+     * <p>If a type specifier is not found, it will check for a decimal point
+     * and then try successively larger types from <code>Integer</code> to
+     * <code>BigInteger</code> and from <code>Float</code> to
+    * <code>BigDecimal</code>.</p>
+    * 
+     * <p>
+     * Integral values with a leading {@code 0} will be interpreted as octal; the returned number will
+     * be Integer, Long or BigDecimal as appropriate.
+     * </p>
+     *
+     * <p>Returns <code>null</code> if the string is <code>null</code>.</p>
+     *
+     * <p>This method does not trim the input string, i.e., strings with leading
+     * or trailing spaces will generate NumberFormatExceptions.</p>
+     *
+     * @param str  String containing a number, may be null
+     * @return Number created from the string (or null if the input is null)
+     * @throws NumberFormatException if the value cannot be converted
+     */
+public static Number createNumber(final String str)

@@ -1,0 +1,7 @@
+   /**
+     * Compares this object to another based on size.
+     * @param object the object to compare to
+     * @return -1 if this is less than <tt>object</tt>, +1 if this is greater
+     *         than <tt>object</tt>, 0 if they are equal.
+     */
+public int compareTo(Fraction object)

@@ -1,0 +1,34 @@
+### Buggy function comment:
+   /**
+     * {@inheritDoc}
+     *
+     * For population size {@code N}, number of successes {@code m}, and sample
+     * size {@code n}, the mean is {@code n * m / N}.
+     */
+public double getNumericalMean()
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: sample=-50
+
+### Failed JUnit tests:
+@Test
+    public void testMath1021() {
+        final int N = 43130568;
+        final int m = 42976365;
+        final int n = 50;
+        final HypergeometricDistribution dist = new HypergeometricDistribution(N, m, n);
+
+        for (int i = 0; i < 100; i++) {
+            final int sample = dist.sample();
+            Assert.assertTrue("sample=" + sample, 0 <= sample);
+            Assert.assertTrue("sample=" + sample, sample <= n);
+        }
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public double getNumericalMean() {
+        return (double) (getSampleSize() * getNumberOfSuccesses()) / (double) getPopulationSize();
+    }
+```

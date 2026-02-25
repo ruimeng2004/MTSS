@@ -1,0 +1,45 @@
+### Buggy function comment:
+   This function has no comment.
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: expected:<<img />
+<svg>
+ <im[age] />
+</svg>> but was:<<img />
+<svg>
+ <im[g] />
+</svg>>
+
+### Failed JUnit tests:
+@Test public void convertsImageToImg() {
+        // image to img, unless in a svg. old html cruft.
+        String h = "<body><image><svg><image /></svg></body>";
+        Document doc = Jsoup.parse(h);
+        assertEquals("<img />\n<svg>\n <image />\n</svg>", doc.body().html());
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+boolean process(Token t, HtmlTreeBuilder tb) {
+            if (isWhitespace(t)) {
+                return true; // ignore whitespace
+            } else if (t.isComment()) {
+                tb.insert(t.asComment());
+            } else if (t.isDoctype()) {
+                // todo: parse error check on expected doctypes
+                // todo: quirk state check on doctype ids
+                Token.Doctype d = t.asDoctype();
+                DocumentType doctype = new DocumentType(d.getName(), d.getPublicIdentifier(), d.getSystemIdentifier(), tb.getBaseUri());
+                tb.getDocument().appendChild(doctype);
+                if (d.isForceQuirks())
+                    tb.getDocument().quirksMode(Document.QuirksMode.quirks);
+                tb.transition(BeforeHtml);
+            } else {
+                // todo: check not iframe srcdoc
+                tb.transition(BeforeHtml);
+                return tb.process(t); // re-process token
+            }
+            return true;
+        }
+```

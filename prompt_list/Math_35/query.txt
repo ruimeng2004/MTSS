@@ -1,0 +1,68 @@
+### Buggy function comment:
+   /**
+     * Creates a new ElitisticListPopulation instance.
+     *
+     * @param chromosomes list of chromosomes in the population
+     * @param populationLimit maximal size of the population
+     * @param elitismRate how many best chromosomes will be directly transferred to the
+     *                    next generation [in %]
+     * @throws OutOfRangeException if the elitism rate is outside the [0, 1] range
+     */
+public ElitisticListPopulation(final List<Chromosome> chromosomes,final int populationLimit,final double elitismRate)
+   /**
+     * Creates a new ElitisticListPopulation instance.
+     *
+     * @param chromosomes list of chromosomes in the population
+     * @param populationLimit maximal size of the population
+     * @param elitismRate how many best chromosomes will be directly transferred to the
+     *                    next generation [in %]
+     * @throws OutOfRangeException if the elitism rate is outside the [0, 1] range
+     */
+public ElitisticListPopulation(final List<Chromosome> chromosomes,final int populationLimit,final double elitismRate)
+
+
+### Error message from JUnit test:
+junit.framework.AssertionFailedError: Expected exception: org.apache.commons.math3.exception.OutOfRangeException
+junit.framework.AssertionFailedError: Expected exception: org.apache.commons.math3.exception.OutOfRangeException
+junit.framework.AssertionFailedError: Expected exception: org.apache.commons.math3.exception.OutOfRangeException
+junit.framework.AssertionFailedError: Expected exception: org.apache.commons.math3.exception.OutOfRangeException
+
+### Failed JUnit tests:
+@Test(expected = OutOfRangeException.class)
+    public void testChromosomeListConstructorTooLow() {
+        final List<Chromosome> chromosomes = Collections.emptyList();
+        final double rate = -0.25;
+        new ElitisticListPopulation(chromosomes, 100, rate);
+    }
+@Test(expected = OutOfRangeException.class)
+    public void testConstructorTooHigh() {
+        final double rate = 1.25;
+        new ElitisticListPopulation(100, rate);
+    }
+@Test(expected = OutOfRangeException.class)
+    public void testConstructorTooLow() {
+        final double rate = -0.25;
+        new ElitisticListPopulation(100, rate);
+    }
+@Test(expected = OutOfRangeException.class)
+    public void testChromosomeListConstructorTooHigh() {
+        final List<Chromosome> chromosomes = Collections.emptyList();
+        final double rate = 1.25;
+        new ElitisticListPopulation(chromosomes, 100, rate);
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+public ElitisticListPopulation(final int populationLimit, final double elitismRate) {
+        super(populationLimit);
+        this.elitismRate = elitismRate;
+    }
+```
+```java
+public ElitisticListPopulation(final List<Chromosome> chromosomes,
+                                   final int populationLimit,
+                                   final double elitismRate) {
+        super(chromosomes, populationLimit);
+        this.elitismRate = elitismRate;
+    }
+```

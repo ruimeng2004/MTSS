@@ -1,0 +1,11 @@
+public void testDefineFlag3() {
+    args.add("--define=FOO=\"x'\"");
+    test("/** @define {string} */ var FOO = \"a\";",
+         "var FOO = \"x'\";");
+  }
+public void testCall1() {
+    test("Math.sin(0);", "");
+  }
+public void testNew1() {
+    test("new Date;", "");
+  }

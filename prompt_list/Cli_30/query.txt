@@ -1,0 +1,162 @@
+### Buggy function comment:
+   /**
+     * Sets the values of Options using the values in <code>properties</code>.
+     *
+     * @param properties The value properties to be processed.
+     */
+private void handleProperties(Properties properties)
+   This function has no comment.
+
+
+### Error message from JUnit test:
+org.apache.commons.cli.AlreadySelectedException: The option 'b' was specified but an option from this group has already been selected: 'a'
+java.lang.NullPointerException
+org.apache.commons.cli.AlreadySelectedException: The option 'd' was specified but an option from this group has already been selected: 'f'
+
+### Failed JUnit tests:
+public void testPropertyOptionGroup() throws Exception
+    {
+        Options opts = new Options();
+        
+        OptionGroup group1 = new OptionGroup();
+        group1.addOption(new Option("a", null));
+        group1.addOption(new Option("b", null));
+        opts.addOptionGroup(group1);
+        
+        OptionGroup group2 = new OptionGroup();
+        group2.addOption(new Option("x", null));
+        group2.addOption(new Option("y", null));
+        opts.addOptionGroup(group2);
+        
+        String[] args = new String[] { "-a" };
+        
+        Properties properties = new Properties();
+        properties.put("b", "true");
+        properties.put("x", "true");
+        
+        CommandLine cmd = parse(parser, opts, args, properties);
+        
+        assertTrue(cmd.hasOption("a"));
+        assertFalse(cmd.hasOption("b"));
+        assertTrue(cmd.hasOption("x"));
+        assertFalse(cmd.hasOption("y"));
+    }
+    public void testPropertyOptionUnexpected() throws Exception
+    {
+        Options opts = new Options();
+        
+        Properties properties = new Properties();
+        properties.setProperty("f", "true");
+        
+        try {
+            parse(parser, opts, null, properties);
+            fail("UnrecognizedOptionException expected");
+        } catch (UnrecognizedOptionException e) {
+            // expected
+        }
+    }
+public void testTwoOptionsFromGroupWithProperties() throws Exception
+    {
+        String[] args = new String[] { "-f" };
+        
+        Properties properties = new Properties();
+        properties.put("d", "true");
+        
+        CommandLine cl = parser.parse( _options, args, properties);
+        assertTrue(cl.hasOption("f"));
+        assertTrue(!cl.hasOption("d"));
+    }
+
+### Buggy functions:(You need to generate a *SEARCH/REPLACE* edit for each buggy function)
+```java
+private void handleProperties(Properties properties) throws ParseException
+    {
+        if (properties == null)
+        {
+            return;
+        }
+        
+        for (Enumeration e = properties.propertyNames(); e.hasMoreElements();)
+        {
+            String option = e.nextElement().toString();
+            
+            if (!cmd.hasOption(option))
+            {
+                Option opt = options.getOption(option);
+            
+            // if the option is part of a group, check if another option of the group has been selected
+            
+                // get the value from the properties
+                String value = properties.getProperty(option);
+                
+                if (opt.hasArg())
+                {
+                    if (opt.getValues() == null || opt.getValues().length == 0)
+                    {
+                        opt.addValueForProcessing(value);
+                    }
+                }
+                else if (!("yes".equalsIgnoreCase(value)
+                        || "true".equalsIgnoreCase(value)
+                        || "1".equalsIgnoreCase(value)))
+                {
+                    // if the value is not yes, true or 1 then don't add the option to the CommandLine
+                    continue;
+                }
+                
+                handleOption(opt);
+                currentOption = null;
+            }
+        }
+    }
+```
+```java
+protected void processProperties(Properties properties) throws ParseException
+    {
+        if (properties == null)
+        {
+            return;
+        }
+
+        for (Enumeration e = properties.propertyNames(); e.hasMoreElements();)
+        {
+            String option = e.nextElement().toString();
+            
+            if (!cmd.hasOption(option))
+            {
+                Option opt = getOptions().getOption(option);
+            
+            // if the option is part of a group, check if another option of the group has been selected
+            
+                // get the value from the properties instance
+                String value = properties.getProperty(option);
+
+                if (opt.hasArg())
+                {
+                    if (opt.getValues() == null || opt.getValues().length == 0)
+                    {
+                        try
+                        {
+                            opt.addValueForProcessing(value);
+                        }
+                        catch (RuntimeException exp)
+                        {
+                            // if we cannot add the value don't worry about it
+                        }
+                    }
+                }
+                else if (!("yes".equalsIgnoreCase(value)
+                        || "true".equalsIgnoreCase(value)
+                        || "1".equalsIgnoreCase(value)))
+                {
+                    // if the value is not yes, true or 1 then don't add the
+                    // option to the CommandLine
+                    continue;
+                }
+
+                cmd.addOption(opt);
+                updateRequiredOptions(opt);
+            }
+        }
+    }
+```
